@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Login form</h1>
-        <form action="logincontrol" method="post">
+        <form action="login" method="post">
              <div class="page-header align-items-start min-vh-100" style="background-image: url('image/Food.jpg');" loading="lazy">
                  <span class="mask bg-gradient-dark opacity-6"></span>
                  <div class="container my-auto">

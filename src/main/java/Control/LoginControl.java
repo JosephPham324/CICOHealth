@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package control;
 
 import dao.LoginDAO;
 import entity.Login;
-import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -39,8 +34,7 @@ public class LoginControl extends HttpServlet {
             Login a = loginDAO.checkLogin(user, pass);
             if(a==null){
                 response.sendRedirect("login-error.jsp");
-            }
-            else{
+            }else{
                 response.sendRedirect("MainMenu.jsp");
             }
         } catch (Exception e) {
