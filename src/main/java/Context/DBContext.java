@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class DBContext {
 
-    private static final String dbPrefix = "jdbc:sqlserver://localhost:1433;databaseName=Nutrition [sa on SA]";
+    private static final String dbPrefix = "jdbc:sqlserver://localhost:1433;databaseName=Nutrition";
     private static final String dbPort = "1433";
     private static final String databaseName = "Nutrition";
     private final String instance = "";

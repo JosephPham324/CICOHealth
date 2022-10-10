@@ -5,7 +5,7 @@
 package control;
 
 import entity.User;
-import dao.LoginDAO;
+import DAO.LoginDAO;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;

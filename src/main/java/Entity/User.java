@@ -82,6 +82,11 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return "User{" + "userID=" + userID + ", loginID=" + loginID + ", userRoleId=" + userRoleId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + '}';
+    }
     
     
     
