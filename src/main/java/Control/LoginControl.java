@@ -1,7 +1,7 @@
-package control;
+package Control;
 
 import DAO.LoginDAO;
-import entity.Login;
+import Entity.Login;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -32,8 +32,7 @@ public class LoginControl extends HttpServlet {
             String pass = request.getParameter("password");
             LoginDAO loginDAO = new LoginDAO();
             Login a = loginDAO.checkLogin(user, pass);
-//            response.getWriter().print(new DAO.lol());
-//            response.getWriter().print(loginDAO);
+            response.getWriter().print(a.toString());
             if(a==null){
                 response.sendRedirect("login-error.jsp");
             }else{

@@ -1,4 +1,4 @@
-package entity;
+package Entity;
 
 /**
  *
@@ -6,10 +6,10 @@ package entity;
  */
 public class Login {
     private int loginID;
-    private int userID;
     private String username;
     private String passwordSalt;
     private String passwordHash;
+    private int userID;
 
     /**
      *
@@ -19,7 +19,7 @@ public class Login {
      * @param passwordSalt
      * @param passwordHash
      */
-    public Login(int loginID, int userID, String username, String passwordSalt, String passwordHash) {
+    public Login(int loginID, String username, String passwordSalt, String passwordHash, int userID) {
         this.loginID = loginID;
         this.userID = userID;
         this.username = username;
@@ -107,6 +107,12 @@ public class Login {
         this.passwordHash = passwordHash;
     }
 
+    @Override
+    public String toString() {
+        return "Login{" + "loginID=" + loginID + ", username=" + username + ", passwordSalt=" + passwordSalt + ", passwordHash=" + passwordHash + ", userID=" + userID + '}';
+    }
+
+    
     
     
 }

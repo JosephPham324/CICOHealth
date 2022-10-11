@@ -5,9 +5,9 @@
 package DAO;
 
 import context.DBContext;
-import entity.Login;
-import entity.User;
-import entity.UserHealthInfo;
+import Entity.Login;
+import Entity.User;
+import Entity.UserHealthInfo;
 import jakarta.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -28,7 +28,6 @@ public class LoginDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    
     public List<User> getListMember() {
         try {
             String query = "select * from [Nutrition].[dbo].[USER]";
@@ -38,7 +37,7 @@ public class LoginDAO {
             List<User> list = new ArrayList<>();
             while (rs.next()) {
                 User acc = new User(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
-                                    rs.getString(5),rs.getString(6),rs.getString(7));
+                        rs.getString(5), rs.getString(6), rs.getString(7));
                 list.add(acc);
             }
             return list;
@@ -47,8 +46,8 @@ public class LoginDAO {
         }
         return null;
     }
-    
-        public List<UserHealthInfo> getListMemberInfo() {
+
+    public List<UserHealthInfo> getListMemberInfo() {
         try {
             String query = "select * from [Nutrition].[dbo].[MemberInfo]";
             con = new DBContext().getConnection(); // open connection to SQL
@@ -56,8 +55,8 @@ public class LoginDAO {
             rs = ps.executeQuery(); // the same with click to "excute" btn;
             List<UserHealthInfo> list = new ArrayList<>();
             while (rs.next()) {
-                UserHealthInfo acc = new UserHealthInfo(rs.getInt(1), rs.getString(2), rs.getFloat(3)
-                                                ,rs.getFloat(4),rs.getFloat(5),rs.getInt(6));
+                UserHealthInfo acc = new UserHealthInfo(rs.getInt(1), rs.getString(2), rs.getFloat(3),
+                         rs.getFloat(4), rs.getFloat(5), rs.getInt(6));
                 list.add(acc);
             }
             return list;
@@ -66,9 +65,7 @@ public class LoginDAO {
         }
         return null;
     }
-    
 
-    
     public void deleteAcc(String id) {
         String query = "delete from [Nutrition].[dbo].[Member] where member_id = ?";
         try {
@@ -96,8 +93,8 @@ public class LoginDAO {
         } catch (Exception e) {
         }
     }
-    
-     public String MD5Encryption(String password) {
+
+    public String MD5Encryption(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             //the update() function is used to get the input string that needs to be encoded
@@ -109,23 +106,28 @@ public class LoginDAO {
         }
     }
 
-    public Login checkLogin(String user, String pass) {
+    public Login checkLogin(String user, String enteredPassword) {
         try {
-            String query = "select * from LOGIN where [USERNAME] = ? and PASSWORDSALT = ?";
+            String query = "select * from [Nutrition].[dbo].[LOGIN] where [USERNAME] = ?";
             con = new DBContext().getConnection();
             ps = con.prepareStatement(query);
             ps.setString(1, user);
-            ps.setString(2, pass);
             rs = ps.executeQuery();
+            System.out.println(ps.toString());
             while (rs.next()) {
-                Login a = new Login(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                Login a = new Login(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+                String salt = a.getPasswordSalt();
+                String hash = a.getPasswordHash();
+
+                if (Security.LoginLogic.verifyPassword(enteredPassword, salt, hash));
                 return a;
             }
         } catch (Exception e) {
+            System.out.println(e);
         }
         return null;
     }
-    
+
 //     public User getMemberByID (String id) {
 //        String query = "select * from Member\n" +
 //"where member_id = ?";
@@ -142,8 +144,7 @@ public class LoginDAO {
 //        return null;
 //    }
 //     
-    
-     public void insertUserInfo(String userID, String loginID, String userRoleId, String firstName, String lastName, String email, String phone) {
+    public void insertUserInfo(String userID, String loginID, String userRoleId, String firstName, String lastName, String email, String phone) {
         String query = "insert into [Nutrition].[dbo].[USER] values(?,?,?,?,?,?,?)";
         try {
             con = new DBContext().getConnection();
@@ -159,8 +160,8 @@ public class LoginDAO {
         } catch (Exception e) {
         }
     }
-     
-      public void insertHealthInfo(String userId, String gender, String height, String weight, String activeness, String age) {
+
+    public void insertHealthInfo(String userId, String gender, String height, String weight, String activeness, String age) {
         String query = "insert into [Nutrition].[dbo].[USERHEALTHINFO] values(?,?,?,?,?,?)";
         try {
             con = new DBContext().getConnection();
@@ -175,13 +176,11 @@ public class LoginDAO {
         } catch (Exception e) {
         }
     }
-     
+
     public static void main(String[] args) {
         LoginDAO dao = new LoginDAO();
         List<User> users = dao.getListMember();
-        for (int i = 0; i < users.size(); i++) {
-            System.out.println(users.get(i));
-        }
+        System.out.println(dao.checkLogin("QuangPNCE170036", "group4prj301"));
     }
 
 }

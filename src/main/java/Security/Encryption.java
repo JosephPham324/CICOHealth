@@ -174,7 +174,6 @@ public class Encryption {
         String username = "QuangPNCE170036";
         String password = "group4prj301";
         String salt = generateSalt("QuangPNCE170036", "group4prj301");
-//        String algorithm = Encryption.getAlgorithm();
         try {
             SecretKey key = getKeyFromPassword("group4prj301", salt);
             IvParameterSpec iv = Encryption.generateIv();

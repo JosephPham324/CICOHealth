@@ -1,4 +1,4 @@
-package control;
+package Control;
 
 import DAO.LoginDAO;
 import java.io.IOException;
