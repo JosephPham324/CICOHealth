@@ -1,23 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package Control;
 
 import DAO.LoginDAO;
+import DAO.UserDAO;
+import Security.Encryption;
+import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-
+import Security.RegLoginLogic;
 
 /**
  *
- * @author Thinh
+ * @author M S I
  */
-public class UserInfoControl extends HttpServlet {
+public class RegisterControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +34,10 @@ public class UserInfoControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserInfoControl</title>");            
+            out.println("<title>Servlet RegisterControl</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserInfoControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RegisterControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,17 +69,38 @@ public class UserInfoControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        LoginDAO dao = new LoginDAO();
-//        String suserid = request.getParameter("userid");
-//        String sloginid = request.getParameter("loginid");
-//        String sroleid = request.getParameter("roleid");
-//        String sfname = request.getParameter("fname");
-//        String slname = request.getParameter("lname");
-//        String semail = request.getParameter("email");
-//        String sphone = request.getParameter("phone");
-//        dao.insertUserInfo(suserid, sloginid, sroleid, sfname, slname, semail, sphone);
-//        request.getRequestDispatcher("HealthInfo.jsp")
-//                .forward(request,response);//Step 1: Get data from DAO
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        
+        String empString = "";
+        
+        String salt = Encryption.generateSalt(username, password);
+        String hashedPassword = RegLoginLogic.encryptPassword(salt, password);
+        
+        
+        if (hashedPassword.equals(empString)){
+            response.sendRedirect("Register-Error.jsp");
+        } else {
+            LoginDAO logDAO = new LoginDAO();
+            
+            logDAO.addLoginInfo(username, salt, hashedPassword);
+            
+            int loginID = logDAO.getLastID();
+            
+            UserDAO userDAO = new UserDAO();
+            
+            userDAO.addUser(loginID+"","2", firstName, lastName, phone, email);
+            
+            logDAO.updateUserID(loginID, loginID);
+            
+            
+            response.sendRedirect("HealthInfo.jsp");
+        }
+
     }
 
     /**

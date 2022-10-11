@@ -12,13 +12,14 @@ S I --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link rel="stylesheet" href = "./css/formstyle.css"/>
     <title>Register Account</title>
   </head>
   <body>
     <div class="container">
       <div class="row col-md-8 offset-4">
         <div class="login-form">
-          <form>
+            <form method="post" action="register">
             <fieldset>
               <legend>Register</legend>
               <div class="form-group row">
@@ -57,14 +58,14 @@ S I --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
                       id="password"
                       name="password"
                       placeholder="Enter your password"
-                      type="text"
+                      type="password"
                       class="form-control"
                     />
                   </div>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="fistName" class="col-4 col-form-label"
+                <label for="firstName" class="col-4 col-form-label"
                   >First Name</label
                 >
                 <div class="col-8">
@@ -75,8 +76,8 @@ S I --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
                       </div>
                     </div>
                     <input
-                      id="fistName"
-                      name="fistName"
+                      id="firstName"
+                      name="firstName"
                       placeholder="Enter your first name"
                       type="text"
                       class="form-control"
@@ -118,6 +119,25 @@ S I --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
                       id="email"
                       name="email"
                       placeholder="Enter your email"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="phone" class="col-4 col-form-label">Phone</label>
+                <div class="col-8">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fa fa-address-book"></i>
+                      </div>
+                    </div>
+                    <input
+                      id="phone"
+                      name="phone"
+                      placeholder="Enter your phone"
                       type="text"
                       class="form-control"
                     />

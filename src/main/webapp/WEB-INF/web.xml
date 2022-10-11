@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>logincontrol</servlet-name>
-        <servlet-class>control.LoginControl</servlet-class>
+        <servlet-name>LoginControl</servlet-name>
+        <servlet-class>Control.LoginControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoadControl</servlet-name>
-        <servlet-class>control.LoadControl</servlet-class>
+        <servlet-class>Control.LoadControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteControl</servlet-name>
-        <servlet-class>control.DeleteControl</servlet-class>
+        <servlet-class>Control.DeleteControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchControl</servlet-name>
-        <servlet-class>control.SearchControl</servlet-class>
+        <servlet-class>Control.SearchControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreateControl</servlet-name>
-        <servlet-class>control.CreateControl</servlet-class>
+        <servlet-class>Control.CreateControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HealthInfoControl</servlet-name>
-        <servlet-class>control.HealthInfoControl</servlet-class>
+        <servlet-class>Control.HealthInfoControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UserInfoControl</servlet-name>
-        <servlet-class>control.UserInfoControl</servlet-class>
+        <servlet-class>Control.UserInfoControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterControl</servlet-name>
+        <servlet-class>Control.RegisterControl</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>logincontrol</servlet-name>
+        <servlet-name>LoginControl</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>UserInfoControl</servlet-name>
         <url-pattern>/userinfocontrol</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterControl</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
