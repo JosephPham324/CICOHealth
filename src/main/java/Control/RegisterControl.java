@@ -2,6 +2,7 @@ package Control;
 
 import DAO.LoginDAO;
 import DAO.UserDAO;
+import Security.Encryption;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -9,7 +10,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import Security.RegLoginLogic;
-import java.util.ArrayList;
 
 /**
  *
@@ -78,7 +78,8 @@ public class RegisterControl extends HttpServlet {
         
         String empString = "";
         
-        String hashedPassword = RegLoginLogic.encryptPassword(username, password);
+        String salt = Encryption.generateSalt(username, password);
+        String hashedPassword = RegLoginLogic.encryptPassword(salt, password);
         
         
         if (hashedPassword.equals(empString)){
@@ -86,17 +87,16 @@ public class RegisterControl extends HttpServlet {
         } else {
             LoginDAO logDAO = new LoginDAO();
             
-            logDAO.addLoginInfo(username, email, hashedPassword);
+            logDAO.addLoginInfo(username, salt, hashedPassword);
             
             int loginID = logDAO.getLastID();
             
             UserDAO userDAO = new UserDAO();
             
-            userDAO.addUser(loginID + "", username, firstName, lastName, email, phone);
+            userDAO.addUser(loginID+"","2", firstName, lastName, phone, email);
             
-            int userID = userDAO.getLastID();
+            logDAO.updateUserID(loginID, loginID);
             
-            logDAO.updateUserID(loginID, userID);
             
             response.sendRedirect("Login.jsp");
         }

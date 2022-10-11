@@ -58,13 +58,13 @@ public class UserDAO {
         }
     }
 
-    public void addUser(String LOGINID, String USERROLEID, String FIRSTNAME, String LASTNAME, String EMAIL, String PHONE) {
+    public void addUser(String USERID, String USERROLEID, String FIRSTNAME, String LASTNAME, String PHONE, String EMAIL) {
         String query = "insert into dbo.[User] values(?,?,?,?,?,?)";
 
         try {
             con = new DBContext().getConnection();
             ps = con.prepareStatement(query);
-            ps.setString(1, LOGINID);
+            ps.setString(1, USERID);
             ps.setString(2, USERROLEID);
             ps.setString(3, FIRSTNAME);
             ps.setString(4, LASTNAME);
@@ -128,5 +128,11 @@ public class UserDAO {
             ps.executeUpdate();
         } catch (Exception e) {
         }
+    }
+    
+    public static void main(String[] args) {
+        UserDAO dao = new UserDAO();
+        
+        dao.addUser("7","2", "quang", "pham", "0857974230", "2222");
     }
 }

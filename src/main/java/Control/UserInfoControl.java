@@ -71,17 +71,17 @@ public class UserInfoControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LoginDAO dao = new LoginDAO();
-        String suserid = request.getParameter("userid");
-        String sloginid = request.getParameter("loginid");
-        String sroleid = request.getParameter("roleid");
-        String sfname = request.getParameter("fname");
-        String slname = request.getParameter("lname");
-        String semail = request.getParameter("email");
-        String sphone = request.getParameter("phone");
-        dao.insertUserInfo(suserid, sloginid, sroleid, sfname, slname, semail, sphone);
-        request.getRequestDispatcher("HealthInfo.jsp")
-                .forward(request,response);//Step 1: Get data from DAO
+//        LoginDAO dao = new LoginDAO();
+//        String suserid = request.getParameter("userid");
+//        String sloginid = request.getParameter("loginid");
+//        String sroleid = request.getParameter("roleid");
+//        String sfname = request.getParameter("fname");
+//        String slname = request.getParameter("lname");
+//        String semail = request.getParameter("email");
+//        String sphone = request.getParameter("phone");
+//        dao.insertUserInfo(suserid, sloginid, sroleid, sfname, slname, semail, sphone);
+//        request.getRequestDispatcher("HealthInfo.jsp")
+//                .forward(request,response);//Step 1: Get data from DAO
     }
 
     /**

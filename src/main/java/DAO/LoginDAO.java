@@ -8,9 +8,6 @@ import context.DBContext;
 import Entity.Login;
 import Entity.User;
 import Entity.UserHealthInfo;
-import jakarta.xml.bind.DatatypeConverter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,7 +42,16 @@ public class LoginDAO {
     }
     
     public void updateUserID(int loginID, int userID){
-        
+        String query = "UPDATE dbo.LOGIN SET USER_ID = ? where LOGINID = ?";
+        try {
+            con = new DBContext().getConnection();
+            ps = con.prepareStatement(query);
+            ps.setString(1, userID+"");
+            ps.setString(2, loginID+"");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
     
     public int getLastID() {
@@ -151,22 +157,6 @@ public class LoginDAO {
 //        return null;
 //    }
 //     
-    public void insertUserInfo(String userID, String loginID, String userRoleId, String firstName, String lastName, String email, String phone) {
-        String query = "insert into [Nutrition].[dbo].[USER] values(?,?,?,?,?,?,?)";
-        try {
-            con = new DBContext().getConnection();
-            ps = con.prepareStatement(query);
-            ps.setString(1, userID);
-            ps.setString(2, loginID);
-            ps.setString(3, userRoleId);
-            ps.setString(4, firstName);
-            ps.setString(5, lastName);
-            ps.setString(6, email);
-            ps.setString(7, phone);
-            ps.executeUpdate();
-        } catch (Exception e) {
-        }
-    }
 
     public void insertHealthInfo(String userId, String gender, String height, String weight, String activeness, String age) {
         String query = "insert into [Nutrition].[dbo].[USERHEALTHINFO] values(?,?,?,?,?,?)";
