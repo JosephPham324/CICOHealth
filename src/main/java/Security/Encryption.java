@@ -24,11 +24,19 @@ import javax.crypto.spec.SecretKeySpec;
  * @author Pham Nhat Quang
  */
 public class Encryption {
-    private static final String ALGO = "AES/CBC/PKCS5Padding";
+    private static final String ALGO = "AES/CBC/PKCS5Padding";//Encryption Algorithm used
     private static final byte[] IV= new byte[]{(byte)'p',(byte)'r',(byte)'j',(byte)'3',(byte)'0',(byte)'1',
         (byte)'g',(byte)'r',(byte)'o',(byte)'u',(byte)'p',(byte)'4',(byte)'f',(byte)'a',(byte)'2',(byte)'2',
-    };
+    };//To generate IvParameterSpec
     
+    /**
+     * Generate secret key from password and salt
+     * @param password Password to be used 
+     * @param salt salt to be used
+     * @return A secret key 
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
     public static SecretKey getKeyFromPassword(String password, String salt)
             throws NoSuchAlgorithmException, InvalidKeySpecException {
 
@@ -39,10 +47,26 @@ public class Encryption {
         return secret;
     }
 
+    /**
+     * Generate IvParameterSpec from IV field
+     * @return
+     */
     public static IvParameterSpec generateIv() {
         return new IvParameterSpec(IV);
     }
 
+    /**
+     * Encrypt an input string using a secret key
+     * @param input Input to be encrypted
+     * @param key Key for encrypting
+     * @return Encrypted String
+     * @throws NoSuchPaddingException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidAlgorithmParameterException
+     * @throws InvalidKeyException
+     * @throws BadPaddingException
+     * @throws IllegalBlockSizeException
+     */
     public static String encrypt(String input, SecretKey key
             ) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException,
@@ -55,6 +79,18 @@ public class Encryption {
                 .encodeToString(cipherText);
     }
 
+    /**
+     * Decrypt an encrypted String using a SecretKey
+     * @param cipherText String to be decrypted
+     * @param key Key to be used
+     * @return Decrypted String
+     * @throws NoSuchPaddingException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidAlgorithmParameterException
+     * @throws InvalidKeyException
+     * @throws BadPaddingException
+     * @throws IllegalBlockSizeException
+     */
     public static String decrypt(String cipherText, SecretKey key
             ) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException,
@@ -67,6 +103,12 @@ public class Encryption {
         return new String(plainText);
     }
     
+    /**
+     * Encrypt a String using Caesar Cipher
+     * @param text Text to be encrypted
+     * @param s Shifting value
+     * @return Encrypted String
+     */
     public static StringBuffer encryptCC(String text, int s)
     {
         StringBuffer result= new StringBuffer();
@@ -89,6 +131,10 @@ public class Encryption {
         return result;
     }
     
+    /**
+     * Generate a String of special characters and numbers
+     * @return Generated String
+     */
     public static String generateSpecChar(){
         int max = 47;
         int min = 33;
@@ -103,6 +149,12 @@ public class Encryption {
         return res.substring(min, min+7);
     }
     
+    /**
+     * Generate salt from username and password
+     * @param username Username 
+     * @param password Password
+     * @return Result salt
+     */
     public static String generateSalt(String username, String password){
         int max = username.length() + password.length();
         int rand = (int)Math.floor(Math.random()*(max-1+1)+1);
@@ -114,6 +166,10 @@ public class Encryption {
         return salt;
     }
     
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         String username = "QuangPNCE170036";
         String password = "group4prj301";
