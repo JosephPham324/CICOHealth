@@ -1,18 +1,21 @@
 package Control;
 
 import DAO.LoginDAO;
+import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import Security.RegLoginLogic;
+import java.util.ArrayList;
 
 /**
  *
- * @author Thinh
+ * @author M S I
  */
-public class CreateControl extends HttpServlet {
+public class RegisterControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,10 +34,10 @@ public class CreateControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateControl</title>");            
+            out.println("<title>Servlet RegisterControl</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CreateControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RegisterControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,20 +69,38 @@ public class CreateControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-//                LoginDAO dao = new LoginDAO();
-//                
-//        String sloginid = request.getParameter("loginid");
-//        String suserid = request.getParameter("userid");
-//        String suser = request.getParameter("username");
-//        String spass = request.getParameter("password");
-//
-//
-//        String spasshash = dao.MD5Encryption(spass);
-//        dao.insertAcc(sloginid,suserid,suser, spass,spasshash);
-// request.getRequestDispatcher("UserInfo.jsp")
-//                .forward(request,response);//Step 1: Get data from DAO
- 
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        
+        String empString = "";
+        
+        String hashedPassword = RegLoginLogic.encryptPassword(username, password);
+        
+        
+        if (hashedPassword.equals(empString)){
+            response.sendRedirect("Register-Error.jsp");
+        } else {
+            LoginDAO logDAO = new LoginDAO();
+            
+            logDAO.addLoginInfo(username, email, hashedPassword);
+            
+            int loginID = logDAO.getLastID();
+            
+            UserDAO userDAO = new UserDAO();
+            
+            userDAO.addUser(loginID + "", username, firstName, lastName, email, phone);
+            
+            int userID = userDAO.getLastID();
+            
+            logDAO.updateUserID(loginID, userID);
+            
+            response.sendRedirect("Login.jsp");
+        }
+
     }
 
     /**

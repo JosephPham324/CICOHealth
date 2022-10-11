@@ -146,7 +146,7 @@ public class Encryption {
             res+=(char)in;
         }
         min = ((int)Math.floor(Math.random()*(14+1)));
-        return res.substring(min, min+7);
+        return res.substring(min, min+6);
     }
     
     /**
@@ -156,9 +156,9 @@ public class Encryption {
      * @return Result salt
      */
     public static String generateSalt(String username, String password){
-        int max = username.length() + password.length();
+        int max = 100;
         int rand = (int)Math.floor(Math.random()*(max-1+1)+1);
-        if (max<10)
+        if (max<9)
             return "Unable to generate salt";
         String salt = encryptCC(password+username, rand).toString();
         salt = salt.substring(0, 6) + generateSpecChar() + salt.substring(6,11);
@@ -171,9 +171,9 @@ public class Encryption {
      * @param args
      */
     public static void main(String[] args) {
-        String username = "QuangPNCE170036";
+        String username = "hieuttnce161025";
         String password = "group4prj301";
-        String salt = generateSalt("QuangPNCE170036", "group4prj301");
+        String salt = generateSalt("LUNTCE160464", "group4prj301");
         try {
             SecretKey key = getKeyFromPassword("group4prj301", salt);
             IvParameterSpec iv = Encryption.generateIv();

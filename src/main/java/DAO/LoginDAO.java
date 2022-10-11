@@ -27,6 +27,41 @@ public class LoginDAO {
     Connection con = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+    
+    public void addLoginInfo(String username, String salt, String hashedPassword){
+        String query = "insert into login values(?,?,?,null)";
+        try {
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+
+            ps.setString(1, username);
+            ps.setString(2, salt);
+            ps.setString(3, hashedPassword);
+            
+            ps.executeUpdate(); // the same with click to "excute" btn;
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+    
+    public void updateUserID(int loginID, int userID){
+        
+    }
+    
+    public int getLastID() {
+        String query = "SELECT TOP 1 * FROM dbo.LOGIN ORDER BY LOGINID DESC";
+        try {
+            con = new DBContext().getConnection();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return -1;
+    }
 
     public List<User> getListMember() {
         try {
@@ -78,34 +113,6 @@ public class LoginDAO {
         }
     }
 
-    public void insertAcc(String loginID, String userID, String username, String passwordSalt, String passwordHash) {
-        String query = "insert into [Nutrition].[dbo].[LOGIN] values(?,?,?,?,?)";
-        try {
-            con = new DBContext().getConnection();
-            ps = con.prepareStatement(query);
-            passwordHash = MD5Encryption(passwordSalt);
-            ps.setString(1, loginID);
-            ps.setString(2, userID);
-            ps.setString(3, username);
-            ps.setString(4, passwordSalt);
-            ps.setString(5, passwordHash);
-            ps.executeUpdate();
-        } catch (Exception e) {
-        }
-    }
-
-    public String MD5Encryption(String password) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            //the update() function is used to get the input string that needs to be encoded
-            md.update(password.getBytes());
-            //use digest() to generate hash for the string to be encrypted
-            return DatatypeConverter.printHexBinary(md.digest()).toLowerCase();
-        } catch (NoSuchAlgorithmException ex) {
-            return null;
-        }
-    }
-
     public Login checkLogin(String user, String enteredPassword) {
         try {
             String query = "select * from [Nutrition].[dbo].[LOGIN] where [USERNAME] = ?";
@@ -119,7 +126,7 @@ public class LoginDAO {
                 String salt = a.getPasswordSalt();
                 String hash = a.getPasswordHash();
 
-                if (Security.LoginLogic.verifyPassword(enteredPassword, salt, hash));
+                if (Security.RegLoginLogic.verifyPassword(enteredPassword, salt, hash));
                 return a;
             }
         } catch (Exception e) {
