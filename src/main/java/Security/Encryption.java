@@ -21,11 +21,11 @@ import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
- * @author M S I
+ * @author Pham Nhat Quang
  */
 public class Encryption {
-    private static final String algorithm = "AES/CBC/PKCS5Padding";
-    private static final byte[] iv= new byte[]{(byte)'p',(byte)'r',(byte)'j',(byte)'3',(byte)'0',(byte)'1',
+    private static final String ALGO = "AES/CBC/PKCS5Padding";
+    private static final byte[] IV= new byte[]{(byte)'p',(byte)'r',(byte)'j',(byte)'3',(byte)'0',(byte)'1',
         (byte)'g',(byte)'r',(byte)'o',(byte)'u',(byte)'p',(byte)'4',(byte)'f',(byte)'a',(byte)'2',(byte)'2',
     };
     
@@ -40,7 +40,7 @@ public class Encryption {
     }
 
     public static IvParameterSpec generateIv() {
-        return new IvParameterSpec(iv);
+        return new IvParameterSpec(IV);
     }
 
     public static String encrypt(String input, SecretKey key
@@ -48,7 +48,7 @@ public class Encryption {
             InvalidAlgorithmParameterException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
         IvParameterSpec iv = generateIv();
-        Cipher cipher = Cipher.getInstance(algorithm);
+        Cipher cipher = Cipher.getInstance(ALGO);
         cipher.init(Cipher.ENCRYPT_MODE, key, iv);
         byte[] cipherText = cipher.doFinal(input.getBytes());
         return Base64.getEncoder()
@@ -60,7 +60,7 @@ public class Encryption {
             InvalidAlgorithmParameterException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
         IvParameterSpec iv = generateIv();
-        Cipher cipher = Cipher.getInstance(algorithm);
+        Cipher cipher = Cipher.getInstance(ALGO);
         cipher.init(Cipher.DECRYPT_MODE, key, iv);
         byte[] plainText = cipher.doFinal(Base64.getDecoder()
                 .decode(cipherText));
