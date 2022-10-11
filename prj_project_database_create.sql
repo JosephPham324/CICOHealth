@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2017                    */
-/* Created on:     2022-10-09 12:06:27 PM                       */
+/* Created on:     2022-10-11 12:57:31 PM                       */
 /*==============================================================*/
 
 
@@ -16,13 +16,6 @@ if exists (select 1
    where r.fkeyid = object_id('EXERCISE') and o.name = 'FK_EXERCISE_DO_USER')
 alter table EXERCISE
    drop constraint FK_EXERCISE_DO_USER
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('LOGIN') and o.name = 'FK_LOGIN_IS_USER')
-alter table LOGIN
-   drop constraint FK_LOGIN_IS_USER
 go
 
 if exists (select 1
@@ -44,13 +37,6 @@ if exists (select 1
    where r.fkeyid = object_id('"USER"') and o.name = 'FK_USER_HAS_ROLE_USERROLE')
 alter table "USER"
    drop constraint FK_USER_HAS_ROLE_USERROLE
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('"USER"') and o.name = 'FK_USER_IS2_LOGIN')
-alter table "USER"
-   drop constraint FK_USER_IS2_LOGIN
 go
 
 if exists (select 1
@@ -90,15 +76,6 @@ if exists (select 1
            where  id = object_id('EXERCISE')
             and   type = 'U')
    drop table EXERCISE
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('LOGIN')
-            and   name  = 'IS_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index LOGIN.IS_FK
 go
 
 if exists (select 1
@@ -150,15 +127,6 @@ if exists (select 1
 go
 
 if exists (select 1
-            from  sysindexes
-           where  id    = object_id('"USER"')
-            and   name  = 'IS2_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index "USER".IS2_FK
-go
-
-if exists (select 1
             from  sysobjects
            where  id = object_id('"USER"')
             and   type = 'U')
@@ -206,6 +174,7 @@ go
 
 
 
+
 create nonclustered index HAS2_FK on DAILYNUTRITIONGOAL (USERID ASC)
 go
 
@@ -239,25 +208,13 @@ go
 /* Table: LOGIN                                                 */
 /*==============================================================*/
 create table LOGIN (
-   LOGINID              int					 not null,
-   USERID               int  					 null,
+   LOGINID              int                  not null IDENTITY(1,1),
    USERNAME             varchar(256)         not null,
    PASSWORDSALT         varchar(256)         not null,
    PASSWORDHASH         varchar(256)         not null,
+   USER_ID              int                  null,
    constraint PK_LOGIN primary key (LOGINID)
 )
-go
-
---insert into LOGIN VALUES (1,1,'nlordqting4444','123','202cb962ac59075b964b07152d234b70')
-
-/*==============================================================*/
-/* Index: IS_FK                                                 */
-/*==============================================================*/
-
-
-
-
-create nonclustered index IS_FK on LOGIN (USERID ASC)
 go
 
 /*==============================================================*/
@@ -314,29 +271,14 @@ go
 /* Table: "USER"                                                */
 /*==============================================================*/
 create table "USER" (
-   USERID               int                  not null,
-   LOGINID              int                  null,
+   USERID               int                   not null,
    USERROLEID           int                  null,
    FIRSTNAME            varchar(256)         not null,
    LASTNAME             varchar(256)         not null,
-   EMAILADDRESS         varchar(256)               null,
+   EMAILADDRESS         varchar(256)             null,
    PHONENUMBER          char(256)            null,
    constraint PK_USER primary key (USERID)
 )
-go
-
---insert into [USER] VALUES (1,1,1,'Thinh','Nguyen','thinh@gmail.com','0916257956')
-
-
-
-/*==============================================================*/
-/* Index: IS2_FK                                                */
-/*==============================================================*/
-
-
-
-
-create nonclustered index IS2_FK on "USER" (LOGINID ASC)
 go
 
 /*==============================================================*/
@@ -362,10 +304,6 @@ create table USERHEALTHINFO (
 )
 go
 
---insert into USERHEALTHINFO VALUES (1,'Male',180,60,1.2,20)
-
-
-
 /*==============================================================*/
 /* Index: ABOUT2_FK                                             */
 /*==============================================================*/
@@ -386,9 +324,6 @@ create table USERROLE (
 )
 go
 
---insert into USERROLE VALUES (1,'GainWeight')
-
-
 alter table DAILYNUTRITIONGOAL
    add constraint FK_DAILYNUT_HAS2_USER foreign key (USERID)
       references "USER" (USERID)
@@ -396,11 +331,6 @@ go
 
 alter table EXERCISE
    add constraint FK_EXERCISE_DO_USER foreign key (USERID)
-      references "USER" (USERID)
-go
-
-alter table LOGIN
-   add constraint FK_LOGIN_IS_USER foreign key (USERID)
       references "USER" (USERID)
 go
 
@@ -419,13 +349,33 @@ alter table "USER"
       references USERROLE (USERROLEID)
 go
 
-alter table "USER"
-   add constraint FK_USER_IS2_LOGIN foreign key (LOGINID)
-      references LOGIN (LOGINID)
-go
-
 alter table USERHEALTHINFO
    add constraint FK_USERHEAL_ABOUT2_USER foreign key (USERID)
       references "USER" (USERID)
 go
+
+create table EXERCISETYPES(
+   EXERCISEID           int                  not null IDENTITY(1,1) PRIMARY KEY,
+   EXERCISENAME         varchar(256)         not null,
+   CALPERHOUR           decimal              not null
+)
+
+alter table EXERCISE
+ADD CONSTRAINT FK_ExerciseType
+FOREIGN KEY (EXERCISEID) REFERENCES EXERCISETYPES(EXERCISEID);
+
+--insert into dbo.USERROLE values (1, 'admin')
+--insert into dbo.USERROLE values (2,'user')
+
+--insert into login values('QuangPNCE170036','ufcid\''8+3+5(dfx[X','EFDSzBcs1si3ZmoLc8eGBQ==',1)
+--insert into login values('THINHNLQCE161130','whekfx-0,5$0''fhzwt','c7kNDwbLaZzTbqkrcwUMwg==',2)
+--insert into login values('hieuttnce161025','cnkqld0$7$9''0lnfcz','t1cjopqlaGSNcV/yngbL+g==',3)
+--insert into login values('quyennnmce161096','aliojb4(5!4$7jlda^','PImPLLIXmT7nGE6N0GRg8g==',4)
+--insert into login values('LUNTCE160464','paxdyq''1&0%0yaspm','SITVB27oFIubwPbUDbik3Q==',5)
+
+--insert into dbo.[USER] values(1,1,'Quang', 'Pham', 'quangpnce170036@fpt.edu.vn', '0857974230')
+--insert into dbo.[USER] values(2,1,'Thinh', 'Nguyen', 'THINHNLQCE161130@fpt.edu.vn', '000000000')
+--insert into dbo.[USER] values(3,1,'Hieu', 'Tran', 'hieuttnce161025@fpt.edu.vn', '000000000')
+--insert into dbo.[USER] values(4,1,'Quyen', 'Nguyen', 'quyennnmce161096@fpt.edu.vn', '000000000')
+--insert into dbo.[USER] values(5,1,'Lu', 'Nguyen', 'LUNTCE160464@fpt.edu.vn', '000000000')
 

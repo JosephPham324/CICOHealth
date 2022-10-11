@@ -1,6 +1,7 @@
 
 package Control;
 
+import DAO.HealthDAO;
 import DAO.LoginDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -74,14 +75,15 @@ public class HealthInfoControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          LoginDAO dao = new LoginDAO();
-        String suserid = request.getParameter("userid");
+        LoginDAO logDAO = new LoginDAO();
+        HealthDAO heath = new HealthDAO();
+        int loginID = logDAO.getLastID();
         String sgender = request.getParameter("gender");
         String sheight = request.getParameter("height");
         String sweight = request.getParameter("weight");
         String sactivity = request.getParameter("activity");
         String sage = request.getParameter("age");
-        dao.insertHealthInfo(suserid,sgender,sheight, sweight,sactivity,sage);
+        heath.insertHealthInfo(loginID+"",sgender,sheight, sweight,sactivity,sage);
         response.sendRedirect("MainMenu.jsp");
     }
 

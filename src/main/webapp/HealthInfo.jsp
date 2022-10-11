@@ -1,71 +1,81 @@
-<%-- 
-    Document   : Info
-    Created on : Oct 6, 2022, 7:25:14 PM
-    Author     : Thinh
---%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href = "./css/formstyle.css"/>
+        <title>Your health info</title>
     </head>
-
     <body>
-         <h1>Login form</h1>
-        <form action="healthinfocontrol" method="post">
-            <table>
-                <tr>
-                          <td> UserID: </td>
-                        <td>
-                            <input type="number"  name="userid" min="0" max="300">
-                        </td>              
-                </tr>
-            
-                 <tr>
-                    <td align="right">How active are you? </td>
-                    <td>
-                        <input name="activity" type="radio" value="1" checked> Not very active
-                        <input type="radio" name="activity" value="2"> Lightly active
-                        <input type="radio" name="activity" value="3"> Active
-                        <input type="radio" name="activity" value="4"> Very active
-                    </td>
-                </tr>
-                
-                
-                
-                <tr>
-                    <td>Gender</td>
-                    <td>
-                        <input name="gender" type="radio" value="Male" checked>Male
-                        <input type="radio" name="gender" value="Female"> Female
-                    </td>
-                </tr>
-
-                
-                <tr>
-                          <td>Height(cm): </td>
-                        <td>
-                            <input type="number"  name="height" min="0" max="300">
-                        </td>              
-                </tr>
-                
-                <tr>
-                          <td>Weight(kg): </td>
-                        <td>
-                            <input type="number"  name="weight" min="0" max="200">
-                        </td>      
-                </tr>
-                
-                                
-                 <tr><td>Age</td>
-                    <td><input type="number" name="age" min="0" max="100"/></td> 
-                </tr>
-                      
-          
-            </table>
-            <input type="submit" value="submit"/>
+        <form method="post" action="healthinfocontrol">
+            <div class="form-group row">
+                 <legend>Your health info</legend>
+                <label class="col-4 col-form-label">How active are you?</label> 
+                <div class="col-8">
+                    <div class="custom-controls-stacked">
+                        <div class="custom-control custom-radio">
+                            <input name="activity" id="activity_0" type="radio" required="required" class="custom-control-input" value="1"> 
+                            <label for="activity_0" class="custom-control-label">Not very active</label>
+                        </div>
+                    </div>
+                    <div class="custom-controls-stacked">
+                        <div class="custom-control custom-radio">
+                            <input name="activity" id="activity_1" type="radio" required="required" class="custom-control-input" value="2"> 
+                            <label for="activity_1" class="custom-control-label">Lightly active</label>
+                        </div>
+                    </div>
+                    <div class="custom-controls-stacked">
+                        <div class="custom-control custom-radio">
+                            <input name="activity" id="activity_2" type="radio" required="required" class="custom-control-input" value="3"> 
+                            <label for="activity_2" class="custom-control-label">Active</label>
+                        </div>
+                    </div>
+                    <div class="custom-controls-stacked">
+                        <div class="custom-control custom-radio">
+                            <input name="activity" id="activity_3" type="radio" required="required" class="custom-control-input" value="4"> 
+                            <label for="activity_3" class="custom-control-label">Very active</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-4">Gender</label> 
+                <div class="col-8">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input name="gender" id="gender_0" type="radio" class="custom-control-input" value="Male" required="required"> 
+                        <label for="gender_0" class="custom-control-label">Male</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input name="gender" id="gender_1" type="radio" class="custom-control-input" value="Female" required="required"> 
+                        <label for="gender_1" class="custom-control-label">Female</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="a" class="col-4 col-form-label">Age</label> 
+                <div class="col-8">
+                    <input id="a" name="age" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="height" class="col-4 col-form-label">Height (cm)</label> 
+                <div class="col-8">
+                    <input id="height" name="height" type="text" required="required" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="weight" class="col-4 col-form-label">Weight (kg)</label> 
+                <div class="col-8">
+                    <input id="weight" name="weight" type="text" class="form-control" required="required">
+                </div>
+            </div> 
+            <div class="form-group row">
+                <div class="offset-4 col-8">
+                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
         </form>
     </body>
 </html>

@@ -173,7 +173,6 @@ public class LoginDAO {
         } catch (Exception e) {
         }
     }
-
     public static void main(String[] args) {
         LoginDAO dao = new LoginDAO();
         List<User> users = dao.getListMember();

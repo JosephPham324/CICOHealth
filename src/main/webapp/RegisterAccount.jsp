@@ -58,7 +58,7 @@ S I --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
                       id="password"
                       name="password"
                       placeholder="Enter your password"
-                      type="text"
+                      type="password"
                       class="form-control"
                     />
                   </div>

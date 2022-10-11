@@ -97,8 +97,7 @@ public class RegisterControl extends HttpServlet {
             
             logDAO.updateUserID(loginID, loginID);
             
-            
-            response.sendRedirect("Login.jsp");
+            response.sendRedirect("HealthInfo.jsp");
         }
 
     }
