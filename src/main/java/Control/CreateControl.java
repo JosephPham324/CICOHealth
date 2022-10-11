@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
-package control;
+package Control;
 
-import dao.LoginDAO;
+import DAO.LoginDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -70,19 +66,19 @@ public class CreateControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-                LoginDAO dao = new LoginDAO();
-                
-        String sloginid = request.getParameter("loginid");
-        String suserid = request.getParameter("userid");
-        String suser = request.getParameter("username");
-        String spass = request.getParameter("password");
-
-
-        String spasshash = dao.MD5Encryption(spass);
-        dao.insertAcc(sloginid,suserid,suser, spass,spasshash);
- request.getRequestDispatcher("UserInfo.jsp")
-                .forward(request,response);//Step 1: Get data from DAO
+        processRequest(request, response);
+//                LoginDAO dao = new LoginDAO();
+//                
+//        String sloginid = request.getParameter("loginid");
+//        String suserid = request.getParameter("userid");
+//        String suser = request.getParameter("username");
+//        String spass = request.getParameter("password");
+//
+//
+//        String spasshash = dao.MD5Encryption(spass);
+//        dao.insertAcc(sloginid,suserid,suser, spass,spasshash);
+// request.getRequestDispatcher("UserInfo.jsp")
+//                .forward(request,response);//Step 1: Get data from DAO
  
     }
 

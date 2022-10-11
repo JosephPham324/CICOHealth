@@ -158,7 +158,7 @@ public class Encryption {
     public static String generateSalt(String username, String password){
         int max = 100;
         int rand = (int)Math.floor(Math.random()*(max-1+1)+1);
-        if (max<9)
+        if (username==null || password== null || username.length()+password.length()<10)
             return "Unable to generate salt";
         String salt = encryptCC(password+username, rand).toString();
         salt = salt.substring(0, 6) + generateSpecChar() + salt.substring(6,11);

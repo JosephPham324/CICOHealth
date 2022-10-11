@@ -158,8 +158,21 @@ public class LoginDAO {
 //    }
 //     
 
-  
-
+    public void insertHealthInfo(String userId, String gender, String height, String weight, String activeness, String age) {
+        String query = "insert into [Nutrition].[dbo].[USERHEALTHINFO] values(?,?,?,?,?,?)";
+        try {
+            con = new DBContext().getConnection();
+            ps = con.prepareStatement(query);
+            ps.setString(1, userId);
+            ps.setString(2, gender);
+            ps.setString(3, height);
+            ps.setString(4, weight);
+            ps.setString(5, activeness);
+            ps.setString(6, age);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
     public static void main(String[] args) {
         LoginDAO dao = new LoginDAO();
         List<User> users = dao.getListMember();

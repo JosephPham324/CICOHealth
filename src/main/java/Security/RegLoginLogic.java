@@ -15,8 +15,7 @@ import javax.crypto.SecretKey;
  */
 public class RegLoginLogic {
     
-    public static String encryptPassword(String username,String password){
-        String salt = Encryption.generateSalt(username, password);
+    public static String encryptPassword(String salt,String password){
         try {
             SecretKey key = Encryption.getKeyFromPassword(password, salt);
             

@@ -82,7 +82,7 @@ public class RegisterControl extends HttpServlet {
         String hashedPassword = RegLoginLogic.encryptPassword(salt, password);
         
         
-        if (hashedPassword.equals(empString)){
+        if (hashedPassword.equals(empString) || salt.equals("Unable to generate salt")){
             response.sendRedirect("Register-Error.jsp");
         } else {
             LoginDAO logDAO = new LoginDAO();
@@ -96,7 +96,6 @@ public class RegisterControl extends HttpServlet {
             userDAO.addUser(loginID+"","2", firstName, lastName, phone, email);
             
             logDAO.updateUserID(loginID, loginID);
-            
             
             response.sendRedirect("HealthInfo.jsp");
         }
