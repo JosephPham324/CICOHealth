@@ -7,6 +7,8 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -22,7 +24,11 @@ import javax.crypto.spec.SecretKeySpec;
  * @author M S I
  */
 public class Encryption {
-
+    private static final String algorithm = "AES/CBC/PKCS5Padding";
+    private static final byte[] iv= new byte[]{(byte)'p',(byte)'r',(byte)'j',(byte)'3',(byte)'0',(byte)'1',
+        (byte)'g',(byte)'r',(byte)'o',(byte)'u',(byte)'p',(byte)'4',(byte)'f',(byte)'a',(byte)'2',(byte)'2',
+    };
+    
     public static SecretKey getKeyFromPassword(String password, String salt)
             throws NoSuchAlgorithmException, InvalidKeySpecException {
 
@@ -34,16 +40,14 @@ public class Encryption {
     }
 
     public static IvParameterSpec generateIv() {
-        byte[] iv = new byte[16];
-        new SecureRandom().nextBytes(iv);
         return new IvParameterSpec(iv);
     }
 
-    public static String encrypt(String algorithm, String input, SecretKey key,
-            IvParameterSpec iv) throws NoSuchPaddingException, NoSuchAlgorithmException,
+    public static String encrypt(String input, SecretKey key
+            ) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
-
+        IvParameterSpec iv = generateIv();
         Cipher cipher = Cipher.getInstance(algorithm);
         cipher.init(Cipher.ENCRYPT_MODE, key, iv);
         byte[] cipherText = cipher.doFinal(input.getBytes());
@@ -51,11 +55,11 @@ public class Encryption {
                 .encodeToString(cipherText);
     }
 
-    public static String decrypt(String algorithm, String cipherText, SecretKey key,
-            IvParameterSpec iv) throws NoSuchPaddingException, NoSuchAlgorithmException,
+    public static String decrypt(String cipherText, SecretKey key
+            ) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
-
+        IvParameterSpec iv = generateIv();
         Cipher cipher = Cipher.getInstance(algorithm);
         cipher.init(Cipher.DECRYPT_MODE, key, iv);
         byte[] plainText = cipher.doFinal(Base64.getDecoder()
@@ -96,11 +100,10 @@ public class Encryption {
             res+=(char)in;
         }
         min = ((int)Math.floor(Math.random()*(14+1)));
-        return res.substring(min, min+6);
+        return res.substring(min, min+7);
     }
     
     public static String generateSalt(String username, String password){
-        System.out.println("Username: " + username + " Password: " +password);
         int max = username.length() + password.length();
         int rand = (int)Math.floor(Math.random()*(max-1+1)+1);
         if (max<10)
@@ -112,9 +115,34 @@ public class Encryption {
     }
     
     public static void main(String[] args) {
-        generateSalt("QuangPNCE170036", "group4prj301");
-        generateSalt("QuangPNCE170036", "group4prj301");
-        generateSalt("QuangPNCE170036", "group4prj301");
-//        System.out.println(generateSalt("QuangPNCE170036", "group4prj301"));
+        String username = "QuangPNCE170036";
+        String password = "group4prj301";
+        String salt = generateSalt("QuangPNCE170036", "group4prj301");
+//        String algorithm = Encryption.getAlgorithm();
+        try {
+            SecretKey key = getKeyFromPassword("group4prj301", salt);
+            IvParameterSpec iv = Encryption.generateIv();
+            System.out.println(iv.toString());
+            String encryptedPassword = encrypt(password, key);
+            
+            String decryptedPassword = decrypt(encryptedPassword, key);
+            
+            System.out.println("Encrypted Password: " + encryptedPassword);
+            System.out.println("Decrypted Password: " + decryptedPassword);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Encryption.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(Encryption.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchPaddingException ex) {
+            Logger.getLogger(Encryption.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidAlgorithmParameterException ex) {
+            Logger.getLogger(Encryption.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeyException ex) {
+            Logger.getLogger(Encryption.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadPaddingException ex) {
+            Logger.getLogger(Encryption.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalBlockSizeException ex) {
+            Logger.getLogger(Encryption.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
