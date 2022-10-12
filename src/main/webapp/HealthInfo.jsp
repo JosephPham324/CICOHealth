@@ -46,8 +46,8 @@
         %>
         <form method="post" action="healthinfocontrol">
             <div class="form-group row">
-                <legend>Your health info</legend>
-                <input type="hidden" id="userID" name="userID" value="${param.userID}">
+                <legend><%if (session.getAttribute("username")!=null) out.print(session.getAttribute("username")+"'s"); else out.print("Your");%> health info</legend>
+                <input type="hidden" id="userID" name="userID">
                 <label class="col-4 col-form-label">How active are you?</label> 
                 <div class="col-8">
                     <div class="custom-controls-stacked">
@@ -120,6 +120,14 @@
             let age = document.querySelector('input[name="age"]');
             let height = document.querySelector('input[name="height"]');
             let weight = document.querySelector('input[name="weight"]');
+            let userID = document.querySelector('input[name="userID"]');
+
+            let requestUserID = <%=request.getParameter("UserID")%>
+            
+            if (<%=userID != null%> && <%= !userID.equals("")%>){
+                userID.value = <%=userID%>;
+            } else 
+                userID.value = requestUserID;
 
             activeness[<%=activeness%>].checked = "true";
             gender[<%=gender%>].checked = "true";
