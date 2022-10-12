@@ -77,7 +77,6 @@ public class HealthInfoControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userID = request.getParameter("userID");
-        UserDAO userDAO = new UserDAO();
         HealthDAO heath = new HealthDAO();
         String gender = request.getParameter("gender");
         String height = request.getParameter("height");
@@ -85,6 +84,7 @@ public class HealthInfoControl extends HttpServlet {
         String activity = request.getParameter("activity");
         String age = request.getParameter("age");
         heath.insertHealthInfo(userID+"",gender,height, weight,activity,age);
+        request.setAttribute("userID",userID);
         request.getRequestDispatcher("MainMenu.jsp")
                 .forward(request, response);
     }

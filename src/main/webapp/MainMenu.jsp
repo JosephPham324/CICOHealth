@@ -93,7 +93,7 @@
 		<div>
 			<a href="">Add food</a><br>
 			<a href="">Add exercise</a><br>
-                        <a href="HealthInfo.jsp?userID=${userID}">Edit Health Info${userID}</a><br>
+                        <a href="HealthInfo.jsp?userID=${userID}">Edit Health Info</a><br>
                         <a href="">Edit User Info</a>
 			<br>
 
