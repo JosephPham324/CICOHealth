@@ -69,10 +69,7 @@
 				<input type="text" placeholder="Search in website">
 				<button type="submit">Search</button>
 			</form>
-
 		</div>
-
-
 
 	</div>
 
@@ -94,9 +91,11 @@
 		</div>
 
 		<div>
-			<a href="">Add food</a>
+			<a href="">Add food</a><br>
+			<a href="">Add exercise</a><br>
+                        <a href="HealthInfo.jsp?userID=${userID}">Edit Health Info</a><br>
+                        <a href="">Edit User Info</a>
 			<br>
-			<a href="">Add exercise</a>
 
 		</div>
 

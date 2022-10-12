@@ -33,10 +33,12 @@ public class LoginControl extends HttpServlet {
             LoginDAO loginDAO = new LoginDAO();
             Login a = loginDAO.checkLogin(user, pass);
             response.getWriter().print(a.toString());
-            if(a==null){
+            if (a == null) {
                 response.sendRedirect("login-error.jsp");
-            }else{
-                response.sendRedirect("MainMenu.jsp");
+            } else {
+                request.setAttribute("userID", a.getUserID());
+                request.getRequestDispatcher("MainMenu.jsp")
+                        .forward(request, response);
             }
         } catch (Exception e) {
         }
@@ -82,4 +84,3 @@ public class LoginControl extends HttpServlet {
     }// </editor-fold>
 
 }
-
