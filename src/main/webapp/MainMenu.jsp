@@ -4,6 +4,7 @@
     Author     : ASUS
 --%>
 
+<%@page import="DAO.HealthDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!DOCTYPE html>
@@ -84,7 +85,7 @@
 		
 
 		<div class="float-left">
-			<h1 >Calories</h1>
+			<h1>Hello ${username}</h1>
 
 			<p>Remaining = Goal - Food + Exercise</p>
 
@@ -93,7 +94,7 @@
 		<div>
 			<a href="">Add food</a><br>
 			<a href="">Add exercise</a><br>
-                        <a href="HealthInfo.jsp?userID=${userID}">Edit Health Info</a><br>
+                        <a href="HealthInfo.jsp">Edit Health Info</a><br>
                         <a href="">Edit User Info</a>
 			<br>
 

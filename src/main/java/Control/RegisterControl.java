@@ -98,6 +98,7 @@ public class RegisterControl extends HttpServlet {
             logDAO.updateUserID(loginID, loginID);
             
             request.setAttribute("UserID", loginID);
+            
             request.getRequestDispatcher("HealthInfo.jsp")
                     .forward(request,response);
         }

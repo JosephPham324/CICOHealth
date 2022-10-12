@@ -8,6 +8,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -36,9 +37,10 @@ public class LoginControl extends HttpServlet {
             if (a == null) {
                 response.sendRedirect("login-error.jsp");
             } else {
-                request.setAttribute("userID", a.getUserID());
-                request.getRequestDispatcher("MainMenu.jsp")
-                        .forward(request, response);
+                HttpSession session = request.getSession();
+                session.setAttribute("userID", a.getUserID());
+                session.setAttribute("username", a.getUsername());
+                response.sendRedirect("MainMenu.jsp");
             }
         } catch (Exception e) {
         }
