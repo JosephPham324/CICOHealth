@@ -95,8 +95,8 @@
 			<a href="">Add food</a><br>
 			<a href="">Add exercise</a><br>
                         <a href="HealthInfo.jsp">Edit Health Info</a><br>
-                        <a href="">Edit User Info</a>
-			<br>
+                        <a href="">Edit User Info</a><br>
+                        <a href="logout">Log out</a><br>
 
 		</div>
 

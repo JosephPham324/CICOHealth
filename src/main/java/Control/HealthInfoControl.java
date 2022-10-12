@@ -84,9 +84,8 @@ public class HealthInfoControl extends HttpServlet {
         String activity = request.getParameter("activity");
         String age = request.getParameter("age");
         heath.insertHealthInfo(userID+"",gender,height, weight,activity,age);
-        request.setAttribute("userID",userID);
-        request.getRequestDispatcher("MainMenu.jsp")
-                .forward(request, response);
+
+        response.sendRedirect("home");
     }
 
     /**

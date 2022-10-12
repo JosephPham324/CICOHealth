@@ -1,20 +1,21 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package Control;
 
-import DAO.LoginDAO;
-import Entity.Login;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author Thinh
+ * @author Pham Nhat Quang
  */
-public class LoginControl extends HttpServlet {
+public class LogoutControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,21 +29,17 @@ public class LoginControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            String user = request.getParameter("username");
-            String pass = request.getParameter("password");
-            LoginDAO loginDAO = new LoginDAO();
-            Login a = loginDAO.checkLogin(user, pass);
-            response.getWriter().print(a.toString());
-            if (a == null) {
-                response.sendRedirect("login-error.jsp");
-            } else {
-                HttpSession session = request.getSession();
-                session.setAttribute("userID", a.getUserID());
-                session.setAttribute("username", a.getUsername());
-                response.sendRedirect("home");
-            }
-        } catch (Exception e) {
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet LogoutControl</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet LogoutControl at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -58,7 +55,11 @@ public class LoginControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        request.getSession().invalidate();//Invalidate current session when user register account
+        request.getSession();
+        
+        response.sendRedirect("home");
     }
 
     /**
