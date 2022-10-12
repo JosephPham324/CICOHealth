@@ -27,20 +27,24 @@
                             </div>
                             <div class="card-body">
                                 <form action="login" method="POST" class="text-start">
+                                    <!--USERNAME INPUT-->
                                     <div class="input-group input-group-outline my-3">
                                         <label class="form-label">Username</label>
                                         <input type="text" required name="username" class="form-control" required>
                                     </div>
+                                    <!--PASSWORD INPUT-->
                                     <div class="input-group input-group-outline mb-3">
                                         <label class="form-label">Password</label>
                                         <input type="password" required name="password" class="form-control"required>
                                     </div>
-                                    <div class="text-center">
+<!--                                    <div class="text-center">
                                         <small class="font-weight-bold" style="color: red;">Error</small>
-                                    </div>
+                                    </div>-->
+                                    <!--SUBMIT BUTTON-->
                                     <div class="text-center">
                                         <input type="submit" name="action" value="login" class="btn bg-gradient-primary w-100 my-4 mb-2">
                                     </div>
+                                    <!--SIGN UP LINK!-->
                                     <p class="mt-4 text-sm text-center">
                                         Don't have an account?
                                         <a href="RegisterAccount.jsp" class="text-primary text-gradient font-weight-bold">Sign up</a>

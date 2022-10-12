@@ -3,7 +3,6 @@ package Control;
 import DAO.LoginDAO;
 import Entity.Login;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,8 +10,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- *
+ * Handles login control coming from Login.jsp
  * @author Thinh
+ * @author Pham Nhat Quang
  */
 public class LoginControl extends HttpServlet {
 
@@ -29,18 +29,22 @@ public class LoginControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String user = request.getParameter("username");
-            String pass = request.getParameter("password");
+            //Get info from form request
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            
             LoginDAO loginDAO = new LoginDAO();
-            Login a = loginDAO.checkLogin(user, pass);
-            response.getWriter().print(a.toString());
-            if (a == null) {
+            
+            //Get an instance of Login entry if username and password is correct
+            Login a = loginDAO.checkLogin(username, password);
+            
+            if (a == null) {//If there's no instance, redirect to error page
                 response.sendRedirect("login-error.jsp");
-            } else {
-                HttpSession session = request.getSession();
-                session.setAttribute("userID", a.getUserID());
-                session.setAttribute("username", a.getUsername());
-                response.sendRedirect("home");
+            } else {//If login info is correct
+                HttpSession session = request.getSession();//Get current session
+                session.setAttribute("userID", a.getUserID());//Set userID to logged in userID
+                session.setAttribute("username", a.getUsername());//Set username to logged in username
+                response.sendRedirect("home");//Redirect to home controller
             }
         } catch (Exception e) {
         }
@@ -82,7 +86,7 @@ public class LoginControl extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "This servlet handles login functionality";
     }// </editor-fold>
 
 }
