@@ -69,6 +69,8 @@ public class RegisterControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.getSession(false).invalidate();//Invalidate current session when user register account
+        request.getSession();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String firstName = request.getParameter("firstName");
