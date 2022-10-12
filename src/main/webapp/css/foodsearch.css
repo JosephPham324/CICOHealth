@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+*{
+	box-sizing: border-box;
+}
+
+/* body{
+	font-family: 'Roboto', sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: hidden;
+    width: 100vw;
+	height: 100vh;
+	margin: 0;
+} */
+
+.food-search{
+    display:flex;
+    flex-direction: column;
+}
+.search-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    gap: .25rem;
+}
+input{
+    font-size: 1rem;
+}
+.search-results{
+    display:grid;
+    /*grid-template-columns: repeat(auto-fill,minmax(150px,1fr));*/
+    grid-template-columns: auto auto auto;
+    gap: .25rem;
+    margin-top: 1rem;
+}
+
+.food{
+    border:1px black solid;
+    padding: .5rem;
+}
+
+.food>.header{
+    margin-bottom: .25rem;
+}
+.food>.searving + .food>.nutrition-facts{
+    font-size: 0.8rem;
+}
