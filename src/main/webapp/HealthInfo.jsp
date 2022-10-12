@@ -47,8 +47,7 @@
         %>
         <form method="post" action="healthinfocontrol">
             <div class="form-group row">
-                <legend><%if (session.getAttribute("username")!=null) out.print(session.getAttribute("username")+"'s"); else out.print("Your");
-            out.println(userID);%> health info</legend>
+                <legend><%if (session.getAttribute("username")!=null) out.print(session.getAttribute("username")+"'s"); else out.print("Your");%> health info</legend>
                 <input type="hidden" id="userID" name="userID">
                 <label class="col-4 col-form-label">How active are you?</label> 
                 <div class="col-8">
