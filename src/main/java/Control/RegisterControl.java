@@ -69,7 +69,7 @@ public class RegisterControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession(false).invalidate();//Invalidate current session when user register account
+        request.getSession().invalidate();//Invalidate current session when user register account
         request.getSession();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -96,10 +96,11 @@ public class RegisterControl extends HttpServlet {
             UserDAO userDAO = new UserDAO();
             
             userDAO.addUser(loginID+"","2", firstName, lastName, phone, email);
-            
+
             logDAO.updateUserID(loginID, loginID);
-            
-            request.setAttribute("UserID", loginID);
+            request.setAttribute("userID", loginID);
+            response.getWriter().println(loginID);
+            response.getWriter().print(request.getAttribute("userID"));
             
             request.getRequestDispatcher("HealthInfo.jsp")
                     .forward(request,response);

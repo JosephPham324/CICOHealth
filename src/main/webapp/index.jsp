@@ -12,7 +12,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/styleindex.css" rel="stylesheet">
     
     <title>Nutrition</title>
     
@@ -51,7 +50,7 @@
 
 
 		<div>
-			<a href="test.html"><img src="image/logo1.jpg"></a>
+			<a href="test.html"><img src="${pageContext.request.contextPath}/image/logo1.jpg"></a>
 		</div>
 
 		<div>
@@ -75,7 +74,7 @@
 
 	<div class="banner">
 
-		<img src="image/Food.jpg" alt="Chanel" />
+		<img src="${pageContext.request.contextPath}/image/Food.jpg" alt="Chanel" />
 
 	</div>
 
