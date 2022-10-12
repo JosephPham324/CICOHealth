@@ -12,6 +12,12 @@ public class UserHealthInfo {
     private float activeness;
     private int age;
 
+    public UserHealthInfo(int userID) {
+        this.userId =userID;
+    }
+    
+    
+
     /**
      *
      * @param userId

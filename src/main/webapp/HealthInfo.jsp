@@ -1,4 +1,6 @@
 
+<%@page import="DAO.HealthDAO"%>
+<%@page import="Entity.UserHealthInfo"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,6 +11,39 @@
         <title>Your health info</title>
     </head>
     <body>
+        <%
+            Object sessionUserID = session.getAttribute("userID");
+            String userID = "";
+            if (sessionUserID != null) {
+                userID = sessionUserID.toString();
+            }
+            Entity.UserHealthInfo healthInfo = null;
+            if (userID != null && !userID.equals("")) {
+                healthInfo = new HealthDAO().findUserID(Integer.parseInt(userID));
+            }
+            String activeness = "0";
+            String gender = "0";
+            String age = "20";
+            String height = "180";
+            String weight = "75";
+            if (healthInfo != null) {
+                activeness = healthInfo.getActiveness() + "";
+                gender = healthInfo.getGender() + "";
+                switch (gender) {
+                    case "Male":
+                        gender = "0";
+                        break;
+                    case "Female":
+                        gender = "1";
+                        break;
+                    default:
+                        gender = "0";
+                }
+                age = healthInfo.getAge() + "";
+                height = healthInfo.getHeight() + "";
+                weight = healthInfo.getWeight() + "";
+            }
+        %>
         <form method="post" action="healthinfocontrol">
             <div class="form-group row">
                 <legend>Your health info</legend>
@@ -17,7 +52,7 @@
                 <div class="col-8">
                     <div class="custom-controls-stacked">
                         <div class="custom-control custom-radio">
-                            <input name="activity" id="activity_0" type="radio" required="required" class="custom-control-input" value="1"> 
+                            <input name="activity" id="activity_0" type="radio" required="required" checked class="custom-control-input" value="1"> 
                             <label for="activity_0" class="custom-control-label">Not very active</label>
                         </div>
                     </div>
@@ -45,7 +80,7 @@
                 <label class="col-4">Gender</label> 
                 <div class="col-8">
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input name="gender" id="gender_0" type="radio" class="custom-control-input" value="Male" required="required"> 
+                        <input name="gender" id="gender_0" type="radio" class="custom-control-input" checked value="Male" required="required"> 
                         <label for="gender_0" class="custom-control-label">Male</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
@@ -78,5 +113,19 @@
                 </div>
             </div>
         </form>
+
+        <script>
+            let activeness = document.querySelectorAll('input[name="activity"]');
+            let gender = document.querySelectorAll('input[name="gender"]');
+            let age = document.querySelector('input[name="age"]');
+            let height = document.querySelector('input[name="height"]');
+            let weight = document.querySelector('input[name="weight"]');
+
+            activeness[<%=activeness%>].checked = "true";
+            gender[<%=gender%>].checked = "true";
+            age.value = "<%=age%>";
+            height.value = "<%=height%>";
+            weight.value = "<%=weight%>";
+        </script>
     </body>
 </html>
