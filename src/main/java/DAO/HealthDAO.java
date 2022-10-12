@@ -14,15 +14,23 @@ import java.sql.ResultSet;
  * @author ASUS
  */
 public class HealthDAO {
+
     Connection con = null; // connect to SQL server
     PreparedStatement ps = null; // move query from Netbeen to SQl
     ResultSet rs = null; // save result query
-    
-      public void insertHealthInfo(String userId, String gender, String height, String weight, String activeness, String age) {
-        String query = "insert into [Nutrition].[dbo].[USERHEALTHINFO] values(?,?,?,?,?,?)";
+
+    public void insertHealthInfo(String userId, String gender, String height, String weight, String activeness, String age) {
+        String queryInsert = "insert into [Nutrition].[dbo].[USERHEALTHINFO] values(?,?,?,?,?,?)";
+        String queryEdit = "update dbo.[USERHEALTHINFO] "
+                + "set GENDER = ?,"
+                + "HEIGHT = ?"
+                + "WEIGHT = ?"
+                + "ACTIVENESS = ?"
+                + "AGE = ?"
+                + "WHERE USERID = ?";
         try {
             con = new DBContext().getConnection();
-            ps = con.prepareStatement(query);
+            ps = con.prepareStatement(queryInsert);
             ps.setString(1, userId);
             ps.setString(2, gender);
             ps.setString(3, height);
