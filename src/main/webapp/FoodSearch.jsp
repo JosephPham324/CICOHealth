@@ -21,10 +21,12 @@ Nhat Quang --%>
         <div class="food-search">
             <div class="search-wrapper">
                 <label for="search">Search Food</label>
+                <form action = "#"onsubmit="event.preventDefault();button.click()">
                 <div class="input">
                     <i class="fa-solid fa-magnifying-glass button"></i>
-                    <input type="text" id="search" placeholder="brisket and cheese and fries"/>
+                    <input type="text" id="search" placeholder="Type in some food, for example: brisket cheese"/>
                 </div>
+                </form>
             </div>
             <div class="search-results">
                 <div class="food">

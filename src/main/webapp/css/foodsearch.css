@@ -35,6 +35,7 @@ input{
     height: auto;
     display:grid;
     grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    grid-auto-rows: auto 1fr;
     gap: 20px 20px;
     padding: 20px 20px;
     background-color: aliceblue;
@@ -42,9 +43,8 @@ input{
 
 .food{
     border:1px black solid;
-    max-height: 150px;
-    padding: 1rem;
-    max-height: 150px;
+    padding: 10px;
+    height:130px;
     background-color: white;
     cursor: pointer;
     line-height: 1.2rem;
@@ -61,6 +61,7 @@ input{
     color: red;
 }
 .food span{
+    font-size:1rem;
     display: inline-block;
     margin-right: 0.5em;
 }

@@ -15,7 +15,7 @@ const activenessMap = [1.2, 1.375, 1.55, 1.725];
  */
 function calculateBMR(weight, height, age, gender) {
   let BMR = 0;
-  if (gender == male) {
+  if (gender === male) {
     BMR = 13.397 * weight + 4.799 * height - 5.677 * age + 88.362;
   } else {
     BMR = 9.247 * weight + 3.098 * height - 4.33 * age + 447.593;
