@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <script src="./scripts/calculations.js"></script>
+    <script>
+        let foodItems =[
+            new FoodItem("Chicken",120,20*4+10*9+20,20,10,20),
+            new FoodItem("Jelly",300,20*4+10*9+20,20,10,20),
+            new FoodItem("Watermellon",1000,20*4+10*9+20,20,10,20),
+            new FoodItem("Apple",700,20*4+10*9+20,20,10,20),
+            new FoodItem("Soda",800,36*4,20,10,20),
+        ]
+        let meal = createMeal('Breakfast',foodItems)
+        console.log(meal.get('totalCal'))
+        console.log(meal.get('proteinWeight'))
+        console.log(meal.get('fatWeight'))
+        console.log(meal.get('carbWeight'))
+        console.log(meal.get('foodItems'))
+        console.log(createCaloriePlans(80,170,19,false,2))
+    </script>
+    
+</body>
+</html>
