@@ -4,16 +4,9 @@
 	box-sizing: border-box;
 }
 
-/* body{
-	font-family: 'Roboto', sans-serif;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	overflow: hidden;
-    width: 100vw;
-	height: 100vh;
-	margin: 0;
-} */
+body{
+    background-color: antiquewhite;
+}
 
 .food-search{
     display:flex;
@@ -22,28 +15,65 @@
 .search-wrapper{
     display: flex;
     flex-direction: column;
-    width: 25vw;
+    align-items: center;
+    width: 100vw;
     gap: .25rem;
 }
 input{
     font-size: 1rem;
+    padding: 5px;
 }
 .search-results{
+    margin: 20px 80px;
+    border:1px dashed rgb(77, 35, 35);
+    width: 80vw;
+    height: 100vh;
     display:grid;
-    /*grid-template-columns: repeat(auto-fill,minmax(150px,1fr));*/
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(auto-fill,minmax(210px,1fr));
     gap: .25rem;
     margin-top: 1rem;
+    padding: 20px 20px;
+    background-color: aliceblue;
 }
 
 .food{
     border:1px black solid;
     padding: .5rem;
+    max-width: 210px;
+    max-height: 100px;
+    background-color: white;
 }
 
 .food>.header{
     margin-bottom: .25rem;
+    font-size: 1.5em;
 }
 .food>.searving + .food>.nutrition-facts{
     font-size: 0.8rem;
+}
+.nutrition-facts .span{
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.input{
+    position: relative;
+    background-color: black;
+}
+.input input{
+    width: 40vw;
+}
+.input i{
+    font-size: 1rem;
+    position: absolute;
+    right: 0;
+    padding: 10px;
+    min-width: 40px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px){
+    .input input{
+        width: 85vw;
+    }
 }
