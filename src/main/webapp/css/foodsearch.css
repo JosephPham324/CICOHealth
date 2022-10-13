@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+*{
+	box-sizing: border-box;
+}
+
+body{
+    background-color: antiquewhite;
+}
+
+.food-search{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.search-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    gap: .25rem;
+}
+.search-wrapper label{
+    font-size: 2rem;
+}
+input{
+    font-size: 1rem;
+    padding: 5px;
+}
+.search-results{
+    margin: 1rem 1rem;
+    border:1px dashed rgb(77, 35, 35);
+    width: 80vw;
+    min-height: 100vh;
+    height: auto;
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    gap: 20px 20px;
+    /* margin-top: 1rem; */
+    padding: 20px 20px;
+    background-color: aliceblue;
+}
+
+.food{
+    border:1px black solid;
+    padding: 1rem;
+    background-color: white;
+    cursor: pointer;
+    line-height: 1.2rem;
+}
+
+.food>.header{
+    margin-bottom: .25rem;
+    font-size: 1.5em;
+}
+.food>.serving + .food>.nutrition-facts{
+    font-size: 0.8rem;
+}
+.food .serving{
+    color: red;
+}
+.food span{
+    display: inline-block;
+    margin-right: 0.5em;
+}
+.nutrition-facts span:first-child{
+    background-color: white;
+}
+.nutrition-facts span{
+    background-color: rgb(53, 50, 50);
+    border-radius: 3px;
+    padding: 5px;
+}
+.nutrition-facts .protein{
+    color: rgb(202, 134, 121);
+}
+.nutrition-facts .carbs{
+    color: white;
+}
+.nutrition-facts .fat{
+    color:  #ffa600;
+}
+
+.input{
+    position: relative;
+    background-color: black;
+}
+.input input{
+    width: 40vw;
+}
+.input i{
+    font-size: 1rem;
+    position: absolute;
+    right: 0;
+    padding: 10px;
+    min-width: 40px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px){
+    .input input{
+        width: 85vw;
+    }
+}
