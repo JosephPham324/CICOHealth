@@ -8,6 +8,7 @@ body{
     background-color: #faebd7;
     overflow-x: hidden;
     margin:0;
+    z-index: 0;
 }
 
 .food-search{
@@ -76,7 +77,7 @@ input{
     background-color: green;
 }
 
-.food{
+.food-search .food{
     width: 100%;
     border:1px black solid;
     padding: 10px;
@@ -86,17 +87,17 @@ input{
     line-height: 1.2rem;
 }
 
-.food>.header{
+.food-search .food>.header{
     margin-bottom: .25rem;
     font-size: 1.5em;
 }
-.food>.serving + .food>.nutrition-facts{
+.food-search .food>.serving + .food-search .food>.nutrition-facts{
     font-size: 0.8rem;
 }
-.food .serving{
+.food-search .food .serving{
     color: red;
 }
-.food span{
+.food-search .food span{
     font-size:1rem;
     display: inline-block;
     margin-right: 0.5em;
@@ -163,7 +164,103 @@ header{
     max-width: 100%;
     max-height: 100%;
 }
-
+.create-meal{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.create-meal form{
+    max-width: 600px;
+    height: auto;
+    min-height: 50vh;
+    background-color: rgba(255,255,255,1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 101;
+    border: 3px solid black;
+    border-radius: 5px;
+    min-width: 320px;
+    padding: 5px;
+}
+.create-meal form fieldset{
+    border: 0;
+    text-align: center;
+}
+.create-meal form legend{
+    font-weight: bold;
+    font-size: x-large;
+    border: 0;
+    text-align: center;
+}
+.create-meal .overlay{
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    z-index: 100;
+    background-color: #fff;
+    position: fixed;
+}
+.create-meal .food{
+    padding: 5px;
+    font-size: 1.3em;
+    color: black;
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    display: block;
+    border-bottom: 1px solid black;
+    line-height: 30px;
+    margin-bottom: 5px;
+}
+.create-meal span{
+    display: inline-block;
+    margin-right: 10px;
+}
+.create-meal #submit{
+    border: 0;
+    border-radius: 20px;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    font-size: 24px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    background-image: linear-gradient(to right,green,yellow);
+    cursor: pointer;
+}
+.create-meal mark{
+    padding:3px;
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+.create-meal .calories{
+    color: yellow;
+    text-shadow: -1px -1px 0 rgb(154, 189, 13), 1px -1px 0 rgb(154, 189, 13), -1px 1px 0 rgb(154, 189, 13), 1px 1px 0 rgb(154, 189, 13);
+}
+.create-meal .protein{
+    color: rgb(202, 134, 121);
+}
+.create-meal .carbs{
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+.create-meal .fat{
+    color:  #ffa600;
+    
+}
+.create-meal .food input{
+    display: inline;
+    width: 60px;
+    border: 0;
+    background-color: black;
+    text-align: center;
+    color: white;
+}
 @media only screen and (max-width: 600px){
     .input input{
         width: 85vw;
