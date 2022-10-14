@@ -1,14 +1,14 @@
-console.log('lol')
 let apiKey = "06Ve1mf2SCu8Ex1P/f6MVg==2N8rX79akXJaUwPS";
 let query;
 let button = document.querySelector(".search-wrapper .button");
-// console.log(button)
 let input = document.querySelector(".search-wrapper input");
 let queryResult;
 const meal = new Meal('None',0,0,0,0,[])
 let foodItems
 let selectedFoodItems
 let addFoodButtons
+
+searchFood('brisket and cheese')
 
 function searchFood(query) {
   console.log("https://api.api-ninjas.com/v1/nutrition?query=" + query);
@@ -101,6 +101,10 @@ function addFoodButtonsEventListener(){
                 meal.addFoodItem(foodItems[i])
                 addFoodButtons[i].classList.add('selected')
                 selectedFoodItems[i]=true
+            } else {
+                selectedFoodItems[i]=false
+                addFoodButtons[i].classList.remove('selected')
+                meal.removeFoodItem(foodItems[i]['name'])
             }
             console.log(foodItems[i])
             console.log(meal)

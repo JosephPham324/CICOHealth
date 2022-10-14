@@ -237,6 +237,17 @@ class Meal {
     this.carbWeight += item.carbWeight;
     this.foodItems.push(item);
   }
+  findFoodItem(name){
+    return this.foodItems.find(item=>item['name']==name)
+  }
+  removeFoodItem(name){
+    let item = this.findFoodItem(name)
+    this.totalCal -= item.totalCal;
+    this.proteinWeight -= item.proteinWeight;
+    this.fatWeight -= item.fatWeight;
+    this.carbWeight -= item.carbWeight;
+    this.foodItems.splice(this.foodItems.indexOf(item),1)
+  }
 }
 
 /**

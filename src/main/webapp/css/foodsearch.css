@@ -6,6 +6,7 @@
 
 body{
     background-color: antiquewhite;
+    overflow-x: hidden;
 }
 
 .food-search{
