@@ -70,6 +70,9 @@ input{
     background-color: white;
     border: 1px solid black;
 }
+.result .add i.selected{
+    background-color: green;
+}
 
 .food{
     width: 100%;

@@ -7,6 +7,7 @@ let input = document.querySelector(".search-wrapper input");
 let queryResult;
 const meal = new Meal('None',0,0,0,0,[])
 let foodItems
+let selectedFoodItems
 let addFoodButtons
 
 function searchFood(query) {
@@ -20,6 +21,7 @@ function searchFood(query) {
     success: function (result) {
       clearResults();
       foodItems = [];
+      selectedFoodItems =[]
       result.forEach((item) => {
         let element = null;
         if (item !== null) {
@@ -32,6 +34,7 @@ function searchFood(query) {
             item.carbohydrates_total_g
           );
           foodItems.push(new FoodItem(item.name,item.serving_size_g,item.calories,item.protein_g,item.fat_total_g,item.carbohydrates_total_g))
+          selectedFoodItems.push(false)
           appendToResults(element);
         }
       });
@@ -92,10 +95,13 @@ function addFoodButtonsEventListener(){
     addFoodButtons = document.querySelectorAll('.add i.icon-food')
     console.log(addFoodButtons)
     for (let i in addFoodButtons){
-        console.log(i)
         if (addFoodButtons[i] instanceof Node)
         addFoodButtons[i].addEventListener('click',(item)=>{
-            meal.addFoodItem(foodItems[i])
+            if (selectedFoodItems[i]==false){
+                meal.addFoodItem(foodItems[i])
+                addFoodButtons[i].classList.add('selected')
+                selectedFoodItems[i]=true
+            }
             console.log(foodItems[i])
             console.log(meal)
         })
