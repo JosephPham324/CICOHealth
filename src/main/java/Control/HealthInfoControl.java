@@ -1,6 +1,7 @@
 
 package Control;
 
+import DAO.GoalDAO;
 import DAO.HealthDAO;
 import DAO.LoginDAO;
 import DAO.UserDAO;
@@ -84,6 +85,11 @@ public class HealthInfoControl extends HttpServlet {
         String activity = request.getParameter("activity");
         String age = request.getParameter("age");
         heath.insertHealthInfo(userID+"",gender,height, weight,activity,age);
+        
+        GoalDAO goal = new GoalDAO();
+        double calories = goal.calculate(weight, height, age, gender, activity);
+        String calo = Double.toString(calories);
+        goal.addGoal(userID, calo);
         
         response.sendRedirect("home");
     }
