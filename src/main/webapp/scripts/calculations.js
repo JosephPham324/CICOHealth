@@ -248,6 +248,9 @@ class Meal {
     this.carbWeight -= item.carbWeight;
     this.foodItems.splice(this.foodItems.indexOf(item),1)
   }
+  getNumberOfItems(){
+    return this.foodItems.length;
+  }
 }
 
 /**

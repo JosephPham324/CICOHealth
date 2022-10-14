@@ -38,7 +38,6 @@ function searchFood(query) {
           appendToResults(element);
         }
       });
-      console.log(foodItems)
       addFoodButtonsEventListener();
     },
     error: function ajaxError(jqXHR) {
@@ -89,11 +88,17 @@ function createResultElement(
   return element;
 }
 
+let selectedNumber = document.querySelector('.belly span')
+
+function updateSelectedNumber(){
+    let text = meal.getNumberOfItems()
+    selectedNumber.innerText = text;
+}
+
 
 
 function addFoodButtonsEventListener(){
     addFoodButtons = document.querySelectorAll('.add i.icon-food')
-    console.log(addFoodButtons)
     for (let i in addFoodButtons){
         if (addFoodButtons[i] instanceof Node)
         addFoodButtons[i].addEventListener('click',(item)=>{
@@ -106,6 +111,7 @@ function addFoodButtonsEventListener(){
                 addFoodButtons[i].classList.remove('selected')
                 meal.removeFoodItem(foodItems[i]['name'])
             }
+            updateSelectedNumber();
             console.log(foodItems[i])
             console.log(meal)
         })
