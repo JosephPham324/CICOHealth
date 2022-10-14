@@ -175,7 +175,7 @@ header{
     justify-content: center;
 }
 .create-meal form{
-    max-width: 600px;
+    max-width: 800px;
     height: auto;
     min-height: 50vh;
     background-color: rgba(255,255,255,1);
@@ -207,16 +207,17 @@ header{
     position: fixed;
 }
 .create-meal .food{
-    padding: 5px;
+    padding: 8px 0;
     font-size: 1.3em;
     color: black;
-    width: 100%;
+    max-width: 800px;
     height: 50px;
     background-color: white;
     display: block;
     border-bottom: 1px solid black;
     line-height: 30px;
     margin-bottom: 5px;
+    text-align: right;
 }
 .create-meal span{
     display: inline-block;
@@ -235,7 +236,7 @@ header{
 }
 .create-meal mark{
     padding:3px;
-    font-size: 1.5em;
+    font-size: 1em;
     margin-right: 10px;
 }
 .create-meal .calories{
