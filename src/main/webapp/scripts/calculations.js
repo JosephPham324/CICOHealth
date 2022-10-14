@@ -5,6 +5,10 @@ const male = false;
 const female = true;
 const activenessMap = [1.2, 1.375, 1.55, 1.725];
 
+function calculateCalFromMacro(proteinWeight,fatWeight,carbWeight){
+  return protein*proteinWeight + fatWeight*fat + carbWeight*carb
+}
+
 /**
  * Calculate Basal Metabolic Rate from health info
  * @param {Number} weight Person's weight
@@ -232,6 +236,20 @@ class Meal {
     this.fatWeight += item.fatWeight;
     this.carbWeight += item.carbWeight;
     this.foodItems.push(item);
+  }
+  findFoodItem(name){
+    return this.foodItems.find(item=>item['name']==name)
+  }
+  removeFoodItem(name){
+    let item = this.findFoodItem(name)
+    this.totalCal -= item.totalCal;
+    this.proteinWeight -= item.proteinWeight;
+    this.fatWeight -= item.fatWeight;
+    this.carbWeight -= item.carbWeight;
+    this.foodItems.splice(this.foodItems.indexOf(item),1)
+  }
+  getNumberOfItems(){
+    return this.foodItems.length;
   }
 }
 

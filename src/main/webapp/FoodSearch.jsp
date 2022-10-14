@@ -29,30 +29,36 @@ Nhat Quang --%>
                 </form>
             </div>
             <div class="search-results">
-                <div class="food">
-                    <div class="header">brisket</div>
-                    <div class="serving">brisket, 100g</div>
-                    <div class="nutrition-facts">
-                        <span class="calories">Calories 289.3</span><br />
-                        <span class="protein"><i class="fas fa-egg"></i>P 29.1g</span>
-                        <span class="fat"><i class="fas fa-cheese"></i>F 18.3g</span>
-                        <span class="carbs"
-                              ><i class="fas fa-bread-slice"></i>C 0g</span
-                        >
+
+                <div class="result">
+                    <div class="food">
+                        <div class="header">brisket</div>
+                        <div class="serving">brisket, 100g</div>
+                        <div class="nutrition-facts">
+                            <span class="calories">Calories 289.3</span><br />
+                            <span class="protein"><i class="fas fa-egg"></i>P 29.1g</span>
+                            <span class="fat"><i class="fas fa-cheese"></i>F 18.3g</span>
+                            <span class="carbs"
+                                  ><i class="fas fa-bread-slice"></i>C 0g</span
+                            >
+                        </div>
                     </div>
                 </div>
-                <div class="food">
-                    <div class="header">cheese</div>
-                    <div class="serving">cheese, 100g</div>
-                    <div class="nutrition-facts">
-                        <span class="calories">Calories 393.9</span><br />
-                        <span class="protein"><i class="fas fa-egg"></i>P 22.7g</span>
-                        <span class="fat"><i class="fas fa-cheese"></i>F 33g</span>
-                        <span class="carbs"
-                              ><i class="fas fa-bread-slice"></i>C 3.2g</span
-                        >
+                <div class="result">
+                    <div class="food">
+                        <div class="header">cheese</div>
+                        <div class="serving">cheese, 100g</div>
+                        <div class="nutrition-facts">
+                            <span class="calories">Calories 393.9</span><br />
+                            <span class="protein"><i class="fas fa-egg"></i>P 22.7g</span>
+                            <span class="fat"><i class="fas fa-cheese"></i>F 33g</span>
+                            <span class="carbs"
+                                  ><i class="fas fa-bread-slice"></i>C 3.2g</span
+                            >
+                        </div>
                     </div>
-                </div>
+                </div>       
+                
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
