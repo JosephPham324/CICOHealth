@@ -5,6 +5,10 @@ const male = false;
 const female = true;
 const activenessMap = [1.2, 1.375, 1.55, 1.725];
 
+function calculateCalFromMacro(proteinWeight,fatWeight,carbWeight){
+  return protein*proteinWeight + fatWeight*fat + carbWeight*carb
+}
+
 /**
  * Calculate Basal Metabolic Rate from health info
  * @param {Number} weight Person's weight
