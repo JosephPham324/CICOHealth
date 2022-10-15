@@ -172,6 +172,11 @@ class FoodItem {
     this.proteinWeight = proteinWeight;
     this.fatWeight = fatWeight;
     this.carbWeight = carbWeight;
+    this.originalWeight = totalWeight
+    this.originalCal = totalCal;
+    this.originalProteinWeight = proteinWeight;
+    this.originalFatWeight = fatWeight;
+    this.originalCarbWeight = carbWeight;
   }
   /**
    * Get an attribute in FoodItem instance
@@ -188,6 +193,15 @@ class FoodItem {
    */
   set(attribute, value) {
     this.attribute = value;
+  }
+
+  changeWeight(newWeight){
+    this.totalWeight=newWeight
+    let ratio = newWeight / this.originalWeight
+    this.totalCal=this.originalCal *ratio
+    this.proteinWeight=this.originalProteinWeight*ratio
+    this.fatWeight=this.originalFatWeight*ratio
+    this.carbWeight=this.originalCarbWeight*ratio
   }
 }
 
@@ -251,6 +265,14 @@ class Meal {
   getNumberOfItems(){
     return this.foodItems.length;
   }
+  // update(){
+  //   this.foodItems.forEach((item)=>{
+  //     this.totalCal+=item.get('totalCal')
+  //     this.proteinWeight+=item.get('proteinWeight')
+  //     this.fatWeight+=item.get('fatWeight')
+  //     this.carbWeight+=item.get('carbWeight')
+  //   })
+  // }
 }
 
 /**
