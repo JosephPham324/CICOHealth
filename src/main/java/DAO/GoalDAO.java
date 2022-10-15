@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import Entity.DailyNutritionGoal;
 import context.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,13 +31,23 @@ public class GoalDAO {
     //Carb cần nạp: (Calories remain x ?%)/4
 
         float c = Float.parseFloat(calorie); 
-        float protein =(c*20/100)/4; //20% protein
-        float fat =(c*30/100)/9; //30% fat
-        float carb =(c*50/100)/4; // 50 carb
+//        float protein =(c*20/100)/4; //20% protein
+//        float fat =(c*30/100)/9; //30% fat
+//        float carb =(c*50/100)/4; // 50 carb
+//        
+//        String p  =Float.toString(protein);  
+//        String f  =Float.toString(fat);  
+//        String cb =Float.toString(carb);  
+
+        float protein = 20; //Mac dinh 20% protein
+        float fat = 30; //Mac dinh 30% fat
+        float carb = 50; //Mac dinh 50% carb
         
         String p  =Float.toString(protein);  
         String f  =Float.toString(fat);  
         String cb =Float.toString(carb);  
+
+        
         String query = "insert into DAILYNUTRITIONGOAL values(?,?,?,?,?)";
         try {
             con = new DBContext().getConnection(); // open connection to SQL
@@ -54,7 +65,7 @@ public class GoalDAO {
         }
     }
     
-    public double calculate(String weight,String height,String age,String gender,String activity) {
+    public double calculateCalo(String weight,String height,String age,String gender,String activity) {
         int av = Integer.parseInt(activity);
         float r = 0;
         double calories = 0;
@@ -73,4 +84,30 @@ public class GoalDAO {
         }
         return calories;
     }
+    
+    public DailyNutritionGoal getGoalbyID(int id) {
+        String query = "select * from DAILYNUTRITIONGOAL\n"
+                    + "where USERID = ?";
+        try {
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setString(1, id+"");
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                DailyNutritionGoal info = new DailyNutritionGoal(id, rs.getFloat("CALORIE"), rs.getFloat("PROTEIN"),
+                        rs.getFloat("FAT"),rs.getFloat("CARB"));
+                System.out.println(info.toString());
+                return info;
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        GoalDAO g = new GoalDAO();
+        DailyNutritionGoal info = g.getGoalbyID(13);
+        System.out.println(info);
+    }
+    
 }

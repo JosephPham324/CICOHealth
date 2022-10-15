@@ -86,6 +86,7 @@
 
 		<div class="float-left">
 			<h1>Hello ${username}</h1>
+                        <h1>Calories remaining: ${calories}</h1>
                         
 
 			<p>Remaining = Goal - Food + Exercise</p>

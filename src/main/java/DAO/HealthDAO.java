@@ -1,5 +1,6 @@
 package DAO;
 
+import Entity.DailyNutritionGoal;
 import Entity.UserHealthInfo;
 import context.DBContext;
 import java.sql.Connection;
@@ -70,5 +71,11 @@ public class HealthDAO {
             System.err.println(e.getCause());
         }
         return null;
+    }
+    
+     public static void main(String[] args) {
+        HealthDAO d = new HealthDAO();
+        UserHealthInfo info = d.findUserID(13);
+        System.out.println(info);
     }
 }

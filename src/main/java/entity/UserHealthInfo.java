@@ -132,5 +132,10 @@ public class UserHealthInfo {
         this.age = age;
     }
 
+    @Override
+    public String toString() {
+        return "UserHealthInfo{" + "userId=" + userId + ", gender=" + gender + ", height=" + height + ", weight=" + weight + ", activeness=" + activeness + ", age=" + age + '}';
+    }
+
     
 }

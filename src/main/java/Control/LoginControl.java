@@ -1,6 +1,8 @@
 package Control;
 
+import DAO.GoalDAO;
 import DAO.LoginDAO;
+import Entity.DailyNutritionGoal;
 import Entity.Login;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -32,18 +34,21 @@ public class LoginControl extends HttpServlet {
             //Get info from form request
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            
+
             LoginDAO loginDAO = new LoginDAO();
-            
+            GoalDAO goalDAO = new GoalDAO();
+
             //Get an instance of Login entry if username and password is correct
             Login a = loginDAO.checkLogin(username, password);
-            
+            DailyNutritionGoal d = goalDAO.getGoalbyID(a.getUserID());
+
             if (a == null) {//If there's no instance, redirect to error page
-                response.sendRedirect("login-error.jsp");
+                response.sendRedirect("Register-Error.jsp");
             } else {//If login info is correct
                 HttpSession session = request.getSession();//Get current session
                 session.setAttribute("userID", a.getUserID());//Set userID to logged in userID
                 session.setAttribute("username", a.getUsername());//Set username to logged in username
+                session.setAttribute("calories", d.getCalorie());
                 response.sendRedirect("home");//Redirect to home controller
             }
         } catch (Exception e) {

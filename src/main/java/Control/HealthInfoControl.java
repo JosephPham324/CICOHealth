@@ -87,7 +87,7 @@ public class HealthInfoControl extends HttpServlet {
         heath.insertHealthInfo(userID+"",gender,height, weight,activity,age);
         
         GoalDAO goal = new GoalDAO();
-        double calories = goal.calculate(weight, height, age, gender, activity);
+        double calories = goal.calculateCalo(weight, height, age, gender, activity);
         String calo = Double.toString(calories);
         goal.addGoal(userID, calo);
         
