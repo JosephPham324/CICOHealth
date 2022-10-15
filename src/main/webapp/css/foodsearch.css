@@ -173,6 +173,7 @@ header{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    display: none;
 }
 .create-meal form{
     max-width: 800px;
@@ -253,6 +254,10 @@ header{
 .create-meal .fat{
     color:  #ffa600;
     
+}
+.create-meal .fa-x{
+    color: red;
+    cursor: pointer;
 }
 .create-meal .food input{
     display: inline;
