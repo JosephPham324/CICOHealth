@@ -23,7 +23,12 @@
     <section>
       <div class="create-meal">
         <div class="overlay"></div>
-        <form action="">
+        <form id="nameForm" onsubmit="return enterName();">
+          <h3>ENTER MEAL NAME</h3>
+          <input type="text" name = "name" value="Breakfast">
+          <input type="submit" value="SUBMIT" name="submit">
+        </form>
+        <form action="" id="mealForm">
           <fieldset>
             <legend>Selected Items</legend>
             <input type="submit" value="CREATE MEAL" name="submit" id="submit">

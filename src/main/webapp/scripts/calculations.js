@@ -238,7 +238,7 @@ class Meal {
    * @param {Data type of that attribute} value Value for the attribute
    */
   set(attribute, value) {
-    this.attribute = value;
+    this[`${attribute}`] = value;
   }
   /**
    * Add a food item in the meal instance
@@ -265,14 +265,6 @@ class Meal {
   getNumberOfItems(){
     return this.foodItems.length;
   }
-  // update(){
-  //   this.foodItems.forEach((item)=>{
-  //     this.totalCal+=item.get('totalCal')
-  //     this.proteinWeight+=item.get('proteinWeight')
-  //     this.fatWeight+=item.get('fatWeight')
-  //     this.carbWeight+=item.get('carbWeight')
-  //   })
-  // }
 }
 
 /**

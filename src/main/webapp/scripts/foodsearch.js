@@ -177,7 +177,7 @@ function createFormMeal(){
     mealForm.removeChild(currentFormMeal)
   }
   let html = `
-  <strong style ="color:red;margin:15px">Meal:${meal.get('mealName')}</strong>
+  <strong style ="color:red;margin:15px">${meal.get('mealName')}</strong>
   <strong><i class="fa-solid fa-bolt-lightning calories"></i></strong>
   <span class="calories">${meal.get('totalCal').toFixed(1)}</span>
   <strong><i class='fas fa-egg protein'></i></strong>
@@ -186,6 +186,7 @@ function createFormMeal(){
   <span class="fat">${meal.get('fatWeight').toFixed(1)}g</span> 
   <strong><i class ='fas fa-bread-slice carbs'></i></strong>
   <span class="carbs">${meal.get('carbWeight').toFixed(1)}g</span>
+  <input type="hidden" name = "meal" value='${JSON.stringify(meal)}'>
   `
   let element = document.createElement('div')
   element.classList.add('food')
@@ -209,6 +210,7 @@ function createMealForm(){
   let i = 0
   items.forEach(item=>{
     if (item instanceof FoodItem){
+      console.log(item.toString())
       createFormItem(item,i)
     }
     i++
@@ -226,3 +228,12 @@ belly.addEventListener('click',()=>{
   document.querySelector('.create-meal').style.display='flex'
   createMealForm();
 })
+
+function enterName(){
+  let name = document.querySelector('#nameForm input[type="text"]')
+  document.querySelector('#mealForm').style.display='flex'
+  document.querySelector('#nameForm').style.display='none'
+  meal.set('mealName',name.value)
+  createMealForm()
+  return false;
+}
