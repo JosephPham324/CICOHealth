@@ -3,6 +3,7 @@ package Control;
 import DAO.MealDAO;
 import DAO.MealItemDAO;
 import Entity.Meal;
+import Entity.MealItem;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -77,12 +78,6 @@ public class CreateMealControl extends HttpServlet {
         Gson gson = new Gson();
         String mealJSON = request.getParameter("meal");
         Meal meal = gson.fromJson(mealJSON, Meal.class);
-//        try (PrintWriter out = response.getWriter()) {
-//            out.println(meal);
-//            for (int i = 0; i < meal.getFoodItems().size(); i++) {
-//                out.println(meal.getFoodItems().get(i).getName());
-//            }
-//        }
         Date now = new Date();
         MealDAO mealDAO = new MealDAO();
         int userID = Integer.parseInt(request.getSession().getAttribute("userID").toString());
@@ -90,7 +85,10 @@ public class CreateMealControl extends HttpServlet {
         
         try {
             mealDAO.insertMeal(meal.getMealName(), now, userID, meal.getTotalCal(), meal.getProteinWeight(), meal.getFatWeight(), meal.getCarbWeight());
-        
+            
+            for (MealItem item: meal.getFoodItems()) {
+                mealItemDAO.insertMealItem(meal.getMealName(), now, userID, userID, userID, userID);
+            }
             
         } catch (SQLException ex) {
             Logger.getLogger(CreateMealControl.class.getName()).log(Level.SEVERE, null, ex);
