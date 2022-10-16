@@ -262,6 +262,13 @@ header{
     background-image: linear-gradient(to right,green,yellow);
     cursor: pointer;
 }
+
+.create-meal #submit.disabled{
+    background-color:red;
+    pointer-events:none;
+    cursor: not-allowed;
+}
+
 .create-meal mark{
     padding:3px;
     font-size: 1em;
@@ -294,6 +301,7 @@ header{
     text-align: center;
     color: white;
 }
+
 @media only screen and (max-width: 600px){
     .input input{
         width: 85vw;

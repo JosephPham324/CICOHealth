@@ -16,10 +16,6 @@
         <servlet-class>Control.SearchControl</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreateControl</servlet-name>
-        <servlet-class>Control.CreateControl</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>HealthInfoControl</servlet-name>
         <servlet-class>Control.HealthInfoControl</servlet-class>
     </servlet>
@@ -54,10 +50,6 @@
     <servlet-mapping>
         <servlet-name>SearchControl</servlet-name>
         <url-pattern>/search</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CreateControl</servlet-name>
-        <url-pattern>/createcontrol</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HealthInfoControl</servlet-name>
