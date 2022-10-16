@@ -10,6 +10,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import Security.RegLoginLogic;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,7 +32,7 @@ public class RegisterControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -77,33 +80,41 @@ public class RegisterControl extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
-        
+
         String empString = "";
-        
+
         String salt = Encryption.generateSalt(username, password);
         String hashedPassword = RegLoginLogic.encryptPassword(salt, password);
-        
-        
-        if (hashedPassword.equals(empString) || salt.equals("Unable to generate salt")){
+
+        if (hashedPassword.equals(empString) || salt.equals("Unable to generate salt")) {
             response.sendRedirect("Register-Error.jsp");
         } else {
             LoginDAO logDAO = new LoginDAO();
-            
-            logDAO.addLoginInfo(username, salt, hashedPassword);
-            
-            int loginID = logDAO.getLastID();
-            
-            UserDAO userDAO = new UserDAO();
-            
-            userDAO.addUser(loginID+"","2", firstName, lastName, phone, email);
 
-            logDAO.updateUserID(loginID, loginID);
-            request.setAttribute("userID", loginID);
-            response.getWriter().println(loginID);
-            response.getWriter().print(request.getAttribute("userID"));
-            
-            request.getRequestDispatcher("HealthInfo.jsp")
-                    .forward(request,response);
+            try {
+                logDAO.addLoginInfo(username, salt, hashedPassword);
+
+                int loginID = 0;
+                loginID = logDAO.getLastID();
+
+                UserDAO userDAO = new UserDAO();
+
+                userDAO.addUser(loginID + "", "2", firstName, lastName, phone, email);
+//////////
+                logDAO.updateUserID(loginID, loginID);
+
+                request.setAttribute("userID", loginID);
+                response.getWriter().println(loginID);
+                response.getWriter().print(request.getAttribute("userID"));
+
+                request.getRequestDispatcher("HealthInfo.jsp")
+                        .forward(request, response);
+
+            } catch (SQLException ex) {
+                response.getWriter().write(ex.getMessage());
+                Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
 
     }

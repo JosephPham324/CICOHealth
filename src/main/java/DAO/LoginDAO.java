@@ -20,53 +20,40 @@ public class LoginDAO {
     Connection con = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    
-    public void addLoginInfo(String username, String salt, String hashedPassword){
-        String query = "insert into login values(?,?,?,null)";
-        try {
-            con = new DBContext().getConnection(); // open connection to SQL
-            ps = con.prepareStatement(query); // move query from Netbeen to SQl
 
-            ps.setString(1, username);
-            ps.setString(2, salt);
-            ps.setString(3, hashedPassword);
-            
-            ps.executeUpdate(); // the same with click to "excute" btn;
-        } catch (Exception e) {
-            e.getMessage();
-        }
+    public void addLoginInfo(String username, String salt, String hashedPassword) throws SQLException {
+        String query = "insert into login values(?,?,?,null)";
+        con = new DBContext().getConnection(); // open connection to SQL
+        ps = con.prepareStatement(query); // move query from Netbeen to SQl
+
+        ps.setString(1, username);
+        ps.setString(2, salt);
+        ps.setString(3, hashedPassword);
+
+        ps.executeUpdate(); // the same with click to "excute" btn;
     }
-    
-    public void updateUserID(int loginID, int userID){
+
+    public void updateUserID(int loginID, int userID) throws SQLException {
         String query = "UPDATE dbo.LOGIN SET USER_ID = ? where LOGINID = ?";
-        try {
-            con = new DBContext().getConnection();
-            ps = con.prepareStatement(query);
-            ps.setString(1, userID+"");
-            ps.setString(2, loginID+"");
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, userID + "");
+        ps.setString(2, loginID + "");
+        ps.executeUpdate();
     }
-    
-    public int getLastID() {
+
+    public int getLastID() throws SQLException {
         String query = "SELECT TOP 1 * FROM dbo.LOGIN ORDER BY LOGINID DESC";
-        try {
-            con = new DBContext().getConnection();
-            ps = con.prepareStatement(query);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                return rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            return rs.getInt(1);
         }
         return -1;
     }
 
-    public List<User> getListMember() {
-        try {
+    public List<User> getListMember() throws SQLException {
             String query = "select * from [Nutrition].[dbo].[USER]";
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
@@ -78,14 +65,9 @@ public class LoginDAO {
                 list.add(acc);
             }
             return list;
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        return null;
     }
 
-    public List<UserHealthInfo> getListMemberInfo() {
-        try {
+    public List<UserHealthInfo> getListMemberInfo() throws SQLException {
             String query = "select * from [Nutrition].[dbo].[MemberInfo]";
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
@@ -93,26 +75,18 @@ public class LoginDAO {
             List<UserHealthInfo> list = new ArrayList<>();
             while (rs.next()) {
                 UserHealthInfo acc = new UserHealthInfo(rs.getInt(1), rs.getString(2), rs.getFloat(3),
-                         rs.getFloat(4), rs.getFloat(5), rs.getInt(6));
+                        rs.getFloat(4), rs.getFloat(5), rs.getInt(6));
                 list.add(acc);
             }
             return list;
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        return null;
     }
 
-    public void deleteAcc(String id) {
+    public void deleteAcc(String id) throws SQLException {
         String query = "delete from [Nutrition].[dbo].[Member] where member_id = ?";
-        try {
             con = new DBContext().getConnection();
             ps = con.prepareStatement(query);
             ps.setString(1, id);
             ps.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
     }
 
     public Login checkLogin(String user, String enteredPassword) {
@@ -153,7 +127,6 @@ public class LoginDAO {
 //        return null;
 //    }
 //     
-
     public void insertHealthInfo(String userId, String gender, String height, String weight, String activeness, String age) {
         String query = "insert into [Nutrition].[dbo].[USERHEALTHINFO] values(?,?,?,?,?,?)";
         try {
@@ -169,10 +142,11 @@ public class LoginDAO {
         } catch (Exception e) {
         }
     }
-    public static void main(String[] args) {
-        LoginDAO dao = new LoginDAO();
-        List<User> users = dao.getListMember();
-        System.out.println(dao.checkLogin("QuangPNCE170036", "group4prj301"));
-    }
+
+//    public static void main(String[] args) {
+//        LoginDAO dao = new LoginDAO();
+//        List<User> users = dao.getListMember();
+//        System.out.println(dao.checkLogin("QuangPNCE170036", "group4prj301"));
+//    }
 
 }
