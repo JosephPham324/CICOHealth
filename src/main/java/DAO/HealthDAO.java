@@ -5,6 +5,7 @@ import context.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -16,7 +17,7 @@ public class HealthDAO {
     PreparedStatement ps = null; // move query from Netbeen to SQl
     ResultSet rs = null; // save result query
 
-    public void insertHealthInfo(String userID, String gender, String height, String weight, String activeness, String age) {
+    public void insertHealthInfo(String userID, String gender, String height, String weight, String activeness, String age) throws SQLException {
         String queryInsert = "insert into [Nutrition].[dbo].[USERHEALTHINFO] values(?,?,?,?,?,?)";
         String queryEdit = "update USERHEALTHINFO\n"
                 + "SET GENDER = ?,\n"
@@ -25,7 +26,6 @@ public class HealthDAO {
                 + "ACTIVENESS = ?,\n"
                 + "AGE = ?\n"
                 + "WHERE USERID = ?";
-        try {
 
             if (new HealthDAO().findUserID(Integer.parseInt(userID)) != null) {
                 con = new DBContext().getConnection();
@@ -49,8 +49,6 @@ public class HealthDAO {
                 ps.setString(6, age);
                 ps.executeUpdate();
             }
-        } catch (Exception e) {
-        }
     }
 
     public UserHealthInfo findUserID(int ID) {
