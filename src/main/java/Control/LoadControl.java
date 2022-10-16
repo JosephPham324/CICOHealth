@@ -14,6 +14,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -62,7 +65,12 @@ public class LoadControl extends HttpServlet {
             throws ServletException, IOException {
                 //Step 1: Get data from DAO
         LoginDAO dao = new LoginDAO();
-        List<User> account = dao.getListMember();
+        List<User> account = null;
+        try {
+            account = dao.getListMember();
+        } catch (SQLException ex) {
+            Logger.getLogger(LoadControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //Step 2: Set data to JSP
         request.setAttribute("listAcc", account);
         request.getRequestDispatcher("Update.jsp")

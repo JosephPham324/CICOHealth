@@ -18,7 +18,7 @@ public class UserDAO {
     Connection con = null; // connect to SQL server
     PreparedStatement ps = null; // move query from Netbeen to SQl
     ResultSet rs = null; // save result query
-    
+
 //    private int userID;
 //    private int loginID;
 //    private int userRoleId;
@@ -26,7 +26,6 @@ public class UserDAO {
 //    private String lastName;
 //    private String email;
 //    private String phone;
-    
     public List<User> getListUser() {
         try {
             String query = "select * from dbo.[USER]";
@@ -58,31 +57,27 @@ public class UserDAO {
         }
     }
 
-    public void addUser(String USERID, String USERROLEID, String FIRSTNAME, String LASTNAME, String PHONE, String EMAIL) {
+    public void addUser(String USERID, String USERROLEID, String FIRSTNAME, String LASTNAME, String PHONE, String EMAIL) throws SQLException {
         String query = "insert into dbo.[User] values(?,?,?,?,?,?)";
 
-        try {
-            con = new DBContext().getConnection();
-            ps = con.prepareStatement(query);
-            ps.setString(1, USERID);
-            ps.setString(2, USERROLEID);
-            ps.setString(3, FIRSTNAME);
-            ps.setString(4, LASTNAME);
-            ps.setString(5, EMAIL);
-            ps.setString(6, PHONE);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, USERID);
+        ps.setString(2, USERROLEID);
+        ps.setString(3, FIRSTNAME);
+        ps.setString(4, LASTNAME);
+        ps.setString(5, EMAIL);
+        ps.setString(6, PHONE);
+        ps.executeUpdate();
     }
-    
-    public int getLastID(){
+
+    public int getLastID() {
         String query = "SELECT TOP 1 * FROM dbo.[USER] ORDER BY USERID DESC";
         try {
             con = new DBContext().getConnection();
             ps = con.prepareStatement(query);
             rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 return rs.getInt(1);
             }
         } catch (SQLException e) {
@@ -94,11 +89,11 @@ public class UserDAO {
     public User getUserByID(String id) {
         String query = "select * from dbo.[User]\n"
                 + "where MASP = ?";
-        
+
         try {
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
-            
+
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -129,10 +124,10 @@ public class UserDAO {
         } catch (Exception e) {
         }
     }
-    
-    public static void main(String[] args) {
-        UserDAO dao = new UserDAO();
-        
-        dao.addUser("7","2", "quang", "pham", "0857974230", "2222");
-    }
+
+//    public static void main(String[] args) {
+//        UserDAO dao = new UserDAO();
+//
+//        dao.addUser("7", "2", "quang", "pham", "0857974230", "2222");
+//    }
 }
