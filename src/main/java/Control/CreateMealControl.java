@@ -1,5 +1,7 @@
 package Control;
 
+import DAO.MealDAO;
+import DAO.MealItemDAO;
 import Entity.Meal;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -8,6 +10,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,28 +32,20 @@ public class CreateMealControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet CreateMealControl</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet CreateMealControl at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
-        Gson gson = new Gson();
-        String mealJSON = request.getParameter("meal");
-        Meal meal = gson.fromJson(mealJSON, Meal.class);
+        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.println(meal);
-            for (int i = 0; i < meal.getFoodItems().size(); i++) {
-                out.println(meal.getFoodItems().get(i).getName());
-            }
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet CreateMealControl</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet CreateMealControl at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -76,7 +74,28 @@ public class CreateMealControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Gson gson = new Gson();
+        String mealJSON = request.getParameter("meal");
+        Meal meal = gson.fromJson(mealJSON, Meal.class);
+//        try (PrintWriter out = response.getWriter()) {
+//            out.println(meal);
+//            for (int i = 0; i < meal.getFoodItems().size(); i++) {
+//                out.println(meal.getFoodItems().get(i).getName());
+//            }
+//        }
+        Date now = new Date();
+        MealDAO mealDAO = new MealDAO();
+        int userID = Integer.parseInt(request.getSession().getAttribute("userID").toString());
+        MealItemDAO mealItemDAO = new MealItemDAO();
+        
+        try {
+            mealDAO.insertMeal(meal.getMealName(), now, userID, meal.getTotalCal(), meal.getProteinWeight(), meal.getFatWeight(), meal.getCarbWeight());
+        
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CreateMealControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**
