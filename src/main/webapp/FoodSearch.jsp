@@ -30,12 +30,14 @@ Nhat Quang --%>
                 <div class="overlay"></div>
                 <form id="nameForm" onsubmit="return enterName();">
                     <h3>ENTER MEAL NAME</h3>
+
                     <input type="text" name = "name" value="Breakfast">
                     <input type="submit" value="SUBMIT" name="submit">
                 </form>
                 <form action="CreateMeal" id="mealForm" method="post">
                     <fieldset>
                         <legend>Selected Items</legend>
+                        <p>Note that you have to be logged in to create meal</p>
                         <input type="submit" value="CREATE MEAL" name="submit" id="submit">
                     </fieldset>
                 </form>
@@ -71,10 +73,10 @@ Nhat Quang --%>
         <script src="${pageContext.request.contextPath}/scripts/calculations.js"></script>
         <script src="${pageContext.request.contextPath}/scripts/foodsearch.js"></script>
         <script>
-            console.log(<%=userID%>)
-            if (<%=userID%>===null){
-                document.querySelector('.create-meal #submit').classList.add('disabled')
-            }
+                    console.log(<%=userID%>)
+                    if (<%=userID%> === null) {
+                        document.querySelector('.create-meal #submit').classList.add('disabled')
+                    }
         </script>
     </body>
 </html>
