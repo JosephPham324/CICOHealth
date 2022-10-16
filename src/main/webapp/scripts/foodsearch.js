@@ -3,12 +3,12 @@ let query;
 let button = document.querySelector(".search-wrapper .button");
 let input = document.querySelector(".search-wrapper input");
 let queryResult;
-let meal = new Meal('Breakfast',0,0,0,0,[])
-let foodItems
-let selectedFoodItems
-let addFoodButtons
+let meal = new Meal("Breakfast", 0, 0, 0, 0, []);
+let foodItems;
+let selectedFoodItems;
+let addFoodButtons;
 
-searchFood('brisket and cheese')
+searchFood("brisket and cheese");
 
 //SEARCH BUTTON ON SEARCH BAR
 button.addEventListener("click", () => {
@@ -18,7 +18,7 @@ button.addEventListener("click", () => {
 
 /**
  * Do a query to api-ninjas nutrition API. Push the results in foodItems array
- * @param {String} query 
+ * @param {String} query
  * @returns none
  */
 function searchFood(query) {
@@ -31,7 +31,7 @@ function searchFood(query) {
     success: function (result) {
       clearResults();
       foodItems = [];
-      selectedFoodItems =[]
+      selectedFoodItems = [];
       result.forEach((item) => {
         let element = null;
         if (item !== null) {
@@ -43,17 +43,41 @@ function searchFood(query) {
             item.fat_total_g,
             item.carbohydrates_total_g
           );
-          foodItems.push(new FoodItem(item.name,item.serving_size_g,item.calories,item.protein_g,item.fat_total_g,item.carbohydrates_total_g))
-          selectedFoodItems.push(false)
+          foodItems.push(
+            new FoodItem(
+              item.name,
+              item.serving_size_g,
+              item.calories,
+              item.protein_g,
+              item.fat_total_g,
+              item.carbohydrates_total_g
+            )
+          );
+          if (meal.findFoodItem(item.name) instanceof FoodItem){
+            selectedFoodItems.push(true);
+          }
+          else {
+            selectedFoodItems.push(false);
+          }
           appendToResults(element);
         }
       });
+      checkSelectedItems();
       addFoodButtonsEventListener();
     },
     error: function ajaxError(jqXHR) {
       console.error("Error: ", jqXHR.responseText);
     },
   });
+}
+
+function checkSelectedItems(){
+  addFoodButtons = document.querySelectorAll(".add i.icon-food");
+  for (let i in selectedFoodItems){
+    if (selectedFoodItems[i]===true){
+      addFoodButtons[i].classList.add("selected");
+    }
+  }
 }
 
 /**
@@ -112,178 +136,184 @@ function createResultElement(
   return element;
 }
 
-let selectedNumber = document.querySelector('.belly span')
+let selectedNumber = document.querySelector(".belly span");
 
 /**
  * Update the number of food items selected and stored in meal object
  */
-function updateSelectedNumber(){
-    let text = meal.getNumberOfItems()
-    selectedNumber.innerText = text;
+function updateSelectedNumber() {
+  let text = meal.getNumberOfItems();
+  selectedNumber.innerText = text;
 }
-
 
 /**
- * 
+ *
  */
-function addFoodButtonsEventListener(){
-    addFoodButtons = document.querySelectorAll('.add i.icon-food')
-    for (let i in addFoodButtons){
-        if (addFoodButtons[i] instanceof Node)
-        addFoodButtons[i].addEventListener('click',(item)=>{
-            if (selectedFoodItems[i]==false){
-                meal.addFoodItem(foodItems[i])
-                addFoodButtons[i].classList.add('selected')
-                selectedFoodItems[i]=true
-            } else {
-                selectedFoodItems[i]=false
-                addFoodButtons[i].classList.remove('selected')
-                meal.removeFoodItem(foodItems[i]['name'])
-            }
+function addFoodButtonsEventListener() {
+  addFoodButtons = document.querySelectorAll(".add i.icon-food");
+  for (let i in addFoodButtons) {
+    if (addFoodButtons[i] instanceof Node)
+      addFoodButtons[i].addEventListener("click", (item) => {
+        if (selectedFoodItems[i] == false) {
+          meal.addFoodItem(foodItems[i]);
+          addFoodButtons[i].classList.add("selected");
+          selectedFoodItems[i] = true;
+        } else {
+          selectedFoodItems[i] = false;
+          addFoodButtons[i].classList.remove("selected");
+          meal.removeFoodItem(foodItems[i]["name"]);
+        }
 
-            updateSelectedNumber();
-            // console.log(foodItems[i])
-            // console.log(meal)
-        })
-    }
+        updateSelectedNumber();
+      });
+  }
 }
 
-let mealForm = document.querySelector('.create-meal form fieldset')
+let mealForm = document.querySelector(".create-meal form fieldset");
 
 /**
  * Create a food item element to display on Create Meal form
  * @param {FoodItem} item Food Item to be displayed on form
  * @param {Number} index Index in the foodItems array of the Meal object
  */
-function createFormItem(item,index){
+function createFormItem(item, index) {
   let html = `
-  <mark>${item.get('name')}:</mark>
+  <mark>${item.get("name")}:</mark>
   <strong><i class="fa-solid fa-bolt-lightning calories"></i></strong>
-  <span class="calories">${item.get('totalCal').toFixed(1)}</span>
+  <span class="calories">${item.get("totalCal").toFixed(1)}</span>
   <strong><i class='fas fa-egg protein'></i></strong>
-  <span class="protein">${item.get('proteinWeight').toFixed(1)}g</span> 
+  <span class="protein">${item.get("proteinWeight").toFixed(1)}g</span> 
   <strong><i class='fas fa-cheese fat'></i></strong>
-  <span class="fat">${item.get('fatWeight').toFixed(1)}g</span> 
+  <span class="fat">${item.get("fatWeight").toFixed(1)}g</span> 
   <strong><i class ='fas fa-bread-slice carbs'></i></strong>
-  <span class="carbs">${item.get('carbWeight').toFixed(1)}g</span>
+  <span class="carbs">${item.get("carbWeight").toFixed(1)}g</span>
   <strong><i class="fa-solid fa-weight-scale"></i></strong>
-  <span class="weight"><input type="number" value="${item.get('totalWeight')}">g</span>
+  <span class="weight"><input type="number" value="${item.get(
+    "totalWeight"
+  )}">g</span>
   <i class="fa-solid fa-x"></i>
-  `
-  let element = document.createElement('div')
-  element.classList.add('food')
+  `;
+  let element = document.createElement("div");
+  element.classList.add("food");
   element.innerHTML = html;
-  element.id = `${item.get('name').split(' ').join('')}_${index}`
-  mealForm.insertBefore(element,document.querySelector('.create-meal #submit'))
-  
+  element.id = `${item.get("name").split(" ").join("")}_${index}`;
+  mealForm.insertBefore(
+    element,
+    document.querySelector(".create-meal #submit")
+  );
+
   //Remove item from selected
-  let cross = document.querySelector(`#${item.get('name')}_${index} .fa-x`)
+  let cross = document.querySelector(`#${item.get("name")}_${index} .fa-x`);
   if (cross instanceof Node)
-  cross.addEventListener('click',()=>{
-    let i = foodItems.indexOf(item)
-    selectedFoodItems[i]=false
-    addFoodButtons[i].classList.remove('selected')
-    meal.removeFoodItem(`${item.get('name')}`)
-    createMealForm()
-  })
+    cross.addEventListener("click", () => {
+      let i = foodItems.indexOf(foodItems.find(food=>food.name = item.get('name')));
+      selectedFoodItems[i] = false;
+      addFoodButtons[i].classList.remove("selected");
+      meal.removeFoodItem(`${item.get("name")}`);
+      createMealForm();
+    });
 
   //Change item weight
-  let cal = document.querySelector(`#${element.id} span.calories`)
-  let protein = document.querySelector(`#${element.id} span.protein`)
-  let fat = document.querySelector(`#${element.id} span.fat`)
-  let carb = document.querySelector(`#${element.id} span.carbs`)
-  let weight = document.querySelector(`#${element.id} .weight input`)
-  weight.addEventListener('input',()=>{
-    item.changeWeight(weight.value)
-    cal.innerHTML = `${item.get('totalCal').toFixed(1)}`
-    protein.innerHTML = `${item.get('proteinWeight').toFixed(1)}g`
-    fat.innerHTML = `${item.get('fatWeight').toFixed(1)}g`
-    carb.innerHTML = `${item.get('carbWeight').toFixed(1)}g`
-    meal = createMeal(meal.get('mealName'),meal.get('foodItems'))
-    createFormMeal()
-    console.log(meal)
-  })
+  let cal = document.querySelector(`#${element.id} span.calories`);
+  let protein = document.querySelector(`#${element.id} span.protein`);
+  let fat = document.querySelector(`#${element.id} span.fat`);
+  let carb = document.querySelector(`#${element.id} span.carbs`);
+  let weight = document.querySelector(`#${element.id} .weight input`);
+  weight.addEventListener("input", () => {
+    item.changeWeight(weight.value);
+    cal.innerHTML = `${item.get("totalCal").toFixed(1)}`;
+    protein.innerHTML = `${item.get("proteinWeight").toFixed(1)}g`;
+    fat.innerHTML = `${item.get("fatWeight").toFixed(1)}g`;
+    carb.innerHTML = `${item.get("carbWeight").toFixed(1)}g`;
+    meal = createMeal(meal.get("mealName"), meal.get("foodItems"));
+    createFormMeal();
+    console.log(meal);
+  });
 }
 
 /**
  * Create a meal display element and add it to the meal form
  */
-function createFormMeal(){
-  let currentFormMeal = document.querySelector('.food.meal')
-  console.log(currentFormMeal)
-  if (currentFormMeal instanceof Node){
-    mealForm.removeChild(currentFormMeal)
+function createFormMeal() {
+  let currentFormMeal = document.querySelector(".food.meal");
+  console.log(currentFormMeal);
+  if (currentFormMeal instanceof Node) {
+    mealForm.removeChild(currentFormMeal);
   }
   let html = `
-  <strong style ="color:red;margin:15px">${meal.get('mealName')}</strong>
+  <strong style ="color:red;margin:15px">${meal.get("mealName")}</strong>
   <strong><i class="fa-solid fa-bolt-lightning calories"></i></strong>
-  <span class="calories">${meal.get('totalCal').toFixed(1)}</span>
+  <span class="calories">${meal.get("totalCal").toFixed(1)}</span>
   <strong><i class='fas fa-egg protein'></i></strong>
-  <span class="protein">${meal.get('proteinWeight').toFixed(1)}g</span> 
+  <span class="protein">${meal.get("proteinWeight").toFixed(1)}g</span> 
   <strong><i class='fas fa-cheese fat'></i></strong>
-  <span class="fat">${meal.get('fatWeight').toFixed(1)}g</span> 
+  <span class="fat">${meal.get("fatWeight").toFixed(1)}g</span> 
   <strong><i class ='fas fa-bread-slice carbs'></i></strong>
-  <span class="carbs">${meal.get('carbWeight').toFixed(1)}g</span>
+  <span class="carbs">${meal.get("carbWeight").toFixed(1)}g</span>
   <input type="hidden" name = "meal" value='${JSON.stringify(meal)}'>
-  `
-  let element = document.createElement('div')
-  element.classList.add('food')
-  element.classList.add('meal')
+  `;
+  let element = document.createElement("div");
+  element.classList.add("food");
+  element.classList.add("meal");
   element.innerHTML = html;
-  element.style.textAlign = 'center';
-  mealForm.insertBefore(element,document.querySelector('.create-meal #submit'))
+  element.style.textAlign = "center";
+  mealForm.insertBefore(
+    element,
+    document.querySelector(".create-meal #submit")
+  );
 }
 
 /**
  * Remove all food items and meal element in the meal form
  */
-function clearMealForm(){
-  items = document.querySelectorAll('.create-meal .food')
-  items.forEach(item=>{
-    item.parentNode.removeChild(item)
-  })
+function clearMealForm() {
+  items = document.querySelectorAll(".create-meal .food");
+  items.forEach((item) => {
+    item.parentNode.removeChild(item);
+  });
 }
 
 /**
  * Create the meal form used to submit a meal
  */
-function createMealForm(){
-  clearMealForm()
-  let items = meal.get('foodItems')
-  let i = 0
-  items.forEach(item=>{
-    if (item instanceof FoodItem){
-      console.log(item.toString())
-      createFormItem(item,i)
+function createMealForm() {
+  clearMealForm();
+  let items = meal.get("foodItems");
+  let i = 0;
+  items.forEach((item) => {
+    if (item instanceof FoodItem) {
+      console.log(item.toString());
+      createFormItem(item, i);
     }
-    i++
-  })
-  createFormMeal()
+    i++;
+  });
+  createFormMeal();
 }
 
-let belly = document.querySelector('.belly')//The button to display create meal form
-let overlay = document.querySelector('.overlay')//Element that has blur effect
-
-//If user clicks on the overlay, hide the meal form
-overlay.addEventListener('click',()=>{
-  document.querySelector('.create-meal').style.display='none'
-})
+let belly = document.querySelector(".belly"); //The button to display create meal form
 
 //If user clicks on the belly button, display the create meal form
-belly.addEventListener('click',()=>{
-  document.querySelector('.create-meal').style.display='flex'
+belly.addEventListener("click", () => {
+  document.querySelector(".create-meal").style.display = "flex";
   createMealForm();
-})
+});
+
+let overlay = document.querySelector(".overlay"); //Element that has blur effect
+
+//If user clicks on the overlay, hide the meal form
+overlay.addEventListener("click", () => {
+  document.querySelector(".create-meal").style.display = "none";
+});
 
 /**
  * Get the name input for the meal
  * @returns false to disable submitting form
  */
-function enterName(){
-  let name = document.querySelector('#nameForm input[type="text"]')
-  document.querySelector('#mealForm').style.display='flex'
-  document.querySelector('#nameForm').style.display='none'
-  meal.set('mealName',name.value)
-  createMealForm()
+function enterName() {
+  let name = document.querySelector('#nameForm input[type="text"]');
+  document.querySelector("#mealForm").style.display = "flex";
+  document.querySelector("#nameForm").style.display = "none";
+  meal.set("mealName", name.value);
+  createMealForm();
   return false;
 }
