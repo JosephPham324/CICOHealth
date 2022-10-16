@@ -1,7 +1,6 @@
 package Control;
 
 import Entity.Meal;
-import Entity.MealJS;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,7 +41,7 @@ public class CreateMealControl extends HttpServlet {
 //        }
         Gson gson = new Gson();
         String mealJSON = request.getParameter("meal");
-        MealJS meal = gson.fromJson(mealJSON, MealJS.class);
+        Meal meal = gson.fromJson(mealJSON, Meal.class);
         try (PrintWriter out = response.getWriter()) {
             out.println(meal);
             for (int i = 0; i < meal.getFoodItems().size(); i++) {

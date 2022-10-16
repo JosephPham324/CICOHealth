@@ -11,19 +11,30 @@ public class Meal {
     private String mealName;
     private Date mealDateTime;
     private int userID;
-    private double calorie;
-    private double fat;
-    private double carb;
-    private List<MealItem> mealItems;
+    private double totalCal;
+    private double proteinWeight;
+    private double fatWeight;
+    private double carbWeight;
+    private List<MealItem> foodItems;
 
-    public Meal(String mealName, Date mealDateTime, int userID, double calorie, double fat, double carb, List<MealItem> mealItems) {
+    public Meal(String mealName, Date mealDateTime, int userID, double totalCal, double proteinWeight, double fatWeight, double carbWeight, List<MealItem> foodItems) {
         this.mealName = mealName;
         this.mealDateTime = mealDateTime;
         this.userID = userID;
-        this.calorie = calorie;
-        this.fat = fat;
-        this.carb = carb;
-        this.mealItems = mealItems;
+        this.totalCal = totalCal;
+        this.proteinWeight = proteinWeight;
+        this.fatWeight = fatWeight;
+        this.carbWeight = carbWeight;
+        this.foodItems = foodItems;
+    }
+
+    public Meal(String mealName, double totalCal, double proteinWeight, double fatWeight, double carbWeight, List<MealItem> foodItems) {
+        this.mealName = mealName;
+        this.totalCal = totalCal;
+        this.proteinWeight = proteinWeight;
+        this.fatWeight = fatWeight;
+        this.carbWeight = carbWeight;
+        this.foodItems = foodItems;
     }
 
     public String getMealName() {
@@ -50,43 +61,52 @@ public class Meal {
         this.userID = userID;
     }
 
-    public double getCalorie() {
-        return calorie;
+    public double getTotalCal() {
+        return totalCal;
     }
 
-    public void setCalorie(double calorie) {
-        this.calorie = calorie;
+    public void setTotalCal(double totalCal) {
+        this.totalCal = totalCal;
     }
 
-    public double getFat() {
-        return fat;
+    public double getProteinWeight() {
+        return proteinWeight;
     }
 
-    public void setFat(double fat) {
-        this.fat = fat;
+    public void setProteinWeight(double proteinWeight) {
+        this.proteinWeight = proteinWeight;
     }
 
-    public double getCarb() {
-        return carb;
+    public double getFatWeight() {
+        return fatWeight;
     }
 
-    public void setCarb(double carb) {
-        this.carb = carb;
+    public void setFatWeight(double fatWeight) {
+        this.fatWeight = fatWeight;
     }
 
-    public List<MealItem> getMealItems() {
-        return mealItems;
+    public double getCarbWeight() {
+        return carbWeight;
     }
 
-    public void setMealItems(List<MealItem> mealItems) {
-        this.mealItems = mealItems;
+    public void setCarbWeight(double carbWeight) {
+        this.carbWeight = carbWeight;
+    }
+
+    public List<MealItem> getFoodItems() {
+        return foodItems;
+    }
+
+    public void setFoodItems(List<MealItem> foodItems) {
+        this.foodItems = foodItems;
     }
 
     @Override
     public String toString() {
-        return "Meal{" + "mealName=" + mealName + ", mealDateTime=" + mealDateTime + ", userID=" + userID + ", calorie=" + calorie + ", fat=" + fat + ", carb=" + carb + ", mealItems=" + mealItems + '}';
+        return "Meal{" + "mealName=" + mealName + ", mealDateTime=" + mealDateTime + ", userID=" + userID + ", totalCal=" + totalCal + ", proteinWeight=" + proteinWeight + ", fatWeight=" + fatWeight + ", carbWeight=" + carbWeight + ", foodItems=" + foodItems + '}';
     }
-    
+
+   
     
     
 }
