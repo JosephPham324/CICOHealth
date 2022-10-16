@@ -93,7 +93,7 @@ public class CreateMealControl extends HttpServlet {
             for (MealItem item: meal.getFoodItems()) {
                 mealItemDAO.insertMealItem(meal.getMealName(), now, Integer.parseInt(userID.toString()),item.getName(), item.getTotalCal(),item.getProteinWeight(), item.getFatWeight(),item.getCarbWeight());
             }
-            
+            request.getSession().setAttribute("createMeal", true);
             response.sendRedirect("FoodSearch.jsp");
         } catch (Exception ex) {
             response.getWriter().write(ex.getMessage());

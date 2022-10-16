@@ -25,17 +25,33 @@ Nhat Quang --%>
         <%
             Object userID = request.getSession().getAttribute("userID");
         %>
+        <section style="position:fixed;
+                 width:100vw;
+                 height:100vh;
+                 color:red;
+                 font-size:30px;
+                 display:flex;
+                 align-items:center;
+                 justify-content:center;
+                 display:none;
+                 z-index:100;" id="success">
+            <div>
+                CREATE MEAL SUCCESS!
+            </div>
+        </section>
         <section>
             <div class="create-meal">
                 <div class="overlay"></div>
                 <form id="nameForm" onsubmit="return enterName();">
                     <h3>ENTER MEAL NAME</h3>
+
                     <input type="text" name = "name" value="Breakfast">
                     <input type="submit" value="SUBMIT" name="submit">
                 </form>
                 <form action="CreateMeal" id="mealForm" method="post">
                     <fieldset>
                         <legend>Selected Items</legend>
+                        <p>Note that you have to be logged in to create meal</p>
                         <input type="submit" value="CREATE MEAL" name="submit" id="submit">
                     </fieldset>
                 </form>
@@ -71,10 +87,17 @@ Nhat Quang --%>
         <script src="${pageContext.request.contextPath}/scripts/calculations.js"></script>
         <script src="${pageContext.request.contextPath}/scripts/foodsearch.js"></script>
         <script>
-            console.log(<%=userID%>)
-            if (<%=userID%>===null){
-                document.querySelector('.create-meal #submit').classList.add('disabled')
-            }
+                    if (<%=request.getSession().getAttribute("createMeal")%> === true) {
+                        <%request.getSession().setAttribute("createMeal", false);%>
+                        document.querySelector('#success').style.display = 'flex';
+                        setTimeout(() => {
+                            document.querySelector('#success').style.display = 'none';
+                        }, 2000)
+                    }
+                    console.log(<%=userID%>)
+                    if (<%=userID%> === null) {
+                        document.querySelector('.create-meal #submit').classList.add('disabled')
+                    }
         </script>
     </body>
 </html>
