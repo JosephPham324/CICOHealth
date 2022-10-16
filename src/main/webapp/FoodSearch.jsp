@@ -25,6 +25,20 @@ Nhat Quang --%>
         <%
             Object userID = request.getSession().getAttribute("userID");
         %>
+        <section style="position:fixed;
+                 width:100vw;
+                 height:100vh;
+                 color:red;
+                 font-size:30px;
+                 display:flex;
+                 align-items:center;
+                 justify-content:center;
+                 display:none;
+                 z-index:100;" id="success">
+            <div>
+                CREATE MEAL SUCCESS!
+            </div>
+        </section>
         <section>
             <div class="create-meal">
                 <div class="overlay"></div>
@@ -73,6 +87,13 @@ Nhat Quang --%>
         <script src="${pageContext.request.contextPath}/scripts/calculations.js"></script>
         <script src="${pageContext.request.contextPath}/scripts/foodsearch.js"></script>
         <script>
+                    if (<%=request.getSession().getAttribute("createMeal")%> === true) {
+                        <%request.getSession().setAttribute("createMeal", false);%>
+                        document.querySelector('#success').style.display = 'flex';
+                        setTimeout(() => {
+                            document.querySelector('#success').style.display = 'none';
+                        }, 2000)
+                    }
                     console.log(<%=userID%>)
                     if (<%=userID%> === null) {
                         document.querySelector('.create-meal #submit').classList.add('disabled')
