@@ -80,18 +80,25 @@ public class CreateMealControl extends HttpServlet {
         Meal meal = gson.fromJson(mealJSON, Meal.class);
         Date now = new Date();
         MealDAO mealDAO = new MealDAO();
-        int userID = Integer.parseInt(request.getSession().getAttribute("userID").toString());
+        Object userID = request.getSession().getAttribute("userID");
+        if (userID==null){
+            response.sendRedirect("MainMenu.jsp");
+        }
         MealItemDAO mealItemDAO = new MealItemDAO();
         
         try {
-            mealDAO.insertMeal(meal.getMealName(), now, userID, meal.getTotalCal(), meal.getProteinWeight(), meal.getFatWeight(), meal.getCarbWeight());
+            
+            mealDAO.insertMeal(meal.getMealName(), now, Integer.parseInt(userID.toString()), meal.getTotalCal(), meal.getProteinWeight(), meal.getFatWeight(), meal.getCarbWeight());
             
             for (MealItem item: meal.getFoodItems()) {
-                mealItemDAO.insertMealItem(meal.getMealName(), now, userID, userID, userID, userID);
+                mealItemDAO.insertMealItem(meal.getMealName(), now, Integer.parseInt(userID.toString()),item.getName(), item.getTotalCal(),item.getProteinWeight(), item.getFatWeight(),item.getCarbWeight());
             }
             
-        } catch (SQLException ex) {
-            Logger.getLogger(CreateMealControl.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect("FoodSearch.jsp");
+        } catch (Exception ex) {
+            response.getWriter().write(ex.getMessage());
+            response.getWriter().write(meal.getMealName());
+            response.getWriter().write(userID.toString());
         }
         
     }
