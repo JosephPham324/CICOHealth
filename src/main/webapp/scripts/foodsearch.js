@@ -10,9 +10,19 @@ let addFoodButtons
 
 searchFood('brisket and cheese')
 
+//SEARCH BUTTON ON SEARCH BAR
+button.addEventListener("click", () => {
+  query = input.value;
+  searchFood(query);
+});
+
+/**
+ * Do a query to api-ninjas nutrition API. Push the results in foodItems array
+ * @param {String} query 
+ * @returns none
+ */
 function searchFood(query) {
   console.log("https://api.api-ninjas.com/v1/nutrition?query=" + query);
-  var data = null;
   $.ajax({
     method: "GET",
     url: "https://api.api-ninjas.com/v1/nutrition?query=" + query,
@@ -44,21 +54,35 @@ function searchFood(query) {
       console.error("Error: ", jqXHR.responseText);
     },
   });
-  return data;
 }
-button.addEventListener("click", () => {
-  query = input.value;
-  searchFood(query);
-});
 
+/**
+ * Clear search results in the page's search-results container
+ */
 function clearResults() {
   let results = document.querySelector(".search-results");
   results.innerHTML = "";
 }
+
+/**
+ * Append a a result element child to the page's search-results container
+ * @param {Node} resultElement result element
+ */
 function appendToResults(resultElement) {
   let results = document.querySelector(".search-results");
   results.appendChild(resultElement);
 }
+
+/**
+ * Create a result element to be appended to search-results container
+ * @param {String} name Name of food item
+ * @param {Number} servingAmount Serving size (gram)
+ * @param {Number} calories Calories (kcal)
+ * @param {Number} protein Protein weight (gram)
+ * @param {Number} fat Fat weight (gram)
+ * @param {Number} carbs Carbs weight (gram)
+ * @returns A result element (of type Node)
+ */
 function createResultElement(
   name,
   servingAmount,
@@ -90,13 +114,18 @@ function createResultElement(
 
 let selectedNumber = document.querySelector('.belly span')
 
+/**
+ * Update the number of food items selected and stored in meal object
+ */
 function updateSelectedNumber(){
     let text = meal.getNumberOfItems()
     selectedNumber.innerText = text;
 }
 
 
-
+/**
+ * 
+ */
 function addFoodButtonsEventListener(){
     addFoodButtons = document.querySelectorAll('.add i.icon-food')
     for (let i in addFoodButtons){
@@ -121,6 +150,11 @@ function addFoodButtonsEventListener(){
 
 let mealForm = document.querySelector('.create-meal form fieldset')
 
+/**
+ * Create a food item element to display on Create Meal form
+ * @param {FoodItem} item Food Item to be displayed on form
+ * @param {Number} index Index in the foodItems array of the Meal object
+ */
 function createFormItem(item,index){
   let html = `
   <mark>${item.get('name')}:</mark>
@@ -170,6 +204,10 @@ function createFormItem(item,index){
     console.log(meal)
   })
 }
+
+/**
+ * Create a meal display element and add it to the meal form
+ */
 function createFormMeal(){
   let currentFormMeal = document.querySelector('.food.meal')
   console.log(currentFormMeal)
@@ -196,7 +234,9 @@ function createFormMeal(){
   mealForm.insertBefore(element,document.querySelector('.create-meal #submit'))
 }
 
-
+/**
+ * Remove all food items and meal element in the meal form
+ */
 function clearMealForm(){
   items = document.querySelectorAll('.create-meal .food')
   items.forEach(item=>{
@@ -204,6 +244,9 @@ function clearMealForm(){
   })
 }
 
+/**
+ * Create the meal form used to submit a meal
+ */
 function createMealForm(){
   clearMealForm()
   let items = meal.get('foodItems')
@@ -218,17 +261,24 @@ function createMealForm(){
   createFormMeal()
 }
 
-let belly = document.querySelector('.belly')
-let overlay = document.querySelector('.overlay')
+let belly = document.querySelector('.belly')//The button to display create meal form
+let overlay = document.querySelector('.overlay')//Element that has blur effect
+
+//If user clicks on the overlay, hide the meal form
 overlay.addEventListener('click',()=>{
   document.querySelector('.create-meal').style.display='none'
 })
 
+//If user clicks on the belly button, display the create meal form
 belly.addEventListener('click',()=>{
   document.querySelector('.create-meal').style.display='flex'
   createMealForm();
 })
 
+/**
+ * Get the name input for the meal
+ * @returns false to disable submitting form
+ */
 function enterName(){
   let name = document.querySelector('#nameForm input[type="text"]')
   document.querySelector('#mealForm').style.display='flex'
