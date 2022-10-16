@@ -30,7 +30,7 @@ Nhat Quang --%>
           <input type="text" name = "name" value="Breakfast">
           <input type="submit" value="SUBMIT" name="submit">
         </form>
-        <form action="" id="mealForm">
+        <form action="CreateMeal" id="mealForm" method="post">
           <fieldset>
             <legend>Selected Items</legend>
             <input type="submit" value="CREATE MEAL" name="submit" id="submit">
