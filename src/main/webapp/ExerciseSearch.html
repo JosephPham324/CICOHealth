@@ -59,59 +59,62 @@
         </form>
       </div>
     </section> -->
-
-    <header>
-      <div class="add-exercise">
-        <button></button>
-      </div>
-    </header>
-
-    <div class="exercise-search">
-      <div class="search-wrapper">
-        <label for="search">Find an exercise</label>
-        <form action="#" onsubmit="event.preventDefault();button.click()">
-          <div class="input">
-            <i class="fa-solid fa-magnifying-glass button"></i>
-            <input type="text" id="search" placeholder="Type in an exercise name, for example: running"/>
+    <section>
+      <header>
+        <div class="add-exercise">
+          <button></button>
+        </div>
+      </header>
+    </section>
+    
+    <section>
+      <div class="exercise-search">
+        <div class="search-wrapper">
+          <label for="search">Find an exercise</label>
+          <form action="#" onsubmit="event.preventDefault();button.click()">
+            <div class="input">
+              <i class="fa-solid fa-magnifying-glass button"></i>
+              <input type="text" id="search" placeholder="Type in an exercise name, for example: running"/>
+            </div>
+          </form>
+        </div>
+        <div class="search-results">
+          <div class="result">
+            <header>
+              <div class="icon"></div>
+            </header>
+            <div class="description">
+              <div class="exercise-name">RUNNING</div>
+              <div class="exercise-description">Average effort, 55kg</div>
+              <div class="energy-expenditure">684kcal/h</div>
+            </div>
           </div>
-        </form>
-      </div>
-      <div class="search-results">
-        <div class="result">
-          <header>
-            <div class="icon"></div>
-          </header>
-          <div class="description">
-            <div class="exercise-name">RUNNING</div>
-            <div class="exercise-description">Average effort, 55kg</div>
-            <div class="energy-expenditure">684kcal/h</div>
+          <div class="result">
+            <header>
+              <div class="icon"></div>
+            </header>
+            <div class="description">
+              <div class="exercise-name">RUNNING</div>
+              <div class="exercise-description">Average effort, 55kg</div>
+              <div class="energy-expenditure">684kcal/h</div>
+            </div>
+          </div>
+          <div class="result">
+            <header>
+              <div class="icon"></div>
+            </header>
+            <div class="description">
+              <div class="exercise-name">RUNNING</div>
+              <div class="exercise-description">Average effort, 55kg</div>
+              <div class="energy-expenditure">684kcal/h</div>
+            </div>
           </div>
         </div>
-        <div class="result">
-          <header>
-            <div class="icon"></div>
-          </header>
-          <div class="description">
-            <div class="exercise-name">RUNNING</div>
-            <div class="exercise-description">Average effort, 55kg</div>
-            <div class="energy-expenditure">684kcal/h</div>
-          </div>
-        </div>
-        <div class="result">
-          <header>
-            <div class="icon"></div>
-          </header>
-          <div class="description">
-            <div class="exercise-name">RUNNING</div>
-            <div class="exercise-description">Average effort, 55kg</div>
-            <div class="energy-expenditure">684kcal/h</div>
-          </div>
-        </div>
       </div>
-    </div>
-
+    </section>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="scripts/calculations.js"></script>
-    <!-- <script src="scripts/foodsearch.js"></script> -->
+    <script src="./scripts/calculations.js"></script>
+    <script src="./scripts/exercisesearch.js"></script>
   </body>
 </html>

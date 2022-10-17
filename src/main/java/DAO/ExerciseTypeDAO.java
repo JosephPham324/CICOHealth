@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,16 +25,40 @@ public class ExerciseTypeDAO {
     public List<ExerciseType> searchExerciseTypes(String name) throws SQLException {
         List<ExerciseType> res = new ArrayList<>();
 
-        query = "SELECT * FROM EXERCISETYPES WHERE EXERCISENAME like '%?%'";
+        query = "SELECT * FROM EXERCISETYPES WHERE EXERCISENAME like '%' + ? +'%'";
         con = new DBContext().getConnection(); // open connection to SQL
         ps = con.prepareStatement(query); // move query from Netbeen to SQl
         ps.setString(1, name);
         rs = ps.executeQuery();
         
         while (rs.next()){
-            res.add(new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"), rs.getDouble("CALPERHOUR")));
+            res.add(new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"),rs.getString("DESCRIPTION"), rs.getDouble("CALPERHOUR")));
         }
 
         return res;
+    }
+    
+    public List<ExerciseType> getAllExerciseTypes() throws SQLException {
+        List<ExerciseType> res = new ArrayList<>();
+
+        query = "SELECT * FROM EXERCISETYPES";
+        con = new DBContext().getConnection(); // open connection to SQL
+        ps = con.prepareStatement(query); // move query from Netbeen to SQl
+        rs = ps.executeQuery();
+        
+        while (rs.next()){
+            res.add(new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"),rs.getString("DESCRIPTION"), rs.getDouble("CALPERHOUR")));
+        }
+
+        return res;
+    }
+    
+    public static void main(String[] args) {
+        ExerciseTypeDAO dao = new ExerciseTypeDAO();
+        try {
+            System.out.println(dao.getAllExerciseTypes());
+        } catch (SQLException ex) {
+            Logger.getLogger(ExerciseTypeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

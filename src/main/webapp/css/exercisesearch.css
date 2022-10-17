@@ -120,7 +120,6 @@ input{
     font-style: italic;
 }
 
-
 .exercise-search .food{
     width: 100%;
     border:1px black solid;
@@ -130,6 +129,9 @@ input{
     cursor: pointer;
     line-height: 1.2rem;
 }
+
+
+/*  */
 .add-exercise{
     position: absolute;
     width: 60px;

@@ -296,3 +296,14 @@ function createMeal(mealName, foodItems) {
     foodItems
   );
 }
+
+
+class ExerciseType{
+  constructor(exerciseName,description,calPerHour){
+    this.exerciseName=exerciseName
+    this.description=description;
+    this.calPerHour=calPerHour
+  }
+}
+
+console.log('hey')
