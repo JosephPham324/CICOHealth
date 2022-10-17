@@ -42,6 +42,7 @@ public class LoginControl extends HttpServlet {
                 response.sendRedirect("login-error.jsp");
             } else {//If login info is correct
                 HttpSession session = request.getSession();//Get current session
+                
                 session.setAttribute("userID", a.getUserID());//Set userID to logged in userID
                 session.setAttribute("username", a.getUsername());//Set username to logged in username
                 response.sendRedirect("home");//Redirect to home controller

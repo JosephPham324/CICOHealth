@@ -92,7 +92,7 @@
 		</div>
 
 		<div>
-			<a href="">Add food</a><br>
+			<a href="FoodSearch.jsp">Create meal</a><br>
 			<a href="">Add exercise</a><br>
                         <a href="HealthInfo.jsp">Edit Health Info</a><br>
                         <a href="">Edit User Info</a><br>
