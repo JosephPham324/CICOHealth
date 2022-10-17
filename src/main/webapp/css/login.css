@@ -24,7 +24,7 @@ section {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background: linear-gradient((0,0,0,0.3),(0,0,0,0.3));
+    background-image: linear-gradient((0,0,0,0.3),(0,0,0,0.3));
     width: 380px;
     padding: 10px;
     box-shadow: 7px 7px 60px #000;
@@ -50,6 +50,8 @@ h1{
 .huhu input[type="submit"] {
     background: green;
     text-align: center;
+    width:100%;
+    height:100%;
     color: black;
     border: none;
     font-size: 0.5cm;
@@ -57,25 +59,22 @@ h1{
     font-family: "Open Sans";
     opacity: 0.8;
     transition: opacity .3s ease;
+    cursor: pointer;
 }
 .huhu input[type="submit"]:hover {
-    opacity: 1;
+    /*opacity: 1;*/
+    transform:scale(1.01);
 }
 .huhu {
     margin-top: 2px;
     text-align: center;
     margin: auto;
     width: 30%;
-    border: 4px solid darkgreen;
     padding: 8px;
     background: green;
-    border-radius: 10%;
+    border-radius: 20px;
     opacity: 85%;
     color: black;
-
-}
-.huhu {
-    cursor: pointer;
 }
 .sigup {
     color: black;
