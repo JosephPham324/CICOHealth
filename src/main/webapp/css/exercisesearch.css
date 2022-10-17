@@ -11,7 +11,14 @@ body{
     z-index: 0;
 }
 
-.food-search{
+header{
+    height: 80px;
+    margin-bottom: 20px;
+    background-color: rgb(206, 235, 182);
+    position: relative;
+}
+
+.exercise-search{
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -30,103 +37,13 @@ input{
     font-size: 1rem;
     padding: 5px;
 }
-.search-results{
-    margin: 1rem 1rem;
-    border:1px dashed rgb(77, 35, 35);
-    width: 90vw;
-    min-height: 150px;
-    height: auto;
-    display:grid;
-    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
-    grid-auto-rows: auto 1fr;
-    gap: 10px 20px;
-    padding: 20px 20px;
-    background-color: aliceblue;
-}
-.result{
-    position:relative;
-    width:auto;
-    height:160px;
-    background-color: #ffa600;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.result .add{
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    height: 30px;
-    bottom: 0;
-    padding: 3px 0;
-    background-color: blue;
-}
-.result .add i{
-    display: inline-block;
-    color: silver;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    cursor: pointer;
-    font-size: 1rem;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background-color: white;
-    border: 1px solid black;
-}
-.result .add i.selected{
-    background-color: green;
-}
-
-.food-search .food{
-    width: 100%;
-    border:1px black solid;
-    padding: 10px;
-    height:130px;
-    background-color: white;
-    cursor: pointer;
-    line-height: 1.2rem;
-}
-
-.food-search .food>.header{
-
-    margin-bottom: .25rem;
-    font-size: 1.5em;
-}
-.food-search .food>.serving + .food-search .food>.nutrition-facts{
-    font-size: 0.8rem;
-}
-.food-search .food .serving{
-    color: red;
-}
-.food-search .food span{
-    font-size:1rem;
-    display: inline-block;
-    margin-right: 0.5em;
-}
-.nutrition-facts span:first-child{
-    background-color: white;
-}
-.nutrition-facts span{
-    background-color: rgb(53, 50, 50);
-    border-radius: 3px;
-    padding: 5px;
-}
-.nutrition-facts .protein{
-    color: rgb(202, 134, 121);
-}
-.nutrition-facts .carbs{
-    color: white;
-}
-.nutrition-facts .fat{
-    color:  #ffa600;
-}
 
 .input{
     position: relative;
     background-color: black;
 }
 .input input{
-    width: 40vw;
+    width: 400px;
     height: 30px;
 }
 .input i{
@@ -137,39 +54,111 @@ input{
     min-width: 40px;
     cursor: pointer;
 }
-header{
-    height: 80px;
-    margin-bottom: 20px;
-    background-color: rgb(206, 235, 182);
-    position: relative;
+
+.search-results{
+    margin: 1rem 1rem;
+    border:1px dashed rgb(77, 35, 35);
+    min-width: 400px;
+    min-height: 150px;
+    height: auto;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+    gap: 20px;
+    background-color: aliceblue;
 }
-.belly{
+.result{
+    position:relative;
+    width: 100%;
+    min-width: 320px;
+    height:160px;
+    background-color: #ffa600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    padding: 0;
+    margin: 0;
+    gap: 10px;
+    cursor: pointer;
+}
+.result header{
+    background-color: rgb(213, 219, 251);
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.result .icon{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background:url('../image/cardio-exercises.png') no-repeat;
+    background-color: #faebd7;
+    background-size: 100%;
+    margin: 2px;
+}
+.result .description{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.result .exercise-name{
+    font-size: 1.5rem;
+    border-bottom: 1px black dotted;
+}
+.result .exercise-description{
+    font-style: oblique;
+}
+.result .energy-expenditure{
+    color: yellow;
+    font-style: italic;
+}
+
+.exercise-search .food{
+    width: 100%;
+    border:1px black solid;
+    padding: 10px;
+    height:130px;
+    background-color: white;
+    cursor: pointer;
+    line-height: 1.2rem;
+}
+
+
+/*  */
+.add-exercise{
     position: absolute;
     width: 60px;
     height: 60px;
     top:calc(20px / 2);
-    right: 8vw;
+    right: 40px;
     z-index: 50;
-    background-color: rgb(248, 106, 24);
-    padding: 5px;
-    border-radius: 5px;
+
+    
+}
+.add-exercise button{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: url('../image/running.png') no-repeat ;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
     cursor: pointer;
+    background-size: 100%;
 }
-.belly .wrapper{
-    position: relative;
+.add-exercise button:active{
+    transform: scale(0.98);
 }
-.belly .wrapper span{
-    display: inline-block;
-    position: absolute;
-    font-size: 20px;
-    left: 4px;
-    top:8px
-}
-.belly img{
-    max-width: 100%;
-    max-height: 100%;
-}
-.create-meal{
+
+.create-exercise{
     position: fixed;
     width: 100%;
     height: 100%;
@@ -180,7 +169,15 @@ header{
     justify-content: center;
     display: none;
 }
-.create-meal #mealForm{
+.create-exercise .overlay{
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    z-index: 80;
+    background-color: #fff;
+    position: fixed;
+}
+.create-exercise #exerciseForm{
     max-width: 800px;
     height: auto;
     min-height: 50vh;
@@ -195,67 +192,28 @@ header{
     padding: 5px;
 
 }
-.create-meal #nameForm{
-    z-index: 101;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid black;
-    background-color: rgba(115, 139, 244,1);
-    border-radius: 5px;
-    padding: 20px;
-    gap:25px
-}
-.create-meal #nameForm h3{
-    color: white;
-    font-weight: bold;
-    margin-bottom: 0;
-}
-.create-meal #nameForm input[type='submit']{
+.create-exercise #nameForm input[type='submit']{
     border-radius: 20px;
     cursor: pointer;
     border: 0;
 }
-.create-meal #mealForm{
-    display: none;
-}
-.create-meal form fieldset{
+.create-exercise form fieldset{
     border: 0;
     text-align: center;
 }
-.create-meal form legend{
+.create-exercise form legend{
     font-weight: bold;
     font-size: x-large;
     border: 0;
     text-align: center;
 
 }
-.create-meal .overlay{
-    width: 100%;
-    height: 100%;
-    opacity: 0.7;
-    z-index: 100;
-    background-color: #fff;
-    position: fixed;
-}
-.create-meal .food{
-    padding: 8px 0;
-    font-size: 1.3em;
-    color: black;
-    max-width: 800px;
-    height: 50px;
-    background-color: white;
-    display: block;
-    border-bottom: 1px solid black;
-    line-height: 30px;
-    margin-bottom: 5px;
-    text-align: right;
-}
-.create-meal span{
+
+.create-exercise span{
     display: inline-block;
     margin-right: 10px;
 }
-.create-meal #submit{
+.create-exercise #submit{
     border: 0;
     border-radius: 20px;
     width: 100%;
@@ -267,37 +225,16 @@ header{
     cursor: pointer;
 }
 
-.create-meal #submit.disabled{
+.create-exercise #submit.disabled{
     background-color:red;
     pointer-events:none;
     cursor: not-allowed;
 }
-
-.create-meal mark{
-    padding:3px;
-    font-size: 1em;
-    margin-right: 10px;
-}
-.create-meal .calories{
-    color: yellow;
-    text-shadow: -1px -1px 0 rgb(154, 189, 13), 1px -1px 0 rgb(154, 189, 13), -1px 1px 0 rgb(154, 189, 13), 1px 1px 0 rgb(154, 189, 13);
-}
-.create-meal .protein{
-    color: rgb(202, 134, 121);
-}
-.create-meal .carbs{
-    color: white;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
-.create-meal .fat{
-    color:  #ffa600;
-    
-}
-.create-meal .fa-x{
+.create-exercise .fa-x{
     color: red;
     cursor: pointer;
 }
-.create-meal .food input{
+.create-exercise .food input{
     display: inline;
     width: 60px;
     border: 0;
