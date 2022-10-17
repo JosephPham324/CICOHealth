@@ -6,10 +6,10 @@ package Entity;
  */
 public class ExerciseType {
     private int exerciseID;
-    private int exerciseName;
+    private String exerciseName;
     private double calPerHour;
 
-    public ExerciseType(int exerciseID, int exerciseName, double calPerHour) {
+    public ExerciseType(int exerciseID, String exerciseName, double calPerHour) {
         this.exerciseID = exerciseID;
         this.exerciseName = exerciseName;
         this.calPerHour = calPerHour;
@@ -23,11 +23,11 @@ public class ExerciseType {
         this.exerciseID = exerciseID;
     }
 
-    public int getExerciseName() {
+    public String getExerciseName() {
         return exerciseName;
     }
 
-    public void setExerciseName(int exerciseName) {
+    public void setExerciseName(String exerciseName) {
         this.exerciseName = exerciseName;
     }
 
