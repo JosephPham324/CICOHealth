@@ -58,19 +58,21 @@ input{
 .search-results{
     margin: 1rem 1rem;
     border:1px dashed rgb(77, 35, 35);
-    width: 40vw;
+    min-width: 400px;
     min-height: 150px;
     height: auto;
-    display:grid;
-    grid-template-columns: repeat(auto-fill,minmax(350px,1fr));
-    grid-auto-rows: auto 1fr;
-    gap: 10px 20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 20px 20px;
+    gap: 20px;
     background-color: aliceblue;
 }
 .result{
     position:relative;
-    width:auto;
+    width: 100%;
+    min-width: 320px;
     height:160px;
     background-color: #ffa600;
     display: flex;
@@ -128,43 +130,6 @@ input{
     cursor: pointer;
     line-height: 1.2rem;
 }
-/* 
-.exercise-search .food>.header{
-
-    margin-bottom: .25rem;
-    font-size: 1.5em;
-}
-.exercise-search .food>.serving + .exercise-search .food>.nutrition-facts{
-    font-size: 0.8rem;
-}
-.exercise-search .food .serving{
-    color: red;
-}
-.exercise-search .food span{
-    font-size:1rem;
-    display: inline-block;
-    margin-right: 0.5em;
-}
-.nutrition-facts span:first-child{
-    background-color: white;
-}
-.nutrition-facts span{
-    background-color: rgb(53, 50, 50);
-    border-radius: 3px;
-    padding: 5px;
-}
-.nutrition-facts .protein{
-    color: rgb(202, 134, 121);
-}
-.nutrition-facts .carbs{
-    color: white;
-}
-.nutrition-facts .fat{
-    color:  #ffa600;
-} */
-
-
-
 .add-exercise{
     position: absolute;
     width: 60px;
@@ -189,6 +154,7 @@ input{
 .add-exercise button:active{
     transform: scale(0.98);
 }
+
 .create-meal{
     position: fixed;
     width: 100%;
@@ -291,26 +257,6 @@ input{
     background-color:red;
     pointer-events:none;
     cursor: not-allowed;
-}
-.create-meal mark{
-    padding:3px;
-    font-size: 1em;
-    margin-right: 10px;
-}
-.create-meal .calories{
-    color: yellow;
-    text-shadow: -1px -1px 0 rgb(154, 189, 13), 1px -1px 0 rgb(154, 189, 13), -1px 1px 0 rgb(154, 189, 13), 1px 1px 0 rgb(154, 189, 13);
-}
-.create-meal .protein{
-    color: rgb(202, 134, 121);
-}
-.create-meal .carbs{
-    color: white;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
-.create-meal .fat{
-    color:  #ffa600;
-    
 }
 .create-meal .fa-x{
     color: red;
