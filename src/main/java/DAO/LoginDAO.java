@@ -67,19 +67,7 @@ public class LoginDAO {
             return list;
     }
 
-    public List<UserHealthInfo> getListMemberInfo() throws SQLException {
-            String query = "select * from [Nutrition].[dbo].[MemberInfo]";
-            con = new DBContext().getConnection(); // open connection to SQL
-            ps = con.prepareStatement(query); // move query from Netbeen to SQl
-            rs = ps.executeQuery(); // the same with click to "excute" btn;
-            List<UserHealthInfo> list = new ArrayList<>();
-            while (rs.next()) {
-                UserHealthInfo acc = new UserHealthInfo(rs.getInt(1), rs.getString(2), rs.getFloat(3),
-                        rs.getFloat(4), rs.getFloat(5), rs.getInt(6));
-                list.add(acc);
-            }
-            return list;
-    }
+
 
     public void deleteAcc(String id) throws SQLException {
         String query = "delete from [Nutrition].[dbo].[Member] where member_id = ?";
