@@ -7,6 +7,13 @@ S I --%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Exercise Lookup</title>
     <link rel="stylesheet" href="./css/exercisesearch.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <jsp:useBean
@@ -14,6 +21,17 @@ S I --%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       class="DAO.ExerciseTypeDAO"
       scope="request"
     ></jsp:useBean>
+
+    <div class="create-exercise">
+      <div class="overlay"></div>
+      <form action="#" id="exerciseForm" method="post">
+        <fieldset>
+          <legend>Selected Items</legend>
+          <p>Note that you have to be logged in to add an exercise</p>
+          <input type="submit" value="CREATE MEAL" name="submit" id="submit" />
+        </fieldset>
+      </form>
+    </div>
 
     <section>
       <header>
@@ -38,38 +56,7 @@ S I --%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
             </div>
           </form>
         </div>
-        <div class="search-results">
-          <!-- <div class="result">
-            <header>
-              <div class="icon"></div>
-            </header>
-            <div class="description">
-              <div class="exercise-name">RUNNING</div>
-              <div class="exercise-description">Average effort, 55kg</div>
-              <div class="energy-expenditure">684kcal/h</div>
-            </div>
-          </div>
-          <div class="result">
-            <header>
-              <div class="icon"></div>
-            </header>
-            <div class="description">
-              <div class="exercise-name">RUNNING</div>
-              <div class="exercise-description">Average effort, 55kg</div>
-              <div class="energy-expenditure">684kcal/h</div>
-            </div>
-          </div>
-          <div class="result">
-            <header>
-              <div class="icon"></div>
-            </header>
-            <div class="description">
-              <div class="exercise-name">RUNNING</div>
-              <div class="exercise-description">Average effort, 55kg</div>
-              <div class="energy-expenditure">684kcal/h</div>
-            </div>
-          </div> -->
-        </div>
+        <div class="search-results"></div>
       </div>
     </section>
 

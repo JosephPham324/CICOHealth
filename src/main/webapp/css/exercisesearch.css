@@ -82,6 +82,7 @@ input{
     padding: 0;
     margin: 0;
     gap: 10px;
+    cursor: pointer;
 }
 .result header{
     background-color: rgb(213, 219, 251);
@@ -157,7 +158,7 @@ input{
     transform: scale(0.98);
 }
 
-.create-meal{
+.create-exercise{
     position: fixed;
     width: 100%;
     height: 100%;
@@ -168,7 +169,15 @@ input{
     justify-content: center;
     display: none;
 }
-.create-meal #mealForm{
+.create-exercise .overlay{
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    z-index: 80;
+    background-color: #fff;
+    position: fixed;
+}
+.create-exercise #exerciseForm{
     max-width: 800px;
     height: auto;
     min-height: 50vh;
@@ -183,67 +192,28 @@ input{
     padding: 5px;
 
 }
-.create-meal #nameForm{
-    z-index: 101;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid black;
-    background-color: rgba(115, 139, 244,1);
-    border-radius: 5px;
-    padding: 20px;
-    gap:25px
-}
-.create-meal #nameForm h3{
-    color: white;
-    font-weight: bold;
-    margin-bottom: 0;
-}
-.create-meal #nameForm input[type='submit']{
+.create-exercise #nameForm input[type='submit']{
     border-radius: 20px;
     cursor: pointer;
     border: 0;
 }
-.create-meal #mealForm{
-    display: none;
-}
-.create-meal form fieldset{
+.create-exercise form fieldset{
     border: 0;
     text-align: center;
 }
-.create-meal form legend{
+.create-exercise form legend{
     font-weight: bold;
     font-size: x-large;
     border: 0;
     text-align: center;
 
 }
-.create-meal .overlay{
-    width: 100%;
-    height: 100%;
-    opacity: 0.7;
-    z-index: 100;
-    background-color: #fff;
-    position: fixed;
-}
-.create-meal .food{
-    padding: 8px 0;
-    font-size: 1.3em;
-    color: black;
-    max-width: 800px;
-    height: 50px;
-    background-color: white;
-    display: block;
-    border-bottom: 1px solid black;
-    line-height: 30px;
-    margin-bottom: 5px;
-    text-align: right;
-}
-.create-meal span{
+
+.create-exercise span{
     display: inline-block;
     margin-right: 10px;
 }
-.create-meal #submit{
+.create-exercise #submit{
     border: 0;
     border-radius: 20px;
     width: 100%;
@@ -255,16 +225,16 @@ input{
     cursor: pointer;
 }
 
-.create-meal #submit.disabled{
+.create-exercise #submit.disabled{
     background-color:red;
     pointer-events:none;
     cursor: not-allowed;
 }
-.create-meal .fa-x{
+.create-exercise .fa-x{
     color: red;
     cursor: pointer;
 }
-.create-meal .food input{
+.create-exercise .food input{
     display: inline;
     width: 60px;
     border: 0;
