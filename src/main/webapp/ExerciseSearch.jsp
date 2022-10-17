@@ -6,6 +6,7 @@ S I --%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Exercise Lookup</title>
+    <link rel="stylesheet" href="./css/exercisesearch.css" />
   </head>
   <body>
     <jsp:useBean
@@ -38,7 +39,7 @@ S I --%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           </form>
         </div>
         <div class="search-results">
-          <div class="result">
+          <!-- <div class="result">
             <header>
               <div class="icon"></div>
             </header>
@@ -67,13 +68,12 @@ S I --%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
               <div class="exercise-description">Average effort, 55kg</div>
               <div class="energy-expenditure">684kcal/h</div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
 
     <script src="./scripts/calculations.js"></script>
-    <script src="./scripts/exercisesearch.js"></script>
     <script>
         let exerciseTypes=[];
       <c:forEach items="${etDAO.getAllExerciseTypes()}" var="item">
@@ -81,6 +81,8 @@ S I --%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
             exerciseTypes.push(new ExerciseType(`${item.getExerciseName()}`,`${item.getDescription()}`,${item.getCalPerHour()}));
         }
       </c:forEach>
+      console.log(exerciseTypes)
     </script>
+    <script src="./scripts/exercisesearch.js"></script>
   </body>
 </html>
