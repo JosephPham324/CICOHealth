@@ -39,6 +39,10 @@
         <servlet-name>CreateMealControl</servlet-name>
         <servlet-class>Control.CreateMealControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddExerciseControl</servlet-name>
+        <servlet-class>Control.AddExerciseControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -74,6 +78,10 @@
     <servlet-mapping>
         <servlet-name>CreateMealControl</servlet-name>
         <url-pattern>/CreateMeal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddExerciseControl</servlet-name>
+        <url-pattern>/addExercise</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
