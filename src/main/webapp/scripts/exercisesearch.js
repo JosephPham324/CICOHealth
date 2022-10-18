@@ -62,7 +62,7 @@ function generateFormExercise(exerciseType) {
       </div>
         <div class="energy-expenditure totalCal">
         <strong>
-        <i class="fa-solid fa-bolt-lightning">&nbsp;684kcal/h</i>
+        <i class="fa-solid fa-bolt-lightning">&nbsp;684kcal</i>
         </strong>
       </div>
       <input type="hidden" name = "exerciseName" value = "${exerciseType.exerciseName}">
@@ -106,14 +106,16 @@ function addFormExercise(element) {
 
   console.log(extractKcalPH(kcalph.innerHTML));
 
-  let kcalphValElement = document.querySelector(".energy-expenditure.totalCal");
+  let totalCalElement = document.querySelector(".energy-expenditure.totalCal");
+  let totalCalInput = document.querySelector("#exerciseForm input[name='kcal']")
 
   duration.addEventListener("input", () => {
-    kcalphValElement.innerHTML = `
+    totalCalElement.innerHTML = `
   <strong><i class="fa-solid fa-bolt-lightning">&nbsp;${(
     minuteToHour(duration.value) * extractKcalPH(kcalph.innerHTML)
   ).toFixed(0)}kcal/h</i></strong>
   `;
+    totalCalInput.value = (minuteToHour(duration.value) * extractKcalPH(kcalph.innerHTML)).toFixed(1)
   });
 }
 
