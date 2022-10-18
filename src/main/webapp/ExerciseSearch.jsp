@@ -26,9 +26,30 @@ S I --%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       <div class="overlay"></div>
       <form action="#" id="exerciseForm" method="post">
         <fieldset>
-          <legend>Selected Items</legend>
+          <legend>Selected Exercise</legend>
           <p>Note that you have to be logged in to add an exercise</p>
-          <input type="submit" value="CREATE MEAL" name="submit" id="submit" />
+          <div class="description">
+            <div class="exercise-name">RUNNING</div>
+            <div class="energy-expenditure">
+              <strong
+                ><i class="fa-solid fa-bolt-lightning"
+                  >&nbsp;684kcal/h</i
+                ></strong
+              >
+            </div>
+            <div class="duration">
+              <label for="duration">Duration (minutes):</label>
+              <input type="number" name="duration" value="60" />
+            </div>
+            <div class="energy-expenditure totalCal">
+              <strong
+                ><i class="fa-solid fa-bolt-lightning"
+                  >&nbsp;684kcal/h</i
+                ></strong
+              >
+            </div>
+          </div>
+          <input type="submit" value="ADD EXERCISE" name="submit" id="submit" />
         </fieldset>
       </form>
     </div>
