@@ -48,7 +48,12 @@ S I --%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 ></strong
               >
             </div>
+            <input type="hidden" name = "exerciseName" value = "">
+            <input type="hidden" name = "description" value = "">
+            <input type="hidden" name = "kcalph" value = "">
+            <input type="hidden" name="kcal">
           </div>
+
           <input type="submit" value="ADD EXERCISE" name="submit" id="submit" />
         </fieldset>
       </form>

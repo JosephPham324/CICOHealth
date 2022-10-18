@@ -33,19 +33,21 @@ exerciseTypes.forEach((et) => {
 results = document.querySelectorAll(".search-results .result");
 results = Array.prototype.slice.call(results);
 let createExercise = document.querySelector(".create-exercise");
-console.log(results);
 let selected;
 
 results.forEach((result) => {
   result.addEventListener("click", () => {
     createExercise.style.display = "flex";
     selected = results.indexOf(result);
-    console.log(selected);
-    console.log(exerciseTypes[selected]);
     addFormExercise(generateFormExercise(exerciseTypes[selected]))
   });
-  //   result.style.display = "none";
 });
+
+hideResults();
+
+function hideResults(){
+  results.forEach(result=> result.style.display = 'none')
+}
 
 function generateFormExercise(exerciseType) {
   let html = `
@@ -129,3 +131,30 @@ let overlay = document.querySelector(".overlay");
 overlay.addEventListener("click", () => {
   createExercise.style.display = "none";
 });
+
+
+let searchBar = document.querySelector("#search")
+
+searchBar.addEventListener('input',()=>{
+  hideResults()
+  showResultElements(searchBar.value)
+})
+
+function showResultElements(exerciseName){
+  if (exerciseName!=''){
+    let show = results.filter(o=>checkExerciseName(o,exerciseName))
+
+    show.forEach(element=>element.style.display ='flex')
+  }
+}
+
+function checkExerciseName(element,exerciseName){
+  let regex = new RegExp(`${exerciseName.toLowerCase()}`)
+  console.log(exerciseName)
+  console.log(element.textContent)
+
+  if (regex.test((element.textContent).toLowerCase())){
+    console.log(element)
+    return element
+  }
+}
