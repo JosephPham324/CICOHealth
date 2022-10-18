@@ -14,10 +14,11 @@ S I --%>
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href = "./css/formstyle.css"/>
+    <link rel="stylesheet" href = "./css/registeracount.css"/>
     <title>Register Account</title>
   </head>
   <body>
-    <div class="container">
+      <div class="container" style="background-image: url('image/login.jpg');">
       <div class="row col-md-8 offset-4">
         <div class="login-form">
             <form method="post" action="register">
