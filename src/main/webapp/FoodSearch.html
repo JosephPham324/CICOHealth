@@ -20,18 +20,41 @@
     <title>Search Food</title>
   </head>
   <body>
+    <section
+      style="
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        color: red;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: none;
+        z-index: 100;
+      "
+      id="success"
+    >
+      <div>CREATE MEAL SUCCESS!</div>
+    </section>
     <section>
       <div class="create-meal">
         <div class="overlay"></div>
         <form id="nameForm" onsubmit="return enterName();">
           <h3>ENTER MEAL NAME</h3>
-          <input type="text" name = "name" value="Breakfast">
-          <input type="submit" value="SUBMIT" name="submit">
+          <input type="text" name="name" value="Breakfast" />
+          <input type="submit" value="SUBMIT" name="submit" />
         </form>
-        <form action="" id="mealForm">
+        <form action="CreateMeal" id="mealForm" method="post">
           <fieldset>
             <legend>Selected Items</legend>
-            <input type="submit" value="CREATE MEAL" name="submit" id="submit">
+            <p>Note that you have to be logged in to create meal</p>
+            <input
+              type="submit"
+              value="CREATE MEAL"
+              name="submit"
+              id="submit"
+            />
           </fieldset>
         </form>
       </div>

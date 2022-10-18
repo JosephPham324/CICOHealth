@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <section style="background-image: url('image/login.jpg');">
+        <section style="background-image: url('${pageContext.request.contextPath}/image/login.jpg');">
             <div class="form-container">
                 <h1>Login form</h1>
                 <form action="login" method="post">

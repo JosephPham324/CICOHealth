@@ -88,6 +88,7 @@ input{
 }
 
 .food-search .food>.header{
+
     margin-bottom: .25rem;
     font-size: 1.5em;
 }
@@ -137,13 +138,16 @@ input{
     cursor: pointer;
 }
 header{
-    height: 10vh;
+    height: 80px;
+    margin-bottom: 20px;
+    background-color: rgb(206, 235, 182);
     position: relative;
 }
 .belly{
     position: absolute;
     width: 60px;
     height: 60px;
+    top:calc(20px / 2);
     right: 8vw;
     z-index: 50;
     background-color: rgb(248, 106, 24);
@@ -262,6 +266,13 @@ header{
     background-image: linear-gradient(to right,green,yellow);
     cursor: pointer;
 }
+
+.create-meal #submit.disabled{
+    background-color:red;
+    pointer-events:none;
+    cursor: not-allowed;
+}
+
 .create-meal mark{
     padding:3px;
     font-size: 1em;
@@ -294,6 +305,11 @@ header{
     text-align: center;
     color: white;
 }
+#mealForm p{
+    font-size:0.8em;
+    color:red;
+}
+
 @media only screen and (max-width: 600px){
     .input input{
         width: 85vw;

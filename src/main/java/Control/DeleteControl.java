@@ -12,6 +12,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -65,7 +68,11 @@ public class DeleteControl extends HttpServlet {
         //Step 2: Pass ID to dao
         
         LoginDAO dao = new LoginDAO();
-        dao.deleteAcc(sid);
+        try {
+            dao.deleteAcc(sid);
+        } catch (SQLException ex) {
+            Logger.getLogger(DeleteControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         response.sendRedirect("loadcontrol");
     }
 
