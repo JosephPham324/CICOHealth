@@ -32,6 +32,8 @@
                                             <form action="login" method="POST" class="text-start">
                                                 <!--USERNAME INPUT-->
                                                 <!-- <div class="input-group input-group-outline my-3"> -->
+                                                <div class="input-group">
+
                                                 <div class="control">
                                                     <label class="form-label">Username</label>
                                                     <input type="text" required name="username" class="form-control" required>
@@ -51,8 +53,8 @@
                                                 </div>
                                                 <!--SIGN UP LINK!-->
                                                 <p class="sigup">
-                                                    Don't have an account?
-                                                    <a href="RegisterAccount.jsp" class="text-primary text-gradient font-weight-bold">Sign up</a>
+                                                    Not registered?
+                                                    <a href="RegisterAccount.jsp" class="text-primary text-gradient font-weight-bold">Create an account</a>
                                                 </p>
                                             </form>
                                         </div>

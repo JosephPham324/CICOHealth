@@ -35,7 +35,13 @@ h1{
     text-transform: uppercase;
     font-size: 2cm;
     text-align: center;
-    margin-bottom: 2cm;
+    margin-bottom: 1cm;
+
+}
+h4 {
+    color: royalblue;
+    font-size: large;
+
 }
 .control input{
     width: 100%;
@@ -44,7 +50,7 @@ h1{
     color: #222;
     border: none;
     outline: none;
-    margin: 1cm 0;
+    margin: 0.2cm 0;
 }
 
 .huhu input[type="submit"] {
@@ -55,15 +61,17 @@ h1{
     color: black;
     border: none;
     font-size: 0.5cm;
-    font-weight: 750;
+    font-weight: 800;
     font-family: "Open Sans";
     opacity: 0.8;
     transition: opacity .3s ease;
     cursor: pointer;
+
 }
 .huhu input[type="submit"]:hover {
-    /*opacity: 1;*/
-    transform:scale(1.01);
+    opacity: 1;
+    /*transform:scale(1.01);*/
+
 }
 .huhu {
     margin-top: 2px;
@@ -75,11 +83,24 @@ h1{
     border-radius: 20px;
     opacity: 85%;
     color: black;
+    margin-top: 0.6cm;
+    margin-bottom: 0.6cm;
+
 }
 .sigup {
-    color: black;
-    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    margin: 15px 0 0;
+    color: #fff;
+    font-size: 15px;
+
 }
 .control {
     color: black;
+    font-size: large;
+    margin-top: 0.2cm;
+}
+.sigup a {
+    color: green;
+    text-decoration: none;
 }
