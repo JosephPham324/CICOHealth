@@ -21,6 +21,8 @@
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             crossorigin="anonymous"
             />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>Your Exercises</title>
     </head>
     <body>
@@ -29,10 +31,9 @@
             class = "DAO.ExerciseDAO"
             scope="request"
             ></jsp:useBean>
-            <div class="header">Your exercises</div>
             <div class="info-container">
-                <table class="table table-striped table-hover">
-                    <caption>List of exercises</caption>
+                <h1 style="text-align:center">List of your exercises</h1>
+                <table class="table table-striped table-hover display" id = "exercises" title="Exercises List">
                     <thead>
                         <tr>
                             <th scope="col">Date</th>
@@ -40,6 +41,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Duration</th>
                             <th scope="col">Kcal</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,9 +52,20 @@
                             <td>${item.getName()}</td>
                             <td>${item.getDuration()}</td>
                             <td>${item.getCalorie()}</td>
+                            <td><a href="#"><i class="fa-solid fa-pen-to-square"></i></a> | <a href="#"><i class="fa-solid fa-xmark"></i></a></td>
                         </tr>
                     </c:forEach>
                 </tbody>
+                <tfoot>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Kcal</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+               </tfoot>
             </table>
         </div>
         <script
@@ -70,6 +83,8 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"
         ></script>
+        <script src ="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src ="./scripts/exercises.js"></script>
     </body>
 </html>
 
