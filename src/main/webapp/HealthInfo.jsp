@@ -66,28 +66,28 @@
                 <div class="col-8">
                     <div class="custom-controls-stacked">
                         <div class="custom-control custom-radio">
-                            <input name="activity" id="activity_0" type="radio" required="required" checked class="custom-control-input" value="1"> 
+                            <input name="activity" id="activity_0" type="radio" required="required" checked class="custom-control-input" value="0"> 
                             <label for="activity_0" class="custom-control-label">Not very active</label>
                         </div>
                     </div>
                     
                     <div class="custom-controls-stacked">
                         <div class="custom-control custom-radio">
-                            <input name="activity" id="activity_1" type="radio" required="required" class="custom-control-input" value="2"> 
+                            <input name="activity" id="activity_1" type="radio" required="required" class="custom-control-input" value="1"> 
                             <label for="activity_1" class="custom-control-label">Lightly active</label>
                         </div>
                     </div>
                     
                     <div class="custom-controls-stacked">
                         <div class="custom-control custom-radio">
-                            <input name="activity" id="activity_2" type="radio" required="required" class="custom-control-input" value="3"> 
+                            <input name="activity" id="activity_2" type="radio" required="required" class="custom-control-input" value="2"> 
                             <label for="activity_2" class="custom-control-label">Active</label>
                         </div>
                     </div>
                     
                     <div class="custom-controls-stacked">
                         <div class="custom-control custom-radio">
-                            <input name="activity" id="activity_3" type="radio" required="required" class="custom-control-input" value="4"> 
+                            <input name="activity" id="activity_3" type="radio" required="required" class="custom-control-input" value="3"> 
                             <label for="activity_3" class="custom-control-label">Very active</label>
                         </div>
                     </div>
@@ -136,11 +136,21 @@
             <!--BUTTON-->
             <div class="form-group row">
                 <div class="offset-4 col-8">
-                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
-        </form>
-
+              </form>
+            
+            <div id="results"> <!--This is where the results will appear.  This is hidden when the program loads and appears when the user clicks 'submit'-->
+                <div class="results-container">
+                    <h1 class="title">Your daily BMI is:</h1>
+                    <p id="bmi-result">Placeholder text</p>
+                    <p id="plan-result">Placeholder text</p>
+                </div>
+            </div>
+            
+      
+        <script src="./scripts/calculateBMR.js"></script>
         <script>
             //GET INPUT FIELDS
             let activeness = document.querySelectorAll('input[name="activity"]');

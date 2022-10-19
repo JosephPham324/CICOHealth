@@ -7,7 +7,7 @@ Nhat Quang --%>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./css/foodsearch.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/foodsearch.css" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -15,53 +15,89 @@ Nhat Quang --%>
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
             />
+        <link
+            href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
+            rel="stylesheet"
+            />
         <title>Search Food</title>
     </head>
     <body>
+        <%
+            Object userID = request.getSession().getAttribute("userID");
+        %>
+        <section style="position:fixed;
+                 width:100vw;
+                 height:100vh;
+                 color:red;
+                 font-size:30px;
+                 display:flex;
+                 align-items:center;
+                 justify-content:center;
+                 display:none;
+                 z-index:100;" id="success">
+            <div>
+                CREATE MEAL SUCCESS!
+            </div>
+        </section>
+        <section>
+            <div class="create-meal">
+                <div class="overlay"></div>
+                <form id="nameForm" onsubmit="return enterName();">
+                    <h3>ENTER MEAL NAME</h3>
+
+                    <input type="text" name = "name" value="Breakfast">
+                    <input type="submit" value="SUBMIT" name="submit">
+                </form>
+                <form action="CreateMeal" id="mealForm" method="post">
+                    <fieldset>
+                        <legend>Selected Items</legend>
+                        <p>Note that you have to be logged in to create meal</p>
+                        <input type="submit" value="CREATE MEAL" name="submit" id="submit">
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+
+        <header>
+            <div class="belly">
+                <div class="wrapper">
+                    <span>0</span>
+                    <img src="./image/stomach_!.png" alt="Stomach image" />
+                </div>
+            </div>
+        </header>
+
         <div class="food-search">
             <div class="search-wrapper">
                 <label for="search">Search Food</label>
-                <form action = "#"onsubmit="event.preventDefault();button.click()">
-                <div class="input">
-                    <i class="fa-solid fa-magnifying-glass button"></i>
-                    <input type="text" id="search" placeholder="Type in some food, for example: brisket cheese"/>
-                </div>
+                <form action="#" onsubmit="event.preventDefault();button.click()">
+                    <div class="input">
+                        <i class="fa-solid fa-magnifying-glass button"></i>
+                        <input
+                            type="text"
+                            id="search"
+                            placeholder="Type in some food, for example: brisket cheese"
+                            />
+                    </div>
                 </form>
             </div>
-            <div class="search-results">
-
-                <div class="result">
-                    <div class="food">
-                        <div class="header">brisket</div>
-                        <div class="serving">brisket, 100g</div>
-                        <div class="nutrition-facts">
-                            <span class="calories">Calories 289.3</span><br />
-                            <span class="protein"><i class="fas fa-egg"></i>P 29.1g</span>
-                            <span class="fat"><i class="fas fa-cheese"></i>F 18.3g</span>
-                            <span class="carbs"
-                                  ><i class="fas fa-bread-slice"></i>C 0g</span
-                            >
-                        </div>
-                    </div>
-                </div>
-                <div class="result">
-                    <div class="food">
-                        <div class="header">cheese</div>
-                        <div class="serving">cheese, 100g</div>
-                        <div class="nutrition-facts">
-                            <span class="calories">Calories 393.9</span><br />
-                            <span class="protein"><i class="fas fa-egg"></i>P 22.7g</span>
-                            <span class="fat"><i class="fas fa-cheese"></i>F 33g</span>
-                            <span class="carbs"
-                                  ><i class="fas fa-bread-slice"></i>C 3.2g</span
-                            >
-                        </div>
-                    </div>
-                </div>       
-                
-            </div>
+            <div class="search-results"></div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="./scripts/foodsearch.js"></script>
+        <script src="${pageContext.request.contextPath}/scripts/calculations.js"></script>
+        <script src="${pageContext.request.contextPath}/scripts/foodsearch.js"></script>
+        <script>
+                    if (<%=request.getSession().getAttribute("createMeal")%> === true) {
+                        <%request.getSession().setAttribute("createMeal", false);%>
+                        document.querySelector('#success').style.display = 'flex';
+                        setTimeout(() => {
+                            document.querySelector('#success').style.display = 'none';
+                        }, 2000)
+                    }
+                    console.log(<%=userID%>)
+                    if (<%=userID%> === null) {
+                        document.querySelector('.create-meal #submit').classList.add('disabled')
+                    }
+        </script>
     </body>
 </html>

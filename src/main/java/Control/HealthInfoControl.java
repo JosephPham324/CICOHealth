@@ -1,7 +1,6 @@
 
 package Control;
 
-import DAO.GoalDAO;
 import DAO.HealthDAO;
 import DAO.LoginDAO;
 import DAO.UserDAO;
@@ -11,6 +10,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -84,14 +86,15 @@ public class HealthInfoControl extends HttpServlet {
         String weight = request.getParameter("weight");
         String activity = request.getParameter("activity");
         String age = request.getParameter("age");
-        heath.insertHealthInfo(userID+"",gender,height, weight,activity,age);
+        try {
+            heath.insertHealthInfo(userID+"",gender,height, weight,activity,age);
+            response.sendRedirect("CaloriesPlan.jsp");
+        } catch (SQLException ex) {
+            response.getWriter().write(ex.getMessage());
+            Logger.getLogger(HealthInfoControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        GoalDAO goal = new GoalDAO();
-        double calories = goal.calculateCalo(weight, height, age, gender, activity);
-        String calo = Double.toString(calories);
-        goal.addGoal(userID, calo);
         
-        response.sendRedirect("home");
     }
 
     /**
