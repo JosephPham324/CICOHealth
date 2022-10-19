@@ -11,6 +11,48 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     padding: 0;
     box-sizing: border-box;
 }
-.container {
+section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-image: url('${pageContext.request.contextPath}/image/login.jpg');
+    background-size: cover;
+    background-position: center center;
+
+}
+body{
+/*    width: 100vw;
+    height: 100vh;*/
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+/*    background-color: aliceblue;*/
+}
+
+legend{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 35px;
+    font-weight: 600;
+    color: azure;
     
+}
+form{
+    padding:20px 20px;
+/*    background-color: aquamarine;*/
+    border-radius: 2rem;
+    position: absolute;
+/*    top: 50%;
+    left: 50%;*/
+    transform: translate(0%,10%);
+    background-image: linear-gradient((0,0,0,0.3),(0,0,0,0.3));
+    width: 380px;
+    box-shadow: 7px 7px 60px #000;
+}
+/*.form-group.row{
+    margin-bottom: 40px;
+}*/
+.form-group.row:last-child{
+    margin-bottom: 0;
 }
