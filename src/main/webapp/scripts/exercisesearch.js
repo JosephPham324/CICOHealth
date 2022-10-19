@@ -162,5 +162,6 @@ function checkExerciseName(element,exerciseName){
 let headerButton = document.querySelector('.header button')
 
 headerButton.addEventListener('click',()=>{
-  window.location.href = "/Exercises.jsp";
+  console.log(location.pathname)
+  window.location.replace('/Nutrition/Exercises.jsp');
 })
