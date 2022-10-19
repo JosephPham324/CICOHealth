@@ -10,6 +10,13 @@ public class ExerciseType {
     private String description;
     private double calPerHour;
 
+    public ExerciseType(int exerciseID, String exerciseName) {
+        this.exerciseID = exerciseID;
+        this.exerciseName = exerciseName;
+    }
+    
+    
+
     public ExerciseType(int exerciseID, String exerciseName, String description, double calPerHour) {
         this.exerciseID = exerciseID;
         this.exerciseName = exerciseName;

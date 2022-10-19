@@ -158,3 +158,10 @@ function checkExerciseName(element,exerciseName){
     return element
   }
 }
+
+let headerButton = document.querySelector('.header button')
+
+headerButton.addEventListener('click',()=>{
+  console.log(location.pathname)
+  window.location.replace('/Nutrition/Exercises.jsp');
+})
