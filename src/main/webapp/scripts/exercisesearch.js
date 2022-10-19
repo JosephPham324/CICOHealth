@@ -158,3 +158,9 @@ function checkExerciseName(element,exerciseName){
     return element
   }
 }
+
+let headerButton = document.querySelector('.header button')
+
+headerButton.addEventListener('click',()=>{
+  window.location.href = "/Exercises.jsp";
+})

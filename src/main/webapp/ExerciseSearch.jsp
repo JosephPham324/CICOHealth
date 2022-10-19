@@ -59,7 +59,7 @@ S I --%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       </form>
     </div>
 
-    <section>
+    <section class="header">
       <header>
         <div class="add-exercise">
           <button></button>
