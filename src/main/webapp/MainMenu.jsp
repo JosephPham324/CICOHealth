@@ -26,12 +26,12 @@
         </div>
         <div class="menu-list">
             <ul class="navbar header" id="myHeader" >
-                <li class="navbar__link"><a href="test.html"><img class="nutrition-logo" src="image/nutrition-logo.png"></a></li>
-                <li class="navbar__link"><a href="#">Home</a></li>
-                <li class="navbar__link"><a href="#">About</a></li>
-                <li class="navbar__link"><a href="#">Food</a></li>
-                <li class="navbar__link"><a href="#">Exercise</a></li>
-                <li class="navbar__link"><a href="#">Contact</a></li>
+                <li class="navbar__link"><a href="#"><img class="nutrition-logo" src="image/nutrition-logo.png"></a></li>
+                <li class="navbar__link"><a href="MainMenu.jsp">Home</a></li>
+                <li class="navbar__link"><a href="#footer">About</a></li>
+                <li class="navbar__link"><a href="FoodSearch.jsp">Food</a></li>
+                <li class="navbar__link"><a href="ExerciseSearch.jsp">Exercise</a></li>
+                <li class="navbar__link"><a href="#footer">Contact</a></li>
                 <li class="navbar__link"><a href="#"><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
                 <li class="navbar__link"><a href="#"><img class="add-exercise-logo" src="image/addExercise-logo.png"></a></li>
                 <li class="navbar__link">
