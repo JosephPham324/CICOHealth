@@ -10,13 +10,13 @@
         <li class="navbar__link"><a href="#"><img class="nutrition-logo" src="image/nutrition-logo.png"></a></li>
         <li class="navbar__link"><a href="home">Home</a></li>
         <li class="navbar__link"><a href="#footer">About</a></li>
-        <li class="navbar__link"><a href="search-food">Food</a></li>
+        <li class="navbar__link"><a href="search-food" target="_blank">Food</a></li>
         <li class="navbar__link"><a href="search-exercise">Exercise</a></li>
         <li class="navbar__link"><a href="#footer">Contact</a></li>
         <c:choose>
             <c:when test = "${sessionScope.userID!=null}">
                 <li class="navbar__link"><a href=""><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
-                <li class="navbar__link"><a href="user-exercises"><img class="add-exercise-logo" src="image/addExercise-logo.png"></a></li>
+                <li class="navbar__link"><a href="user-exercises" target="_blank"><img class="add-exercise-logo" src="image/addExercise-logo.png"></a></li>
                 <li class="navbar__link">
                     <div class="dropdown">
                         <img class="personal-logo" src="image/personal-logo.png" onclick="myDropdownF()">

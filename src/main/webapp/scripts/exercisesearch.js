@@ -154,14 +154,6 @@ function checkExerciseName(element,exerciseName){
 //  console.log(element.textContent)
 
   if (regex.test((element.textContent).toLowerCase())){
-    console.log(element)
     return element
   }
 }
-
-let headerButton = document.querySelector('.header button')
-
-headerButton.addEventListener('click',()=>{
-  console.log(location.pathname)
-  window.location.replace('/Nutrition/user-exercises');
-})
