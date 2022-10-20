@@ -82,7 +82,6 @@ public class ExerciseDAO {
         
         ps.executeUpdate();
     }
-
     public static void main(String[] args) {
         ExerciseDAO dao = new ExerciseDAO();
         ArrayList<Exercise> lol;

@@ -3,6 +3,7 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    
     <servlet>
         <servlet-name>LoginControl</servlet-name>
         <servlet-class>Control.LoginControl</servlet-class>
@@ -155,7 +156,6 @@
         <servlet-name>DeleteExerciseControl</servlet-name>
         <url-pattern>/delete-exercise-control</url-pattern>
     </servlet-mapping>
-
     <session-config>
         <session-timeout>
             30

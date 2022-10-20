@@ -90,7 +90,6 @@
                 <a href="RegisterAccount.jsp">Register</a><br>
             </div>
         </div>
-
         <script>
 
         </script>
