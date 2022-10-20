@@ -172,6 +172,11 @@ class FoodItem {
     this.proteinWeight = proteinWeight;
     this.fatWeight = fatWeight;
     this.carbWeight = carbWeight;
+    this.originalWeight = totalWeight
+    this.originalCal = totalCal;
+    this.originalProteinWeight = proteinWeight;
+    this.originalFatWeight = fatWeight;
+    this.originalCarbWeight = carbWeight;
   }
   /**
    * Get an attribute in FoodItem instance
@@ -188,6 +193,15 @@ class FoodItem {
    */
   set(attribute, value) {
     this.attribute = value;
+  }
+
+  changeWeight(newWeight){
+    this.totalWeight=newWeight
+    let ratio = newWeight / this.originalWeight
+    this.totalCal=this.originalCal *ratio
+    this.proteinWeight=this.originalProteinWeight*ratio
+    this.fatWeight=this.originalFatWeight*ratio
+    this.carbWeight=this.originalCarbWeight*ratio
   }
 }
 
@@ -224,7 +238,7 @@ class Meal {
    * @param {Data type of that attribute} value Value for the attribute
    */
   set(attribute, value) {
-    this.attribute = value;
+    this[`${attribute}`] = value;
   }
   /**
    * Add a food item in the meal instance
@@ -281,4 +295,17 @@ function createMeal(mealName, foodItems) {
     carbWeight,
     foodItems
   );
+}
+
+
+class ExerciseType{
+  constructor(exerciseName,description,calPerHour){
+    this.exerciseName=exerciseName
+    this.description=description;
+    this.calPerHour=calPerHour
+  }
+}
+
+function minuteToHour(minutes){
+  return minutes/60;
 }

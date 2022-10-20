@@ -1,26 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package Control;
 
-import DAO.LoginDAO;
-import Entity.User;
+import DAO.ExerciseDAO;
+import DAO.ExerciseTypeDAO;
+import Entity.ExerciseType;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.Date;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
- * @author Thinh
+ * @author M S I
  */
-@WebServlet(name = "LoadControl", urlPatterns = {"/loadcontrol"})
-public class LoadControl extends HttpServlet {
+public class AddExerciseControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,15 +32,20 @@ public class LoadControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoadControl</title>");            
+            out.println("<title>Servlet AddExerciseControl</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoadControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddExerciseControl at " + request.getContextPath() + "</h1>");
+            out.println(new Date() + "<br>");
+            out.println(request.getParameter("exerciseName") + "<br>");
+            out.println(request.getParameter("description") + "<br>");
+            out.println(request.getParameter("kcalph") + "<br>");
+            out.println(request.getParameter("kcal") + "<br>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,13 +63,7 @@ public class LoadControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                //Step 1: Get data from DAO
-        LoginDAO dao = new LoginDAO();
-        List<User> account = dao.getListMember();
-        //Step 2: Set data to JSP
-        request.setAttribute("listAcc", account);
-        request.getRequestDispatcher("Update.jsp")
-                .forward(request,response);//Step 1: Get data from DAO
+        processRequest(request, response);
     }
 
     /**
@@ -80,7 +77,31 @@ public class LoadControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        String name = request.getParameter("exerciseName");
+//        String description = request.getParameter("description");
+        double kcalph = Double.parseDouble(request.getParameter("kcalph"));
+        double kcal = Double.parseDouble(request.getParameter("kcal"));
+
+        ExerciseTypeDAO etDAO = new ExerciseTypeDAO();
+        ExerciseDAO eDAO = new ExerciseDAO();
+        ExerciseType et = null;
+        Date now = new Date();
+        int userID = -1;
+        if (request.getSession().getAttribute("userID") != null) {
+            userID = Integer.parseInt(request.getSession().getAttribute("userID").toString());
+        }
+        try {
+            et = etDAO.getExerciseByName(name);
+            eDAO.insertExercise(now, userID, et, (double) kcal / kcalph * 60, kcal);
+//            response.getWriter().write((double)kcal/kcalph+"");
+            response.sendRedirect("ExerciseSearch.jsp");
+        } catch (SQLException ex) {
+            try (PrintWriter out = response.getWriter()) {
+                out.println(ex);
+            }
+        }
+
     }
 
     /**
