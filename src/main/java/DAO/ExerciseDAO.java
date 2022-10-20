@@ -87,7 +87,7 @@ public class ExerciseDAO {
         ExerciseDAO dao = new ExerciseDAO();
         ArrayList<Exercise> lol;
         try {
-            dao.updateExercise(90+"", 3+"", 2 + "", "2022-10-18", "03:38:48");
+            dao.updateExercise(90.0+"", 3+"", 2 + "", "2022-10-18", "03:38:48");
         } catch (SQLException ex) {
             Logger.getLogger(ExerciseDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

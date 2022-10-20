@@ -51,3 +51,12 @@ body{
     color: blue;
     cursor: pointer;
 }
+
+.item-form{
+    display: inline;
+}
+
+.item-form button{
+    background-color: transparent;
+    border: 0;
+}

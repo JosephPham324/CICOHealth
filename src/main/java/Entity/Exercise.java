@@ -86,6 +86,10 @@ public class Exercise {
         return formatter.format(this.dateTime);
     }
     
+    public String getExerciseID(){
+        return this.exerciseType.getExerciseID() + "";
+    }
+    
     public String getName(){
         return this.exerciseType.getExerciseName();
     }

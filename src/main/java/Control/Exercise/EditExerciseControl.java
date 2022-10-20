@@ -1,11 +1,15 @@
 package Control.Exercise;
 
+import DAO.ExerciseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -65,7 +69,20 @@ public class EditExerciseControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
+        String date = request.getParameter("date");
+        String time = request.getParameter("time");
+        String exerciseID = request.getParameter("exerciseID");
+        String duration = request.getParameter("duration");
+        String calorie = request.getParameter("calorie");
+        String userID = request.getSession().getAttribute("userID").toString();
+        
+        ExerciseDAO dao = new ExerciseDAO();
+        try {
+            dao.updateExercise(duration, exerciseID, userID, date, time);
+            response.sendRedirect("user-exercises");
+        } catch (SQLException ex) {
+            response.getWriter().write(ex.getMessage());
+        }
     }
 
     /**

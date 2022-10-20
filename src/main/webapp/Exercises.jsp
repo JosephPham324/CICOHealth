@@ -45,7 +45,7 @@ contentType="text/html" pageEncoding="UTF-8"%>
     <div class="edit-form">
       <div class="overlay"></div>
 
-      <form>
+      <form action="edit-exercise-control" method = "post" id = "editForm">
         <fieldset class="form-group">
           <legend>EDIT EXERCISE</legend>
           <div class="form-group row">
@@ -62,6 +62,7 @@ contentType="text/html" pageEncoding="UTF-8"%>
                   name="date"
                   placeholder="Enter the new date"
                   type="date"
+                  readonly
                   class="form-control"
                 />
               </div>
@@ -81,6 +82,7 @@ contentType="text/html" pageEncoding="UTF-8"%>
                   name="time"
                   placeholder="Enter the new time"
                   type="time"
+                  readonly
                   class="form-control"
                 />
               </div>
@@ -118,7 +120,9 @@ contentType="text/html" pageEncoding="UTF-8"%>
                   id="duration"
                   name="duration"
                   placeholder="Enter the new duration"
-                  type="text"
+                  type="number"
+                  value ="0.0"
+                  step ="0.1"
                   class="form-control"
                 />
               </div>
@@ -136,13 +140,16 @@ contentType="text/html" pageEncoding="UTF-8"%>
                 <input
                   id="calorie"
                   name="calorie"
-                  type="text"
+                  type="number"
+                  value ="0.0"
+                  step ="0.1"
                   class="form-control"
                   readonly
                 />
               </div>
             </div>
           </div>
+          <input type="hidden" name="exerciseID" value = "">
           <div class="form-group row">
             <div class="offset-4 col-8">
               <button name="submit" type="submit" class="btn btn-primary">
@@ -174,6 +181,7 @@ contentType="text/html" pageEncoding="UTF-8"%>
           <c:forEach
             items="${eDAO.getExerciseByUserID(sessionScope.userID)}"
             var="item"
+            varStatus="loop"
           >
             <tr>
               <th scope="row">${item.getDate()}</th>
@@ -182,7 +190,15 @@ contentType="text/html" pageEncoding="UTF-8"%>
               <td>${item.getDuration()}</td>
               <td>${item.getCalorie()}</td>
               <td>
-                <i class="fa-solid fa-pen-to-square edit-button">
+                <form action="#" class="item-form" onsubmit="return fillEditForm(this)">
+                    <input type="hidden" name="date" value="${item.getDate()}">
+                    <input type="hidden" name="time" value="${item.getTime()}">
+                    <input type="hidden" name="name" value="${item.getName()}">
+                    <input type="hidden" name="duration" value="${item.getDuration()}">
+                    <input type="hidden" name="calories" value="${item.getCalorie()}">
+                    <input type="hidden" name="exerciseID" value="${item.getExerciseID()}">
+                    <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
+                </form>
                 |
                 <a href="delete-exercise-control?name=lmao" style="color: red"
                   ><i class="fa-solid fa-xmark"></i

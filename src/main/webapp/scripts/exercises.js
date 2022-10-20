@@ -43,3 +43,25 @@ edit.forEach(item=>{
     })
 })
 
+function fillEditForm(form){
+    let itemForm = form;
+    let itemFormData = new FormData(itemForm)
+    let editFormInput = document.querySelectorAll('#editForm input')
+    let i = 0;
+    for ([key,value] of itemFormData.entries()){
+        let j = i;
+        editFormInput[j].value = value;
+        if (editFormInput[j].name === 'calorie'){
+            let calorie = editFormInput[j].value
+            let duration = editFormInput[j-1].value
+            let base = (calorie / duration)
+            editFormInput[j-1].addEventListener('input',()=>{
+                // console.log(base)
+                editFormInput[j].value = (editFormInput[j-1].value * base ).toFixed(1)
+            })
+        }
+            
+        i++
+    }
+    return false;
+}
