@@ -18,7 +18,7 @@ public class MealItemDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     String query;
-    String datetimePattern = "yyyy-MM-dd hh:mm:ss";
+    String datetimePattern = "yyyy-MM-dd HH:mm:ss";
     SimpleDateFormat dateFormatter;
 
     public void insertMealItem(String mealName, Date dateTime, int userID,String name, double calories, double protein, double fat, double carbs)
