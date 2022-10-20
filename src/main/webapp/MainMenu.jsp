@@ -32,15 +32,15 @@
                 <li class="navbar__link"><a href="FoodSearch.jsp">Food</a></li>
                 <li class="navbar__link"><a href="ExerciseSearch.jsp">Exercise</a></li>
                 <li class="navbar__link"><a href="#footer">Contact</a></li>
-                <li class="navbar__link"><a href="#"><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
+                <li class="navbar__link"><a href="Exercises.jsp"><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
                 <li class="navbar__link"><a href="#"><img class="add-exercise-logo" src="image/addExercise-logo.png"></a></li>
                 <li class="navbar__link">
                     <div class="dropdown">
                         <img class="personal-logo" src="image/personal-logo.png" onclick="myDropdownF()">
                         
                         <div id="myDropdown" class="dropdown-content">
-                            <a href="HealthInfo.jsp">Edit Health Info</a>
-                            <a href="#">Edit User Info</a>
+                            <a href="HealthInfo.jsp">Health Info</a>
+                            <a href="#">User Info</a>
                             <a href="logout">Log out</a>
                         </div>
                     </div></li>
