@@ -53,7 +53,7 @@
     </servlet>
     <servlet>
         <servlet-name>Register</servlet-name>
-        <jsp-file>/Register.jsp</jsp-file>
+        <jsp-file>/RegisterAccount.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>Home</servlet-name>
