@@ -10,13 +10,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./css/login.css" />
-        <title>JSP Page</title>
+        <title>Login</title>
     </head>
     <body>
         <section style="background-image: url('${pageContext.request.contextPath}/image/login.jpg');">
             <div class="form-container">
                 <h1>Login form</h1>
-                <form action="login" method="post">
+                <form action="login-control" method="post">
                     <div class="page-header align-items-start min-vh-100"  loading="lazy">
                         <span class="mask bg-gradient-dark opacity-6"></span>
                         <div class="container my-auto">
@@ -29,7 +29,7 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <form action="login" method="POST" class="text-start">
+                                            <!--<form action="login-control" method="POST" class="text-start">-->
                                                 <!--USERNAME INPUT-->
                                                 <!-- <div class="input-group input-group-outline my-3"> -->
                                                 <div class="control">
@@ -42,9 +42,10 @@
                                                     <label class="form-label">Password</label>
                                                     <input type="password" required name="password" class="form-control"required>
                                                 </div>
-                                                <!--                                    <div class="text-center">
-                                                                                        <small class="font-weight-bold" style="color: red;">Error</small>
-                                                                                    </div>-->
+                                                <div class="control">
+                                                    <label class="form-label">Remember me</label>
+                                                    <input type="checkbox" name="remember" class="form-control" value = "remember">
+                                                </div>
                                                 <!--SUBMIT BUTTON-->
                                                 <div class="huhu">
                                                     <input type="submit" name="action" value="Login">
@@ -54,7 +55,7 @@
                                                     Don't have an account?
                                                     <a href="RegisterAccount.jsp" class="text-primary text-gradient font-weight-bold">Sign up</a>
                                                 </p>
-                                            </form>
+                                            <!--</form>-->
                                         </div>
                                     </div>
                                 </div>

@@ -25,7 +25,7 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+         HttpSession session = request.getSession();
         if (session.getAttribute("userID") != null) {
             response.sendRedirect("MainMenu.jsp");
         } else {

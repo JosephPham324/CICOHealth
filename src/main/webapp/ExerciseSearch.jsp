@@ -24,16 +24,42 @@ S I --%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
     <div class="create-exercise">
       <div class="overlay"></div>
-      <form action="#" id="exerciseForm" method="post">
+      <form action="add-exercise-control" id="exerciseForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
         <fieldset>
-          <legend>Selected Items</legend>
+          <legend>Selected Exercise</legend>
           <p>Note that you have to be logged in to add an exercise</p>
-          <input type="submit" value="CREATE MEAL" name="submit" id="submit" />
+          <div class="description">
+            <div class="exercise-name">RUNNING</div>
+            <div class="energy-expenditure">
+              <strong
+                ><i class="fa-solid fa-bolt-lightning"
+                  >&nbsp;684kcal/h</i
+                ></strong
+              >
+            </div>
+            <div class="duration">
+              <label for="duration">Duration (minutes):</label>
+              <input type="number" name="duration" value="60" />
+            </div>
+            <div class="energy-expenditure totalCal">
+              <strong
+                ><i class="fa-solid fa-bolt-lightning"
+                  >&nbsp;684kcal/h</i
+                ></strong
+              >
+            </div>
+            <input type="hidden" name = "exerciseName" value = "">
+            <input type="hidden" name = "description" value = "">
+            <input type="hidden" name = "kcalph" value = "">
+            <input type="hidden" name="kcal">
+          </div>
+
+          <input type="submit" value="ADD EXERCISE" name="submit" id="submit" />
         </fieldset>
       </form>
     </div>
 
-    <section>
+    <section class="header">
       <header>
         <div class="add-exercise">
           <button></button>

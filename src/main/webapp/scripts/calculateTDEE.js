@@ -1,7 +1,7 @@
 
 document.getElementById('results').style.display = 'none';
 document.getElementById('results_2').style.display = 'none';
-submit.addEventListener('click', function (e) {  // Runs getValues when form's submit button is clicked.
+smit.addEventListener('click', function (e) {  // Runs getValues when form's submit button is clicked.
     e.preventDefault();
 
     getValues();
@@ -19,27 +19,10 @@ getValues = () => {  // Converts values from form fields into integers, then ass
     const height = parseInt(document.getElementById("height").value);
     const weight = parseInt(document.getElementById("weight").value);
 
-    var elements = document.getElementsByName('activity');
+    var element = document.querySelector('input[name="activity"]:checked');
+    let activenessMap = [1.2,1.375,1.55,1.725];
     var checkedButton;
-    console.log(elements);
-    elements.forEach(e => {
-        if (e.checked) {
-            //if radio button is checked, set sort style
-            checkedButton = e.value;
-            if (checkedButton == 0) {
-                checkedButton = 1.2;
-            }
-             if (checkedButton == 1) {
-                checkedButton = 1.375;
-            }
-             if (checkedButton == 2) {
-                checkedButton = 1.55;
-            }
-             if (checkedButton == 3) {
-                checkedButton = 1.725;
-            }
-        }
-    });
+    checkedButton = activenessMap[element.value];
     const activeness = parseFloat(checkedButton);
     console.log(activeness);
     finalResult(age, checkedgender, height, weight, activeness);
@@ -69,6 +52,7 @@ finalResult = (age, gender, height, weight) => {
  * @returns 7 calorie plan for weight maintenance, weight loss and weight gain
  */
 createCaloriePlans = (weight, height, age, gender, activeness) => {
+    
     let TDEE = 0;
     if (gender === 'Male') {
         TDEE = (13.397 * weight + 4.799 * height - 5.677 * age + 88.362) * activeness;
@@ -87,6 +71,7 @@ createCaloriePlans = (weight, height, age, gender, activeness) => {
     plans.push("Extreme Weight Gain", TDEE, TDEE + 700, 700 * 7);
     console.log(plans);
 
+    document.getElementById('results_3').style.display = 'none';
     document.getElementById('results_2').style.display = 'block'; // Reveals the 'results' box which was originally hidden (see line 1)
     var strMsg = "";
     strMsg += "<table>";

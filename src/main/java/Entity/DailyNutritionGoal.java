@@ -9,38 +9,38 @@ package Entity;
  * @author ASUS
  */
 public class DailyNutritionGoal {
-    private int userId;
-    private float calorie;
+    private int userID;
+    private float calories;
     private float protein;
     private float fat;
     private float carb;
     
     public DailyNutritionGoal(int userID) {
-        this.userId =userID;
+        this.userID = userID;
     }
 
-    public DailyNutritionGoal(int userId, float calorie, float protein, float fat, float carb) {
-        this.userId = userId;
-        this.calorie = calorie;
+    public DailyNutritionGoal(int userID, float calories, float protein, float fat, float carb) {
+        this.userID = userID;
+        this.calories = calories;
         this.protein = protein;
         this.fat = fat;
         this.carb = carb;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
-    public float getCalorie() {
-        return calorie;
+    public float getCalories() {
+        return calories;
     }
 
-    public void setCalorie(float calorie) {
-        this.calorie = calorie;
+    public void setCalories(float calories) {
+        this.calories = calories;
     }
 
     public float getProtein() {
@@ -66,11 +66,6 @@ public class DailyNutritionGoal {
     public void setCarb(float carb) {
         this.carb = carb;
     }
-
-    @Override
-    public String toString() {
-        return "DailyNutritionGoal{" + "userId=" + userId + ", calorie=" + calorie + ", protein=" + protein + ", fat=" + fat + ", carb=" + carb + '}';
-    }
-
-  
+    
+    
 }

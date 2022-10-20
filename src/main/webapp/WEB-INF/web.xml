@@ -3,14 +3,15 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    
     <servlet>
         <servlet-name>LoginControl</servlet-name>
         <servlet-class>Control.LoginControl</servlet-class>
     </servlet>
-    <servlet>
+<!--    <servlet>
         <servlet-name>DeleteControl</servlet-name>
         <servlet-class>Control.DeleteControl</servlet-class>
-    </servlet>
+    </servlet>-->
     <servlet>
         <servlet-name>SearchControl</servlet-name>
         <servlet-class>Control.SearchControl</servlet-class>
@@ -39,41 +40,108 @@
         <servlet-name>CreateMealControl</servlet-name>
         <servlet-class>Control.CreateMealControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddExerciseControl</servlet-name>
+        <servlet-class>Control.AddExerciseControl</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <jsp-file>/Login.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>HealthInfo</servlet-name>
+        <jsp-file>/HealthInfo.jsp</jsp-file>
+    </servlet>
+    <servlet>   
+        <servlet-name>Register</servlet-name>
+        <jsp-file>/Register.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <jsp-file>/MainMenu.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>FoodSearch</servlet-name>
+        <jsp-file>/FoodSearch.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>ExerciseSearch</servlet-name>
+        <jsp-file>/ExerciseSearch.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>UserExercises</servlet-name>
+        <jsp-file>/Exercises.jsp</jsp-file>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
-        <url-pattern>/login</url-pattern>
+        <url-pattern>/login-control</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
+<!--    <servlet-mapping>
         <servlet-name>DeleteControl</servlet-name>
-        <url-pattern>/deletecontrol</url-pattern>
-    </servlet-mapping>
+        <url-pattern>/delete-control</url-pattern>
+    </servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>SearchControl</servlet-name>
-        <url-pattern>/search</url-pattern>
+        <url-pattern>/search-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HealthInfoControl</servlet-name>
-        <url-pattern>/healthinfocontrol</url-pattern>
+        <url-pattern>/healthinfo-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserInfoControl</servlet-name>
-        <url-pattern>/userinfocontrol</url-pattern>
+        <url-pattern>/userinfo-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterControl</servlet-name>
-        <url-pattern>/register</url-pattern>
+        <url-pattern>/register-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutControl</servlet-name>
-        <url-pattern>/logout</url-pattern>
+        <url-pattern>/logout-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <url-pattern>/home-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateMealControl</servlet-name>
-        <url-pattern>/CreateMeal</url-pattern>
+        <url-pattern>/create-meal-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddExerciseControl</servlet-name>
+        <url-pattern>/add-exercise-control</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HealthInfo</servlet-name>
+        <url-pattern>/healthinfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FoodSearch</servlet-name>
+        <url-pattern>/search-food</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExerciseSearch</servlet-name>
+        <url-pattern>/search-exercise</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserExercises</servlet-name>
+        <url-pattern>/user-exercises</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
