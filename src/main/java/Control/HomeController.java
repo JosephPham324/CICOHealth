@@ -27,7 +27,7 @@ public class HomeController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("userID") != null) {
-            response.sendRedirect("/home");
+            response.sendRedirect("home");
         } else {
             response.sendRedirect("/");
         }
