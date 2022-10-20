@@ -26,6 +26,9 @@
         <title>Your Exercises</title>
     </head>
     <body>
+        <c:if test = "${sessionScope.userID == null}"> 
+            <c:redirect url="search-exercise"></c:redirect>
+        </c:if>
         <jsp:useBean
             id = "eDAO"
             class = "DAO.ExerciseDAO"
