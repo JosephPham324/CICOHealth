@@ -155,6 +155,7 @@
         <servlet-name>DeleteExerciseControl</servlet-name>
         <url-pattern>/delete-exercise-control</url-pattern>
     </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30
