@@ -55,7 +55,7 @@
                             <td>${item.getName()}</td>
                             <td>${item.getDuration()}</td>
                             <td>${item.getCalorie()}</td>
-                            <td><a href="#"><i class="fa-solid fa-pen-to-square"></i></a> | <a href="#"><i class="fa-solid fa-xmark"></i></a></td>
+                            <td><a href="edit-exercise-control?name=lmao"><i class="fa-solid fa-pen-to-square"></i></a> | <a href="delete-exercise-control?name=lmao" style="color:red"><i class="fa-solid fa-xmark"></i></a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

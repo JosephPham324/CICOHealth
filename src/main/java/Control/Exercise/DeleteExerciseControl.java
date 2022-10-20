@@ -1,24 +1,17 @@
-package Control;
+package Control.Exercise;
 
-import DAO.ExerciseDAO;
-import DAO.ExerciseTypeDAO;
-import Entity.ExerciseType;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author M S I
+ * @author Pham Nhat Quang
  */
-public class AddExerciseControl extends HttpServlet {
+public class DeleteExerciseControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,15 +30,10 @@ public class AddExerciseControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddExerciseControl</title>");
+            out.println("<title>Servlet DeleteExerciseControl</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddExerciseControl at " + request.getContextPath() + "</h1>");
-            out.println(new Date() + "<br>");
-            out.println(request.getParameter("exerciseName") + "<br>");
-            out.println(request.getParameter("description") + "<br>");
-            out.println(request.getParameter("kcalph") + "<br>");
-            out.println(request.getParameter("kcal") + "<br>");
+            out.println("<h1>Servlet DeleteExerciseControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -77,30 +65,9 @@ public class AddExerciseControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        String name = request.getParameter("exerciseName");
-//        String description = request.getParameter("description");
-        double kcalph = Double.parseDouble(request.getParameter("kcalph"));
-        double kcal = Double.parseDouble(request.getParameter("kcal"));
-
-        ExerciseTypeDAO etDAO = new ExerciseTypeDAO();
-        ExerciseDAO eDAO = new ExerciseDAO();
-        ExerciseType et = null;
-        Date now = new Date();
-        int userID = -1;
-        if (request.getSession().getAttribute("userID") != null) {
-            userID = Integer.parseInt(request.getSession().getAttribute("userID").toString());
-        }
-        try {
-            et = etDAO.getExerciseByName(name);
-            eDAO.insertExercise(now, userID, et, (double) kcal / kcalph * 60, kcal);
-//            response.getWriter().write((double)kcal/kcalph+"");
-            response.sendRedirect("/search-exercise");
-        } catch (SQLException ex) {
-            try (PrintWriter out = response.getWriter()) {
-                out.println(ex);
-            }
-        }
+        processRequest(request, response);
+        
+        
 
     }
 

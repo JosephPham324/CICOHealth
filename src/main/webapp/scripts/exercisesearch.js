@@ -163,5 +163,5 @@ let headerButton = document.querySelector('.header button')
 
 headerButton.addEventListener('click',()=>{
   console.log(location.pathname)
-  window.location.replace('/Nutrition/Exercises.jsp');
+  window.location.replace('/Nutrition/user-exercises');
 })
