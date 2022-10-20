@@ -18,7 +18,7 @@ public class MealDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     String query;
-    String datetimePattern = "yyyy-MM-dd hh:mm:ss";
+    String datetimePattern = "yyyy-MM-dd HH:mm:ss";
     SimpleDateFormat dateFormatter;
 
     public void setDateFormat(SimpleDateFormat dateFormat) {

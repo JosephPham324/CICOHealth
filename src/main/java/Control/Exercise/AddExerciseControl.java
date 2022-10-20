@@ -1,26 +1,24 @@
-package Control;
+package Control.Exercise;
 
-import DAO.MealDAO;
-import DAO.MealItemDAO;
-import Entity.Meal;
-import Entity.MealItem;
-import com.google.gson.Gson;
+import DAO.ExerciseDAO;
+import DAO.ExerciseTypeDAO;
+import Entity.ExerciseType;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author Pham Nhat Quang
+ * @author M S I
  */
-public class CreateMealControl extends HttpServlet {
+public class AddExerciseControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,14 +37,18 @@ public class CreateMealControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateMealControl</title>");            
+            out.println("<title>Servlet AddExerciseControl</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CreateMealControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddExerciseControl at " + request.getContextPath() + "</h1>");
+            out.println(new Date() + "<br>");
+            out.println(request.getParameter("exerciseName") + "<br>");
+            out.println(request.getParameter("description") + "<br>");
+            out.println(request.getParameter("kcalph") + "<br>");
+            out.println(request.getParameter("kcal") + "<br>");
             out.println("</body>");
             out.println("</html>");
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -75,32 +77,31 @@ public class CreateMealControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Gson gson = new Gson();
-        String mealJSON = request.getParameter("meal");
-        Meal meal = gson.fromJson(mealJSON, Meal.class);
+//        processRequest(request, response);
+        String name = request.getParameter("exerciseName");
+//        String description = request.getParameter("description");
+        double kcalph = Double.parseDouble(request.getParameter("kcalph"));
+        double kcal = Double.parseDouble(request.getParameter("kcal"));
+
+        ExerciseTypeDAO etDAO = new ExerciseTypeDAO();
+        ExerciseDAO eDAO = new ExerciseDAO();
+        ExerciseType et = null;
         Date now = new Date();
-        MealDAO mealDAO = new MealDAO();
-        Object userID = request.getSession().getAttribute("userID");
-        if (userID==null){
-            response.sendRedirect("MainMenu.jsp");
+        int userID = -1;
+        if (request.getSession().getAttribute("userID") != null) {
+            userID = Integer.parseInt(request.getSession().getAttribute("userID").toString());
         }
-        MealItemDAO mealItemDAO = new MealItemDAO();
-        
         try {
-            
-            mealDAO.insertMeal(meal.getMealName(), now, Integer.parseInt(userID.toString()), meal.getTotalCal(), meal.getProteinWeight(), meal.getFatWeight(), meal.getCarbWeight());
-            
-            for (MealItem item: meal.getFoodItems()) {
-                mealItemDAO.insertMealItem(meal.getMealName(), now, Integer.parseInt(userID.toString()),item.getName(), item.getTotalCal(),item.getProteinWeight(), item.getFatWeight(),item.getCarbWeight());
+            et = etDAO.getExerciseByName(name);
+            eDAO.insertExercise(now, userID, et, (double) kcal / kcalph * 60, kcal);
+//            response.getWriter().write((double)kcal/kcalph+"");
+            response.sendRedirect("/search-exercise");
+        } catch (SQLException ex) {
+            try (PrintWriter out = response.getWriter()) {
+                out.println(ex);
             }
-            request.getSession().setAttribute("createMeal", true);
-            response.sendRedirect("search-food");
-        } catch (Exception ex) {
-//            response.getWriter().write(ex.getMessage());
-//            response.getWriter().write(meal.getMealName());
-//            response.getWriter().write(userID.toString());
         }
-        
+
     }
 
     /**

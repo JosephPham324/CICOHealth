@@ -1,7 +1,7 @@
 $(document).ready( function () {
     var groupColumn = 0;
     var table = $('#exercises').DataTable({
-        scrollY: screen.height,
+        scrollY: '500px',
         scrollCollapse: true,
         paging: false,
         columnDefs: [{ visible: false, targets: groupColumn }],
@@ -27,3 +27,41 @@ $(document).ready( function () {
         },
     });
 } );
+
+let formContainer = document.querySelector('.edit-form')
+
+let overlay = document.querySelector('.edit-form .overlay')
+
+overlay.addEventListener('click',()=>{
+    formContainer.style.display = 'none'
+})
+
+let edit = document.querySelectorAll('.edit-button')
+edit.forEach(item=>{
+    item.addEventListener('click',()=>{
+        formContainer.style.display='flex'
+    })
+})
+
+function fillEditForm(form){
+    let itemForm = form;
+    let itemFormData = new FormData(itemForm)
+    let editFormInput = document.querySelectorAll('#editForm input')
+    let i = 0;
+    for ([key,value] of itemFormData.entries()){
+        let j = i;
+        editFormInput[j].value = value;
+        if (editFormInput[j].name === 'calorie'){
+            let calorie = editFormInput[j].value
+            let duration = editFormInput[j-1].value
+            let base = (calorie / duration)
+            editFormInput[j-1].addEventListener('input',()=>{
+                // console.log(base)
+                editFormInput[j].value = (editFormInput[j-1].value * base ).toFixed(1)
+            })
+        }
+            
+        i++
+    }
+    return false;
+}
