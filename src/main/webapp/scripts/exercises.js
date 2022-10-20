@@ -1,7 +1,7 @@
 $(document).ready( function () {
     var groupColumn = 0;
     var table = $('#exercises').DataTable({
-        scrollY: screen.height,
+        scrollY: '500px',
         scrollCollapse: true,
         paging: false,
         columnDefs: [{ visible: false, targets: groupColumn }],
@@ -27,3 +27,19 @@ $(document).ready( function () {
         },
     });
 } );
+
+let formContainer = document.querySelector('.edit-form')
+
+let overlay = document.querySelector('.edit-form .overlay')
+
+overlay.addEventListener('click',()=>{
+    formContainer.style.display = 'none'
+})
+
+let edit = document.querySelectorAll('.edit-button')
+edit.forEach(item=>{
+    item.addEventListener('click',()=>{
+        formContainer.style.display='flex'
+    })
+})
+
