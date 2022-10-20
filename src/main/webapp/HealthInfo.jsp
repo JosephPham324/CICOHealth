@@ -50,7 +50,7 @@
                 weight = healthInfo.getWeight() + "";
             }
         %>
-        <form method="post" action="healthinfocontrol">
+        <form method="post" action="healthinfo-control">
             <div class="form-group row">
                 <legend>
                     <%if (session.getAttribute("username") != null)//If session stores a user name

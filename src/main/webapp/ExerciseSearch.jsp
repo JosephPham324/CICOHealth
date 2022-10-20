@@ -24,7 +24,7 @@ S I --%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
     <div class="create-exercise">
       <div class="overlay"></div>
-      <form action="addExercise" id="exerciseForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
+      <form action="add-exercise-control" id="exerciseForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
         <fieldset>
           <legend>Selected Exercise</legend>
           <p>Note that you have to be logged in to add an exercise</p>

@@ -4,6 +4,7 @@ import DAO.LoginDAO;
 import Entity.Login;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -32,6 +33,7 @@ public class LoginControl extends HttpServlet {
             //Get info from form request
             String username = request.getParameter("username");
             String password = request.getParameter("password");
+            String remember = request.getParameter("remember");
             
             LoginDAO loginDAO = new LoginDAO();
             
@@ -45,9 +47,18 @@ public class LoginControl extends HttpServlet {
                 
                 session.setAttribute("userID", a.getUserID());//Set userID to logged in userID
                 session.setAttribute("username", a.getUsername());//Set username to logged in username
-                response.sendRedirect("home");//Redirect to home controller
+                if (remember!=null){
+                    Cookie userID = new Cookie("userID", a.getUserID()+"");
+                    Cookie userName = new Cookie("userName", a.getUsername());
+                    userID.setMaxAge(86400*3);
+                    userName.setMaxAge(86400*3);
+                    response.addCookie(userID);
+                    response.addCookie(userName);
+                }
+                response.sendRedirect("home-control");//Redirect to home controller
             }
         } catch (Exception e) {
+            response.getWriter().println(e);
         }
     }
 

@@ -4,6 +4,7 @@
     Author     : ASUS
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!DOCTYPE html>
@@ -46,6 +47,11 @@
 
     
 <body>
+    <c:if test="${cookie.userID!=null}">
+        <c:set var="userID" value="${cookie.userID.value}" scope="session"></c:set>
+        <c:set var="userName" value="${cookie.userName.value}" scope="session"></c:set>
+        <c:redirect url="home"/>
+    </c:if>
 	<div class="header">
 
 
