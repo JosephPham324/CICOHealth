@@ -93,14 +93,15 @@ public class AddExerciseControl extends HttpServlet {
         }
         try {
             et = etDAO.getExerciseByName(name);
-            eDAO.insertExercise(now, userID, et, (double)kcal/kcalph*60, kcal);
+            eDAO.insertExercise(now, userID, et, (double) kcal / kcalph * 60, kcal);
 //            response.getWriter().write((double)kcal/kcalph+"");
             response.sendRedirect("ExerciseSearch.jsp");
         } catch (SQLException ex) {
-            Logger.getLogger(AddExerciseControl.class.getName()).log(Level.SEVERE, null, ex);
+            try (PrintWriter out = response.getWriter()) {
+                out.println(ex);
+            }
         }
-        try (PrintWriter out = response.getWriter()) {
-        }
+
     }
 
     /**

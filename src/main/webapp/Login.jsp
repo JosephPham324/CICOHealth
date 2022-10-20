@@ -42,9 +42,10 @@
                                                     <label class="form-label">Password</label>
                                                     <input type="password" required name="password" class="form-control"required>
                                                 </div>
-                                                <!--                                    <div class="text-center">
-                                                                                        <small class="font-weight-bold" style="color: red;">Error</small>
-                                                                                    </div>-->
+                                                <div class="control">
+                                                    <label class="form-label">Remember me</label>
+                                                    <input type="checkbox" name="remember" class="form-control" value = "remember">
+                                                </div>
                                                 <!--SUBMIT BUTTON-->
                                                 <div class="huhu">
                                                     <input type="submit" name="action" value="Login">

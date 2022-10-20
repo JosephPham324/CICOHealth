@@ -7,6 +7,7 @@ package Control;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -58,6 +59,11 @@ public class LogoutControl extends HttpServlet {
         
         request.getSession().invalidate();//Invalidate current session when user register account
         request.getSession();
+        for (Cookie ck:request.getCookies()){
+            ck.setValue("");
+            ck.setMaxAge(0);
+            response.addCookie(ck);
+        }
         
         response.sendRedirect("home");
     }
