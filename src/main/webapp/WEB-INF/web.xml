@@ -8,7 +8,7 @@
         <servlet-name>LoginControl</servlet-name>
         <servlet-class>Control.LoginControl</servlet-class>
     </servlet>
-<!--    <servlet>
+    <!--    <servlet>
         <servlet-name>DeleteControl</servlet-name>
         <servlet-class>Control.DeleteControl</servlet-class>
     </servlet>-->
@@ -42,9 +42,8 @@
     </servlet>
     <servlet>
         <servlet-name>AddExerciseControl</servlet-name>
-        <servlet-class>Control.AddExerciseControl</servlet-class>
+        <servlet-class>Control.Exercise.AddExerciseControl</servlet-class>
     </servlet>
-    
     <servlet>
         <servlet-name>Login</servlet-name>
         <jsp-file>/Login.jsp</jsp-file>
@@ -53,9 +52,9 @@
         <servlet-name>HealthInfo</servlet-name>
         <jsp-file>/HealthInfo.jsp</jsp-file>
     </servlet>
-    <servlet>   
+    <servlet>
         <servlet-name>Register</servlet-name>
-        <jsp-file>/Register.jsp</jsp-file>
+        <jsp-file>/RegisterAccount.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>Home</servlet-name>
@@ -73,12 +72,19 @@
         <servlet-name>UserExercises</servlet-name>
         <jsp-file>/Exercises.jsp</jsp-file>
     </servlet>
-    
+    <servlet>
+        <servlet-name>EditExerciseControl</servlet-name>
+        <servlet-class>Control.Exercise.EditExerciseControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteExerciseControl</servlet-name>
+        <servlet-class>Control.Exercise.DeleteExerciseControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/login-control</url-pattern>
     </servlet-mapping>
-<!--    <servlet-mapping>
+    <!--    <servlet-mapping>
         <servlet-name>DeleteControl</servlet-name>
         <url-pattern>/delete-control</url-pattern>
     </servlet-mapping>-->
@@ -114,7 +120,6 @@
         <servlet-name>AddExerciseControl</servlet-name>
         <url-pattern>/add-exercise-control</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -142,6 +147,14 @@
     <servlet-mapping>
         <servlet-name>UserExercises</servlet-name>
         <url-pattern>/user-exercises</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditExerciseControl</servlet-name>
+        <url-pattern>/edit-exercise-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteExerciseControl</servlet-name>
+        <url-pattern>/delete-exercise-control</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

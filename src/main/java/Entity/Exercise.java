@@ -14,7 +14,7 @@ public class Exercise {
     private double duration;
     private double calorie;
     private ExerciseType exerciseType;
-    private String dateFormat = "yy/MM/dd";
+    private String dateFormat = "yyyy-MM-dd";
     private String timeFormat = "HH:mm:ss";
     private SimpleDateFormat formatter;
 
@@ -84,6 +84,10 @@ public class Exercise {
         this.formatter = new SimpleDateFormat(timeFormat);
         
         return formatter.format(this.dateTime);
+    }
+    
+    public String getExerciseID(){
+        return this.exerciseType.getExerciseID() + "";
     }
     
     public String getName(){

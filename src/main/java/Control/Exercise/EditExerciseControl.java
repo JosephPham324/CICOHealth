@@ -1,18 +1,21 @@
-package Control;
+package Control.Exercise;
 
-import jakarta.servlet.http.HttpSession;
+import DAO.ExerciseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Pham Nhat Quang
  */
-public class HomeController extends HttpServlet {
+public class EditExerciseControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -25,8 +28,19 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        response.sendRedirect("home");
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet EditExerciseControl</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet EditExerciseControl at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,7 +69,20 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String date = request.getParameter("date");
+        String time = request.getParameter("time");
+        String exerciseID = request.getParameter("exerciseID");
+        String duration = request.getParameter("duration");
+        String calorie = request.getParameter("calorie");
+        String userID = request.getSession().getAttribute("userID").toString();
+        
+        ExerciseDAO dao = new ExerciseDAO();
+        try {
+            dao.updateExercise(duration, exerciseID, userID, date, time);
+            response.sendRedirect("user-exercises");
+        } catch (SQLException ex) {
+            response.getWriter().write(ex.getMessage());
+        }
     }
 
     /**

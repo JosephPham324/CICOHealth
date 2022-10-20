@@ -10,46 +10,394 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/exercises.css" />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+
     <title>Your Exercises</title>
   </head>
   <body>
-    <div class="header">Your exercises</div>
+    <div class="edit-form">
+      <div class="overlay"></div>
+
+
+      <form>
+        <fieldset class="form-group">
+          <legend>EDIT EXERCISE</legend>
+          <div class="form-group row">
+            <label for="date" class="col-4 col-form-label">Date</label>
+            <div class="col-8">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                </div>
+                <input
+                  id="date"
+                  name="date"
+                  placeholder="Enter the new date"
+                  type="date"
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="time" class="col-4 col-form-label">Time</label>
+            <div class="col-8">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-clock-o"></i>
+                  </div>
+                </div>
+                <input
+                  id="time"
+                  name="time"
+                  placeholder="Enter the new time"
+                  type="time"
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="exerciseName" class="col-4 col-form-label">Name</label>
+            <div class="col-8">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-y-combinator"></i>
+                  </div>
+                </div>
+                <input
+                  id="exerciseName"
+                  name="exerciseName"
+                  type="text"
+                  class="form-control"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="duration" class="col-4 col-form-label">Duration</label>
+            <div class="col-8">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-clock-o"></i>
+                  </div>
+                </div>
+                <input
+                  id="duration"
+                  name="duration"
+                  placeholder="Enter the new duration"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="calorie" class="col-4 col-form-label">Calories</label>
+            <div class="col-8">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-bolt"></i>
+                  </div>
+                </div>
+                <input
+                  id="calorie"
+                  name="calorie"
+                  type="text"
+                  class="form-control"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-4 col-8">
+              <button name="submit" type="submit" class="btn btn-primary">
+                Submit
+              </button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
     <div class="info-container">
-        <table class="table table-striped table-hover" id="exercises">
-            <caption>List of exercises</caption>
-            <thead>
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Time</th>
-                <th scope="col">Name</th>
-                <th scope="col">Duration</th>
-                <th scope="col">Kcal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">12/10</th>
-                <td>15:20</td>
-                <td>Running</td>
-                <td>60</td>
-                <td>684</td>
-              </tr>
-              <tr>
-                <th scope="row">12/10</th>
-                <td>15:20</td>
-                <td>Running</td>
-                <td>60</td>
-                <td>684</td>
-              </tr>
-              <tr>
-                <th scope="row">12/10</th>
-                <td>15:20</td>
-                <td>Running</td>
-                <td>60</td>
-                <td>684</td>
-              </tr>
-            </tbody>
-          </table>
+      <table
+        class="table table-striped table-hover display"
+        id="exercises"
+        title="Exercises List"
+      >
+        <caption>
+          List of exercises
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Name</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Kcal</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2022-10-20</th>
+            <td>06:33:02</td>
+            <td>Swimming-Butterfly</td>
+            <td>66.0</td>
+            <td>990.0</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square edit-button">
+              |
+              <a href="delete-exercise-control?name=lmao" style="color: red"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Name</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Kcal</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </tfoot>
+      </table>
     </div>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -66,5 +414,7 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="./scripts/exercises.js"></script>
   </body>
 </html>
