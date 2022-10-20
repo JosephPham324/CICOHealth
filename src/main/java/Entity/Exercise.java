@@ -14,7 +14,7 @@ public class Exercise {
     private double duration;
     private double calorie;
     private ExerciseType exerciseType;
-    private String dateFormat = "yy/MM/dd";
+    private String dateFormat = "yyyy-MM-dd";
     private String timeFormat = "HH:mm:ss";
     private SimpleDateFormat formatter;
 
