@@ -14,7 +14,7 @@ body{
     z-index: 50;
     width: 100vw;
     height: 100vh;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     margin: 0;
