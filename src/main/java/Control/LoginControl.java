@@ -55,7 +55,7 @@ public class LoginControl extends HttpServlet {
                     response.addCookie(userID);
                     response.addCookie(userName);
                 }
-                response.sendRedirect("home");//Redirect to home controller
+                response.sendRedirect("home-control");//Redirect to home controller
             }
         } catch (Exception e) {
             response.getWriter().println(e);

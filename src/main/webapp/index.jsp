@@ -50,7 +50,7 @@
     <c:if test="${cookie.userID!=null}">
         <c:set var="userID" value="${cookie.userID.value}" scope="session"></c:set>
         <c:set var="userName" value="${cookie.userName.value}" scope="session"></c:set>
-        <c:redirect url="MainMenu.jsp"/>
+        <c:redirect url="home"/>
     </c:if>
 	<div class="header">
 

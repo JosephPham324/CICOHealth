@@ -65,7 +65,7 @@ public class LogoutControl extends HttpServlet {
             response.addCookie(ck);
         }
         
-        response.sendRedirect("home");
+        response.sendRedirect("home-control");
     }
 
     /**

@@ -107,7 +107,7 @@ public class RegisterControl extends HttpServlet {
                 response.getWriter().println(loginID);
                 response.getWriter().print(request.getAttribute("userID"));
 
-                request.getRequestDispatcher("HealthInfo.jsp")
+                request.getRequestDispatcher("healthinfo")
                         .forward(request, response);
 
             } catch (SQLException ex) {

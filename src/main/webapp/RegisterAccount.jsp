@@ -20,7 +20,7 @@ S I --%>
     <div class="container">
       <div class="row col-md-8 offset-4">
         <div class="login-form">
-            <form method="post" action="register">
+            <form method="post" action="register-control">
             <fieldset>
               <legend>Register</legend>
               <div class="form-group row">

@@ -88,7 +88,7 @@ public class HealthInfoControl extends HttpServlet {
         String age = request.getParameter("age");
         try {
             heath.insertHealthInfo(userID+"",gender,height, weight,activity,age);
-            response.sendRedirect("home");
+            response.sendRedirect("home-control");
         } catch (SQLException ex) {
             response.getWriter().write(ex.getMessage());
             Logger.getLogger(HealthInfoControl.class.getName()).log(Level.SEVERE, null, ex);
