@@ -75,6 +75,10 @@
         <servlet-name>DeleteExerciseControl</servlet-name>
         <servlet-class>Control.Exercise.DeleteExerciseControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserMeals</servlet-name>
+        <jsp-file>/Meals.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/login-control</url-pattern>
@@ -146,6 +150,10 @@
     <servlet-mapping>
         <servlet-name>DeleteExerciseControl</servlet-name>
         <url-pattern>/delete-exercise-control</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>UserMeals</servlet-name>
+        <url-pattern>/user-meals</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

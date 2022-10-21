@@ -1,8 +1,9 @@
 <%-- Document : Exercises.jsp Created on : Oct 19, 2022, 11:33:30 AM Author :
-Pham Nhat Quang --%> <%@ taglib prefix="c"
-                                uri="http://java.sun.com/jsp/jstl/core" %> <%@page import="DAO.ExerciseDAO"%>
-<%@page import="Entity.Exercise"%> <%@page import="java.util.List"%> <%@page
-    contentType="text/html" pageEncoding="UTF-8"%>
+Pham Nhat Quang --%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="DAO.ExerciseDAO"%>
+<%@page import="Entity.Exercise"%> <%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
     <!DOCTYPE html>
     <html lang="en">
         <head>
