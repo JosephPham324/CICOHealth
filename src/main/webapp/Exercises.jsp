@@ -201,9 +201,11 @@ Pham Nhat Quang --%> <%@ taglib prefix="c"
                                             <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                                         </form>
                                         |
-                                        <a href="delete-exercise-control?name=lmao" style="color: red"
-                                           ><i class="fa-solid fa-xmark"></i
-                                            ></a>
+                                        <form action="delete-exercise-control" method="post" class="delete-item-form">
+                                            <input type="hidden" name="date" value="${item.getDate()}">
+                                            <input type="hidden" name="time" value="${item.getTime()}">
+                                            <button type="submit"><i class="fa-solid fa-xmark"></i></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             </c:forEach>

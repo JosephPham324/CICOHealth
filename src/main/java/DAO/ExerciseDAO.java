@@ -62,7 +62,7 @@ public class ExerciseDAO {
         return res;
     }
 
-    public void updateExercise(String duration,String exerciseID, String userID, String date, String time) throws SQLException {
+    public void updateExercise(String duration, String exerciseID, String userID, String date, String time) throws SQLException {
         query = "update EXERCISE\n"
                 + "set duration = ?,\n"
                 + "CALORIE = CAL.CALPERHOUR*(cast(? as DECIMAL(18,1))/cast(60 as DECIMAL(18,1))) \n"
@@ -79,14 +79,30 @@ public class ExerciseDAO {
         ps.setString(4, userID);
         ps.setString(5, date);
         ps.setString(6, time);
+
+        ps.executeUpdate();
+    }
+
+    public void deleteExercise(String userID, String date, String time) throws SQLException {
+        query = "delete from EXERCISE\n"
+                + "where\n"
+                + "USERID = ? and\n"
+                + "CAST(DATETIME as DATE) = ? and\n"
+                + "CAST(DATETIME as TIME) = ?";
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, userID);
+        ps.setString(2, date);
+        ps.setString(3, time);
         
         ps.executeUpdate();
     }
+
     public static void main(String[] args) {
         ExerciseDAO dao = new ExerciseDAO();
         ArrayList<Exercise> lol;
         try {
-            dao.updateExercise(90.0+"", 3+"", 2 + "", "2022-10-18", "03:38:48");
+            dao.deleteExercise(2+"", "2022-10-18", "3:38:53");
         } catch (SQLException ex) {
             Logger.getLogger(ExerciseDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
