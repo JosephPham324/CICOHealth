@@ -1,24 +1,17 @@
-package Control;
+package Control.Exercise;
 
-import DAO.LoginDAO;
-import DAO.UserDAO;
-import Security.Encryption;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import Security.RegLoginLogic;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author M S I
+ * @author Pham Nhat Quang
  */
-public class RegisterControl extends HttpServlet {
+public class DeleteExerciseControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +30,10 @@ public class RegisterControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegisterControl</title>");
+            out.println("<title>Servlet DeleteExerciseControl</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RegisterControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteExerciseControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -72,50 +65,9 @@ public class RegisterControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().invalidate();//Invalidate current session when user register account
-        request.getSession();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-
-        String empString = "";
-
-        String salt = Encryption.generateSalt(username, password);
-        String hashedPassword = RegLoginLogic.encryptPassword(salt, password);
-
-        if (hashedPassword.equals(empString) || salt.equals("Unable to generate salt")) {
-            response.sendRedirect("Register-Error.jsp");
-        } else {
-            LoginDAO logDAO = new LoginDAO();
-
-            try {
-                logDAO.addLoginInfo(username, salt, hashedPassword);
-
-                int loginID = 0;
-                loginID = logDAO.getLastID();
-
-                UserDAO userDAO = new UserDAO();
-
-                userDAO.addUser(loginID + "", "2", firstName, lastName, phone, email);
-//////////
-                logDAO.updateUserID(loginID, loginID);
-
-                request.setAttribute("userID", loginID);
-                response.getWriter().println(loginID);
-                response.getWriter().print(request.getAttribute("userID"));
-
-                request.getRequestDispatcher("healthinfo")
-                        .forward(request, response);
-
-            } catch (SQLException ex) {
-                response.getWriter().write(ex.getMessage());
-                Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
+        processRequest(request, response);
+        
+        
 
     }
 

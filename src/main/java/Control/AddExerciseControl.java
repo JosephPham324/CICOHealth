@@ -1,15 +1,15 @@
 package Control;
 
-import DAO.LoginDAO;
-import DAO.UserDAO;
-import Security.Encryption;
+import DAO.ExerciseDAO;
+import DAO.ExerciseTypeDAO;
+import Entity.ExerciseType;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import Security.RegLoginLogic;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author M S I
  */
-public class RegisterControl extends HttpServlet {
+public class AddExerciseControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,15 @@ public class RegisterControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegisterControl</title>");
+            out.println("<title>Servlet AddExerciseControl</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RegisterControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddExerciseControl at " + request.getContextPath() + "</h1>");
+            out.println(new Date() + "<br>");
+            out.println(request.getParameter("exerciseName") + "<br>");
+            out.println(request.getParameter("description") + "<br>");
+            out.println(request.getParameter("kcalph") + "<br>");
+            out.println(request.getParameter("kcal") + "<br>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -72,49 +77,29 @@ public class RegisterControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().invalidate();//Invalidate current session when user register account
-        request.getSession();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
+//        processRequest(request, response);
+        String name = request.getParameter("exerciseName");
+//        String description = request.getParameter("description");
+        double kcalph = Double.parseDouble(request.getParameter("kcalph"));
+        double kcal = Double.parseDouble(request.getParameter("kcal"));
 
-        String empString = "";
-
-        String salt = Encryption.generateSalt(username, password);
-        String hashedPassword = RegLoginLogic.encryptPassword(salt, password);
-
-        if (hashedPassword.equals(empString) || salt.equals("Unable to generate salt")) {
-            response.sendRedirect("Register-Error.jsp");
-        } else {
-            LoginDAO logDAO = new LoginDAO();
-
-            try {
-                logDAO.addLoginInfo(username, salt, hashedPassword);
-
-                int loginID = 0;
-                loginID = logDAO.getLastID();
-
-                UserDAO userDAO = new UserDAO();
-
-                userDAO.addUser(loginID + "", "2", firstName, lastName, phone, email);
-//////////
-                logDAO.updateUserID(loginID, loginID);
-
-                request.setAttribute("userID", loginID);
-                response.getWriter().println(loginID);
-                response.getWriter().print(request.getAttribute("userID"));
-
-                request.getRequestDispatcher("healthinfo")
-                        .forward(request, response);
-
-            } catch (SQLException ex) {
-                response.getWriter().write(ex.getMessage());
-                Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
+        ExerciseTypeDAO etDAO = new ExerciseTypeDAO();
+        ExerciseDAO eDAO = new ExerciseDAO();
+        ExerciseType et = null;
+        Date now = new Date();
+        int userID = -1;
+        if (request.getSession().getAttribute("userID") != null) {
+            userID = Integer.parseInt(request.getSession().getAttribute("userID").toString());
+        }
+        try {
+            et = etDAO.getExerciseByName(name);
+            eDAO.insertExercise(now, userID, et, (double) kcal / kcalph * 60, kcal);
+//            response.getWriter().write((double)kcal/kcalph+"");
+            response.sendRedirect("/search-exercise");
+        } catch (SQLException ex) {
+            try (PrintWriter out = response.getWriter()) {
+                out.println(ex);
             }
-
         }
 
     }

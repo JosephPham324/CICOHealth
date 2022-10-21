@@ -197,6 +197,7 @@ function createFormItem(item, index) {
   element.classList.add("food");
   element.innerHTML = html;
   element.id = `${item.get("name").split(" ").join("")}_${index}`;
+  
   mealForm.insertBefore(
     element,
     document.querySelector(".create-meal #submit")

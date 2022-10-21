@@ -4,103 +4,32 @@
     Author     : ASUS
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="DAO.HealthDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/styleindex.css" rel="stylesheet">
-    
-    <title>Nutrition</title>
-    
-        <style>
-        .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 20px;
-}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <%@ include file = "headfootlink.jsp"%>
+        <title>Nutrition</title>
+    </head>
 
-.navbar {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  padding: 10px 0;
-  margin-bottom: 0;
-}
+    <body>
+        <%@ include file="header.jsp" %>
+        <div class="banner">
 
-.navbar__link {
-  margin: 0 34px;
-}
+            <img src="image/Body-first.jpg" alt="Chanel" />
 
-.banner img {
-  width: 100%;
-}
+        </div>
+        <div class="banner">
 
-    </style>
-   
-</head>
+            <img src="image/Body-second.jpg" alt="Chanel" />
 
-
-    
-<body>
-	<div class="header">
-
-
-		<div>
-			<a href="test.html"><img src="image/logo1.jpg"></a>
-		</div>
-
-		<div>
-			<ul class="navbar">
-				<li class="navbar__link"><a href="#">Home</a></li>
-				<li class="navbar__link"><a href="#">About</a></li>
-				<li class="navbar__link"><a href="#">Food</a></li>
-				<li class="navbar__link"><a href="#">Exercise</a></li>
-				<li class="navbar__link"><a href="#">Contact</a></li>
-			</ul>
-		</div>
-
-		<div>
-			<form>
-				<input type="text" placeholder="Search in website">
-				<button type="submit">Search</button>
-			</form>
-		</div>
-
-	</div>
-
-	<div class="banner">
-
-		<img src="image/Food.jpg" alt="Chanel" />
-
-	</div>
-
-	<div>
-
-		
-
-		<div class="float-left">
-			<h1>Hello ${username}</h1>
-
-			<p>Remaining = Goal - Food + Exercise</p>
-
-		</div>
-
-		<div>
-			<a href="FoodSearch.jsp">Create meal</a><br>
-			<a href="">Add exercise</a><br>
-                        <a href="HealthInfo.jsp">Edit Health Info</a><br>
-                        <a href="">Edit User Info</a><br>
-                        <a href="logout">Log out</a><br>
-
-		</div>
-
-	</div>
-    
-</body>
+        </div>
+        <jsp:include page="footer.jsp"></jsp:include>
+        <script src="scripts/headfootscript.js"></script>
+    </body>
 </html>

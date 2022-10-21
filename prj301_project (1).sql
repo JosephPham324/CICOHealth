@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2017                    */
-/* Created on:     2022-10-11 12:57:31 PM                       */
+/* Created on:     2022-10-16 2:14:23 PM                        */
 /*==============================================================*/
 
 
@@ -16,6 +16,13 @@ if exists (select 1
    where r.fkeyid = object_id('EXERCISE') and o.name = 'FK_EXERCISE_DO_USER')
 alter table EXERCISE
    drop constraint FK_EXERCISE_DO_USER
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('EXERCISE') and o.name = 'FK_EXERCISE_IS_EXERCISE')
+alter table EXERCISE
+   drop constraint FK_EXERCISE_IS_EXERCISE
 go
 
 if exists (select 1
@@ -65,6 +72,15 @@ go
 if exists (select 1
             from  sysindexes
            where  id    = object_id('EXERCISE')
+            and   name  = 'IS_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index EXERCISE.IS_FK
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('EXERCISE')
             and   name  = 'DO_FK'
             and   indid > 0
             and   indid < 255)
@@ -76,6 +92,13 @@ if exists (select 1
            where  id = object_id('EXERCISE')
             and   type = 'U')
    drop table EXERCISE
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('EXERCISETYPES')
+            and   type = 'U')
+   drop table EXERCISETYPES
 go
 
 if exists (select 1
@@ -99,15 +122,6 @@ if exists (select 1
            where  id = object_id('MEAL')
             and   type = 'U')
    drop table MEAL
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('MEALITEM')
-            and   name  = 'CONTAINS_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index MEALITEM.CONTAINS_FK
 go
 
 if exists (select 1
@@ -160,11 +174,11 @@ go
 /* Table: DAILYNUTRITIONGOAL                                    */
 /*==============================================================*/
 create table DAILYNUTRITIONGOAL (
-   USERID               int                  null,
-   CALORIE              decimal              null,
-   PROTEIN              decimal              null,
-   FAT                  decimal              null,
-   CARB                 decimal              null
+   USERID               int                  not null,
+   CALORIE              decimal              not null,
+   PROTEIN              decimal              not null,
+   FAT                  decimal              not null,
+   CARB                 decimal              not null
 )
 go
 
@@ -182,15 +196,13 @@ go
 /* Table: EXERCISE                                              */
 /*==============================================================*/
 create table EXERCISE (
-   EXERCISEID           int                  not null,
    DATETIME             datetime             not null,
-   EXERCISENAME         varchar(256)         not null,
-   CALPERHOUR           decimal              not null,
-   USERID               int                  null,
+   USERID               int                  not null,
+   EXERCISEID           int                  not null,
    NAME                 varchar(256)         not null,
    DURATION             decimal              not null,
    CALORIE              decimal              not null,
-   constraint PK_EXERCISE primary key (EXERCISEID, DATETIME)
+   constraint PK_EXERCISE primary key (DATETIME, USERID)
 )
 go
 
@@ -202,6 +214,27 @@ go
 
 
 create nonclustered index DO_FK on EXERCISE (USERID ASC)
+go
+
+/*==============================================================*/
+/* Index: IS_FK                                                 */
+/*==============================================================*/
+
+
+
+
+create nonclustered index IS_FK on EXERCISE (EXERCISEID ASC)
+go
+
+/*==============================================================*/
+/* Table: EXERCISETYPES                                         */
+/*==============================================================*/
+create table EXERCISETYPES (
+   EXERCISEID           int                  not null,
+   EXERCISENAME         varchar(256)         not null,
+   CALPERHOUR           decimal              not null,
+   constraint PK_EXERCISETYPES primary key (EXERCISEID)
+)
 go
 
 /*==============================================================*/
@@ -223,12 +256,12 @@ go
 create table MEAL (
    MEALNAME             varchar(256)         not null,
    MEALDATETIME         datetime             not null,
-   USERID               int                  null,
+   USERID               int                  not null,
    CALORIE              decimal              not null,
    PROTEIN              decimal              not null,
    FAT                  decimal              not null,
    CARB                 decimal              not null,
-   constraint PK_MEAL primary key (MEALNAME, MEALDATETIME)
+   constraint PK_MEAL primary key (MEALNAME, MEALDATETIME, USERID)
 )
 go
 
@@ -246,37 +279,28 @@ go
 /* Table: MEALITEM                                              */
 /*==============================================================*/
 create table MEALITEM (
-   MEALNAME             varchar(256)         null,
-   MEALDATETIME         datetime             null,
+   MEALNAME             varchar(256)         not null,
+   MEALDATETIME         datetime             not null,
+   USERID               int                  not null,
    ITEMNAME             varchar(256)         not null,
    CALORIE              decimal              not null,
    PROTEIN              decimal              not null,
    FAT                  decimal              not null,
-   CARB                 decimal              not null
+   CARB                 decimal              not null,
+   constraint PK_MEALITEM primary key (MEALNAME, MEALDATETIME, USERID)
 )
-go
-
-/*==============================================================*/
-/* Index: CONTAINS_FK                                           */
-/*==============================================================*/
-
-
-
-
-create nonclustered index CONTAINS_FK on MEALITEM (MEALNAME ASC,
-  MEALDATETIME ASC)
 go
 
 /*==============================================================*/
 /* Table: "USER"                                                */
 /*==============================================================*/
 create table "USER" (
-   USERID               int                   not null,
-   USERROLEID           int                  null,
+   USERID               int                  not null,
+   USERROLEID           int                  not null,
    FIRSTNAME            varchar(256)         not null,
    LASTNAME             varchar(256)         not null,
-   EMAILADDRESS         varchar(256)             null,
-   PHONENUMBER          char(256)            null,
+   EMAILADDRESS         varchar(256)                  not null,
+   PHONENUMBER          char(256)            not null,
    constraint PK_USER primary key (USERID)
 )
 go
@@ -295,7 +319,7 @@ go
 /* Table: USERHEALTHINFO                                        */
 /*==============================================================*/
 create table USERHEALTHINFO (
-   USERID               int                  null,
+   USERID               int                  not null,
    GENDER               varchar(256)         not null,
    HEIGHT               decimal              not null,
    WEIGHT               decimal              not null,
@@ -334,14 +358,19 @@ alter table EXERCISE
       references "USER" (USERID)
 go
 
+alter table EXERCISE
+   add constraint FK_EXERCISE_IS_EXERCISE foreign key (EXERCISEID)
+      references EXERCISETYPES (EXERCISEID)
+go
+
 alter table MEAL
    add constraint FK_MEAL_EAT_USER foreign key (USERID)
       references "USER" (USERID)
 go
 
 alter table MEALITEM
-   add constraint FK_MEALITEM_CONTAINS_MEAL foreign key (MEALNAME, MEALDATETIME)
-      references MEAL (MEALNAME, MEALDATETIME)
+   add constraint FK_MEALITEM_CONTAINS_MEAL foreign key (MEALNAME, MEALDATETIME, USERID)
+      references MEAL (MEALNAME, MEALDATETIME, USERID)
 go
 
 alter table "USER"
@@ -354,15 +383,16 @@ alter table USERHEALTHINFO
       references "USER" (USERID)
 go
 
-create table EXERCISETYPES(
-   EXERCISEID           int                  not null IDENTITY(1,1) PRIMARY KEY,
-   EXERCISENAME         varchar(256)         not null,
-   CALPERHOUR           decimal              not null
-)
 
-alter table EXERCISE
-ADD CONSTRAINT FK_ExerciseType
-FOREIGN KEY (EXERCISEID) REFERENCES EXERCISETYPES(EXERCISEID);
+alter table mealitem drop constraint PK_MEALITEM
+
+alter table mealtime
+add primary key (MEALNAME,MEALDATETIME,USERID,ITEMNAME)
+
+alter table EXERCISETYPES
+add DESCRIPTION varchar(256) not null
+
+
 
 --insert into dbo.USERROLE values (1, 'admin')
 --insert into dbo.USERROLE values (2,'user')
@@ -378,4 +408,3 @@ FOREIGN KEY (EXERCISEID) REFERENCES EXERCISETYPES(EXERCISEID);
 --insert into dbo.[USER] values(3,1,'Hieu', 'Tran', 'hieuttnce161025@fpt.edu.vn', '000000000')
 --insert into dbo.[USER] values(4,1,'Quyen', 'Nguyen', 'quyennnmce161096@fpt.edu.vn', '000000000')
 --insert into dbo.[USER] values(5,1,'Lu', 'Nguyen', 'LUNTCE160464@fpt.edu.vn', '000000000')
-

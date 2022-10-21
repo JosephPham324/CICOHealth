@@ -1,17 +1,22 @@
 package Entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  *
  * @author Pham Nhat Quang
  */
-public class Exercise{
+public class Exercise {
+
     private Date dateTime;
     private int userID;
     private double duration;
     private double calorie;
     private ExerciseType exerciseType;
+    private String dateFormat = "yyyy-MM-dd";
+    private String timeFormat = "HH:mm:ss";
+    private SimpleDateFormat formatter;
 
     public Exercise(Date dateTime, int userID, double duration, double calorie, ExerciseType exerciseType) {
         this.dateTime = dateTime;
@@ -19,6 +24,14 @@ public class Exercise{
         this.duration = duration;
         this.calorie = calorie;
         this.exerciseType = exerciseType;
+    }
+
+    public Exercise(Date dateTime, int userID, double duration, double calorie, int exerciseTypeID, String exerciseName) {
+        this.dateTime = dateTime;
+        this.userID = userID;
+        this.duration = duration;
+        this.calorie = calorie;
+        this.exerciseType = new ExerciseType(exerciseTypeID, exerciseName);
     }
 
     public Date getDateTime() {
@@ -61,4 +74,23 @@ public class Exercise{
         this.exerciseType = exerciseType;
     }
     
+    public String getDate(){
+        this.formatter = new SimpleDateFormat(dateFormat);
+        
+        return formatter.format(this.dateTime);
+    }
+
+    public String getTime(){
+        this.formatter = new SimpleDateFormat(timeFormat);
+        
+        return formatter.format(this.dateTime);
+    }
+    
+    public String getExerciseID(){
+        return this.exerciseType.getExerciseID() + "";
+    }
+    
+    public String getName(){
+        return this.exerciseType.getExerciseName();
+    }
 }

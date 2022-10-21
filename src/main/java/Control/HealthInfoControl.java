@@ -1,6 +1,7 @@
 
 package Control;
 
+import DAO.GoalDAO;
 import DAO.HealthDAO;
 import DAO.LoginDAO;
 import DAO.UserDAO;
@@ -81,6 +82,7 @@ public class HealthInfoControl extends HttpServlet {
             throws ServletException, IOException {
         String userID = request.getParameter("userID");
         HealthDAO heath = new HealthDAO();
+        GoalDAO goal = new GoalDAO();
         String gender = request.getParameter("gender");
         String height = request.getParameter("height");
         String weight = request.getParameter("weight");
@@ -88,7 +90,10 @@ public class HealthInfoControl extends HttpServlet {
         String age = request.getParameter("age");
         try {
             heath.insertHealthInfo(userID+"",gender,height, weight,activity,age);
-            response.sendRedirect("home");
+            double calories = goal.calculateCalo(weight, height, age, gender, activity);
+            String finalCalories = Double.toString(calories);
+            goal.addGoal(userID, finalCalories);
+            response.sendRedirect("home-control");
         } catch (SQLException ex) {
             response.getWriter().write(ex.getMessage());
             Logger.getLogger(HealthInfoControl.class.getName()).log(Level.SEVERE, null, ex);

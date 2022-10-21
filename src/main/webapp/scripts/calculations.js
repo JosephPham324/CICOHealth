@@ -306,4 +306,6 @@ class ExerciseType{
   }
 }
 
-console.log('hey')
+function minuteToHour(minutes){
+  return minutes/60;
+}
