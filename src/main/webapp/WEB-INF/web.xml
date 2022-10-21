@@ -3,10 +3,9 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    
     <servlet>
         <servlet-name>LoginControl</servlet-name>
-        <servlet-class>Control.LoginControl</servlet-class>
+        <servlet-class>Control.Login.LoginControl</servlet-class>
     </servlet>
     <!--    <servlet>
         <servlet-name>DeleteControl</servlet-name>
@@ -21,16 +20,12 @@
         <servlet-class>Control.HealthInfoControl</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UserInfoControl</servlet-name>
-        <servlet-class>Control.UserInfoControl</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RegisterControl</servlet-name>
-        <servlet-class>Control.RegisterControl</servlet-class>
+        <servlet-class>Control.Login.RegisterControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutControl</servlet-name>
-        <servlet-class>Control.LogoutControl</servlet-class>
+        <servlet-class>Control.Login.LogoutControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HomeControl</servlet-name>
@@ -38,7 +33,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreateMealControl</servlet-name>
-        <servlet-class>Control.CreateMealControl</servlet-class>
+        <servlet-class>Control.Meal.CreateMealControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddExerciseControl</servlet-name>
@@ -95,10 +90,6 @@
     <servlet-mapping>
         <servlet-name>HealthInfoControl</servlet-name>
         <url-pattern>/healthinfo-control</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UserInfoControl</servlet-name>
-        <url-pattern>/userinfo-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterControl</servlet-name>

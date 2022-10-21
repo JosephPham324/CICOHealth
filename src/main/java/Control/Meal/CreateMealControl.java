@@ -1,27 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
-package Control;
+package Control.Meal;
 
-import DAO.LoginDAO;
+import DAO.MealDAO;
+import DAO.MealItemDAO;
+import Entity.Meal;
+import Entity.MealItem;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author Thinh
+ * @author Pham Nhat Quang
  */
-@WebServlet(name = "DeleteControl", urlPatterns = {"/deletecontrol"})
-public class DeleteControl extends HttpServlet {
+public class CreateMealControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,18 +34,19 @@ public class DeleteControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteControl</title>");
+            out.println("<title>Servlet CreateMealControl</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CreateMealControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,19 +61,7 @@ public class DeleteControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        //Step 1: Get ID
-        String sid = request.getParameter("id");
-
-        //Step 2: Pass ID to dao
-        
-        LoginDAO dao = new LoginDAO();
-        try {
-            dao.deleteAcc(sid);
-        } catch (SQLException ex) {
-            Logger.getLogger(DeleteControl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        response.sendRedirect("loadcontrol");
+        processRequest(request, response);
     }
 
     /**
@@ -87,7 +75,33 @@ public class DeleteControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Gson gson = new Gson();
+        String mealJSON = request.getParameter("meal");
+        Meal meal = gson.fromJson(mealJSON, Meal.class);
+        Date now = new Date();
+        MealDAO mealDAO = new MealDAO();
+        Object userID = request.getSession().getAttribute("userID");
+        if (userID==null){
+            response.sendRedirect("MainMenu.jsp");
+        }
+        MealItemDAO mealItemDAO = new MealItemDAO();
+        
+        try {
+            
+            mealDAO.insertMeal(meal.getMealName(), now, Integer.parseInt(userID.toString()), meal.getTotalCal(), meal.getProteinWeight(), meal.getFatWeight(), meal.getCarbWeight());
+            
+            for (MealItem item: meal.getFoodItems()) {
+                mealItemDAO.insertMealItem(meal.getMealName(), now, Integer.parseInt(userID.toString()),item.getName(), item.getTotalCal(),item.getProteinWeight(), item.getFatWeight(),item.getCarbWeight());
+            }
+            request.getSession().setAttribute("createMeal", true);
+
+            response.sendRedirect("search-food");
+        } catch (Exception ex) {
+//            response.getWriter().write(ex.getMessage());
+//            response.getWriter().write(meal.getMealName());
+//            response.getWriter().write(userID.toString());
+        }
+        
     }
 
     /**

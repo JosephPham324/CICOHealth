@@ -1,4 +1,4 @@
-package Control;
+package Control.Login;
 
 import DAO.LoginDAO;
 import DAO.UserDAO;
