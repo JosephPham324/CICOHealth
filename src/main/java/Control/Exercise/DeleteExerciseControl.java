@@ -1,11 +1,14 @@
 package Control.Exercise;
 
+import DAO.ExerciseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,7 +33,7 @@ public class DeleteExerciseControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteExerciseControl</title>");            
+            out.println("<title>Servlet DeleteExerciseControl</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet DeleteExerciseControl at " + request.getContextPath() + "</h1>");
@@ -65,9 +68,18 @@ public class DeleteExerciseControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        
-        
+//        processRequest(request, response);
+        try {
+            String date = request.getParameter("date");
+            String time = request.getParameter("time");
+            String userID = request.getSession().getAttribute("userID").toString();
+            ExerciseDAO dao = new ExerciseDAO();
+            dao.deleteExercise(userID, date, time);
+            response.sendRedirect("user-exercises");
+        } catch (Exception ex) {
+            response.getWriter().write(ex.getMessage());
+            Logger.getLogger(DeleteExerciseControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
