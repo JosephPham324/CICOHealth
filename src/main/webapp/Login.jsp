@@ -46,7 +46,7 @@
                                                 </div>
                                                 <div class="remember">
                                                     <input type="checkbox" name="remember" class="form-control" value = "remember">
-                                                    <label class="form-label">Remember me</label>
+                                                    <label class="form-label">&nbsp;&nbsp;Remember me</label>
                                                 </div>
                                                 <!--SUBMIT BUTTON-->
                                                 <div class="huhu">
