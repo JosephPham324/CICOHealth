@@ -44,9 +44,9 @@
                                                     <label class="form-label">Password</label>
                                                     <input type="password" required name="password" class="form-control"required>
                                                 </div>
-                                                <div class="control">
-                                                    <label class="form-label">Remember me</label>
+                                                <div class="remember">
                                                     <input type="checkbox" name="remember" class="form-control" value = "remember">
+                                                    <label class="form-label">Remember me</label>
                                                 </div>
                                                 <!--SUBMIT BUTTON-->
                                                 <div class="huhu">
