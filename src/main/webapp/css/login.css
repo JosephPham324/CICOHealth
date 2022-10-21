@@ -52,6 +52,7 @@ h4 {
     border: none;
     outline: none;
     margin: 0.2cm 0;
+    font-size: 1.2rem;
 }
 
 .huhu input[type="submit"] {
@@ -93,7 +94,7 @@ h4 {
     text-align: center;
     margin: 15px 0 0;
     color: #fff;
-    font-size: 8px;
+    font-size: 0.8rem;
 
 }
 .control {
