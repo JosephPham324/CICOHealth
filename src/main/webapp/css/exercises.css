@@ -69,3 +69,12 @@ body{
     color:red;
     border: 0;
 }
+tr.group{
+    font-size: 1.2em;
+    font-style: italic;
+}
+tr.dayStat{
+    font-style:italic;
+    background-color:yellow;
+    border-bottom:3px solid black;
+}
