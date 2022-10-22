@@ -23,14 +23,15 @@ S I --%>
                 <div  >
                     <div>
                         <div class="login-form">
-                            <form method="post" action="register">
-
+                            <form method="post" action="register" 
+                                   oninput='password2.setCustomValidity(password2.value != password1.value ? "Passwords do not match." : "")'>
+                                  >
                                 <fieldset>
                                     <legend>Register</legend>
                                     <div class="form-group row">
-                                        <label for="username" class="col-4 col-form-label"
+                                        <label for="username" class="col-5 col-form-label"
                                                >Username</label>
-                                        <div class="col-8">
+                                        <div class="col-7">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
@@ -48,10 +49,9 @@ S I --%>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="password" class="col-4 col-form-label"
-                                               >Password</label
-                                        >
-                                        <div class="col-8">
+                                        <label for="password1" class="col-5 col-form-label"
+                                               >Password</label>
+                                        <div class="col-7">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
@@ -59,8 +59,9 @@ S I --%>
                                                     </div>
                                                 </div>
                                                 <input
-                                                    id="password"
-                                                    name="password"
+                                                    id="password1"
+                                                   
+                                                    name="password1"
                                                     placeholder="Enter your password"
                                                     type="password"
                                                     class="form-control"
@@ -68,11 +69,35 @@ S I --%>
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    
                                     <div class="form-group row">
-                                        <label for="firstName" class="col-4 col-form-label"
+                                        <label for="password2" class="col-5 col-form-label"
+                                               >Confirm password</label>
+                                        <div class="col-7">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <i class="fa fa-lock"></i>
+                                                    </div>
+                                                </div>
+                                                <input
+                                                    id="password2"
+                                                    name="password2"
+                                                    placeholder="Enter your password"
+                                                    type="password"
+                                                    class="form-control"
+                                                    />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="form-group row">
+                                        <label for="firstName" class="col-5 col-form-label"
                                                >First Name</label
                                         >
-                                        <div class="col-8">
+                                        <div class="col-7">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
@@ -90,10 +115,10 @@ S I --%>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="lastName" class="col-4 col-form-label"
+                                        <label for="lastName" class="col-5 col-form-label"
                                                >Last Name</label
                                         >
-                                        <div class="col-8">
+                                        <div class="col-7">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
@@ -111,8 +136,8 @@ S I --%>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="email" class="col-4 col-form-label">Email</label>
-                                        <div class="col-8">
+                                        <label for="email" class="col-5 col-form-label">Email</label>
+                                        <div class="col-7">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
@@ -130,8 +155,8 @@ S I --%>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="phone" class="col-4 col-form-label">Phone</label>
-                                        <div class="col-8">
+                                        <label for="phone" class="col-5 col-form-label">Phone</label>
+                                        <div class="col-7">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
@@ -150,7 +175,7 @@ S I --%>
                                     </div
 
                                     <div class="form-group row">
-                                        <div class="offset-4 col-8">
+                                        <div class="offset-5 col-7">
                                             <div class="squaredcheck">
                                                 <input type="checkbox" id="c1" name="remember" class="form-control" value = "remember">
                                                 <label for="c1" class="form-label">&nbsp;&nbsp;Terms&nbsp;&&nbsp;Conditions</label>
@@ -159,7 +184,7 @@ S I --%>
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="offset-4 col-8">
+                                        <div class="col-md-12 text-center">
                                             <button name="submit" type="submit" class="btn btn-success">
                                                 Submit
                                             </button>

@@ -58,7 +58,7 @@ legend{
     left: 50%;
     transform: translate(-50%,-50%);
     background-image: linear-gradient((0,0,0,0.3),(0,0,0,0.3));
-    width: 410px;
+    width: 600px;
     padding: 10px;
     box-shadow: 7px 7px 60px #000;
 }
