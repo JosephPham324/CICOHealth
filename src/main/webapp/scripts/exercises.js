@@ -1,5 +1,5 @@
 $(document).ready( function () {
-    var groupColumn = 0;
+    var groupColumn = 1;
     var table = $('#exercises').DataTable({
         scrollY: '500px',
         scrollCollapse: true,
@@ -19,7 +19,7 @@ $(document).ready( function () {
                     if (last !== group) {
                         $(rows)
                             .eq(i)
-                            .before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                            .before('<tr class="group"><td colspan="6">' + group + '</td></tr>');
  
                         last = group;
                     }

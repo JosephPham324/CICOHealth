@@ -171,6 +171,7 @@ Pham Nhat Quang --%>
                         >
                         <thead>
                             <tr>
+                                <th scope="col">No.</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Time</th>
                                 <th scope="col">Name</th>
@@ -184,6 +185,7 @@ Pham Nhat Quang --%>
                         <c:set var="sumTime" value="${0}"></c:set>
                         <c:set var="previousDate" value=""></c:set>
                         <c:set var="currentDate" value=""></c:set>
+                        <c:set var="index" value ="1"></c:set>
                         <c:forEach
                             items="${eDAO.getExerciseByUserID(sessionScope.userID)}"
                             var="item"
@@ -192,10 +194,12 @@ Pham Nhat Quang --%>
                             <c:set var="currentDate" value="${item.getDate()}"></c:set>
                             <c:choose>
                                 <c:when test="${currentDate!= previousDate && previousDate!=''}">
-                                    <tr class = "dayStat">
+                                    <c:set var="index" value ="1"></c:set>
+                                    <tr class = "dayStat group">
+                                        <td></td>
                                         <th scope="row">${previousDate}</th>
-                                        <td>24:00:00</td>
-                                        <td>All in day</td>
+                                        <td></td>
+                                        <td>Total of day</td>
                                         <td>${sumTime}</td>
                                         <td>${sumCal}</td>
                                         <td></td>
@@ -205,8 +209,9 @@ Pham Nhat Quang --%>
                             </c:choose>
                            <c:set var="sumCal" value="${sumCal+item.getCalorie()}"></c:set>
                            <c:set var="sumTime" value="${sumTime+item.getDuration()}"></c:set>
-                            <c:set var="previousDate" value="${currentDate}"></c:set>
+                           <c:set var="previousDate" value="${currentDate}"></c:set>
                                 <tr>
+                                    <td>${index}</td>
                                     <th scope="row">${item.getDate()}</th>
                                     <td>${item.getTime()}</td>
                                     <td>${item.getName()}</td>
@@ -231,26 +236,29 @@ Pham Nhat Quang --%>
                                     </td>
                                 </tr>
                                 <c:if test="${loop.last}">
-                                    <tr class = "dayStat"> 
+                                    <tr class = "dayStat group">
+                                        <td></td>
                                         <th scope="row">${previousDate}</th>
-                                        <td>24:00:00</td>
-                                        <td>All in day</td>
+                                        <td></td>
+                                        <td>Total of day</td>
                                         <td>${sumTime}</td>
                                         <td>${sumCal}</td>
                                         <td></td>
                                     </tr>
                                     <c:set var="sumCal" value="${0}"></c:set>
                                 </c:if>
+                                <c:set var="index" value ="${index+1}"></c:set>
                         </c:forEach>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th scope="col">Date</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Duration</th>
-                            <th scope="col">Kcal</th>
-                            <th scope="col">Actions</th>
+                                <th scope="col">No.</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Duration</th>
+                                <th scope="col">Kcal</th>
+                                <th scope="col">Actions</th>
                         </tr>
                     </tfoot>
                 </table>
