@@ -24,8 +24,8 @@ S I --%>
                     <div>
                         <div class="login-form">
                             <form method="post" action="register" 
-                                   oninput='password2.setCustomValidity(password2.value != password1.value ? "Passwords do not match." : "")'>
-                                  >
+                                  oninput='password2.setCustomValidity(password2.value != password1.value ? "Passwords do not match." : "")'>
+                                >
                                 <fieldset>
                                     <legend>Register</legend>
                                     <div class="form-group row">
@@ -60,7 +60,7 @@ S I --%>
                                                 </div>
                                                 <input
                                                     id="password1"
-                                                   
+
                                                     name="password1"
                                                     placeholder="Enter your password"
                                                     type="password"
@@ -69,8 +69,8 @@ S I --%>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="form-group row">
                                         <label for="password2" class="col-5 col-form-label"
                                                >Confirm password</label>
@@ -91,8 +91,8 @@ S I --%>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="form-group row">
                                         <label for="firstName" class="col-5 col-form-label"
                                                >First Name</label
@@ -174,12 +174,20 @@ S I --%>
                                         </div>
                                     </div
 
-                                    <div class="form-group row">
+                                    <div class="row g-3 needs-validation" novalidate>
                                         <div class="offset-5 col-7">
-                                            <div class="squaredcheck">
-                                                <input type="checkbox" id="c1" name="remember" class="form-control" value = "remember">
-                                                <label for="c1" class="form-label">&nbsp;&nbsp;Terms&nbsp;&&nbsp;Conditions</label>
+                                            <div class="form-check">
+                                                <input type="checkbox" id="invalidCheck" name="remember" class="form-check-input" value = "remember" required>
+                                                <label class="form-check-label" for="invalidCheck"><p class="term">
+                                                <a href="TermConditions.jsp" class="text-success text-gradient font-weight-bold">&nbsp;Terms&nbsp;&&nbsp;Conditions&nbsp;</a>
+                                                and 
+                                                <a href="TermConditions.jsp" class="text-success text-gradient font-weight-bold">&nbsp;Privacy&nbsp;Policy</a>
+                                            </p></label>
+                                                <div class="invalid-feedback">
+                                                    You must agree before submitting.
+                                                </div>
                                             </div>
+                                            
                                         </div>
                                     </div>
 
