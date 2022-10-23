@@ -1,5 +1,7 @@
-<%-- Document : FoodSearch Created on : Oct 13, 2022, 5:45:06 AM Author : Pham
-Nhat Quang --%> 
+<%-- 
+Document : FoodSearch Created on : Oct 13, 2022, 5:45:06 AM 
+Author : Pham Nhat Quang
+--%> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

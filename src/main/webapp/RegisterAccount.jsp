@@ -1,5 +1,7 @@
-<%-- Document : RegisterAccount Created on : Oct 4, 2022, 4:34:32 PM Author : M
-S I --%> 
+<%-- 
+Document : RegisterAccount Created on : Oct 4, 2022, 4:34:32 PM
+Author : Pham Nhat Quang
+--%> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +15,6 @@ S I --%>
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
-<!--        <link rel="stylesheet" href = "./css/formstyle.css"/>-->
         <link rel="stylesheet" href = "./css/registeracount.css"/>
         <title>Register Account</title>
     </head>
