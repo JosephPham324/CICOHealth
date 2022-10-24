@@ -85,8 +85,8 @@ h4 {
     border-radius: 20px;
     opacity: 85%;
     color: black;
-    margin-top: 0.6cm;
-    margin-bottom: 0.6cm;
+    margin-top: 0.4cm;
+    margin-bottom: 0.5cm;
 
 }
 .sigup {
@@ -105,4 +105,11 @@ h4 {
 .sigup a {
     color: green;
     text-decoration: none;
+}
+.remember {
+    margin-top: 1px;
+    color: navy;
+    font-size: 13px;
+    display: inline-flex;
+    
 }
