@@ -58,7 +58,7 @@ input{
 .search-results{
     margin: 1rem 1rem;
     border:1px dashed rgb(77, 35, 35);
-    min-width: 400px;
+    max-width: 600px;
     min-height: 150px;
     height: auto;
     display:flex;
@@ -210,7 +210,6 @@ input{
 
 }
 .create-exercise .description{
-    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;

@@ -1,8 +1,9 @@
 <%-- 
-Document : Exercises.jsp 
-Created on : Oct 19, 2022, 11:33:30 AM 
-Author : Pham Nhat Quang 
---%> 
+    Document   : UserFoods
+    Created on : Oct 24, 2022, 6:12:28 AM
+    Author     : Pham Nhat Quang
+--%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="DAO.ExerciseDAO"%>
 <%@page import="Entity.Exercise"%> <%@page import="java.util.List"%>
@@ -35,18 +36,18 @@ Author : Pham Nhat Quang
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
-        <title>Your Exercises</title>
+        <title>Your Meals</title>
     </head>
     <body>
         <c:if test="${sessionScope.userID == null}">
             <c:redirect url="search-exercise"></c:redirect>
         </c:if>
         <jsp:useBean
-            id="eDAO"
-            class="DAO.ExerciseDAO"
+            id="mDAO"
+            class="DAO.MealDAO"
             scope="request"
             ></jsp:useBean>
-            <div class="edit-form">
+<!--            <div class="edit-form">
                 <div class="overlay"></div>
 
                 <form action="edit-exercise-control" method = "post" id = "editForm">
@@ -163,14 +164,14 @@ Author : Pham Nhat Quang
                         </div>
                     </fieldset>
                 </form>
-            </div>
+            </div>-->
             <div>
                 <div class="info-container">
-                    <h1 style="text-align: center">List of your exercises</h1>
+                    <h1 style="text-align: center">List of your meals</h1>
                     <table
                         class="table table-striped table-hover display"
-                        id="exercises"
-                        title="Exercises List"
+                        id="meals"
+                        title="Meals List"
                         >
                         <thead>
                             <tr>
@@ -178,22 +179,23 @@ Author : Pham Nhat Quang
                                 <th scope="col">Date</th>
                                 <th scope="col">Time</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Duration</th>
-                                <th scope="col">Kcal</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col">Protein</th>
+                                <th scope="col">Fat</th>
+                                <th scope="col">Carbs</th>
+                                <th scope="col">Calories</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                         <c:set var="sumCal" value="${0}"></c:set>
-                        <c:set var="sumTime" value="${0}"></c:set>
+                        <c:set var="sumPro" value="${0}"></c:set>
+                        <c:set var="sumFat" value="${0}"></c:set>
+                        <c:set var="sumCarb" value="${0}"></c:set>
                         <c:set var="previousDate" value=""></c:set>
                         <c:set var="currentDate" value=""></c:set>
                         <c:set var="index" value ="1"></c:set>
-                        <c:forEach
-                            items="${eDAO.getExerciseByUserID(sessionScope.userID)}"
-                            var="item"
-                            varStatus="loop"
-                            >
+                        <c:set var="meals" value = "${mDAO.getMealsByUserID(sessionScope.userID+'')}"></c:set>
+                        <c:forEach items="${meals}" var="item" varStatus="loop">
                             <c:set var="currentDate" value="${item.getDate()}"></c:set>
                             <c:choose>
                                 <c:when test="${currentDate!= previousDate && previousDate!=''}">
@@ -203,31 +205,35 @@ Author : Pham Nhat Quang
                                         <th scope="row">${previousDate}</th>
                                         <td></td>
                                         <td>Total of day</td>
-                                        <td>${sumTime}</td>
+                                        <td>${sumPro}</td>
+                                        <td>${sumFat}</td>
+                                        <td>${sumCarb}</td>
                                         <td>${sumCal}</td>
                                         <td></td>
                                     </tr>
                                     <c:set var="sumCal" value="${0}"></c:set>
                                 </c:when>
                             </c:choose>
-                           <c:set var="sumCal" value="${sumCal+item.getCalorie()}"></c:set>
-                           <c:set var="sumTime" value="${sumTime+item.getDuration()}"></c:set>
-                           <c:set var="previousDate" value="${currentDate}"></c:set>
-                                <tr>
+                           <c:set var="sumCal" value="${sumCal+item.getTotalCal()}"></c:set>
+                            <tr>
                                     <td>${index}</td>
                                     <th scope="row">${item.getDate()}</th>
                                     <td>${item.getTime()}</td>
-                                    <td>${item.getName()}</td>
-                                    <td>${item.getDuration()}</td>
-                                    <td>${item.getCalorie()}</td>
+                                    <td>${item.getMealName()}</td>
+                                    <td>${item.getProteinWeight()}</td>
+                                    <td>${item.getFatWeight()}</td>
+                                    <td>${item.getCarbWeight()}</td>
+                                    <td>${item.getTotalCal()}</td>
+                                    <c:set var="previousDate" value="${currentDate}"></c:set>
                                     <td>
-                                        <form action="#" class="item-form" onsubmit="return fillEditForm(this)">
+                                        <form action="#" class="item-form" onsubmit="">
                                             <input type="hidden" name="date" value="${item.getDate()}">
                                             <input type="hidden" name="time" value="${item.getTime()}">
-                                            <input type="hidden" name="name" value="${item.getName()}">
-                                            <input type="hidden" name="duration" value="${item.getDuration()}">
-                                            <input type="hidden" name="calories" value="${item.getCalorie()}">
-                                            <input type="hidden" name="exerciseID" value="${item.getExerciseID()}">
+                                            <input type="hidden" name="name" value="${item.getMealName()}">
+                                            <input type="hidden" name="calories" value="${item.getTotalCal()}">
+                                            <input type="hidden" name="protein" value="${item.getProteinWeight()}">
+                                            <input type="hidden" name="fat" value="${item.getFatWeight()}">
+                                            <input type="hidden" name="carb" value="${item.getCarbWeight()}">
                                             <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                                         </form>
                                         |
@@ -244,7 +250,9 @@ Author : Pham Nhat Quang
                                         <th scope="row">${previousDate}</th>
                                         <td></td>
                                         <td>Total of day</td>
-                                        <td>${sumTime}</td>
+                                        <td>${sumPro}</td>
+                                        <td>${sumFat}</td>
+                                        <td>${sumCarb}</td>
                                         <td>${sumCal}</td>
                                         <td></td>
                                     </tr>
@@ -259,10 +267,12 @@ Author : Pham Nhat Quang
                                 <th scope="col">Date</th>
                                 <th scope="col">Time</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Duration</th>
-                                <th scope="col">Kcal</th>
+                                <th scope="col">Protein</th>
+                                <th scope="col">Fat</th>
+                                <th scope="col">Carbs</th>
+                                <th scope="col">Calories</th>
                                 <th scope="col">Actions</th>
-                        </tr>
+                            </tr>
                     </tfoot>
                 </table>
             </div>
@@ -283,6 +293,7 @@ Author : Pham Nhat Quang
             crossorigin="anonymous"
         ></script>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script src="./scripts/exercises.js"></script>
+        <script src="./scripts/meals.js"></script>
     </body>
 </html>
+

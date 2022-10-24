@@ -15,7 +15,7 @@
         <li class="navbar__link"><a href="#footer">Contact</a></li>
         <c:choose>
             <c:when test = "${sessionScope.userID!=null}">
-                <li class="navbar__link"><a href=""><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
+                <li class="navbar__link"><a href="user-meals" target="_blank"><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
                 <li class="navbar__link"><a href="user-exercises" target="_blank"><img class="add-exercise-logo" src="image/addExercise-logo.png"></a></li>
                 <li class="navbar__link">
                     <div class="dropdown">

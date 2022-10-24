@@ -1,5 +1,8 @@
-<%-- Document : ExerciseSearch Created on : Oct 17, 2022, 2:50:48 PM Author : M
-S I --%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%-- Document : ExerciseSearch 
+Created on : Oct 17, 2022, 2:50:48 PM 
+Author : Pham Nhat Quang
+--%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
