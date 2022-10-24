@@ -24,9 +24,9 @@ public class MealItemDAO {
     String datetimePattern = "yyyy-MM-dd HH:mm:ss";
     SimpleDateFormat dateFormatter;
 
-    public void insertMealItem(String mealName, Date dateTime, int userID,String name, double calories, double protein, double fat, double carbs)
+    public void insertMealItem(String mealName, Date dateTime, int userID,String name, double calories, double protein, double fat, double carbs, String weight)
             throws SQLException {
-        query = "insert into dbo.MEALITEM values(?,?,?,?,?,?,?,?)";
+        query = "insert into dbo.MEALITEM values(?,?,?,?,?,?,?,?,?)";
         this.dateFormatter = new SimpleDateFormat(datetimePattern);
 
         con = new DBContext().getConnection();
@@ -39,6 +39,7 @@ public class MealItemDAO {
         ps.setString(6, protein + "");
         ps.setString(7, fat + "");
         ps.setString(8, carbs + "");
+        ps.setString(9, weight);
         ps.executeUpdate();
 
     }
@@ -55,7 +56,7 @@ public class MealItemDAO {
         rs = ps.executeQuery();
         while (rs.next()){
             MealItem item = new MealItem(rs.getString("MEALNAME"), rs.getTimestamp("MEALDATETIME"),
-                    rs.getString("ITEMNAME"), 0, rs.getDouble("CALORIE"),rs.getDouble("PROTEIN"),rs.getDouble("FAT"),rs.getDouble("CARB"));
+                    rs.getString("ITEMNAME"), rs.getDouble("totalWEIGHT"), rs.getDouble("CALORIE"),rs.getDouble("PROTEIN"),rs.getDouble("FAT"),rs.getDouble("CARB"));
             res.add(item);
         }
         return res;
