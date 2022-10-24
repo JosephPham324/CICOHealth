@@ -97,7 +97,11 @@ function createFormItem(item, index) {
     protein.innerHTML = `${item["proteinWeight"].toFixed(1)}g`;
     fat.innerHTML = `${item["fatWeight"].toFixed(1)}g`;
     carb.innerHTML = `${item["carbWeight"].toFixed(1)}g`;
+    let mealDate = meal['mealDate'];
+    let mealTime = meal['mealTime'];
     meal = createMeal(meal["mealName"], meal["foodItems"]);
+    meal['mealDate'] = mealDate;
+    meal['mealTime'] = mealTime;
     console.log(meal);
     createFormMeal();
   });
@@ -173,7 +177,7 @@ function createMealForm(meal) {
 
 
 function fillEditForm(mealToEdit){
-//    console.log(meal)
+    console.log(mealToEdit)
       meal = mealToEdit;
       createMealForm(meal);
     return false;

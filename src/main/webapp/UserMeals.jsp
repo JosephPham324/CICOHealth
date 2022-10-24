@@ -31,7 +31,7 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
             />
-        <link rel="stylesheet" href="./css/exercises.css" />
+        <link rel="stylesheet" href="./css/meals.css" />
         <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -90,7 +90,7 @@
                         <c:set var="index" value ="1"></c:set>
                         <c:set var="meals" value = "${mDAO.getMealsByUserID(sessionScope.userID+'')}"></c:set>
                         <c:forEach items="${meals}" var="item" varStatus="loop">
-                            ${item}<br>
+                            
                             <c:set var="currentDate" value="${item.getDate()}"></c:set>
                             <c:choose>
                                 <c:when test="${currentDate!= previousDate && previousDate!=''}">
@@ -125,13 +125,6 @@
                                     <c:set var="previousDate" value="${currentDate}"></c:set>
                                     <td>
                                         <form action="#" class="item-form" onsubmit="return fillEditForm(${item})">
-<!--                                            <input type="hidden" name="date" value="${item.getDate()}">
-                                            <input type="hidden" name="time" value="${item.getTime()}">
-                                            <input type="hidden" name="name" value="${item.getMealName()}">
-                                            <input type="hidden" name="calories" value="${item.getTotalCal()}">
-                                            <input type="hidden" name="protein" value="${item.getProteinWeight()}">
-                                            <input type="hidden" name="fat" value="${item.getFatWeight()}">
-                                            <input type="hidden" name="carb" value="${item.getCarbWeight()}">-->
                                             <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                                         </form>
                                         |
@@ -190,7 +183,8 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"
         ></script>
-        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>        
+        <script src="./scripts/calculations.js"></script>
         <script src="./scripts/meals.js"></script>
     </body>
 </html>

@@ -9,6 +9,8 @@ import java.util.Date;
 public class MealItem {
     private String mealName;
     private Date mealDateTime;
+    private String mealDate;
+    private String mealTime;
     String name;
     double totalWeight;
     double totalCal;
@@ -38,6 +40,21 @@ public class MealItem {
         this.fatWeight = fatWeight;
         this.carbWeight = carbWeight;
     }
+
+    public MealItem(String mealName, Date mealDateTime, String mealDate, String mealTime, String name, double totalWeight, double totalCal, double proteinWeight, double fatWeight, double carbWeight) {
+        this.mealName = mealName;
+        this.mealDateTime = mealDateTime;
+        this.mealDate = mealDate;
+        this.mealTime = mealTime;
+        this.name = name;
+        this.totalWeight = totalWeight;
+        this.totalCal = totalCal;
+        this.proteinWeight = proteinWeight;
+        this.fatWeight = fatWeight;
+        this.carbWeight = carbWeight;
+    }
+    
+    
 
     public String getName() {
         return name;
@@ -102,6 +119,24 @@ public class MealItem {
     public void setMealDateTime(Date mealDateTime) {
         this.mealDateTime = mealDateTime;
     }
+
+    public String getMealDate() {
+        return mealDate;
+    }
+
+    public void setMealDate(String mealDate) {
+        this.mealDate = mealDate;
+    }
+
+    public String getMealTime() {
+        return mealTime;
+    }
+
+    public void setMealTime(String mealTime) {
+        this.mealTime = mealTime;
+    }
+    
+    
     
     
 

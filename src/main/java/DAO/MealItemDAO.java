@@ -43,6 +43,25 @@ public class MealItemDAO {
         ps.executeUpdate();
 
     }
+        public void insertMealItem(String mealName, String dateTime, String userID,String name, String calories, String protein, String fat, String carbs, String weight)
+            throws SQLException {
+        query = "insert into dbo.MEALITEM values(?,?,?,?,?,?,?,?,?)";
+        this.dateFormatter = new SimpleDateFormat(datetimePattern);
+
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, mealName);
+        ps.setString(2, dateTime);
+        ps.setString(3, userID+"");
+        ps.setString(4, name);
+        ps.setString(5, calories + "");
+        ps.setString(6, protein + "");
+        ps.setString(7, fat + "");
+        ps.setString(8, carbs + "");
+        ps.setString(9, weight);
+        ps.executeUpdate();
+
+    }
     
     public List<MealItem> getMealItems(String mealName,String mealDateTime,String userID) throws SQLException{
         query = "select * from MEALITEM where mealName = ? and mealDateTime = ? and userID = ?";
@@ -60,5 +79,20 @@ public class MealItemDAO {
             res.add(item);
         }
         return res;
+    }
+    
+        public void deleteMealItems(String date, String time, String name, String userID) throws SQLException {
+        query = "delete from MEALITEM\n"
+                + "where USERID = ? and \n"
+                + "CAST(MEALDATETIME as DATE) = ? and\n"
+                + "CAST(MEALDATETIME as TIME) = ? and\n"
+                + "MEALNAME = ?";
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, userID);
+        ps.setString(2, date);
+        ps.setString(3, time);
+        ps.setString(4, name);
+        ps.executeUpdate();
     }
 }
