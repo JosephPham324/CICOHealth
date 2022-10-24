@@ -23,7 +23,7 @@ Author : Pham Nhat Quang
             <div class="container" style="background-image: url('image/login.jpg');">
                 <div class="row col-md-8 offset-4">
                     <div class="login-form">
-                        <form method="post" action="register">
+                        <form method="post" action="register-control">
                             <fieldset>
                                 <legend>Register</legend>
                                 <div class="form-group row">
