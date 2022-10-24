@@ -107,7 +107,7 @@ public class MealItem {
 
     @Override
     public String toString() {
-        return "MealItem{" + "name=" + name + ", totalWeight=" + totalWeight + ", totalCal=" + totalCal + ", proteinWeight=" + proteinWeight + ", fatWeight=" + fatWeight + ", carbWeight=" + carbWeight + '}';
+        return "{" + "name:'" + name + "', totalWeight:" + totalWeight + ", totalCal:" + totalCal + ", proteinWeight:" + proteinWeight + ", fatWeight:" + fatWeight + ", carbWeight:" + carbWeight + '}';
     }
     
     

@@ -120,7 +120,7 @@ public class Meal {
 
     @Override
     public String toString() {
-        return "Meal{" + "mealName=" + mealName + ", mealDateTime=" + mealDateTime + ", userID=" + userID + ", totalCal=" + totalCal + ", proteinWeight=" + proteinWeight + ", fatWeight=" + fatWeight + ", carbWeight=" + carbWeight + ", foodItems=" + foodItems + '}';
+        return "{" + "mealName:'" + mealName + "', mealDate:'" + this.getDate()+"',mealTime:'"+this.getTime() + "', userID:" + userID + ", totalCal:" + totalCal + ", proteinWeight:" + proteinWeight + ", fatWeight:" + fatWeight + ", carbWeight:" + carbWeight + ", foodItems:" + foodItems + '}';
     }
 
 }
