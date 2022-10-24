@@ -4,6 +4,7 @@
     Author     : Pham Nhat Quang
 --%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="DAO.ExerciseDAO"%>
 <%@page import="Entity.Exercise"%> <%@page import="java.util.List"%>
@@ -85,6 +86,7 @@
                         <c:set var="sumPro" value="${0}"></c:set>
                         <c:set var="sumFat" value="${0}"></c:set>
                         <c:set var="sumCarb" value="${0}"></c:set>
+                        
                         <c:set var="previousDate" value=""></c:set>
                         <c:set var="currentDate" value=""></c:set>
                         <c:set var="index" value ="1"></c:set>
@@ -100,13 +102,14 @@
                                         <th scope="row">${previousDate}</th>
                                         <td></td>
                                         <td>Total of day</td>
-                                        <td>${sumPro}</td>
-                                        <td>${sumFat}</td>
-                                        <td>${sumCarb}</td>
-                                        <td>${sumCal}</td>
+                                        <td><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumPro}"/></td>
+                                        <td><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumFat}"/></td>
+                                        <td><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumCarb}"/></td>
+                                        <td>
+                                            <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumCal}"/>
+                                        </td>
                                         <td></td>
                                     </tr>
-                                    <c:set var="sumCal" value="${0}"></c:set>
                                 </c:when>
                             </c:choose>
                             <c:set var="sumCal" value="${sumCal+item.getTotalCal()}"></c:set>
@@ -141,10 +144,12 @@
                                         <th scope="row">${previousDate}</th>
                                         <td></td>
                                         <td>Total of day</td>
-                                        <td>${sumPro}</td>
-                                        <td>${sumFat}</td>
-                                        <td>${sumCarb}</td>
-                                        <td>${sumCal}</td>
+                                        <td><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumPro}"/></td>
+                                        <td><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumFat}"/></td>
+                                        <td><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumCarb}"/></td>
+                                        <td>
+                                            <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumCal}"/>
+                                        </td>
                                         <td></td>
                                     </tr>
                                     <c:set var="sumCal" value="${0}"></c:set>
