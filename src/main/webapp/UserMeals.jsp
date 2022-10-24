@@ -47,124 +47,18 @@
             class="DAO.MealDAO"
             scope="request"
             ></jsp:useBean>
-<!--            <div class="edit-form">
+            <div class="edit-form">
                 <div class="overlay"></div>
 
-                <form action="edit-exercise-control" method = "post" id = "editForm">
-                    <fieldset class="form-group">
-                        <legend>EDIT EXERCISE</legend>
-                        <div class="form-group row">
-                            <label for="date" class="col-4 col-form-label">Date</label>
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                    </div>
-                                    <input
-                                        id="date"
-                                        name="date"
-                                        placeholder="Enter the new date"
-                                        type="date"
-                                        readonly
-                                        class="form-control"
-                                        />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="time" class="col-4 col-form-label">Time</label>
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-clock-o"></i>
-                                        </div>
-                                    </div>
-                                    <input
-                                        id="time"
-                                        name="time"
-                                        placeholder="Enter the new time"
-                                        type="time"
-                                        readonly
-                                        class="form-control"
-                                        />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="exerciseName" class="col-4 col-form-label">Name</label>
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-y-combinator"></i>
-                                        </div>
-                                    </div>
-                                    <input
-                                        id="exerciseName"
-                                        name="exerciseName"
-                                        type="text"
-                                        class="form-control"
-                                        readonly
-                                        />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="duration" class="col-4 col-form-label">Duration</label>
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-clock-o"></i>
-                                        </div>
-                                    </div>
-                                    <input
-                                        id="duration"
-                                        name="duration"
-                                        placeholder="Enter the new duration"
-                                        type="number"
-                                        value ="0.0"
-                                        step ="0.1"
-                                        class="form-control"
-                                        />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="calorie" class="col-4 col-form-label">Calories</label>
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-bolt"></i>
-                                        </div>
-                                    </div>
-                                    <input
-                                        id="calorie"
-                                        name="calorie"
-                                        type="number"
-                                        value ="0.0"
-                                        step ="0.1"
-                                        class="form-control"
-                                        readonly
-                                        />
-                                </div>
-                            </div>
-                        </div>
-                        <input type="hidden" name="exerciseID" value = "">
-                        <div class="form-group row">
-                            <div class="offset-4 col-8">
-                                <button name="submit" type="submit" class="btn btn-primary">
-                                    Submit
-                                </button>
-                            </div>
-                        </div>
+                <div class="create-meal">
+                <form action="edit-meal-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
+                    <fieldset>
+                        <legend>EDIT MEAL</legend>
+                        <input type="submit" value="CREATE MEAL" name="submit" id="submit">
                     </fieldset>
                 </form>
-            </div>-->
+                </div>
+            </div>
             <div>
                 <div class="info-container">
                     <h1 style="text-align: center">List of your meals</h1>
@@ -196,6 +90,7 @@
                         <c:set var="index" value ="1"></c:set>
                         <c:set var="meals" value = "${mDAO.getMealsByUserID(sessionScope.userID+'')}"></c:set>
                         <c:forEach items="${meals}" var="item" varStatus="loop">
+                            ${item}<br>
                             <c:set var="currentDate" value="${item.getDate()}"></c:set>
                             <c:choose>
                                 <c:when test="${currentDate!= previousDate && previousDate!=''}">
@@ -214,7 +109,10 @@
                                     <c:set var="sumCal" value="${0}"></c:set>
                                 </c:when>
                             </c:choose>
-                           <c:set var="sumCal" value="${sumCal+item.getTotalCal()}"></c:set>
+                            <c:set var="sumCal" value="${sumCal+item.getTotalCal()}"></c:set>
+                            <c:set var="sumPro" value="${sumPro+item.getProteinWeight()}"></c:set>
+                            <c:set var="sumFat" value="${sumFat+item.getFatWeight()}"></c:set>
+                            <c:set var="sumCarb" value="${sumCarb+item.getCarbWeight()}"></c:set>
                             <tr>
                                     <td>${index}</td>
                                     <th scope="row">${item.getDate()}</th>
@@ -226,18 +124,18 @@
                                     <td>${item.getTotalCal()}</td>
                                     <c:set var="previousDate" value="${currentDate}"></c:set>
                                     <td>
-                                        <form action="#" class="item-form" onsubmit="">
-                                            <input type="hidden" name="date" value="${item.getDate()}">
+                                        <form action="#" class="item-form" onsubmit="return fillEditForm(${item})">
+<!--                                            <input type="hidden" name="date" value="${item.getDate()}">
                                             <input type="hidden" name="time" value="${item.getTime()}">
                                             <input type="hidden" name="name" value="${item.getMealName()}">
                                             <input type="hidden" name="calories" value="${item.getTotalCal()}">
                                             <input type="hidden" name="protein" value="${item.getProteinWeight()}">
                                             <input type="hidden" name="fat" value="${item.getFatWeight()}">
-                                            <input type="hidden" name="carb" value="${item.getCarbWeight()}">
+                                            <input type="hidden" name="carb" value="${item.getCarbWeight()}">-->
                                             <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                                         </form>
                                         |
-                                        <form action="delete-exercise-control" method="post" class="delete-item-form">
+                                        <form action="delete-meal-control" method="post" class="delete-item-form">
                                             <input type="hidden" name="date" value="${item.getDate()}">
                                             <input type="hidden" name="time" value="${item.getTime()}">
                                             <button type="submit"><i class="fa-solid fa-xmark"></i></i></button>
