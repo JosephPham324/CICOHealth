@@ -54,7 +54,7 @@
                 <form action="edit-meal-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
                     <fieldset>
                         <legend>EDIT MEAL</legend>
-                        <input type="submit" value="CREATE MEAL" name="submit" id="submit">
+                        <input type="submit" value="SUBMIT" name="submit" id="submit">
                     </fieldset>
                 </form>
                 </div>

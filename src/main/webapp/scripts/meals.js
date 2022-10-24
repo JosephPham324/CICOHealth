@@ -78,10 +78,7 @@ function createFormItem(item, index) {
   let cross = document.querySelector(`#${item["name"]}_${index} .fa-x`);
   if (cross instanceof Node)
     cross.addEventListener("click", () => {
-      let i = foodItems.indexOf(foodItems.find(food=>food.name = item.get('name')));
-      selectedFoodItems[i] = false;
-      addFoodButtons[i].classList.remove("selected");
-      meal.removeFoodItem(`${item.get("name")}`);
+      removeFoodItem(meal,item['name'])
       createMealForm();
     });
 
@@ -151,7 +148,7 @@ function clearMealForm() {
 /**
  * Create the meal form used to submit a meal
  */
-function createMealForm(meal) {
+function createMealForm() {
   clearMealForm();
   let items = meal["foodItems"];
   let i = 0;
@@ -173,12 +170,24 @@ function createMealForm(meal) {
     item.fatWeight=item.fatWeight*ratio;
     item.carbWeight=item.carbWeight*ratio;
   }
+  
+  
+  function  removeFoodItem(meal, name){
+    let item = meal.foodItems.find(food=>food['name']===name);
+    console.log(item)
+    meal.totalCal -= item.totalCal;
+    meal.proteinWeight -= item.proteinWeight;
+    meal.fatWeight -= item.fatWeight;
+    meal.carbWeight -= item.carbWeight;
+    meal.foodItems.splice(meal.foodItems.indexOf(item),1);
+    console.log(meal)
+  }
 
 
 
 function fillEditForm(mealToEdit){
     console.log(mealToEdit)
       meal = mealToEdit;
-      createMealForm(meal);
+      createMealForm();
     return false;
 }
