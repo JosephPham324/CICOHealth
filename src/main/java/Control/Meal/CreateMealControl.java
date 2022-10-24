@@ -91,15 +91,15 @@ public class CreateMealControl extends HttpServlet {
             mealDAO.insertMeal(meal.getMealName(), now, Integer.parseInt(userID.toString()), meal.getTotalCal(), meal.getProteinWeight(), meal.getFatWeight(), meal.getCarbWeight());
             
             for (MealItem item: meal.getFoodItems()) {
-                mealItemDAO.insertMealItem(meal.getMealName(), now, Integer.parseInt(userID.toString()),item.getName(), item.getTotalCal(),item.getProteinWeight(), item.getFatWeight(),item.getCarbWeight());
+                mealItemDAO.insertMealItem(meal.getMealName(), now, Integer.parseInt(userID.toString()),item.getName(), item.getTotalCal(),item.getProteinWeight(), item.getFatWeight(),item.getCarbWeight(),item.getTotalWeight()+"");
             }
             request.getSession().setAttribute("createMeal", true);
 
             response.sendRedirect("search-food");
         } catch (Exception ex) {
-//            response.getWriter().write(ex.getMessage());
-//            response.getWriter().write(meal.getMealName());
-//            response.getWriter().write(userID.toString());
+            response.getWriter().write(ex.getMessage());
+            response.getWriter().write(meal.getMealName());
+            response.getWriter().write(userID.toString());
         }
         
     }
