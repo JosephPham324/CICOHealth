@@ -67,8 +67,10 @@ public class MealDAO {
             rs = ps.executeQuery();
             
             while (rs.next()){
+                MealItemDAO miDAO = new MealItemDAO();
                 Meal meal = new Meal(rs.getString("MEALNAME"),rs.getTimestamp("MEALDATETIME"),rs.getInt("USERID"),
-                        rs.getDouble("CALORIE"), rs.getDouble("PROTEIN"), rs.getDouble("FAT"), rs.getDouble("CARB"),null);
+                        rs.getDouble("CALORIE"), rs.getDouble("PROTEIN"), rs.getDouble("FAT"), rs.getDouble("CARB"),
+                        miDAO.getMealItems(rs.getString("MEALNAME"),rs.getString("MEALDATETIME"),rs.getString("USERID")));
                 
                 res.add(meal);
             }
