@@ -89,7 +89,7 @@ function createFormItem(item, index) {
   let carb = document.querySelector(`#${element.id} span.carbs`);
   let weight = document.querySelector(`#${element.id} .weight input`);
   weight.addEventListener("input", () => {
-    changeWeight(item,weight.value,item['totalWeight']);
+    changeWeight(item,weight.value,item['originalWeight']);
     cal.innerHTML = `${item["totalCal"].toFixed(1)}`;
     protein.innerHTML = `${item["proteinWeight"].toFixed(1)}g`;
     fat.innerHTML = `${item["fatWeight"].toFixed(1)}g`;
@@ -99,7 +99,6 @@ function createFormItem(item, index) {
     meal = createMeal(meal["mealName"], meal["foodItems"]);
     meal['mealDate'] = mealDate;
     meal['mealTime'] = mealTime;
-    console.log(meal);
     createFormMeal();
   });
 }
@@ -153,41 +152,44 @@ function createMealForm() {
   let items = meal["foodItems"];
   let i = 0;
   items.forEach((item) => {
+
       createFormItem(item, i);
       i++;
   });
   createFormMeal();
 }
 
-  function changeWeight(item,newWeight,originalWeight){
-    console.log(originalWeight)
+  function changeWeight(item,newWeight){
 
-    let ratio = newWeight / originalWeight
-    console.log(ratio)
+    let ratio = newWeight / item.originalWeight
     item.totalWeight=newWeight;
-    item.totalCal=item.totalCal *ratio;
-    item.proteinWeight=item.proteinWeight*ratio;
-    item.fatWeight=item.fatWeight*ratio;
-    item.carbWeight=item.carbWeight*ratio;
+    item.totalCal=item.originalCal *ratio;
+    item.proteinWeight=item.originalPro*ratio;
+    item.fatWeight=item.originalFat*ratio;
+    item.carbWeight=item.originalCarb*ratio;
   }
   
   
   function  removeFoodItem(meal, name){
     let item = meal.foodItems.find(food=>food['name']===name);
-    console.log(item)
     meal.totalCal -= item.totalCal;
     meal.proteinWeight -= item.proteinWeight;
     meal.fatWeight -= item.fatWeight;
     meal.carbWeight -= item.carbWeight;
     meal.foodItems.splice(meal.foodItems.indexOf(item),1);
-    console.log(meal)
   }
 
 
 
 function fillEditForm(mealToEdit){
-    console.log(mealToEdit)
       meal = mealToEdit;
+      meal.foodItems.forEach(item=>{
+          item.originalWeight = item.totalWeight;
+          item.originalPro = item.proteinWeight;
+          item.originalFat = item.fatWeight;
+          item.originalCarb = item.carbWeight;
+          item.originalCal = item.totalCal;
+      })
       createMealForm();
     return false;
 }
