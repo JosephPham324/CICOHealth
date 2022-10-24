@@ -77,7 +77,7 @@
     </servlet>
     <servlet>
         <servlet-name>UserMeals</servlet-name>
-        <jsp-file>/Meals.jsp</jsp-file>
+        <jsp-file>/UserMeals.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
