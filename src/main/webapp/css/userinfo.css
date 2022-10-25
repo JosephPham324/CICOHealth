@@ -1,0 +1,66 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+}
+.header{
+    height: 80px;
+}
+.info-container{
+    width: 100vw;
+    height: auto;
+}
+
+.info-container>div{
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.info-container .info{
+    height: 100vh;
+}
+.info-container .info>div{
+    height: 100%;
+    display: none;
+}
+
+.info-container .info>div.active{
+    display: block;
+    padding: 20px;
+    border: 1px solid black;
+}
+.info-container .info>div.active h1{
+    margin-bottom: 20px;
+}
+.info-container .info>div.active>div{
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+.info-container .info>div.active>div label{
+    font-style: oblique;
+    font-weight: bold;
+}
+.form{
+    display: none;
+    position: fixed;
+}
+.form>form{
+    padding-inline: 20px;
+    border: 1px solid black;
+}
+.form>form>div{
+    margin-block: 20px;
+}
+
+.form.active{
+    background-color: rgb(195, 222, 245,0.5);
+    z-index: 50;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
