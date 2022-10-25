@@ -1,11 +1,14 @@
 package Control.Meal;
 
+import DAO.MealDAO;
+import DAO.MealItemDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
 
 /**
  *
@@ -30,7 +33,7 @@ public class DeleteMealControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteMealControl</title>");            
+            out.println("<title>Servlet DeleteMealControl</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet DeleteMealControl at " + request.getContextPath() + "</h1>");
@@ -65,7 +68,37 @@ public class DeleteMealControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Object userID = request.getSession().getAttribute("userID");
+        if (userID == null) {//Guard clause
+            response.sendRedirect("home");
+        }
+
+        String mealName = request.getParameter("name");
+        String mealDate = request.getParameter("date");
+        String mealTime = request.getParameter("time");
+        
+        MealDAO mealDAO = new MealDAO();
+        MealItemDAO mealItemDAO = new MealItemDAO();
+
+        try {
+            mealItemDAO.deleteMealItems(
+                    mealDate,
+                    mealTime,
+                    mealName,
+                    userID.toString()
+            );
+            
+            mealDAO.deleteMeal(
+                    mealDate,
+                    mealTime,
+                    mealName,
+                    userID.toString()
+            );
+            
+            response.sendRedirect("user-meals");
+        } catch (IOException | NumberFormatException | SQLException | NullPointerException ex) {
+            response.getWriter().write(ex.getMessage());
+        }
     }
 
     /**
