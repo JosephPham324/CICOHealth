@@ -193,3 +193,7 @@ function fillEditForm(mealToEdit){
       createMealForm();
     return false;
 }
+
+function askDelete(message){
+    return confirm(message);
+}

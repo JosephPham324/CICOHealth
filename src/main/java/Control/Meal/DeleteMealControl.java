@@ -2,12 +2,8 @@ package Control.Meal;
 
 import DAO.MealDAO;
 import DAO.MealItemDAO;
-import Entity.Meal;
-import Entity.MealItem;
-import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,9 +12,9 @@ import java.sql.SQLException;
 
 /**
  *
- * @author M S I
+ * @author Pham Nhat Quang
  */
-public class EditMealControl extends HttpServlet {
+public class DeleteMealControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +33,10 @@ public class EditMealControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditMealControl</title>");
+            out.println("<title>Servlet DeleteMealControl</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditMealControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteMealControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -77,47 +73,28 @@ public class EditMealControl extends HttpServlet {
             response.sendRedirect("home");
         }
 
-        Gson gson = new Gson();
-        String mealJSON = request.getParameter("meal");
-        Meal meal = gson.fromJson(mealJSON, Meal.class);
+        String mealName = request.getParameter("name");
+        String mealDate = request.getParameter("date");
+        String mealTime = request.getParameter("time");
+        
         MealDAO mealDAO = new MealDAO();
-
         MealItemDAO mealItemDAO = new MealItemDAO();
 
         try {
             mealItemDAO.deleteMealItems(
-                    meal.getMealDate(),
-                    meal.getMealTime(),
-                    meal.getMealName(),
-                    userID.toString());
-
+                    mealDate,
+                    mealTime,
+                    mealName,
+                    userID.toString()
+            );
+            
             mealDAO.deleteMeal(
-                    meal.getMealDate(),
-                    meal.getMealTime(),
-                    meal.getMealName(),
-                    userID.toString() + "");
-
-            mealDAO.insertMeal(
-                    meal.getMealName(),
-                    meal.getMealDate() + " " + meal.getMealTime(),
-                    userID.toString(), meal.getTotalCal() + "",
-                    meal.getProteinWeight() + "",
-                    meal.getFatWeight() + "",
-                    meal.getCarbWeight() + "");
-
-            for (MealItem item : meal.getFoodItems()) {
-                mealItemDAO.insertMealItem(
-                        meal.getMealName(),
-                        meal.getMealDate() + " " + meal.getMealTime(),
-                        userID.toString(), item.getName(),
-                        item.getTotalCal() + "",
-                        item.getProteinWeight() + "",
-                        item.getFatWeight() + "",
-                        item.getCarbWeight() + "",
-                        item.getTotalWeight() + ""
-                );
-
-            }
+                    mealDate,
+                    mealTime,
+                    mealName,
+                    userID.toString()
+            );
+            
             response.sendRedirect("user-meals");
         } catch (IOException | NumberFormatException | SQLException | NullPointerException ex) {
             response.getWriter().write(ex.getMessage());

@@ -11,10 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -39,14 +36,14 @@ public class CreateMealControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateMealControl</title>");            
+            out.println("<title>Servlet CreateMealControl</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet CreateMealControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -75,23 +72,41 @@ public class CreateMealControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Object userID = request.getSession().getAttribute("userID");
+        if (userID == null) {
+            response.sendRedirect("MainMenu.jsp");
+        }
+        
         Gson gson = new Gson();
         String mealJSON = request.getParameter("meal");
         Meal meal = gson.fromJson(mealJSON, Meal.class);
         Date now = new Date();
         MealDAO mealDAO = new MealDAO();
-        Object userID = request.getSession().getAttribute("userID");
-        if (userID==null){
-            response.sendRedirect("MainMenu.jsp");
-        }
         MealItemDAO mealItemDAO = new MealItemDAO();
-        
+
         try {
-            
-            mealDAO.insertMeal(meal.getMealName(), now, Integer.parseInt(userID.toString()), meal.getTotalCal(), meal.getProteinWeight(), meal.getFatWeight(), meal.getCarbWeight());
-            
-            for (MealItem item: meal.getFoodItems()) {
-                mealItemDAO.insertMealItem(meal.getMealName(), now, Integer.parseInt(userID.toString()),item.getName(), item.getTotalCal(),item.getProteinWeight(), item.getFatWeight(),item.getCarbWeight(),item.getTotalWeight()+"");
+
+            mealDAO.insertMeal(
+                    meal.getMealName(),
+                    now, Integer.parseInt(userID.toString()),
+                    meal.getTotalCal(),
+                    meal.getProteinWeight(),
+                    meal.getFatWeight(),
+                    meal.getCarbWeight()
+            );
+
+            for (MealItem item : meal.getFoodItems()) {
+                mealItemDAO.insertMealItem(
+                        meal.getMealName(),
+                        now,
+                        Integer.parseInt(userID.toString()),
+                        item.getName(),
+                        item.getTotalCal(),
+                        item.getProteinWeight(),
+                        item.getFatWeight(),
+                        item.getCarbWeight(),
+                        item.getTotalWeight() + ""
+                );
             }
             request.getSession().setAttribute("createMeal", true);
 
@@ -101,7 +116,7 @@ public class CreateMealControl extends HttpServlet {
             response.getWriter().write(meal.getMealName());
             response.getWriter().write(userID.toString());
         }
-        
+
     }
 
     /**
