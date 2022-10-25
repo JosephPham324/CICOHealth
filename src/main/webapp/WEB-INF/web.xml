@@ -65,7 +65,7 @@
     </servlet>
     <servlet>
         <servlet-name>UserExercises</servlet-name>
-        <jsp-file>/Exercises.jsp</jsp-file>
+        <jsp-file>/UserExercises.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>EditExerciseControl</servlet-name>

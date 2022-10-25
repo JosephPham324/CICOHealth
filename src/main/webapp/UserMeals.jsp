@@ -131,7 +131,8 @@
                                             <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                                         </form>
                                         |
-                                        <form action="delete-meal-control" method="post" class="delete-item-form">
+                                        <form action="delete-meal-control" method="post" class="delete-item-form"
+                                              onsubmit="return askDelete('Are you sure you want to delete this meal?')">
                                             <input type="hidden" name="date" value="${item.getDate()}">
                                             <input type="hidden" name="time" value="${item.getTime()}">
                                             <input type="hidden" name="name" value="${item.getMealName()}">

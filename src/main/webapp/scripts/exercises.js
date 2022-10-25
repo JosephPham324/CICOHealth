@@ -65,3 +65,7 @@ function fillEditForm(form){
     }
     return false;
 }
+
+function askDelete(message){
+    return confirm(message);
+}
