@@ -134,6 +134,7 @@
                                         <form action="delete-meal-control" method="post" class="delete-item-form">
                                             <input type="hidden" name="date" value="${item.getDate()}">
                                             <input type="hidden" name="time" value="${item.getTime()}">
+                                            <input type="hidden" name="name" value="${item.getName()}">
                                             <button type="submit"><i class="fa-solid fa-xmark"></i></i></button>
                                         </form>
                                     </td>
