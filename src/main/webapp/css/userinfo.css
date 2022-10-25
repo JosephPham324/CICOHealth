@@ -87,3 +87,6 @@ body{
 .edit:active{
     transform: scale(0.95);
 }
+#toggle-password-visibility{
+    cursor: pointer;
+}
