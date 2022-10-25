@@ -6,6 +6,9 @@ body{
 }
 .header{
     height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .info-container{
     width: 100vw;
@@ -19,8 +22,12 @@ body{
 
 .info-container .info{
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .info-container .info>div{
+    width: auto;
     height: 100%;
     display: none;
 }
