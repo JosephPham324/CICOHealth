@@ -72,36 +72,55 @@ public class EditMealControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Object userID = request.getSession().getAttribute("userID");
+        if (userID == null) {//Guard clause
+            response.sendRedirect("home");
+        }
+
         Gson gson = new Gson();
         String mealJSON = request.getParameter("meal");
         Meal meal = gson.fromJson(mealJSON, Meal.class);
         MealDAO mealDAO = new MealDAO();
-        Object userID = request.getSession().getAttribute("userID");
-        if (userID == null) {
-            response.sendRedirect("MainMenu.jsp");
-        }
+
         MealItemDAO mealItemDAO = new MealItemDAO();
-        response.getWriter().write(meal.toString() + "<br>");
-        response.getWriter().write(userID.toString()+"<br>");
 
         try {
-            mealItemDAO.deleteMealItems(meal.getMealDate(), meal.getMealTime(), meal.getMealName(), userID.toString()+ "");
-            mealDAO.deleteMeal(meal.getMealDate(), meal.getMealTime(), meal.getMealName(), userID.toString() + "");
-           response.getWriter().write(meal.getMealDate() + " " + meal.getMealTime() + " " + meal.getMealName() + " " + meal.getUserID() + "");
+            mealItemDAO.deleteMealItems(
+                    meal.getMealDate(),
+                    meal.getMealTime(),
+                    meal.getMealName(),
+                    userID.toString());
 
-            mealDAO.insertMeal(meal.getMealName(), meal.getMealDate() + " " + meal.getMealTime(), userID.toString(), meal.getTotalCal()+"", meal.getProteinWeight()+"", meal.getFatWeight()+"", meal.getCarbWeight()+"");
-                    response.getWriter().write(meal.getMealName()+" " +  meal.getMealDate() + " " + meal.getMealTime()+" " +  userID.toString()+" " +  meal.getTotalCal()+""+" " +  meal.getProteinWeight()+""+" " +  meal.getFatWeight()+""+" " +  meal.getCarbWeight()+"");
+            mealDAO.deleteMeal(
+                    meal.getMealDate(),
+                    meal.getMealTime(),
+                    meal.getMealName(),
+                    userID.toString() + "");
 
-            for (MealItem item: meal.getFoodItems()) {
-                mealItemDAO.insertMealItem(meal.getMealName(), meal.getMealDate() + " " + meal.getMealTime(), userID.toString(),item.getName(), item.getTotalCal()+"",item.getProteinWeight()+"", item.getFatWeight()+"",item.getCarbWeight()+"",item.getTotalWeight()+"");
-                response.getWriter().write(meal.getMealName() + " "+ meal.getMealDate() + " " + meal.getMealTime() + " "+ userID.toString() + " "+item.getName() + " "+ item.getTotalCal()+"" + " "+item.getProteinWeight()+"" + " "+ item.getFatWeight()+"" + " "+item.getCarbWeight()+"" + " "+item.getTotalWeight()+"");
+            mealDAO.insertMeal(
+                    meal.getMealName(),
+                    meal.getMealDate() + " " + meal.getMealTime(),
+                    userID.toString(), meal.getTotalCal() + "",
+                    meal.getProteinWeight() + "",
+                    meal.getFatWeight() + "",
+                    meal.getCarbWeight() + "");
+
+            for (MealItem item : meal.getFoodItems()) {
+                mealItemDAO.insertMealItem(
+                        meal.getMealName(),
+                        meal.getMealDate() + " " + meal.getMealTime(),
+                        userID.toString(), item.getName(),
+                        item.getTotalCal() + "",
+                        item.getProteinWeight() + "",
+                        item.getFatWeight() + "",
+                        item.getCarbWeight() + "",
+                        item.getTotalWeight() + ""
+                );
 
             }
             response.sendRedirect("user-meals");
         } catch (IOException | NumberFormatException | SQLException | NullPointerException ex) {
             response.getWriter().write(ex.getMessage());
-            response.getWriter().write(meal.getMealName());
-//            response.getWriter().write(userID);
         }
     }
 
