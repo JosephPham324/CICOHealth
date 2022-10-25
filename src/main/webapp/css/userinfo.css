@@ -37,7 +37,8 @@ body{
     font-size: 1.2rem;
     margin-bottom: 20px;
 }
-.info-container .info>div.active>div label{
+.info-container .info>div.active>div .label{
+    display: inline-block;
     font-style: oblique;
     font-weight: bold;
 }
