@@ -1,7 +1,8 @@
 
 let nav_links = document.querySelectorAll('.nav-link')
 let contents = document.querySelectorAll('.info>div')
-
+let form = document.querySelector('.form')
+let overlay = document.querySelector('.form .overlay')
 nav_links.forEach(item=>{
     item.addEventListener('click',()=>{
         let destination = document.querySelector(`${item.getAttribute('data-destination')}`)
@@ -10,4 +11,16 @@ nav_links.forEach(item=>{
         destination.classList.add('active')
         item.classList.add('active')
     })
+})
+
+let editButtons = document.querySelectorAll('.edit')
+
+editButtons.forEach(button=>{
+    button.addEventListener('click',()=>{
+        form.classList.add('active')
+    })
+})
+
+overlay.addEventListener('click',()=>{
+    form.classList.remove('active')
 })
