@@ -60,11 +60,13 @@ let userEditButtons = document.querySelectorAll(".user-info .edit");
 let healthEditButtons = document.querySelectorAll(".health-info .edit");
 
 loginEditButtons.forEach((button) => {
-  button.addEventListener('click',()=>{
+  button.addEventListener("click", () => {
     let field = button.parentElement.childNodes[3];
-    let loginFields = document.querySelectorAll('.login-info .field-value')
+    let loginFields = document.querySelectorAll(".login-info .field-value");
     let formContent = `
-    <div class="form-group row" style = "display:${loginFields[0]===field?'flex':'none'}">
+    <div class="form-group row" style = "display:${
+      loginFields[0] === field ? "flex" : "none"
+    }">
       <label for="username" class="col-4 col-form-label">Username</label>
       <div class="col-8">
         <input
@@ -81,7 +83,9 @@ loginEditButtons.forEach((button) => {
         >
       </div>
     </div>
-    <div class="form-group row" style = "display:${loginFields[1]===field?'flex':'none'}">
+    <div class="form-group row" style = "display:${
+      loginFields[1] === field ? "flex" : "none"
+    }">
       <label for="password" class="col-4 col-form-label">Password</label>
       <div class="col-8">
         <input
@@ -106,7 +110,97 @@ loginEditButtons.forEach((button) => {
       </div>
     </div>`;
     form.innerHTML = formContent;
-  })
-  
+  });
+});
 
+userEditButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    let field = button.parentElement.childNodes[3];
+    let userFields = document.querySelectorAll(".user-info .field-value");
+    let formContent = `
+        <div class="form-group row" style = "display:${
+          userFields[0] === field ? "flex" : "none"
+        }">
+          <label for="firstName" class="col-4 col-form-label">firstName</label>
+          <div class="col-8">
+            <input
+              id="firstName"
+              name="firstName"
+              placeholder="Your firstName"
+              type="text"
+              class="form-control"
+              aria-describedby="firstNameHelpBlock"
+              value = "${userFields[0].textContent}"
+            />
+            <span id="firstNameHelpBlock" class="form-text text-muted"
+              >Help text</span
+            >
+          </div>
+        </div>
+        <div class="form-group row" style = "display:${
+          userFields[1] === field ? "flex" : "none"
+        }">
+          <label for="lastName" class="col-4 col-form-label">Last name:</label>
+          <div class="col-8">
+            <input
+              id="lastName"
+              name="lastName"
+              placeholder="Your lastName"
+              type="text"
+              class="form-control"
+              aria-describedby="lastNameHelpBlock"
+              value = "${userFields[1].textContent}"
+            />
+            <span id="lastNameHelpBlock" class="form-text text-muted"
+              >Help text</span
+            >
+          </div>
+        </div>
+        <div class="form-group row" style = "display:${
+          userFields[2] === field ? "flex" : "none"
+        }">
+            <label for="email" class="col-4 col-form-label">Email:</label>
+            <div class="col-8">
+              <input
+                id="email"
+                name="email"
+                placeholder="Your email"
+                type="text"
+                class="form-control"
+                aria-describedby="emailHelpBlock"
+                value = "${userFields[2].textContent}"
+              />
+              <span id="emailHelpBlock" class="form-text text-muted"
+                >Help text</span
+              >
+            </div>
+        </div>
+        <div class="form-group row" style = "display:${
+            userFields[3] === field ? "flex" : "none"
+        }">
+            <label for="phone" class="col-4 col-form-label">Phone:</label>
+            <div class="col-8">
+              <input
+                id="phone"
+                name="phone"
+                placeholder="Your phone"
+                type="text"
+                class="form-control"
+                aria-describedby="phoneHelpBlock"
+                value = "${userFields[3].textContent}"
+              />
+              <span id="phonedHelpBlock" class="form-text text-muted"
+                >Help text</span
+              >
+            </div>
+        </div>
+        <div class="form-group row">
+          <div class="offset-4 col-8">
+            <button name="submit" type="submit" class="btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </div>`;
+    form.innerHTML = formContent;
+  });
 });
