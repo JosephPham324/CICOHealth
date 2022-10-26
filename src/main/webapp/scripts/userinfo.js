@@ -168,12 +168,12 @@ userEditButtons.forEach((button) => {
         <div class="form-group row" style = "display:${
           userFields[0] === field ? "flex" : "none"
         }">
-          <label for="firstName" class="col-4 col-form-label">firstName</label>
+          <label for="firstName" class="col-4 col-form-label">First name:</label>
           <div class="col-8">
             <input
               id="firstName"
               name="firstName"
-              placeholder="Your firstName"
+              placeholder="Your first name"
               type="text"
               class="form-control"
               aria-describedby="firstNameHelpBlock"
@@ -192,7 +192,7 @@ userEditButtons.forEach((button) => {
             <input
               id="lastName"
               name="lastName"
-              placeholder="Your lastName"
+              placeholder="Your last name"
               type="text"
               class="form-control"
               aria-describedby="lastNameHelpBlock"
@@ -249,5 +249,6 @@ userEditButtons.forEach((button) => {
           </div>
         </div>`;
     form.innerHTML = formContent;
+    form.action = "edit-user-info-control";
   });
 });

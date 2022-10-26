@@ -154,11 +154,12 @@ public class LoginDAO {
 
     public static void main(String[] args) {
         LoginDAO dao = new LoginDAO();
-        try {
-            //        List<User> users = dao.getListMember();
-            System.out.println(dao.getLoginInfo(2 + ""));
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            try {
+                //        List<User> users = dao.getListMember();
+                dao.editLoginInfo(2+"", "QuangPNCE170036", "prj301");
+            } catch (Exception ex) {
+                Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
     }
 }

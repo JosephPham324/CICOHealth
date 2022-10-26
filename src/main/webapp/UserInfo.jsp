@@ -4,6 +4,7 @@
     Author     : ASUS
 --%>
 
+<%@page import="Entity.User"%>
 <%@page import="Entity.Login"%>
 <%@page import="Security.RegLoginLogic"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -31,11 +32,14 @@
         <title>User Profile</title>
     </head>
     <body>
+        <c:if test="${sessionScope.userID == null}">
+            <c:redirect url="home"></c:redirect>
+        </c:if>
         <%
             DAO.LoginDAO lDAO = new DAO.LoginDAO();
-            Cookie[] cookies = request.getCookies();
-            Login loginInfo = null;
-            loginInfo = lDAO.getLoginInfo(request.getSession().getAttribute("userID").toString());
+            DAO.UserDAO uDAO = new DAO.UserDAO();
+            Login loginInfo = lDAO.getLoginInfo(request.getSession().getAttribute("userID").toString());
+            User user = uDAO.getUserByID(request.getSession().getAttribute("userID").toString());
             
             String enteredPassword = request.getParameter("password");
             
@@ -45,9 +49,22 @@
                     request.getParameter("password").toString(),
                     loginInfo.getPasswordSalt(),
                     loginInfo.getPasswordHash());
+            Object panel = request.getSession().getAttribute("panel");
+            int panelSwitch = 0;
+            if (panel!=null){
+                switch (panel.toString()){
+                    case "userInfo":
+                        panelSwitch = 1;
+                        break;
+                    case "healthInfo":
+                        panelSwitch = 2;
+                        break;
+                    default:
+                        panelSwitch = 0;
+                        break;
+                }
+            }
         %>
-        <script >console.log(`<%=correctPassword%>`)</script>
-        <script >console.log(`<%=enteredPassword%>`)</script>
 
 
         <div class="form">
@@ -84,24 +101,24 @@
             <div class="col-sm-2">
                 <ul class="nav flex-column nav-pills nav-fill">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#" data-destination="#login-info"
+                        <a class="nav-link <%=panelSwitch==0?"active":""%>" href="#" data-destination="#login-info"
                            >Login Info</a
                         >
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-destination="#user-info"
+                        <a class="nav-link <%=panelSwitch==1?"active":""%>" href="#" data-destination="#user-info"
                            >User Info</a
                         >
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-destination="#health-info"
+                        <a class="nav-link <%=panelSwitch==2?"active":""%>" href="#" data-destination="#health-info"
                            >Health Info</a
                         >
                     </li>
                 </ul>
             </div>
             <div class="col-sm-10 row g-0 info tab-content" id="pills-tabContent">
-                <div class="login-info active" id="login-info">
+                <div class="login-info <%=panelSwitch==0?"active":""%>" id="login-info">
                     <h1>Your Login Information</h1>
                     <div class="field">
                         <div class="label">Username:</div>
@@ -117,30 +134,30 @@
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                     </div>
                 </div>
-                <div class="user-info" id="user-info">
+                <div class="user-info <%=panelSwitch==1?"active":""%>" id="user-info">
                     <h1>Your Personal Information</h1>
                     <div class="field">
                         <div class="label">First name:</div>
-                        <span class="field-value" id="first-name-value">Quang</span>
+                        <span class="field-value" id="first-name-value"><%=user.getFirstName()%></span>
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                     </div>
                     <div class="field">
                         <div class="label">Last name:</div>
-                        <span class="field-value" id="last-name-value">Pham</span>
+                        <span class="field-value" id="last-name-value"><%=user.getLastName()%></span>
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                     </div>
                     <div class="field">
                         <div class="label">Email:</div>
-                        <span class="field-value">QuangPNCE170036@fpt.edu.vn</span>
+                        <span class="field-value"><%=user.getEmail()%></span>
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                     </div>
                     <div class="field">
                         <div class="label">Phone number:</div>
-                        <span class="field-value" id="phone-value">0857974200</span>
+                        <span class="field-value" id="phone-value"><%=user.getPhone()%></span>
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                     </div>
                 </div>
-                <div class="health-info" id="health-info">
+                <div class="health-info <%=panelSwitch==2?"active":""%>" id="health-info">
                     <h1>Quang's Health Information</h1>
                     <div class="field">
                         <div class="label">Age:</div>

@@ -1,8 +1,13 @@
-package Control.Login;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package Control;
 
-import DAO.LoginDAO;
+import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jakarta.servlet.ServletException;
@@ -12,9 +17,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Pham Nhat Quang
+ * @author M S I
  */
-public class LoginEditControl extends HttpServlet {
+public class EditUserInfoControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,10 +38,10 @@ public class LoginEditControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginEditControl</title>");            
+            out.println("<title>Servlet EditUserInfoControl</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginEditControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditUserInfoControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,18 +73,20 @@ public class LoginEditControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String userID = request.getSession().getAttribute("userID").toString();
-        LoginDAO lDAO = new LoginDAO();
         try {
-            lDAO.editLoginInfo(userID, username, password);
-            request.getSession().setAttribute("panel", "loginInfo");
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String email = request.getParameter("email");
+            String phone = request.getParameter("phone");
+            String userID = request.getSession().getAttribute("userID").toString();
+            
+            UserDAO uDAO = new UserDAO();
+            uDAO.editUser(userID, firstName, lastName, email, phone);
+            request.getSession().setAttribute("panel", "userInfo");
             response.sendRedirect("user-info");
         } catch (Exception ex) {
-            Logger.getLogger(LoginEditControl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditUserInfoControl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 
     /**
