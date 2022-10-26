@@ -90,3 +90,7 @@ body{
 #toggle-password-visibility{
     cursor: pointer;
 }
+.field{
+    border-bottom: 2px dashed black;
+    padding: 5px;
+}
