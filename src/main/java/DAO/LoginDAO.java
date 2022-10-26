@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -54,27 +56,17 @@ public class LoginDAO {
     }
 
     public List<User> getListMember() throws SQLException {
-            String query = "select * from [Nutrition].[dbo].[USER]";
-            con = new DBContext().getConnection(); // open connection to SQL
-            ps = con.prepareStatement(query); // move query from Netbeen to SQl
-            rs = ps.executeQuery(); // the same with click to "excute" btn;
-            List<User> list = new ArrayList<>();
-            while (rs.next()) {
-                User acc = new User(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
-                        rs.getString(5), rs.getString(6), rs.getString(7));
-                list.add(acc);
-            }
-            return list;
-    }
-
-
-
-    public void deleteAcc(String id) throws SQLException {
-        String query = "delete from [Nutrition].[dbo].[Member] where member_id = ?";
-            con = new DBContext().getConnection();
-            ps = con.prepareStatement(query);
-            ps.setString(1, id);
-            ps.executeUpdate();
+        String query = "select * from [Nutrition].[dbo].[USER]";
+        con = new DBContext().getConnection(); // open connection to SQL
+        ps = con.prepareStatement(query); // move query from Netbeen to SQl
+        rs = ps.executeQuery(); // the same with click to "excute" btn;
+        List<User> list = new ArrayList<>();
+        while (rs.next()) {
+            User acc = new User(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
+                    rs.getString(5), rs.getString(6), rs.getString(7));
+            list.add(acc);
+        }
+        return list;
     }
 
     public Login checkLogin(String user, String enteredPassword) {
@@ -99,22 +91,6 @@ public class LoginDAO {
         return null;
     }
 
-//     public User getMemberByID (String id) {
-//        String query = "select * from Member\n" +
-//"where member_id = ?";
-//        try {
-//             con = new DBContext().getConnection(); // open connection to SQL
-//            ps = con.prepareStatement(query); // move query from Netbeen to SQl
-//            ps.setString(1, id);
-//            rs = ps.executeQuery();
-//            while(rs.next()) {
-//                return new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
-//            }
-//        } catch (Exception e) {
-//        }
-//        return null;
-//    }
-//     
     public void insertHealthInfo(String userId, String gender, String height, String weight, String activeness, String age) {
         String query = "insert into [Nutrition].[dbo].[USERHEALTHINFO] values(?,?,?,?,?,?)";
         try {
@@ -131,10 +107,32 @@ public class LoginDAO {
         }
     }
 
-//    public static void main(String[] args) {
-//        LoginDAO dao = new LoginDAO();
-//        List<User> users = dao.getListMember();
-//        System.out.println(dao.checkLogin("QuangPNCE170036", "group4prj301"));
-//    }
+    public Login getLoginInfo(String userID) throws SQLException {
+        String query = "select * from LOGIN where USER_ID = ?";
+        Login res = null;
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, userID);
+        rs = ps.executeQuery();
+        while (rs.next()){
+            res = new Login(
+                    rs.getInt("LOGINID"),
+                    rs.getString("USERNAME"),
+                    rs.getString("PASSWORDSALT"),
+                    rs.getString("PASSWORDHASH"),
+                    rs.getInt("USER_ID")
+            );
+        }
+        return res;
+    }
 
+    public static void main(String[] args) {
+        LoginDAO dao = new LoginDAO();
+        try {
+            //        List<User> users = dao.getListMember();
+            System.out.println(dao.getLoginInfo(2+""));
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
