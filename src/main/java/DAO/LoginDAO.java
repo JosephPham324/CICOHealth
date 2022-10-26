@@ -4,6 +4,8 @@ import context.DBContext;
 import Entity.Login;
 import Entity.User;
 import Entity.UserHealthInfo;
+import Security.Encryption;
+import Security.RegLoginLogic;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -114,7 +116,7 @@ public class LoginDAO {
         ps = con.prepareStatement(query);
         ps.setString(1, userID);
         rs = ps.executeQuery();
-        while (rs.next()){
+        while (rs.next()) {
             res = new Login(
                     rs.getInt("LOGINID"),
                     rs.getString("USERNAME"),
@@ -126,11 +128,35 @@ public class LoginDAO {
         return res;
     }
 
+    public void editLoginInfo(String userID, String username, String password) throws Exception {
+        String empString = "";
+        String salt = Encryption.generateSalt(username, password);
+        String hashedPassword = RegLoginLogic.encryptPassword(salt, password);
+
+        if (hashedPassword.equals(empString) || salt.equals("Unable to generate salt")) {
+            salt = null;
+            hashedPassword = null;
+        }
+
+        String query = "update LOGIN\n"
+                + "set USERNAME = ?,\n"
+                + "PASSWORDSALT = ?,\n"
+                + "PASSWORDHASH = ?\n"
+                + "where USER_ID = ?";
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, username);
+        ps.setString(2, salt);
+        ps.setString(3, hashedPassword);
+        ps.setString(4, userID);
+        ps.executeUpdate();
+    }
+
     public static void main(String[] args) {
         LoginDAO dao = new LoginDAO();
         try {
             //        List<User> users = dao.getListMember();
-            System.out.println(dao.getLoginInfo(2+""));
+            System.out.println(dao.getLoginInfo(2 + ""));
         } catch (SQLException ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

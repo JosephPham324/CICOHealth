@@ -55,8 +55,8 @@ overlay.addEventListener("click", () => {
 
 /**
  * Hide the text content of an element
- * @param {Node} element Element to replace text content 
- * @param {String} replaceCharacter Character or string to replace with 
+ * @param {Node} element Element to replace text content
+ * @param {String} replaceCharacter Character or string to replace with
  */
 function hideTextContent(element, replaceCharacter) {
   element.textContent = element.textContent.replace(/./g, replaceCharacter);
@@ -77,6 +77,10 @@ let healthEditButtons = document.querySelectorAll(".health-info .edit");
 
 loginEditButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    if (button == loginEditButtons[1] && !correctPassword) {
+      checkPassword();
+      return;
+    }
     let field = button.parentElement.childNodes[3];
     let loginFields = document.querySelectorAll(".login-info .field-value");
     let formContent = `
@@ -102,7 +106,7 @@ loginEditButtons.forEach((button) => {
     <div class="form-group row" style = "display:${
       loginFields[1] === field ? "flex" : "none"
     }">
-      <label for="password" class="col-4 col-form-label">Password</label>
+      <label for="password" class="col-4 col-form-label">New Password</label>
       <div class="col-8">
         <input
           id="password"
@@ -119,8 +123,8 @@ loginEditButtons.forEach((button) => {
       </div>
     </div>
     <div class="form-group row" style = "display:${
-        loginFields[1] === field ? "flex" : "none"
-      }">
+      loginFields[1] === field ? "flex" : "none"
+    }">
         <label for="confirmPassword" class="col-4 col-form-label">Confirm Password</label>
         <div class="col-8">
           <input
@@ -144,8 +148,14 @@ loginEditButtons.forEach((button) => {
       </div>    
     </div>`;
     form.innerHTML = formContent;
-    form.onsubmit = function(){
-        return document.getElementById('password') === document.getElementById('confirmPassword') && correctPassword
+    form.action = "login-edit-control";
+    if (button == loginEditButtons[1]) {
+      form.onsubmit = function () {
+        return (
+          document.getElementById("password").value === document.getElementById("confirmPassword").value
+           && correctPassword
+        );
+      };
     }
   });
 });
@@ -213,7 +223,7 @@ userEditButtons.forEach((button) => {
             </div>
         </div>
         <div class="form-group row" style = "display:${
-            userFields[3] === field ? "flex" : "none"
+          userFields[3] === field ? "flex" : "none"
         }">
             <label for="phone" class="col-4 col-form-label">Phone:</label>
             <div class="col-8">

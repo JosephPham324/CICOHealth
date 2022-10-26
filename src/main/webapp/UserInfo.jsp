@@ -166,7 +166,7 @@
                         <h3>Nutrition goals</h3>
                         <div class="label">Daily calorie:</div>
                         <span class="field-value">2400kcal</span><br />
-                        <div class="label">Dialy protein:</div>
+                        <div class="label">Daily protein:</div>
                         <span class="field-value">200g</span><br />
                         <div class="label">Daily fat:</div>
                         <span class="field-value">60g</span><br />
@@ -178,12 +178,14 @@
         </div>
         <script>
             let correctPassword = <%=correctPassword%>;
-            console.log(correctPassword)
             if (!correctPassword) {
-                let enteredCorrectPassword = false;
                 let showPassword = document.getElementById('toggle-password-visibility');
-                showPassword.addEventListener('click', function checkPassword() {
+                showPassword.addEventListener('click', checkPassword);
+            }
+            function checkPassword(){
+                {
                     let form = document.querySelector('.form form')
+                    form.action = '#';
                     let html = `
             <div class="form-group row">
                 <label for="password" class="col-4 col-form-label">Verify Password:</label>
@@ -208,10 +210,8 @@
             `;
                     form.innerHTML = html;
                     document.querySelector('.form').classList.add('active');
-                });
+                }
             }
-
-
         </script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"

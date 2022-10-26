@@ -87,6 +87,10 @@
         <servlet-name>UserInfo</servlet-name>
         <jsp-file>/UserInfo.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>LoginEditControl</servlet-name>
+        <servlet-class>Control.Login.LoginEditControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/login-control</url-pattern>
@@ -171,9 +175,13 @@
         <servlet-name>DeleteMealControl</servlet-name>
         <url-pattern>/delete-meal-control</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UserInfo</servlet-name>
         <url-pattern>/user-info</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginEditControl</servlet-name>
+        <url-pattern>/login-edit-control</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
