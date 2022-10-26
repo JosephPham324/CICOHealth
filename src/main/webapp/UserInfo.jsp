@@ -28,6 +28,7 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
             />
+        <%@include file = "headfootlink.jsp" %>
         <link rel="stylesheet" href="css/userinfo.css" />
         <title>User Profile</title>
     </head>
@@ -96,7 +97,8 @@
             </form>
         </div>
 
-        <div class="header row col-sm-12 g-0">Header</div>
+        <!--<div class="header row col-sm-12 g-0">Header</div>-->
+        <%@include file = "header.jsp" %>
         <div class="info-container row g-0">
             <div class="col-sm-2">
                 <ul class="nav flex-column nav-pills nav-fill">
@@ -235,6 +237,7 @@
             integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
             crossorigin="anonymous"
         ></script>
+        <script src="scripts/headfootscript.js"></script>
         <script src="scripts/userinfo.js"></script>
     </body>
 </html>
