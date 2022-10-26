@@ -177,8 +177,9 @@
             </div>
         </div>
         <script>
-            if (<%=correctPassword!=true%>) {
-                console.log(<%=correctPassword%>)
+            let correctPassword = <%=correctPassword%>;
+            console.log(correctPassword)
+            if (!correctPassword) {
                 let enteredCorrectPassword = false;
                 let showPassword = document.getElementById('toggle-password-visibility');
                 showPassword.addEventListener('click', function checkPassword() {
