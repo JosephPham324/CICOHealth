@@ -7,10 +7,6 @@
         <servlet-name>LoginControl</servlet-name>
         <servlet-class>Control.Login.LoginControl</servlet-class>
     </servlet>
-    <!--    <servlet>
-        <servlet-name>DeleteControl</servlet-name>
-        <servlet-class>Control.DeleteControl</servlet-class>
-    </servlet>-->
     <servlet>
         <servlet-name>SearchControl</servlet-name>
         <servlet-class>Control.SearchControl</servlet-class>
@@ -86,6 +82,18 @@
     <servlet>
         <servlet-name>DeleteMealControl</servlet-name>
         <servlet-class>Control.Meal.DeleteMealControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserInfo</servlet-name>
+        <jsp-file>/UserInfo.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginEditControl</servlet-name>
+        <servlet-class>Control.Login.LoginEditControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditUserInfoControl</servlet-name>
+        <servlet-class>Control.EditUserInfoControl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
@@ -170,6 +178,18 @@
     <servlet-mapping>
         <servlet-name>DeleteMealControl</servlet-name>
         <url-pattern>/delete-meal-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserInfo</servlet-name>
+        <url-pattern>/user-info</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginEditControl</servlet-name>
+        <url-pattern>/login-edit-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUserInfoControl</servlet-name>
+        <url-pattern>/edit-user-info-control</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

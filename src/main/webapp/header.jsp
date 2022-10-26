@@ -23,7 +23,7 @@
 
                         <div id="myDropdown" class="dropdown-content">
                             <a href="HealthInfo.jsp">Health Info</a>
-                            <a href="#">User Info</a>
+                            <a href="user-info">User Info</a>
                             <a href="logout-control">Log out</a>
                         </div>
                     </div>

@@ -86,43 +86,41 @@ public class UserDAO {
         return -1;
     }
 
-    public User getUserByID(String id) {
+    public User getUserByID(String id) throws SQLException {
         String query = "select * from dbo.[User]\n"
-                + "where MASP = ?";
+                + "where USERID = ?";
+        con = new DBContext().getConnection(); // open connection to SQL
+        ps = con.prepareStatement(query); // move query from Netbeen to SQl
 
-        try {
-            con = new DBContext().getConnection(); // open connection to SQL
-            ps = con.prepareStatement(query); // move query from Netbeen to SQl
-
-            ps.setString(1, id);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                return new User(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
-            }
-        } catch (Exception e) {
+        ps.setString(1, id);
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            return new User(
+                    rs.getInt("USERID"),
+                    rs.getString("FIRSTNAME"),
+                    rs.getString("LASTNAME"),
+                    rs.getString("EMAILADDRESS"),
+                    rs.getString("PHONENUMBER")
+            );
         }
         return null;
     }
 
-    public void editUser(String MASP, String TENSP, String DVT, String NUOCSX, String GIA) {
-        String query = "update User\n"
-                + "set TENSP = ?,\n"
-                + "DVT = ?,\n"
-                + "NUOCSX = ?,\n"
-                + "GIA = ?\n"
-                + "where MASP = ?";
-        try {
+    public void editUser(String USERID, String FIRSTNAME, String LASTNAME, String EMAIL, String PHONE) throws SQLException {
+        String query = "update [USER]\n"
+                + "set FIRSTNAME = ?,\n"
+                + "LASTNAME = ?,\n"
+                + "EMAILADDRESS = ?,\n"
+                + "PHONENUMBER = ?\n"
+                + "where USERID = ?";
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
-            ps.setString(1, TENSP);
-            ps.setString(2, DVT);
-            ps.setString(3, NUOCSX);
-            ps.setString(4, GIA);
-            ps.setString(5, MASP);
+            ps.setString(1, FIRSTNAME);
+            ps.setString(2, LASTNAME);
+            ps.setString(3, EMAIL);
+            ps.setString(4, PHONE);
+            ps.setString(5, USERID);
             ps.executeUpdate();
-        } catch (Exception e) {
-        }
     }
 
 //    public static void main(String[] args) {
