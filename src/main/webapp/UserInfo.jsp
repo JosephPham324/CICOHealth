@@ -35,13 +35,8 @@
             DAO.LoginDAO lDAO = new DAO.LoginDAO();
             Cookie[] cookies = request.getCookies();
             Login loginInfo = null;
-            if (cookies != null) {
-               for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("userID")) {
-                    loginInfo = lDAO.getLoginInfo(cookie.getValue());
-                }
-            }
-            }
+            loginInfo = lDAO.getLoginInfo(request.getSession().getAttribute("userID").toString());
+            
             String enteredPassword = request.getParameter("password");
             
             boolean correctPassword = false;
