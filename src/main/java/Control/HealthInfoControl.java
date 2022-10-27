@@ -90,7 +90,7 @@ public class HealthInfoControl extends HttpServlet {
         String age = request.getParameter("age");
         try {
             heath.insertHealthInfo(userID+"",gender,height, weight,activity,age);
-            double calories = goal.calculateCalo(weight, height, age, gender, activity);
+            double calories = goal.calculateTDEE(weight, height, age, gender, activity);
             String finalCalories = Double.toString(calories);
             goal.addGoal(userID, finalCalories);
             response.sendRedirect("home-control");
