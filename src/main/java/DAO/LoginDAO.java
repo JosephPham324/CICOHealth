@@ -56,6 +56,37 @@ public class LoginDAO {
         }
         return -1;
     }
+     public int checkUserNameDuplicate(String username) throws SQLException {
+        String query = "SELECT COUNT(*) FROM [LOGIN] where username=?";
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        
+        ps.setString(1, username);
+        rs = ps.executeQuery();
+         while (rs.next()) {
+            return rs.getInt(1);
+        }
+        return 0;
+    }
+    
+    public Login findUserName(String username) {
+        String query = "select * from LOGIN where USERNAME = ?";
+        try {
+            con = new DBContext().getConnection();
+            ps = con.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Login info = new Login(rs.getInt("LOGINID"), rs.getString("USERNAME"), rs.getString("PASSWORDSALT"),
+                        rs.getString("PASSWORDHASH"), rs.getInt("USER_ID"));
+                System.out.println(info.toString());
+                return info;
+            }
+        } catch (Exception e) {
+            System.err.println(e.getCause());
+        }
+        return null;
+    }
 
     public List<User> getListMember() throws SQLException {
         String query = "select * from [Nutrition].[dbo].[USER]";
@@ -83,8 +114,10 @@ public class LoginDAO {
                 Login a = new Login(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
                 String salt = a.getPasswordSalt();
                 String hash = a.getPasswordHash();
+                System.out.println(salt);
+                System.out.println(hash);
 
-                if (Security.RegLoginLogic.verifyPassword(enteredPassword, salt, hash));
+                if (Security.RegLoginLogic.verifyPassword(enteredPassword, salt, hash))
                 return a;
             }
         } catch (Exception e) {
@@ -152,14 +185,16 @@ public class LoginDAO {
         ps.executeUpdate();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         LoginDAO dao = new LoginDAO();
-            try {
-                //        List<User> users = dao.getListMember();
-                dao.editLoginInfo(2+"", "QuangPNCE170036", "prj301");
-            } catch (Exception ex) {
-                Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+//            try {
+//                //        List<User> users = dao.getListMember();
+//                dao.editLoginInfo(2+"", "QuangPNCE170036", "prj301");
+//            } catch (Exception ex) {
+//                Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+        System.out.println(dao.checkLogin("quangthinh130102", "123")); 
+        int test = dao.checkUserNameDuplicate("nlordqting4444");
+        System.out.println(test);
     }
 }

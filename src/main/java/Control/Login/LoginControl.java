@@ -41,7 +41,7 @@ public class LoginControl extends HttpServlet {
             Login a = loginDAO.checkLogin(username, password);
             
             if (a == null) {//If there's no instance, redirect to error page
-                response.sendRedirect("Register-error.jsp");
+                response.sendRedirect("login-error.jsp");
             } else {//If login info is correct
                 HttpSession session = request.getSession();//Get current session
                 
