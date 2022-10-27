@@ -13,6 +13,7 @@ body{
 .info-container{
     width: 100vw;
     height: auto;
+    color:black;
 }
 
 .info-container>div{
