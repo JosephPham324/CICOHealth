@@ -17,13 +17,20 @@ Author : Pham Nhat Quang
             />
         <link rel="stylesheet" href = "./css/registeracount.css"/>
         <title>Register Account</title>
+        <style>
+            .error {
+                color: red;
+            }
+        </style>
+        <script src="./scripts/validateRegister.js">
+        </script>
     </head>
     <body>
         <section style="background-image: url('${pageContext.request.contextPath}/image/login.jpg');">
             <div class="container" style="background-image: url('image/login.jpg');">
                 <div class="row col-md-8 offset-4">
                     <div class="login-form">
-                        <form method="post" action="register-control">
+                        <form method="post" action="register-control" onsubmit="return checkAllData()">
                             <fieldset>
                                 <legend>Register</legend>
                                 <div class="form-group row">
@@ -43,7 +50,10 @@ Author : Pham Nhat Quang
                                                 placeholder="Enter your username"
                                                 type="text"
                                                 class="form-control"
+                                                onblur="checkUsername()"
                                                 />
+                                            <div class ="error" id="txtUsernameMessage"></div>
+                                             <div class ="error" id="ErrorDuplicate">Username exist!!</div>
                                         </div>
                                     </div>
                                 </div>
@@ -64,10 +74,38 @@ Author : Pham Nhat Quang
                                                 placeholder="Enter your password"
                                                 type="password"
                                                 class="form-control"
+                                                onblur="checkPassword1()"
                                                 />
+                                            <div class ="error" id="txtPassword1Message"></div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    <label for="password" class="col-4 col-form-label"
+                                           >Confirm password</label
+                                    >
+                                    <div class="col-8">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fa fa-lock"></i>
+                                                </div>
+                                            </div>
+                                            <input
+                                                id="confirmpassword"
+                                                name="confirmpassword"
+                                                placeholder="Enter your confirm password"
+                                                type="password"
+                                                class="form-control"
+                                                onblur="checkPassword2()" 
+                                                />
+                                            <div class ="error" id="txtPassword2Message"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <div class="form-group row">
                                     <label for="firstName" class="col-4 col-form-label"
                                            >First Name</label
@@ -85,7 +123,9 @@ Author : Pham Nhat Quang
                                                 placeholder="Enter your first name"
                                                 type="text"
                                                 class="form-control"
+                                                onblur="checkFirstname()"
                                                 />
+                                            <div class ="error" id="txtFirstNameMessage"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +146,9 @@ Author : Pham Nhat Quang
                                                 placeholder="Enter your last name"
                                                 type="text"
                                                 class="form-control"
+                                                onblur="checkLastname()"
                                                 />
+                                            <div class ="error" id="txtLastNameMessage"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -125,7 +167,9 @@ Author : Pham Nhat Quang
                                                 placeholder="Enter your email"
                                                 type="text"
                                                 class="form-control"
+                                                 onblur="checkEmail()"
                                                 />
+                                            <div class ="error" id="txtEmailMessage"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +188,9 @@ Author : Pham Nhat Quang
                                                 placeholder="Enter your phone"
                                                 type="text"
                                                 class="form-control"
+                                                onblur="checkPhone()"
                                                 />
+                                            <div class ="error" id="txtPhoneMessage"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -162,5 +208,7 @@ Author : Pham Nhat Quang
             </div>
     </body>
 </section>
-
+            <script>
+                 document.getElementById("ErrorDuplicate").style.display = 'none';
+            </script>
 </html>

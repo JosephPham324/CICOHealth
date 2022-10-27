@@ -32,7 +32,7 @@ public class RegisterControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -80,43 +80,48 @@ public class RegisterControl extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
+        LoginDAO logDAO = new LoginDAO();
 
-        String empString = "";
+        int checkDuplicate;
+        try {
+            checkDuplicate = logDAO.checkUserNameDuplicate(username);
+            if (checkDuplicate == 1) {
+                response.sendRedirect("Register-Error.jsp");
+            } else {
+                String empString = "";
 
-        String salt = Encryption.generateSalt(username, password);
-        String hashedPassword = RegLoginLogic.encryptPassword(salt, password);
+                String salt = Encryption.generateSalt(username, password);
+                String hashedPassword = RegLoginLogic.encryptPassword(salt, password);
 
-        if (hashedPassword.equals(empString) || salt.equals("Unable to generate salt")) {
-            response.sendRedirect("Register-Error.jsp");
-        } else {
-            LoginDAO logDAO = new LoginDAO();
+                if (hashedPassword.equals(empString) || salt.equals("Unable to generate salt")) {
+                    response.sendRedirect("Register-Error.jsp");
+                }
+                if (username == null || password == null || firstName == null || lastName == null || email == null || phone == null) {
+                    response.sendRedirect("Register-Error.jsp");
+                } else {
 
-            try {
-                logDAO.addLoginInfo(username, salt, hashedPassword);
+                    logDAO.addLoginInfo(username, salt, hashedPassword);
 
-                int loginID = 0;
-                loginID = logDAO.getLastID();
+                    int loginID = 0;
+                    loginID = logDAO.getLastID();
 
-                UserDAO userDAO = new UserDAO();
+                    UserDAO userDAO = new UserDAO();
 
-                userDAO.addUser(loginID + "", "2", firstName, lastName, phone, email);
+                    userDAO.addUser(loginID + "", "2", firstName, lastName, phone, email);
 //////////
-                logDAO.updateUserID(loginID, loginID);
+                    logDAO.updateUserID(loginID, loginID);
 
-                request.setAttribute("userID", loginID);
-                response.getWriter().println(loginID);
-                response.getWriter().print(request.getAttribute("userID"));
+                    request.setAttribute("userID", loginID);
+                    response.getWriter().println(loginID);
+                    response.getWriter().print(request.getAttribute("userID"));
 
-                request.getRequestDispatcher("healthinfo")
-                        .forward(request, response);
-
-            } catch (SQLException ex) {
-                response.getWriter().write(ex.getMessage());
-                Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
+                    request.getRequestDispatcher("healthinfo")
+                            .forward(request, response);
+                }
             }
-
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /**
