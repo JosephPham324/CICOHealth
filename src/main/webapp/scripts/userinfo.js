@@ -152,8 +152,8 @@ loginEditButtons.forEach((button) => {
     if (button == loginEditButtons[1]) {
       form.onsubmit = function () {
         return (
-          document.getElementById("password").value === document.getElementById("confirmPassword").value
-           && correctPassword
+          document.getElementById("password").value ===
+            document.getElementById("confirmPassword").value && correctPassword
         );
       };
     }
@@ -250,5 +250,135 @@ userEditButtons.forEach((button) => {
         </div>`;
     form.innerHTML = formContent;
     form.action = "edit-user-info-control";
+  });
+});
+
+healthEditButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    let field = button.parentElement.childNodes[3];
+    let healthFields = document.querySelectorAll(".health-info .field-value");
+    let formContent = `
+        <div class="form-group row" style = "display:${
+          healthFields[0] === field ? "flex" : "none"
+        }">
+          <label for="age" class="col-4 col-form-label">Age:</label>
+          <div class="col-8">
+            <input
+              id="age"
+              name="age"
+              placeholder="Your age"
+              type="text"
+              class="form-control"
+              aria-describedby="ageHelpBlock"
+              value = "${healthFields[0].textContent}"
+            />
+            <span id="ageBlock" class="form-text text-muted"
+              >Help text</span
+            >
+          </div>
+        </div>
+        <div class="form-group row" style = "display:${
+          healthFields[1] === field ? "flex" : "none"
+        }">
+          <label for="gender" class="col-4 col-form-label">Gender:</label>
+          <div class="col-8">
+            <input
+              id="gender"
+              name="gender"
+              placeholder="Your gender"
+              type="text"
+              class="form-control"
+              aria-describedby="genderHelpBlock"
+              value = "${healthFields[1].textContent}"
+            />
+            <span id="genderHelpBlock" class="form-text text-muted"
+              >Help text</span
+            >
+          </div>
+        </div>
+        <div class="form-group row" style = "display:${
+          healthFields[2] === field ? "flex" : "none"
+        }">
+            <label for="height" class="col-4 col-form-label">Height:</label>
+            <div class="col-8">
+              <input
+                id="height"
+                name="height"
+                placeholder="Your height"
+                type="number"
+                class="form-control"
+                aria-describedby="heightHelpBlock"
+                value = "${healthFields[2].textContent}"
+              />
+              <span id="heightHelpBlock" class="form-text text-muted"
+                >Help text</span
+              >
+            </div>
+        </div>
+        <div class="form-group row" style = "display:${
+          healthFields[3] === field ? "flex" : "none"
+        }">
+            <label for="weight" class="col-4 col-form-label">Weight:</label>
+            <div class="col-8">
+              <input
+                id="weight"
+                name="weight"
+                placeholder="Your weight"
+                type="number"
+                step="0.1"
+                class="form-control"
+                aria-describedby="weightHelpBlock"
+                value = "${healthFields[3].textContent}"
+              />
+              <span id="weightHelpBlock" class="form-text text-muted"
+                >Help text</span
+              >
+            </div>
+        </div>
+        <div class="form-group row"  style = "display:${
+          healthFields[4] === field ? "flex" : "none"
+        }">
+          <label class="col-4 col-form-label">Activeness</label> 
+          <div class="col-8">
+            <div class="custom-controls-stacked">
+             <div class="custom-control custom-checkbox">
+          <input name="activeness" id="activeness_0" type="radio" class="custom-control-input" value="0" required="required" aria-describedby="activenessHelpBlock"> 
+          <label for="activeness_0" class="custom-control-label">Not very active</label>
+            </div>
+          </div>
+          <div class="custom-controls-stacked">
+            <div class="custom-control custom-checkbox">
+              <input name="activeness" id="activeness_1" type="radio" class="custom-control-input" value="1" required="required" aria-describedby="activenessHelpBlock"> 
+              <label for="activeness_1" class="custom-control-label">Lightly active</label>
+            </div>
+          </div>
+          <div class="custom-controls-stacked">
+            <div class="custom-control custom-checkbox">
+              <input name="activeness" id="activeness_2" type="radio" class="custom-control-input" value="2" required="required" aria-describedby="activenessHelpBlock"> 
+              <label for="activeness_2" class="custom-control-label">Active</label>
+            </div>
+          </div>
+          <div class="custom-controls-stacked">
+            <div class="custom-control custom-checkbox">
+              <input name="activeness" id="activeness_3" type="radio" required="required" class="custom-control-input" value="3" aria-describedby="activenessHelpBlock"> 
+              <label for="activeness_3" class="custom-control-label">Very active</label>
+            </div>
+          </div> 
+          <span id="activenessHelpBlock" class="form-text text-muted">Changing this will cause your nutrition goals to change.</span>
+        </div>
+      </div> 
+      <input type = "hidden" name ="destination" value = "user-info">
+        <div class="form-group row">
+          <div class="offset-4 col-8">
+            <button name="submit" type="submit" class="btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </div>`;
+    form.innerHTML = formContent;
+
+    
+    document.getElementById(`activeness_${activeness}`).checked = true;
+    form.action = "edit-health-info-control";
   });
 });

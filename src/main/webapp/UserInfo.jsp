@@ -4,6 +4,8 @@
     Author     : ASUS
 --%>
 
+<%@page import="DAO.HealthDAO"%>
+<%@page import="Entity.UserHealthInfo"%>
 <%@page import="Entity.User"%>
 <%@page import="Entity.Login"%>
 <%@page import="Security.RegLoginLogic"%>
@@ -44,9 +46,11 @@
         <%
             DAO.LoginDAO lDAO = new DAO.LoginDAO();
             DAO.UserDAO uDAO = new DAO.UserDAO();
-            Login loginInfo = lDAO.getLoginInfo(request.getSession().getAttribute("userID").toString());
-            User user = uDAO.getUserByID(request.getSession().getAttribute("userID").toString());
-
+            DAO.HealthDAO hDAO = new HealthDAO();
+            String id = request.getSession().getAttribute("userID").toString();
+            Login loginInfo = lDAO.getLoginInfo(id);
+            User user = uDAO.getUserByID(id);
+            UserHealthInfo healthInfo = hDAO.findUserHealthInfo(Integer.parseInt(id));
             String enteredPassword = request.getParameter("password");
 
             boolean correctPassword = false;
@@ -174,22 +178,29 @@
                     <h1>Quang's Health Information</h1>
                     <div class="field">
                         <div class="label">Age:</div>
-                        <span class="field-value" id="age-value">19</span>
+                        <span class="field-value" id="age-value"><%=healthInfo.getAge()%></span>
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                     </div>
                     <div class="field">
                         <div class="label">Gender:</div>
-                        <span class="field-value" id="gender-value">Male</span>
+                        <span class="field-value" id="gender-value"><%=healthInfo.getGender()%></span>
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                     </div>
                     <div class="field">
                         <div class="label">Height:</div>
-                        <span class="field-value">170cm</span>
+                        <span class="field-value"><%=healthInfo.getHeight()%></span>
+                        <span>cm</span>
+                        <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
+                    </div>
+                    <div class="field">
+                        <div class="label">Weight:</div>
+                        <span class="field-value"><%=healthInfo.getWeight()%></span>
+                        <span>kg</span>
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                     </div>
                     <div class="field">
                         <div class="label">Activeness:</div>
-                        <span class="field-value">Moderately active</span>
+                        <span class="field-value"><%=healthInfo.getActivenessString()%></span>
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                     </div>
                     <div class="field">
@@ -209,8 +220,9 @@
         <script>
             document.getElementById('txtPassword1Message').style.display = 'none';
             let correctPassword = <%=correctPassword%>;
-            let enteredPassword = "<%=enteredPassword%>";            
-            if (!(correctPassword)) {
+            let activeness = <%=healthInfo.getActiveness()%>;
+            console.log(activeness);
+            if (!correctPassword) {
                 let showPassword = document.getElementById('toggle-password-visibility');
                 showPassword.addEventListener('click', checkPassword);
                 if(enteredPassword !== "null") {
