@@ -175,6 +175,11 @@
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                     </div>
                     <div class="field">
+                        <div class="label">Weight:</div>
+                        <span class="field-value">80kg</span>
+                        <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
+                    </div>
+                    <div class="field">
                         <div class="label">Activeness:</div>
                         <span class="field-value">Moderately active</span>
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
