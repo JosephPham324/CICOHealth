@@ -30,6 +30,12 @@
             />
         <link rel="stylesheet" href="css/userinfo.css" />
         <title>User Profile</title>
+        <style>
+            .error {
+                color: red;
+            }
+        </style>
+
     </head>
     <body>
         <c:if test="${sessionScope.userID == null}">
@@ -40,19 +46,20 @@
             DAO.UserDAO uDAO = new DAO.UserDAO();
             Login loginInfo = lDAO.getLoginInfo(request.getSession().getAttribute("userID").toString());
             User user = uDAO.getUserByID(request.getSession().getAttribute("userID").toString());
-            
+
             String enteredPassword = request.getParameter("password");
-            
+
             boolean correctPassword = false;
-            if (request.getParameter("password")!=null)
-            correctPassword = Security.RegLoginLogic.verifyPassword(
-                    request.getParameter("password").toString(),
-                    loginInfo.getPasswordSalt(),
-                    loginInfo.getPasswordHash());
+            if (request.getParameter("password") != null) {
+                correctPassword = Security.RegLoginLogic.verifyPassword(
+                        request.getParameter("password").toString(),
+                        loginInfo.getPasswordSalt(),
+                        loginInfo.getPasswordHash());
+            }
             Object panel = request.getSession().getAttribute("panel");
             int panelSwitch = 0;
-            if (panel!=null){
-                switch (panel.toString()){
+            if (panel != null) {
+                switch (panel.toString()) {
                     case "userInfo":
                         panelSwitch = 1;
                         break;
@@ -101,24 +108,24 @@
             <div class="col-sm-2">
                 <ul class="nav flex-column nav-pills nav-fill">
                     <li class="nav-item">
-                        <a class="nav-link <%=panelSwitch==0?"active":""%>" href="#" data-destination="#login-info"
+                        <a class="nav-link <%=panelSwitch == 0 ? "active" : ""%>" href="#" data-destination="#login-info"
                            >Login Info</a
                         >
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <%=panelSwitch==1?"active":""%>" href="#" data-destination="#user-info"
+                        <a class="nav-link <%=panelSwitch == 1 ? "active" : ""%>" href="#" data-destination="#user-info"
                            >User Info</a
                         >
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <%=panelSwitch==2?"active":""%>" href="#" data-destination="#health-info"
+                        <a class="nav-link <%=panelSwitch == 2 ? "active" : ""%>" href="#" data-destination="#health-info"
                            >Health Info</a
                         >
                     </li>
                 </ul>
             </div>
             <div class="col-sm-10 row g-0 info tab-content" id="pills-tabContent">
-                <div class="login-info <%=panelSwitch==0?"active":""%>" id="login-info">
+                <div class="login-info <%=panelSwitch == 0 ? "active" : ""%>" id="login-info">
                     <h1>Your Login Information</h1>
                     <div class="field">
                         <div class="label">Username:</div>
@@ -127,14 +134,20 @@
                     </div>
                     <div class="field">
                         <div class="label">Password:</div>
-                        <span class="field-value hidden" id="password-value"><%if (correctPassword){
-                                    out.print(enteredPassword);
-                                } else {out.print("***********");}%></span>
+                        <span class="field-value hidden" id="password-value"><%if (correctPassword) {
+                                out.print(enteredPassword);
+                            } else {
+                                out.print("***********");
+                            }%></span>
+
                         <span id="toggle-password-visibility"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                     </div>
+                    <div class ="error" id="txtPassword1Message">Incorrect password</div>
                 </div>
-                <div class="user-info <%=panelSwitch==1?"active":""%>" id="user-info">
+                 
+
+                <div class="user-info <%=panelSwitch == 1 ? "active" : ""%>" id="user-info">
                     <h1>Your Personal Information</h1>
                     <div class="field">
                         <div class="label">First name:</div>
@@ -157,7 +170,7 @@
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                     </div>
                 </div>
-                <div class="health-info <%=panelSwitch==2?"active":""%>" id="health-info">
+                <div class="health-info <%=panelSwitch == 2 ? "active" : ""%>" id="health-info">
                     <h1>Quang's Health Information</h1>
                     <div class="field">
                         <div class="label">Age:</div>
@@ -194,13 +207,22 @@
             </div>
         </div>
         <script>
+            document.getElementById('txtPassword1Message').style.display = 'none';
             let correctPassword = <%=correctPassword%>;
-            if (!correctPassword) {
+            let enteredPassword = "<%=enteredPassword%>";            
+            if (!(correctPassword)) {
                 let showPassword = document.getElementById('toggle-password-visibility');
                 showPassword.addEventListener('click', checkPassword);
+                if(enteredPassword !== "null") {
+                   document.getElementById('txtPassword1Message').style.display = 'block';
+                } 
+            } else {
+                document.getElementById('txtPassword1Message').style.display = 'none';
             }
-            function checkPassword(){
+
+            function checkPassword() {
                 {
+
                     let form = document.querySelector('.form form')
                     form.action = '#';
                     let html = `
@@ -235,7 +257,7 @@
             integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
             crossorigin="anonymous"
         ></script>
-        <script src="scripts/userinfo.js"></script>
+        <script src="./scripts/userinfo.js"></script>
     </body>
 </html>
 
