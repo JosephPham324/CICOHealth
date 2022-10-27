@@ -305,7 +305,7 @@ healthEditButtons.forEach((button) => {
                 id="height"
                 name="height"
                 placeholder="Your height"
-                type="text"
+                type="number"
                 class="form-control"
                 aria-describedby="heightHelpBlock"
                 value = "${healthFields[2].textContent}"
@@ -318,18 +318,19 @@ healthEditButtons.forEach((button) => {
         <div class="form-group row" style = "display:${
           healthFields[3] === field ? "flex" : "none"
         }">
-            <label for="height" class="col-4 col-form-label">Height:</label>
+            <label for="weight" class="col-4 col-form-label">Weight:</label>
             <div class="col-8">
               <input
-                id="height"
-                name="height"
-                placeholder="Your height"
-                type="text"
+                id="weight"
+                name="weight"
+                placeholder="Your weight"
+                type="number"
+                step="0.1"
                 class="form-control"
-                aria-describedby="heightHelpBlock"
+                aria-describedby="weightHelpBlock"
                 value = "${healthFields[3].textContent}"
               />
-              <span id="heightHelpBlock" class="form-text text-muted"
+              <span id="weightHelpBlock" class="form-text text-muted"
                 >Help text</span
               >
             </div>
@@ -341,31 +342,32 @@ healthEditButtons.forEach((button) => {
           <div class="col-8">
             <div class="custom-controls-stacked">
              <div class="custom-control custom-checkbox">
-          <input name="activeness" id="activeness_0" type="checkbox" class="custom-control-input" value="0" required="required" aria-describedby="activenessHelpBlock"> 
+          <input name="activeness" id="activeness_0" type="radio" class="custom-control-input" value="0" required="required" aria-describedby="activenessHelpBlock"> 
           <label for="activeness_0" class="custom-control-label">Not very active</label>
             </div>
           </div>
           <div class="custom-controls-stacked">
             <div class="custom-control custom-checkbox">
-              <input name="activeness" id="activeness_1" type="checkbox" class="custom-control-input" value="1" required="required" aria-describedby="activenessHelpBlock"> 
+              <input name="activeness" id="activeness_1" type="radio" class="custom-control-input" value="1" required="required" aria-describedby="activenessHelpBlock"> 
               <label for="activeness_1" class="custom-control-label">Lightly active</label>
             </div>
           </div>
           <div class="custom-controls-stacked">
             <div class="custom-control custom-checkbox">
-              <input name="activeness" id="activeness_2" type="checkbox" class="custom-control-input" value="2" required="required" aria-describedby="activenessHelpBlock"> 
+              <input name="activeness" id="activeness_2" type="radio" class="custom-control-input" value="2" required="required" aria-describedby="activenessHelpBlock"> 
               <label for="activeness_2" class="custom-control-label">Active</label>
             </div>
           </div>
           <div class="custom-controls-stacked">
             <div class="custom-control custom-checkbox">
-              <input name="activeness" id="activeness_3" type="checkbox" required="required" class="custom-control-input" value="3" aria-describedby="activenessHelpBlock"> 
+              <input name="activeness" id="activeness_3" type="radio" required="required" class="custom-control-input" value="3" aria-describedby="activenessHelpBlock"> 
               <label for="activeness_3" class="custom-control-label">Very active</label>
             </div>
           </div> 
           <span id="activenessHelpBlock" class="form-text text-muted">Changing this will cause your nutrition goals to change.</span>
         </div>
       </div> 
+      <input type = "hidden" name ="destination" value = "user-info">
         <div class="form-group row">
           <div class="offset-4 col-8">
             <button name="submit" type="submit" class="btn btn-primary">
@@ -374,6 +376,9 @@ healthEditButtons.forEach((button) => {
           </div>
         </div>`;
     form.innerHTML = formContent;
+
+    
+    document.getElementById(`activeness_${activeness}`).checked = true;
     form.action = "edit-health-info-control";
   });
 });

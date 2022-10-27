@@ -24,7 +24,7 @@
             Entity.UserHealthInfo healthInfo = null;//Stores userID's UserHeatlhInfo entry
             if (!userID.equals("")) {
                 //Find entry if ID isn't empty
-                healthInfo = new HealthDAO().findUserID(Integer.parseInt(userID));
+                healthInfo = new HealthDAO().findUserHealthInfo(Integer.parseInt(userID));
             }
             //Stores UserHealthInfo attributes values
             //Initiated with a preset value
