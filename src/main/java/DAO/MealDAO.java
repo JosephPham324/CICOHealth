@@ -19,13 +19,40 @@ import java.util.logging.Logger;
  */
 public class MealDAO {
 
+    /**
+     * Connection to database
+     */
     Connection con = null;
+
+    /**
+     * Move query from Netbeans to SQl
+     */
     PreparedStatement ps = null;
-    ResultSet rs = null;
+
+    /**
+     * Save query result
+     */
+    ResultSet rs = null; 
+
+    /**
+     *
+     */
     String query;
+
+    /**
+     *
+     */
     String datetimePattern = "yyyy-MM-dd HH:mm:ss";
+
+    /**
+     *
+     */
     SimpleDateFormat dateFormatter;
 
+    /**
+     *
+     * @param dateFormat
+     */
     public void setDateFormat(SimpleDateFormat dateFormat) {
         this.dateFormatter = dateFormat;
     }
@@ -39,6 +66,7 @@ public class MealDAO {
      * @param protein
      * @param fat
      * @param carbs
+     * @throws java.sql.SQLException
      */
     public void insertMeal(String mealName, Date dateTime, int userID, double calories, double protein, double fat, double carbs)
             throws SQLException {
@@ -64,6 +92,7 @@ public class MealDAO {
      * @param protein
      * @param fat
      * @param carbs
+     * @throws java.sql.SQLException
      */
     public void insertMeal(String mealName, String dateTime, String userID, String calories, String protein, String fat, String carbs)
             throws SQLException {
@@ -82,6 +111,11 @@ public class MealDAO {
         ps.executeUpdate();
     }
 
+    /**
+     *
+     * @param userID
+     * @return
+     */
     public List<Meal> getMealsByUserID(String userID) {
         try {
             query = "select * from dbo.MEAL where USERID = ?";
@@ -108,6 +142,14 @@ public class MealDAO {
         return null;
     }
 
+    /**
+     *
+     * @param date
+     * @param time
+     * @param name
+     * @param userID
+     * @throws SQLException
+     */
     public void deleteMeal(String date, String time, String name, String userID) throws SQLException {
         query = "delete from MEAL\n"
                 + "where USERID = ? and \n"
@@ -123,6 +165,10 @@ public class MealDAO {
         ps.executeUpdate();
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         MealDAO dao = new MealDAO();
         System.out.println(dao.getMealsByUserID(2 + ""));

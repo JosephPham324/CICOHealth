@@ -1,4 +1,4 @@
-package DAO;
+ package DAO;
 
 import Entity.MealItem;
 import context.DBContext;
@@ -17,13 +17,49 @@ import java.util.List;
  */
 public class MealItemDAO {
 
+    /**
+     * Connection to database
+     */
     Connection con = null;
+
+    /**
+     * Move query from Netbeans to SQl
+     */
     PreparedStatement ps = null;
-    ResultSet rs = null;
+
+    /**
+     * Save query result
+     */
+    ResultSet rs = null; 
+
+    /**
+     *
+     */
     String query;
+
+    /**
+     *
+     */
     String datetimePattern = "yyyy-MM-dd HH:mm:ss";
+
+    /**
+     *
+     */
     SimpleDateFormat dateFormatter;
 
+    /**
+     *
+     * @param mealName
+     * @param dateTime
+     * @param userID
+     * @param name
+     * @param calories
+     * @param protein
+     * @param fat
+     * @param carbs
+     * @param weight
+     * @throws SQLException
+     */
     public void insertMealItem(String mealName, Date dateTime, int userID,String name, double calories, double protein, double fat, double carbs, String weight)
             throws SQLException {
         query = "insert into dbo.MEALITEM values(?,?,?,?,?,?,?,?,?)";
@@ -43,7 +79,21 @@ public class MealItemDAO {
         ps.executeUpdate();
 
     }
-        public void insertMealItem(String mealName, String dateTime, String userID,String name, String calories, String protein, String fat, String carbs, String weight)
+
+    /**
+     *
+     * @param mealName
+     * @param dateTime
+     * @param userID
+     * @param name
+     * @param calories
+     * @param protein
+     * @param fat
+     * @param carbs
+     * @param weight
+     * @throws SQLException
+     */
+    public void insertMealItem(String mealName, String dateTime, String userID,String name, String calories, String protein, String fat, String carbs, String weight)
             throws SQLException {
         query = "insert into dbo.MEALITEM values(?,?,?,?,?,?,?,?,?)";
         this.dateFormatter = new SimpleDateFormat(datetimePattern);
@@ -63,6 +113,14 @@ public class MealItemDAO {
 
     }
     
+    /**
+     *
+     * @param mealName
+     * @param mealDateTime
+     * @param userID
+     * @return
+     * @throws SQLException
+     */
     public List<MealItem> getMealItems(String mealName,String mealDateTime,String userID) throws SQLException{
         query = "select * from MEALITEM where mealName = ? and mealDateTime = ? and userID = ?";
         List<MealItem> res = new ArrayList<>();
@@ -81,7 +139,15 @@ public class MealItemDAO {
         return res;
     }
     
-        public void deleteMealItems(String date, String time, String name, String userID) throws SQLException {
+    /**
+     *
+     * @param date
+     * @param time
+     * @param name
+     * @param userID
+     * @throws SQLException
+     */
+    public void deleteMealItems(String date, String time, String name, String userID) throws SQLException {
         query = "delete from MEALITEM\n"
                 + "where USERID = ? and \n"
                 + "CAST(MEALDATETIME as DATE) = ? and\n"

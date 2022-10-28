@@ -17,11 +17,32 @@ import java.util.logging.Logger;
  */
 public class ExerciseTypeDAO {
 
-    Connection con = null; // connect to SQL server
-    PreparedStatement ps = null; // move query from Netbeen to SQl
-    ResultSet rs = null; // save result query
+    /**
+     * Connection to database
+     */
+    Connection con = null;
+
+    /**
+     * Move query from Netbeans to SQl
+     */
+    PreparedStatement ps = null;
+
+    /**
+     * Save query result
+     */
+    ResultSet rs = null; 
+
+    /**
+     *
+     */
     String query;
 
+    /**
+     *
+     * @param name
+     * @return
+     * @throws SQLException
+     */
     public List<ExerciseType> searchExerciseTypes(String name) throws SQLException {
         List<ExerciseType> res = new ArrayList<>();
 
@@ -38,6 +59,11 @@ public class ExerciseTypeDAO {
         return res;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<ExerciseType> getAllExerciseTypes() throws SQLException {
         List<ExerciseType> res = new ArrayList<>();
 
@@ -53,6 +79,12 @@ public class ExerciseTypeDAO {
         return res;
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     * @throws SQLException
+     */
     public ExerciseType getExerciseByName(String name) throws SQLException {
         query = "SELECT * FROM EXERCISETYPES where EXERCISENAME = ?";
         con = new DBContext().getConnection(); // open connection to SQL
@@ -66,6 +98,10 @@ public class ExerciseTypeDAO {
         return res;
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         ExerciseTypeDAO dao = new ExerciseTypeDAO();
         try {

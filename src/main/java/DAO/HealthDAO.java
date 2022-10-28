@@ -15,10 +15,31 @@ import java.util.List;
  */
 public class HealthDAO {
 
-    Connection con = null; // connect to SQL server
-    PreparedStatement ps = null; // move query from Netbeen to SQl
-    ResultSet rs = null; // save result query
+    /**
+     * Connection to database
+     */
+    Connection con = null;
 
+    /**
+     * Move query from Netbeans to SQl
+     */
+    PreparedStatement ps = null;
+
+    /**
+     * Save query result
+     */
+    ResultSet rs = null; 
+
+    /**
+     *
+     * @param userID
+     * @param gender
+     * @param height
+     * @param weight
+     * @param activeness
+     * @param age
+     * @throws SQLException
+     */
     public void insertHealthInfo(String userID, String gender, String height, String weight, String activeness, String age) throws SQLException {
         String queryInsert = "insert into [Nutrition].[dbo].[USERHEALTHINFO] values(?,?,?,?,?,?)";
         String queryEdit = "update USERHEALTHINFO\n"
@@ -53,6 +74,12 @@ public class HealthDAO {
         }
     }
 
+    /**
+     *
+     * @param ID
+     * @return
+     * @throws SQLException
+     */
     public UserHealthInfo findUserHealthInfo(int ID) throws SQLException {
         String query = "select * from USERHEALTHINFO where USERID = ?";
 
@@ -70,6 +97,11 @@ public class HealthDAO {
         return null;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<UserHealthInfo> getAllUserHealthInfo() throws SQLException {
         String query = "select * from [Nutrition].[dbo].[USERHEALTHINFO]";
         con = new DBContext().getConnection(); // open connection to SQL

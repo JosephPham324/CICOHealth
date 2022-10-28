@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAO;
 
 import Entity.DailyNutritionGoal;
@@ -16,10 +12,26 @@ import java.sql.ResultSet;
  */
 public class GoalDAO {
 
-    Connection con = null; // connect to SQL server
-    PreparedStatement ps = null; // move query from Netbeen to SQl
-    ResultSet rs = null; // save result query
+    /**
+     * Connection to database
+     */
+    Connection con = null;
 
+    /**
+     * Move query from Netbeans to SQl
+     */
+    PreparedStatement ps = null;
+
+    /**
+     * Save query result
+     */
+    ResultSet rs = null; 
+
+    /**
+     *
+     * @param userId
+     * @param calorie
+     */
     public void addGoal(String userId, String calorie) {
         //Công thức macro: 
         //Cứ 4 calo = 01g Protein
@@ -71,6 +83,15 @@ public class GoalDAO {
         }
     }
 
+    /**
+     *
+     * @param weight
+     * @param height
+     * @param age
+     * @param gender
+     * @param activity
+     * @return
+     */
     public double calculateTDEE(String weight, String height, String age, String gender, String activity) {
         int av = Integer.parseInt(activity);
         double r = 0;
@@ -89,6 +110,11 @@ public class GoalDAO {
         return calories;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public DailyNutritionGoal getGoalbyID(int id) {
         String query = "select * from DAILYNUTRITIONGOAL\n"
                 + "where USERID = ?";
@@ -108,6 +134,10 @@ public class GoalDAO {
         return null;
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         GoalDAO g = new GoalDAO();
         DailyNutritionGoal info = g.getGoalbyID(1);

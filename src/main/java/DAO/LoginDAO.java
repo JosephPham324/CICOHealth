@@ -12,8 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -21,10 +19,28 @@ import java.util.logging.Logger;
  */
 public class LoginDAO {
 
+    /**
+     * Connection to database
+     */
     Connection con = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
 
+    /**
+     * Move query from Netbeans to SQl
+     */
+    PreparedStatement ps = null;
+
+    /**
+     * Save query result
+     */
+    ResultSet rs = null; 
+
+    /**
+     *
+     * @param username
+     * @param salt
+     * @param hashedPassword
+     * @throws SQLException
+     */
     public void addLoginInfo(String username, String salt, String hashedPassword) throws SQLException {
         String query = "insert into login values(?,?,?,null)";
         con = new DBContext().getConnection(); // open connection to SQL
@@ -37,6 +53,12 @@ public class LoginDAO {
         ps.executeUpdate(); // the same with click to "excute" btn;
     }
 
+    /**
+     *
+     * @param loginID
+     * @param userID
+     * @throws SQLException
+     */
     public void updateUserID(int loginID, int userID) throws SQLException {
         String query = "UPDATE dbo.LOGIN SET USER_ID = ? where LOGINID = ?";
         con = new DBContext().getConnection();
@@ -46,6 +68,11 @@ public class LoginDAO {
         ps.executeUpdate();
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public int getLastID() throws SQLException {
         String query = "SELECT TOP 1 * FROM dbo.LOGIN ORDER BY LOGINID DESC";
         con = new DBContext().getConnection();
@@ -56,7 +83,14 @@ public class LoginDAO {
         }
         return -1;
     }
-     public int checkUserNameDuplicate(String username) throws SQLException {
+
+    /**
+     *
+     * @param username
+     * @return
+     * @throws SQLException
+     */
+    public int checkUserNameDuplicate(String username) throws SQLException {
         String query = "SELECT COUNT(*) FROM [LOGIN] where username=?";
         con = new DBContext().getConnection();
         ps = con.prepareStatement(query);
@@ -69,6 +103,11 @@ public class LoginDAO {
         return 0;
     }
     
+    /**
+     *
+     * @param username
+     * @return
+     */
     public Login findUserName(String username) {
         String query = "select * from LOGIN where USERNAME = ?";
         try {
@@ -88,6 +127,11 @@ public class LoginDAO {
         return null;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<User> getListMember() throws SQLException {
         String query = "select * from [Nutrition].[dbo].[USER]";
         con = new DBContext().getConnection(); // open connection to SQL
@@ -102,6 +146,12 @@ public class LoginDAO {
         return list;
     }
 
+    /**
+     *
+     * @param user
+     * @param enteredPassword
+     * @return
+     */
     public Login checkLogin(String user, String enteredPassword) {
         try {
             String query = "select * from [Nutrition].[dbo].[LOGIN] where [USERNAME] = ?";
@@ -126,6 +176,15 @@ public class LoginDAO {
         return null;
     }
 
+    /**
+     *
+     * @param userId
+     * @param gender
+     * @param height
+     * @param weight
+     * @param activeness
+     * @param age
+     */
     public void insertHealthInfo(String userId, String gender, String height, String weight, String activeness, String age) {
         String query = "insert into [Nutrition].[dbo].[USERHEALTHINFO] values(?,?,?,?,?,?)";
         try {
@@ -142,6 +201,12 @@ public class LoginDAO {
         }
     }
 
+    /**
+     *
+     * @param userID
+     * @return
+     * @throws SQLException
+     */
     public Login getLoginInfo(String userID) throws SQLException {
         String query = "select * from LOGIN where USER_ID = ?";
         Login res = null;
@@ -161,6 +226,13 @@ public class LoginDAO {
         return res;
     }
 
+    /**
+     *
+     * @param userID
+     * @param username
+     * @param password
+     * @throws Exception
+     */
     public void editLoginInfo(String userID, String username, String password) throws Exception {
         String empString = "";
         String salt = Encryption.generateSalt(username, password);
@@ -185,6 +257,11 @@ public class LoginDAO {
         ps.executeUpdate();
     }
 
+    /**
+     *
+     * @param args
+     * @throws SQLException
+     */
     public static void main(String[] args) throws SQLException {
         LoginDAO dao = new LoginDAO();
 //            try {
