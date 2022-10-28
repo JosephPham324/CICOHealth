@@ -32,7 +32,7 @@ public class MealDAO {
     /**
      * Save query result
      */
-    ResultSet rs = null; 
+    ResultSet rs = null;
 
     /**
      *
@@ -50,6 +50,7 @@ public class MealDAO {
     SimpleDateFormat dateFormatter;
 
     /**
+     * Set date formatter
      *
      * @param dateFormat
      */
@@ -58,14 +59,15 @@ public class MealDAO {
     }
 
     /**
+     * Insert meal into database
      *
-     * @param mealName
-     * @param dateTime
-     * @param userID
-     * @param calories
-     * @param protein
-     * @param fat
-     * @param carbs
+     * @param mealName Name of meal
+     * @param dateTime Data and time of meal
+     * @param userID ID of user the meal belongs to
+     * @param calories Total calories of the meal
+     * @param protein Total protein in grams of the meal
+     * @param fat Total fat in grams of the meal
+     * @param carbs Total carbs in grams of the meal
      * @throws java.sql.SQLException
      */
     public void insertMeal(String mealName, Date dateTime, int userID, double calories, double protein, double fat, double carbs)
@@ -83,16 +85,18 @@ public class MealDAO {
         ps.setString(7, carbs + "");
         ps.executeUpdate();
     }
-        /**
+
+    /**
+     * Insert meal into database
      *
-     * @param mealName
-     * @param dateTime
-     * @param userID
-     * @param calories
-     * @param protein
-     * @param fat
-     * @param carbs
-     * @throws java.sql.SQLException
+     * @param mealName Name of meal
+     * @param dateTime Data and time of meal
+     * @param userID ID of user the meal belongs to
+     * @param calories Total calories of the meal
+     * @param protein Total protein in grams of the meal
+     * @param fat Total fat in grams of the meal
+     * @param carbs Total carbs in grams of the meal
+     * @throws java.sql.SQLException When update query encounters error
      */
     public void insertMeal(String mealName, String dateTime, String userID, String calories, String protein, String fat, String carbs)
             throws SQLException {
@@ -107,14 +111,15 @@ public class MealDAO {
         ps.setString(5, protein);
         ps.setString(6, fat);
         ps.setString(7, carbs);
-        
+
         ps.executeUpdate();
     }
 
     /**
+     * Get all meals of a user
      *
-     * @param userID
-     * @return
+     * @param userID ID of the user
+     * @return List of Meal objects representing all meals of user
      */
     public List<Meal> getMealsByUserID(String userID) {
         try {
@@ -143,11 +148,13 @@ public class MealDAO {
     }
 
     /**
+     * Delete meal from database
      *
-     * @param date
-     * @param time
-     * @param name
-     * @param userID
+     * @param date Date of the meal, must be in format "yyyy-MM-dd"
+     * @param time Time of the meal, must be in format "HH:mm:ss" (hour from
+     * 0-24)
+     * @param name Name of the meal
+     * @param userID ID of user the meal belongs to
      * @throws SQLException
      */
     public void deleteMeal(String date, String time, String name, String userID) throws SQLException {
@@ -163,14 +170,5 @@ public class MealDAO {
         ps.setString(3, time);
         ps.setString(4, name);
         ps.executeUpdate();
-    }
-
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        MealDAO dao = new MealDAO();
-        System.out.println(dao.getMealsByUserID(2 + ""));
     }
 }

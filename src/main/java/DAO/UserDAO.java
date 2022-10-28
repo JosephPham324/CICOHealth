@@ -32,6 +32,7 @@ public class UserDAO {
 
     /**
      * Get the full lists of users in USER table
+     *
      * @return User objects of all users in database
      */
     public List<User> getListUser() throws SQLException {
@@ -50,6 +51,7 @@ public class UserDAO {
 
     /**
      * Add a user in the database
+     *
      * @param USERID
      * @param USERROLEID
      * @param FIRSTNAME
@@ -74,6 +76,7 @@ public class UserDAO {
 
     /**
      * Get the last ID present in USER table
+     *
      * @return ID number
      */
     public int getLastID() {
@@ -93,6 +96,7 @@ public class UserDAO {
 
     /**
      * Get a user from database using ID
+     *
      * @param id User ID
      * @return User object
      * @throws SQLException When query to database encounters error
@@ -143,10 +147,4 @@ public class UserDAO {
         ps.setString(5, USERID);
         ps.executeUpdate();
     }
-
-//    public static void main(String[] args) {
-//        UserDAO dao = new UserDAO();
-//
-//        dao.addUser("7", "2", "quang", "pham", "0857974230", "2222");
-//    }
 }
