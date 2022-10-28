@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author M S I
+ * @author Pham Nhat Quang
  */
 public class MealDAO {
 

@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 
 /**
  *
- * @author ASUS
+ * @author Nguyen Le Quang Thinh
  */
 public class GoalDAO {
 
@@ -25,12 +25,15 @@ public class GoalDAO {
     /**
      * Save query result
      */
-    ResultSet rs = null; 
+    ResultSet rs = null;
 
     /**
+     * Add nutrition goal in the database or edit existing goal, macro goals are
+     * automatically calculated from calorie Percentages: Protein 30%, Fat 30%,
+     * Carbs 40% of the goal calories
      *
-     * @param userId
-     * @param calorie
+     * @param userId ID of user
+     * @param calorie Calorie goal
      */
     public void addGoal(String userId, String calorie) {
         //Công thức macro: 
@@ -43,12 +46,11 @@ public class GoalDAO {
         //Fat cần nạp: (Daily calorie x ?%)/9
         //Carb cần nạp: (Daily calorie x ?%)/4
 
-        double c = Double.parseDouble(calorie);  
+        double c = Double.parseDouble(calorie);
 
         double protein = 0.3 * c / 4; //Mac dinh 30% protein
         double fat = 0.3 * c / 9; //Mac dinh 30% fat
         double carb = 0.4 * c / 4; //Mac dinh 40% carb
-
 
         String queryInsert = "insert into DAILYNUTRITIONGOAL values(?,?,?,?,?)";
         String queryEdit = "update DAILYNUTRITIONGOAL set CALORIE = ?,\n"
@@ -61,9 +63,9 @@ public class GoalDAO {
                 con = new DBContext().getConnection(); // open connection to SQL
                 ps = con.prepareStatement(queryEdit); // move query from Netbeen to SQl
                 ps.setString(1, calorie);
-                ps.setString(2, protein+"");
-                ps.setString(3, fat+"");
-                ps.setString(4, carb+"");
+                ps.setString(2, protein + "");
+                ps.setString(3, fat + "");
+                ps.setString(4, carb + "");
                 ps.setString(5, userId);
                 ps.executeUpdate(); // the same with click to "excute" btn;
             } else {
@@ -72,9 +74,9 @@ public class GoalDAO {
                 ps = con.prepareStatement(queryInsert); // move query from Netbeen to SQl
                 ps.setString(1, userId);
                 ps.setString(2, calorie);
-                ps.setString(3, protein+"");
-                ps.setString(4, fat+"");
-                ps.setString(5, carb+"");
+                ps.setString(3, protein + "");
+                ps.setString(4, fat + "");
+                ps.setString(5, carb + "");
                 ps.executeUpdate(); // the same with click to "excute" btn;
             }
 
@@ -84,19 +86,20 @@ public class GoalDAO {
     }
 
     /**
+     * Calculate Total Daily Energy Expenditure from health information
      *
-     * @param weight
-     * @param height
-     * @param age
-     * @param gender
-     * @param activity
-     * @return
+     * @param gender Gender of user (male or female)
+     * @param height Height of user (centimeters)
+     * @param weight Weight of user (kilograms)
+     * @param activeness Activeness of user (0-3)
+     * @param age Age of user
+     * @return Total calories as TDEE
      */
-    public double calculateTDEE(String weight, String height, String age, String gender, String activity) {
-        int av = Integer.parseInt(activity);
+    public double calculateTDEE(String weight, String height, String age, String gender, String activeness) {
+        int av = Integer.parseInt(activeness);
         double r = 0;
         double calories = 0;
-        double[] activenessMap = {1.2,1.375,1.55,1.725};
+        double[] activenessMap = {1.2, 1.375, 1.55, 1.725};
         r = activenessMap[av];
         float w = Float.parseFloat(weight);
         float h = Float.parseFloat(height);
@@ -111,9 +114,9 @@ public class GoalDAO {
     }
 
     /**
-     *
-     * @param id
-     * @return
+     * Get a goal record from user ID
+     * @param id User ID
+     * @return DailyNutritionalGoal object containing goals of the user
      */
     public DailyNutritionGoal getGoalbyID(int id) {
         String query = "select * from DAILYNUTRITIONGOAL\n"

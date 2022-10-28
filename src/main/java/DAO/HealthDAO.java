@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author ASUS
+ * @author Nguyen Le Quang Thinh
  */
 public class HealthDAO {
 
@@ -28,17 +28,18 @@ public class HealthDAO {
     /**
      * Save query result
      */
-    ResultSet rs = null; 
+    ResultSet rs = null;
 
     /**
+     * Insert health info of a user into database
      *
-     * @param userID
-     * @param gender
-     * @param height
-     * @param weight
-     * @param activeness
-     * @param age
-     * @throws SQLException
+     * @param userID ID of user
+     * @param gender Gender of user (male or female)
+     * @param height Height of user (centimeters)
+     * @param weight Weight of user (kilograms)
+     * @param activeness Activeness of user (0-3)
+     * @param age Age of user
+     * @throws SQLException When update query encounters error
      */
     public void insertHealthInfo(String userID, String gender, String height, String weight, String activeness, String age) throws SQLException {
         String queryInsert = "insert into [Nutrition].[dbo].[USERHEALTHINFO] values(?,?,?,?,?,?)";
@@ -75,10 +76,11 @@ public class HealthDAO {
     }
 
     /**
+     * Get health info of a user using ID
      *
-     * @param ID
-     * @return
-     * @throws SQLException
+     * @param ID User ID
+     * @return UserHealthInfo object
+     * @throws SQLException When query encounters error
      */
     public UserHealthInfo findUserHealthInfo(int ID) throws SQLException {
         String query = "select * from USERHEALTHINFO where USERID = ?";
@@ -98,9 +100,10 @@ public class HealthDAO {
     }
 
     /**
+     * Get health info records of all users
      *
-     * @return
-     * @throws SQLException
+     * @return List of UserHealthInfo 
+     * @throws SQLException When query encounters error
      */
     public List<UserHealthInfo> getAllUserHealthInfo() throws SQLException {
         String query = "select * from [Nutrition].[dbo].[USERHEALTHINFO]";
