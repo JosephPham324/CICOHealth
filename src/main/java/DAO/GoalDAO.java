@@ -127,14 +127,17 @@ public class GoalDAO {
         String query = "update DAILYNUTRITIONGOAL\n"
                 + "set PROTEIN = ?,\n"
                 + "FAT = ?,\n"
-                + "CARB =?\n"
+                + "CARB =?,\n"
+                + "CALORIE=?\n"
                 + "where USERID = ?";
+        Double calorie = Double.parseDouble(fat)*9 + Double.parseDouble(protein)*4 +Double.parseDouble(carb)*4;
         con = new DBContext().getConnection();
         ps = con.prepareStatement(query);
         ps.setString(1, protein);
         ps.setString(2, fat);
         ps.setString(3, carb);
-        ps.setString(4, userID);
+        ps.setString(4, calorie+"");
+        ps.setString(5, userID);
 
         ps.executeUpdate();
     }

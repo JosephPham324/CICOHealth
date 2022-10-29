@@ -55,7 +55,7 @@ overlay.addEventListener("click", () => {
 
 /**
  * Hide the text content of an element
- * 
+ *
  * @param {Node} element Element to replace text content
  * @param {String} replaceCharacter Character or string to replace with
  */
@@ -65,7 +65,7 @@ function hideTextContent(element, replaceCharacter) {
 
 /**
  * Show a text content in an element
- * 
+ *
  * @param {Node} element Element to show text content
  * @param {String} content Text content to show
  */
@@ -406,7 +406,9 @@ goalEditButtons[0].addEventListener("click", () => {
     <div class="col-8">
       <div class="input-group">
         <input id="proteinPercentage" name="proteinPercentage" placeholder="Enter protein percentage" type="number" class="form-control" required="required"
-        value = "${(protein * 4 / cal).toFixed(2)*100}" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
+        value = "${
+          ((protein * 4) / cal).toFixed(2) * 100
+        }" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
@@ -419,7 +421,9 @@ goalEditButtons[0].addEventListener("click", () => {
     <div class="col-8">
       <div class="input-group">
         <input id="fatPercentage" name="fatPercentage" placeholder="Enter fat percentage" type="number" class="form-control" required="required"
-        value ="${(fat * 9 / cal).toFixed(2)*100}" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
+        value ="${
+          ((fat * 9) / cal).toFixed(2) * 100
+        }" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
@@ -432,7 +436,9 @@ goalEditButtons[0].addEventListener("click", () => {
     <div class="col-8">
       <div class="input-group">
         <input id="carbPercentage" name="carbPercentage" placeholder="Enter carb percentage" type="number" class="form-control"
-        value = "${(carb * 4 / cal).toFixed(2)*100}" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
+        value = "${
+          ((carb * 4) / cal).toFixed(2) * 100
+        }" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
@@ -448,82 +454,92 @@ goalEditButtons[0].addEventListener("click", () => {
   </div>
   `;
   form.innerHTML = formContent;
-  form.action="edit-goal-control"
-  let proteinPercentage = document.getElementById('proteinPercentage')
-  let fatPercentage = document.getElementById('fatPercentage')
-  let carbPercentage = document.getElementById('carbPercentage')
-  let percentages = [proteinPercentage,fatPercentage,carbPercentage]
-  console.log(percentages)
+  form.action = "edit-goal-control";
+  let proteinPercentage = document.getElementById("proteinPercentage");
+  let fatPercentage = document.getElementById("fatPercentage");
+  let carbPercentage = document.getElementById("carbPercentage");
+  let percentages = [proteinPercentage, fatPercentage, carbPercentage];
+  console.log(percentages);
   let totalPercentage;
 
-  percentages.forEach(percentage=>{
-
-    percentage.addEventListener('input',()=>{
-      let totalPercentage = Number(proteinPercentage.value)+Number(carbPercentage.value)+Number(fatPercentage.value)
-      let helpBlock = document.getElementById(percentage.id+'HelpBlock');
-      if (totalPercentage>100|| totalPercentage<0){
-        helpBlock.innerText='Total percentage of 3 macro must be 100!'
+  percentages.forEach((percentage) => {
+    percentage.addEventListener("input", () => {
+      let totalPercentage =
+        Number(proteinPercentage.value) +
+        Number(carbPercentage.value) +
+        Number(fatPercentage.value);
+      let helpBlock = document.getElementById(percentage.id + "HelpBlock");
+      if (totalPercentage > 100 || totalPercentage < 0) {
+        helpBlock.innerText = "Total percentage of 3 macro must be 100!";
       } else {
-        percentages.forEach(item=>{
-          document.getElementById(item.id+'HelpBlock').innerText=''
-        })
+        percentages.forEach((item) => {
+          document.getElementById(item.id + "HelpBlock").innerText = "";
+        });
       }
-    })
-  })
+    });
+  });
 });
 
 goalEditButtons.slice(1).forEach((button) => {
   button.addEventListener("click", () => {
     let field = button.parentElement.childNodes[4];
     let goalFields = document.querySelectorAll(".nutrition-goal .field-value");
-    console.log(field)
-    console.log(goalFields)
+    console.log(field);
+    console.log(goalFields);
     let formContent = `
-    <div class="form-group row" style = "display:${
-      goalFields[1] === field ? "flex" : "none"
-    }">
+    <div class="form-group row">
     <label for="proteinPercentage" class="col-4 col-form-label">Protein</label> 
     <div class="col-8">
       <div class="input-group">
         <input id="proteinPercentage" name="proteinPercentage" placeholder="Enter protein weight" type="number" class="form-control" required="required" aria-describedby="proteinPercentageHelpBlock"
-        value="${protein}" min ="0"> 
+        value="${protein}" min ="0" step = "0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">g</div>
         </div>
       </div> 
-      <span id="proteinPercentageHelpBlock" class="form-text text-muted">30% daily calorie</span>
+      <span id="proteinPercentageHelpBlock" class="form-text text-muted">${(
+        ((protein * 4) / cal) *
+        100
+      ).toFixed(1)}% saved daily calorie</span>
     </div>
   </div>
-  <div class="form-group row"  style = "display:${
-    goalFields[2] === field ? "flex" : "none"
-  }">
+  <div class="form-group row">
     <label for="fatPercentage" class="col-4 col-form-label">Fat</label> 
     <div class="col-8">
       <div class="input-group">
         <input id="fatPercentage" name="fatPercentage" placeholder="Enter fat weight" type="number" class="form-control" required="required" aria-describedby="fatPercentageHelpBlock"
-        value = "${fat}}" min = "0"> 
+        value = "${fat}" min = "0" step="0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">g</div>
         </div>
       </div> 
-      <span id="fatPercentageHelpBlock" class="form-text text-muted">30% daily calorie</span>
+      <span id="fatPercentageHelpBlock" class="form-text text-muted">${(
+        ((fat * 9) / cal) *
+        100
+      ).toFixed(1)}% saved daily calorie</span>
     </div>
   </div>
-  <div class="form-group row"  style = "display:${
-    goalFields[3] === field ? "flex" : "none"
-  }">
+  <div class="form-group row">
     <label for="carbPercentage" class="col-4 col-form-label">Carb</label> 
     <div class="col-8">
       <div class="input-group">
         <input id="carbPercentage" name="carbPercentage" placeholder="Enter carb weight" type="number" class="form-control" aria-describedby="carbPercentageHelpBlock"
-        value = "${carb}" min ="0"> 
+        value = "${carb}" min ="0" step = "0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">g</div>
         </div>
       </div> 
-      <span id="carbPercentageHelpBlock" class="form-text text-muted">40% daily calories</span>
+      <span id="carbPercentageHelpBlock" class="form-text text-muted">${(
+        ((carb * 4) / cal) *
+        100
+      ).toFixed(1)}% saved daily calories</span>
     </div>
   </div> 
+  <div class ="form-group row">
+      <div class ="col-form-label col-4">Total macro calorie</div>
+      <div class ="col-8" id ="totalCalorie">${cal}</div>
+  </div>
+  <input type="hidden" name="purpose" value ="edit-macro">
   <div class="form-group row">
     <div class="offset-4 col-8">
       <button name="submit" type="submit" class="btn btn-primary">Submit</button>
@@ -531,5 +547,25 @@ goalEditButtons.slice(1).forEach((button) => {
   </div>
     `;
     form.innerHTML = formContent;
+    form.action="edit-goal-control"
+    let proteinWeight = document.getElementById("proteinPercentage");
+    let fatWeight = document.getElementById("fatPercentage");
+    let carbWeight = document.getElementById("carbPercentage");
+    let weights = [proteinWeight, fatWeight, carbWeight];
+    let macroMap = [4, 9, 4];
+
+    weights.forEach((weight) => {
+      weight.addEventListener("input", () => {
+        let calPerGram = macroMap[weights.indexOf(weight)];
+        let percentage = ((Number(weight.value) * calPerGram) / cal) * 100;
+        let helpBlock = document.getElementById(weight.id + "HelpBlock");
+        helpBlock.innerText = `${percentage.toFixed(1)}% saved daily calorie`;
+        let totalCal =0;
+        weights.forEach(item=>{
+          totalCal+=Number(item.value)*macroMap[weights.indexOf(item)]
+        })
+        document.getElementById("totalCalorie").innerText=`${totalCal.toFixed(1)}kcal`
+      });
+    });
   });
 });
