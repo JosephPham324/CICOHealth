@@ -278,7 +278,7 @@ healthEditButtons.forEach((button) => {
               value = "${healthFields[0].textContent}"
             />
             <span id="ageBlock" class="form-text text-muted"
-              >Help text</span
+              >Changing this will also change your nutrition goal</span
             >
           </div>
         </div>
@@ -297,7 +297,7 @@ healthEditButtons.forEach((button) => {
               value = "${healthFields[1].textContent}"
             />
             <span id="genderHelpBlock" class="form-text text-muted"
-              >Help text</span
+              >Changing this will also change your nutrition goal</span
             >
           </div>
         </div>
@@ -316,7 +316,7 @@ healthEditButtons.forEach((button) => {
                 value = "${healthFields[2].textContent}"
               />
               <span id="heightHelpBlock" class="form-text text-muted"
-                >Help text</span
+                >Changing this will also change your nutrition goal</span
               >
             </div>
         </div>
@@ -336,7 +336,7 @@ healthEditButtons.forEach((button) => {
                 value = "${healthFields[3].textContent}"
               />
               <span id="weightHelpBlock" class="form-text text-muted"
-                >Help text</span
+                >Changing this will also change your nutrition goal</span
               >
             </div>
         </div>
@@ -369,7 +369,7 @@ healthEditButtons.forEach((button) => {
               <label for="activeness_3" class="custom-control-label">Very active</label>
             </div>
           </div> 
-          <span id="activenessHelpBlock" class="form-text text-muted">Changing this will cause your nutrition goals to change.</span>
+          <span id="activenessHelpBlock" class="form-text text-muted">Changing this will also change your nutrition goal</span>
         </div>
       </div> 
       <input type = "hidden" name ="destination" value = "user-info">
@@ -390,11 +390,11 @@ healthEditButtons.forEach((button) => {
 goalEditButtons[0].addEventListener("click", () => {
   let formContent = `
   <div class="form-group row">
-    <label for="dailycalorie" class="col-4 col-form-label">Daily calorie</label> 
+    <label for="dailyCalorie" class="col-4 col-form-label">Daily calorie</label> 
     <div class="col-8">
       <div class="input-group">
-        <input id="dailycalorie" name="dailycalorie" placeholder="Enter your daily calorie" type="number" class="form-control" required="required"
-        value = "${cal}">
+        <input id="dailyCalorie" name="dailyCalorie" placeholder="Enter your daily calorie" type="number" class="form-control" required="required"
+        value = "${cal}" min = "0" step="0.1">
         <div class="input-group-append">
           <div class="input-group-text">kcal</div>
         </div>
@@ -406,11 +406,12 @@ goalEditButtons[0].addEventListener("click", () => {
     <div class="col-8">
       <div class="input-group">
         <input id="proteinPercentage" name="proteinPercentage" placeholder="Enter protein percentage" type="number" class="form-control" required="required"
-        value = "${(protein * 4 / cal).toFixed(2)*100}" min = "0" max = "100"> 
+        value = "${(protein * 4 / cal).toFixed(2)*100}" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
       </div>
+      <span id="proteinPercentageHelpBlock" class="form-text text-muted"></span>
     </div>
   </div>
   <div class="form-group row">
@@ -418,11 +419,12 @@ goalEditButtons[0].addEventListener("click", () => {
     <div class="col-8">
       <div class="input-group">
         <input id="fatPercentage" name="fatPercentage" placeholder="Enter fat percentage" type="number" class="form-control" required="required"
-        value ="${(fat * 9 / cal).toFixed(2)*100}" min = "0" max = "100"> 
+        value ="${(fat * 9 / cal).toFixed(2)*100}" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
       </div>
+      <span id="fatPercentageHelpBlock" class="form-text text-muted"></span>
     </div>
   </div>
   <div class="form-group row">
@@ -430,13 +432,15 @@ goalEditButtons[0].addEventListener("click", () => {
     <div class="col-8">
       <div class="input-group">
         <input id="carbPercentage" name="carbPercentage" placeholder="Enter carb percentage" type="number" class="form-control"
-        value = "${(carb * 4 / cal).toFixed(2)*100}" min = "0" max = "100"> 
+        value = "${(carb * 4 / cal).toFixed(2)*100}" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
       </div>
+      <span id="carbPercentageHelpBlock" class="form-text text-muted"></span>
     </div>
   </div> 
+  <input type="hidden" name ="purpose" value="edit-cal" id ="purpose">
   <div class="form-group row">
     <div class="offset-4 col-8">
       <button name="submit" type="submit" class="btn btn-primary">Submit</button>
@@ -444,6 +448,28 @@ goalEditButtons[0].addEventListener("click", () => {
   </div>
   `;
   form.innerHTML = formContent;
+  form.action="edit-goal-control"
+  let proteinPercentage = document.getElementById('proteinPercentage')
+  let fatPercentage = document.getElementById('fatPercentage')
+  let carbPercentage = document.getElementById('carbPercentage')
+  let percentages = [proteinPercentage,fatPercentage,carbPercentage]
+  console.log(percentages)
+  let totalPercentage;
+
+  percentages.forEach(percentage=>{
+
+    percentage.addEventListener('input',()=>{
+      let totalPercentage = Number(proteinPercentage.value)+Number(carbPercentage.value)+Number(fatPercentage.value)
+      let helpBlock = document.getElementById(percentage.id+'HelpBlock');
+      if (totalPercentage>100|| totalPercentage<0){
+        helpBlock.innerText='Total percentage of 3 macro must be 100!'
+      } else {
+        percentages.forEach(item=>{
+          document.getElementById(item.id+'HelpBlock').innerText=''
+        })
+      }
+    })
+  })
 });
 
 goalEditButtons.slice(1).forEach((button) => {
@@ -460,7 +486,7 @@ goalEditButtons.slice(1).forEach((button) => {
     <div class="col-8">
       <div class="input-group">
         <input id="proteinPercentage" name="proteinPercentage" placeholder="Enter protein weight" type="number" class="form-control" required="required" aria-describedby="proteinPercentageHelpBlock"
-        value="${protein}"> 
+        value="${protein}" min ="0"> 
         <div class="input-group-append">
           <div class="input-group-text">g</div>
         </div>
@@ -475,7 +501,7 @@ goalEditButtons.slice(1).forEach((button) => {
     <div class="col-8">
       <div class="input-group">
         <input id="fatPercentage" name="fatPercentage" placeholder="Enter fat weight" type="number" class="form-control" required="required" aria-describedby="fatPercentageHelpBlock"
-        value = "${fat}}"> 
+        value = "${fat}}" min = "0"> 
         <div class="input-group-append">
           <div class="input-group-text">g</div>
         </div>
@@ -490,7 +516,7 @@ goalEditButtons.slice(1).forEach((button) => {
     <div class="col-8">
       <div class="input-group">
         <input id="carbPercentage" name="carbPercentage" placeholder="Enter carb weight" type="number" class="form-control" aria-describedby="carbPercentageHelpBlock"
-        value = "${carb}"> 
+        value = "${carb}" min ="0"> 
         <div class="input-group-append">
           <div class="input-group-text">g</div>
         </div>
