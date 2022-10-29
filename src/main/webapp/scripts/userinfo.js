@@ -55,6 +55,7 @@ overlay.addEventListener("click", () => {
 
 /**
  * Hide the text content of an element
+ * 
  * @param {Node} element Element to replace text content
  * @param {String} replaceCharacter Character or string to replace with
  */
@@ -64,6 +65,7 @@ function hideTextContent(element, replaceCharacter) {
 
 /**
  * Show a text content in an element
+ * 
  * @param {Node} element Element to show text content
  * @param {String} content Text content to show
  */
@@ -438,4 +440,63 @@ goalEditButtons[0].addEventListener("click", () => {
   </div>
   `;
   form.innerHTML = formContent;
+});
+
+goalEditButtons.slice(1).forEach((button) => {
+  button.addEventListener("click", () => {
+    let field = button.parentElement.childNodes[4];
+    let goalFields = document.querySelectorAll(".nutrition-goal .field-value");
+    console.log(field)
+    console.log(goalFields)
+    let formContent = `
+    <div class="form-group row" style = "display:${
+      goalFields[1] === field ? "flex" : "none"
+    }">
+    <label for="proteinPercentage" class="col-4 col-form-label">Protein</label> 
+    <div class="col-8">
+      <div class="input-group">
+        <input id="proteinPercentage" name="proteinPercentage" placeholder="Enter protein weight" type="text" class="form-control" required="required" aria-describedby="proteinPercentageHelpBlock"> 
+        <div class="input-group-append">
+          <div class="input-group-text">g</div>
+        </div>
+      </div> 
+      <span id="proteinPercentageHelpBlock" class="form-text text-muted">30% daily calorie</span>
+    </div>
+  </div>
+  <div class="form-group row"  style = "display:${
+    goalFields[2] === field ? "flex" : "none"
+  }">
+    <label for="fatPercentage" class="col-4 col-form-label">Fat</label> 
+    <div class="col-8">
+      <div class="input-group">
+        <input id="fatPercentage" name="fatPercentage" placeholder="Enter fat weight" type="text" class="form-control" required="required" aria-describedby="fatPercentageHelpBlock"> 
+        <div class="input-group-append">
+          <div class="input-group-text">g</div>
+        </div>
+      </div> 
+      <span id="fatPercentageHelpBlock" class="form-text text-muted">30% daily calorie</span>
+    </div>
+  </div>
+  <div class="form-group row"  style = "display:${
+    goalFields[3] === field ? "flex" : "none"
+  }">
+    <label for="carbPercentage" class="col-4 col-form-label">Carb</label> 
+    <div class="col-8">
+      <div class="input-group">
+        <input id="carbPercentage" name="carbPercentage" placeholder="Enter carb weight" type="text" class="form-control" aria-describedby="carbPercentageHelpBlock"> 
+        <div class="input-group-append">
+          <div class="input-group-text">g</div>
+        </div>
+      </div> 
+      <span id="carbPercentageHelpBlock" class="form-text text-muted">40% daily calories</span>
+    </div>
+  </div> 
+  <div class="form-group row">
+    <div class="offset-4 col-8">
+      <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+    `;
+    form.innerHTML = formContent;
+  });
 });

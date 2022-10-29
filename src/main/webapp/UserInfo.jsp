@@ -203,7 +203,7 @@
                         <span class="field-value"><%=healthInfo.getActivenessString()%></span>
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                     </div>
-                    <div class="field">
+                    <div class="field nutrition-goal">
                         <h3>Nutrition goals</h3>
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                         <div class="label">Daily calorie:</div>
@@ -213,7 +213,6 @@
                             <li>
                                 <div class="label">Daily protein:</div><button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                                 <span class="field-value">200g</span>
-                                <span></span>
                             </li>
                             <li>
                                 <div class="label">Daily fat:</div><button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
