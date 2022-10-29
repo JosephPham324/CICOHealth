@@ -4,6 +4,7 @@
     Author     : ASUS
 --%>
 
+<%@page import="Entity.DailyNutritionGoal"%>
 <%@page import="DAO.HealthDAO"%>
 <%@page import="Entity.UserHealthInfo"%>
 <%@page import="Entity.User"%>
@@ -47,12 +48,16 @@
             DAO.LoginDAO lDAO = new DAO.LoginDAO();
             DAO.UserDAO uDAO = new DAO.UserDAO();
             DAO.HealthDAO hDAO = new HealthDAO();
+            DAO.GoalDAO gDAO = new DAO.GoalDAO();
             String id = request.getSession().getAttribute("userID").toString();
+            
             Login loginInfo = lDAO.getLoginInfo(id);
             User user = uDAO.getUserByID(id);
             UserHealthInfo healthInfo = hDAO.findUserHealthInfo(Integer.parseInt(id));
+            DailyNutritionGoal goals = gDAO.getGoalbyID(Integer.parseInt(id));
+            
             String enteredPassword = request.getParameter("password");
-
+            
             boolean correctPassword = false;
             if (request.getParameter("password") != null) {
                 correctPassword = Security.RegLoginLogic.verifyPassword(
@@ -207,20 +212,20 @@
                         <h3>Nutrition goals</h3>
                         <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                         <div class="label">Daily calorie:</div>
-                        <span class="field-value">2400kcal</span><br />
+                        <span class="field-value"><%=goals.getCalories()%>kcal</span><br />
                         <h5>Macro nutrients:</h5>
                         <ul>
                             <li>
                                 <div class="label">Daily protein:</div><button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
-                                <span class="field-value">200g</span>
+                                <span class="field-value"><%=goals.getProtein()%>g</span>
                             </li>
                             <li>
                                 <div class="label">Daily fat:</div><button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
-                                <span class="field-value">60g</span>
+                                <span class="field-value"><%=goals.getFat()%>g</span>
                             </li>
                             <li>
                                 <div class="label">Daily carbs:</div><button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
-                                <span class="field-value">260g</span>
+                                <span class="field-value"><%=goals.getCarb()%>g</span>
                             </li>
                         </ul>
                     </div>
@@ -232,6 +237,10 @@
             let correctPassword = <%=correctPassword%>;
             let activeness = <%=healthInfo.getActiveness()%>;
             let enteredPassword = "<%=enteredPassword%>";
+            let cal = <%=goals.getCalories()%>
+            let protein = <%=goals.getProtein()%>
+            let fat = <%=goals.getFat()%>
+            let carb = <%=goals.getCarb()%>
             if (!correctPassword) {
                 let showPassword = document.getElementById('toggle-password-visibility');
                 showPassword.addEventListener('click', checkPassword);
@@ -241,10 +250,10 @@
             } else {
                 document.getElementById('txtPassword1Message').style.display = 'none';
             }
-
+            
             function checkPassword() {
                 {
-
+                    
                     let form = document.querySelector('.form form')
                     form.action = '#';
                     let html = `

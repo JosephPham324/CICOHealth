@@ -393,7 +393,8 @@ goalEditButtons[0].addEventListener("click", () => {
     <label for="dailycalorie" class="col-4 col-form-label">Daily calorie</label> 
     <div class="col-8">
       <div class="input-group">
-        <input id="dailycalorie" name="dailycalorie" placeholder="Enter your daily calorie" type="text" class="form-control" required="required">
+        <input id="dailycalorie" name="dailycalorie" placeholder="Enter your daily calorie" type="number" class="form-control" required="required"
+        value = "${cal}">
         <div class="input-group-append">
           <div class="input-group-text">kcal</div>
         </div>
@@ -404,7 +405,8 @@ goalEditButtons[0].addEventListener("click", () => {
     <label for="proteinPercentage" class="col-4 col-form-label">Protein</label> 
     <div class="col-8">
       <div class="input-group">
-        <input id="proteinPercentage" name="proteinPercentage" placeholder="Enter protein percentage" type="text" class="form-control" required="required"> 
+        <input id="proteinPercentage" name="proteinPercentage" placeholder="Enter protein percentage" type="number" class="form-control" required="required"
+        value = "${(protein * 4 / cal).toFixed(2)*100}" min = "0" max = "100"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
@@ -415,7 +417,8 @@ goalEditButtons[0].addEventListener("click", () => {
     <label for="fatPercentage" class="col-4 col-form-label">Fat</label> 
     <div class="col-8">
       <div class="input-group">
-        <input id="fatPercentage" name="fatPercentage" placeholder="Enter fat percentage" type="text" class="form-control" required="required"> 
+        <input id="fatPercentage" name="fatPercentage" placeholder="Enter fat percentage" type="number" class="form-control" required="required"
+        value ="${(fat * 9 / cal).toFixed(2)*100}" min = "0" max = "100"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
@@ -426,7 +429,8 @@ goalEditButtons[0].addEventListener("click", () => {
     <label for="carbPercentage" class="col-4 col-form-label">Carb</label> 
     <div class="col-8">
       <div class="input-group">
-        <input id="carbPercentage" name="carbPercentage" placeholder="Enter carb percentage" type="text" class="form-control"> 
+        <input id="carbPercentage" name="carbPercentage" placeholder="Enter carb percentage" type="number" class="form-control"
+        value = "${(carb * 4 / cal).toFixed(2)*100}" min = "0" max = "100"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
@@ -455,7 +459,8 @@ goalEditButtons.slice(1).forEach((button) => {
     <label for="proteinPercentage" class="col-4 col-form-label">Protein</label> 
     <div class="col-8">
       <div class="input-group">
-        <input id="proteinPercentage" name="proteinPercentage" placeholder="Enter protein weight" type="text" class="form-control" required="required" aria-describedby="proteinPercentageHelpBlock"> 
+        <input id="proteinPercentage" name="proteinPercentage" placeholder="Enter protein weight" type="number" class="form-control" required="required" aria-describedby="proteinPercentageHelpBlock"
+        value="${protein}"> 
         <div class="input-group-append">
           <div class="input-group-text">g</div>
         </div>
@@ -469,7 +474,8 @@ goalEditButtons.slice(1).forEach((button) => {
     <label for="fatPercentage" class="col-4 col-form-label">Fat</label> 
     <div class="col-8">
       <div class="input-group">
-        <input id="fatPercentage" name="fatPercentage" placeholder="Enter fat weight" type="text" class="form-control" required="required" aria-describedby="fatPercentageHelpBlock"> 
+        <input id="fatPercentage" name="fatPercentage" placeholder="Enter fat weight" type="number" class="form-control" required="required" aria-describedby="fatPercentageHelpBlock"
+        value = "${fat}}"> 
         <div class="input-group-append">
           <div class="input-group-text">g</div>
         </div>
@@ -483,7 +489,8 @@ goalEditButtons.slice(1).forEach((button) => {
     <label for="carbPercentage" class="col-4 col-form-label">Carb</label> 
     <div class="col-8">
       <div class="input-group">
-        <input id="carbPercentage" name="carbPercentage" placeholder="Enter carb weight" type="text" class="form-control" aria-describedby="carbPercentageHelpBlock"> 
+        <input id="carbPercentage" name="carbPercentage" placeholder="Enter carb weight" type="number" class="form-control" aria-describedby="carbPercentageHelpBlock"
+        value = "${carb}"> 
         <div class="input-group-append">
           <div class="input-group-text">g</div>
         </div>
