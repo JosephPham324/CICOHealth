@@ -149,7 +149,7 @@
                     </div>
                     <div class ="error" id="txtPassword1Message">Incorrect password</div>
                 </div>
-                 
+
 
                 <div class="user-info <%=panelSwitch == 1 ? "active" : ""%>" id="user-info">
                     <h1>Your Personal Information</h1>
@@ -205,14 +205,25 @@
                     </div>
                     <div class="field">
                         <h3>Nutrition goals</h3>
+                        <button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                         <div class="label">Daily calorie:</div>
                         <span class="field-value">2400kcal</span><br />
-                        <div class="label">Daily protein:</div>
-                        <span class="field-value">200g</span><br />
-                        <div class="label">Daily fat:</div>
-                        <span class="field-value">60g</span><br />
-                        <div class="label">Daily carbs:</div>
-                        <span class="field-value">260g</span><br />
+                        <h5>Macro nutrients:</h5>
+                        <ul>
+                            <li>
+                                <div class="label">Daily protein:</div><button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
+                                <span class="field-value">200g</span>
+                                <span></span>
+                            </li>
+                            <li>
+                                <div class="label">Daily fat:</div><button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
+                                <span class="field-value">60g</span>
+                            </li>
+                            <li>
+                                <div class="label">Daily carbs:</div><button class="edit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
+                                <span class="field-value">260g</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -221,13 +232,13 @@
             document.getElementById('txtPassword1Message').style.display = 'none';
             let correctPassword = <%=correctPassword%>;
             let activeness = <%=healthInfo.getActiveness()%>;
-            console.log(activeness);
+            let enteredPassword = "<%=enteredPassword%>";
             if (!correctPassword) {
                 let showPassword = document.getElementById('toggle-password-visibility');
                 showPassword.addEventListener('click', checkPassword);
-                if(enteredPassword !== "null") {
-                   document.getElementById('txtPassword1Message').style.display = 'block';
-                } 
+                if (enteredPassword !== "null") {
+                    document.getElementById('txtPassword1Message').style.display = 'block';
+                }
             } else {
                 document.getElementById('txtPassword1Message').style.display = 'none';
             }

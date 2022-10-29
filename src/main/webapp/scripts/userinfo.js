@@ -73,7 +73,10 @@ function showTextContent(element, content) {
 
 let loginEditButtons = document.querySelectorAll(".login-info .edit");
 let userEditButtons = document.querySelectorAll(".user-info .edit");
-let healthEditButtons = document.querySelectorAll(".health-info .edit");
+let healthEditButtons = Array.from(
+  document.querySelectorAll(".health-info .edit")
+);
+let goalEditButtons = healthEditButtons.splice(5, 4);
 
 loginEditButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -377,8 +380,62 @@ healthEditButtons.forEach((button) => {
         </div>`;
     form.innerHTML = formContent;
 
-    
     document.getElementById(`activeness_${activeness}`).checked = true;
     form.action = "edit-health-info-control";
   });
+});
+
+goalEditButtons[0].addEventListener("click", () => {
+  let formContent = `
+  <div class="form-group row">
+    <label for="dailycalorie" class="col-4 col-form-label">Daily calorie</label> 
+    <div class="col-8">
+      <div class="input-group">
+        <input id="dailycalorie" name="dailycalorie" placeholder="Enter your daily calorie" type="text" class="form-control" required="required">
+        <div class="input-group-append">
+          <div class="input-group-text">kcal</div>
+        </div>
+        </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="proteinPercentage" class="col-4 col-form-label">Protein</label> 
+    <div class="col-8">
+      <div class="input-group">
+        <input id="proteinPercentage" name="proteinPercentage" placeholder="Enter protein percentage" type="text" class="form-control" required="required"> 
+        <div class="input-group-append">
+          <div class="input-group-text">%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="fatPercentage" class="col-4 col-form-label">Fat</label> 
+    <div class="col-8">
+      <div class="input-group">
+        <input id="fatPercentage" name="fatPercentage" placeholder="Enter fat percentage" type="text" class="form-control" required="required"> 
+        <div class="input-group-append">
+          <div class="input-group-text">%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="carbPercentage" class="col-4 col-form-label">Carb</label> 
+    <div class="col-8">
+      <div class="input-group">
+        <input id="carbPercentage" name="carbPercentage" placeholder="Enter carb percentage" type="text" class="form-control"> 
+        <div class="input-group-append">
+          <div class="input-group-text">%</div>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <div class="form-group row">
+    <div class="offset-4 col-8">
+      <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+  `;
+  form.innerHTML = formContent;
 });
