@@ -33,6 +33,7 @@ legend{
     font-weight: 700;
     color: black;
     padding-bottom: 10px;
+    margin-top: 15px;
 }
 /*form{
     padding:20px 20px;
@@ -88,5 +89,10 @@ input[type=checkbox] {
     display: inline-flex;
 }
 button.submit {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    
+}
+.submit{
+    margin-bottom: 15px;
+    border-radius: 25px;
 }

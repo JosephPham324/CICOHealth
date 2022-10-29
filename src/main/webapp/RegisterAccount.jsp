@@ -25,7 +25,6 @@ S I --%>
                         <div class="login-form">
                             <form method="post" action="register" 
                                   oninput='password2.setCustomValidity(password2.value != password1.value ? "Passwords do not match." : "")'>
-                                >
                                 <fieldset>
                                     <legend>Register</legend>
                                     <div class="form-group row">
@@ -179,23 +178,25 @@ S I --%>
                                             <div class="form-check">
                                                 <input type="checkbox" id="invalidCheck" name="remember" class="form-check-input" value = "remember" required>
                                                 <label class="form-check-label" for="invalidCheck"><p class="term">
-                                                <a href="TermConditions.jsp" class="text-success text-gradient font-weight-bold">&nbsp;Terms&nbsp;&&nbsp;Conditions&nbsp;</a>
-                                                and 
-                                                <a href="TermConditions.jsp" class="text-success text-gradient font-weight-bold">&nbsp;Privacy&nbsp;Policy</a>
-                                            </p></label>
+                                                        <a href="TermConditions.jsp" class="text-success text-gradient font-weight-bold">&nbsp;Terms&nbsp;&&nbsp;Conditions&nbsp;</a>
+                                                        and 
+                                                        <a href="TermConditions.jsp" class="text-success text-gradient font-weight-bold">&nbsp;Privacy&nbsp;Policy</a>
+                                                    </p></label>
                                                 <div class="invalid-feedback">
                                                     You must agree before submitting.
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <div class="col-md-12 text-center">
-                                            <button name="submit" type="submit" class="btn btn-success">
-                                                Submit
-                                            </button>
+                                    <div class="submit">
+                                        <div class="form-group row">
+                                            <div class="col-md-12 text-center">
+                                                <button name="submit" type="submit" class="btn btn-success">
+                                                    Submit
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
 
