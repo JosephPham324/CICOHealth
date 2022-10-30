@@ -15,6 +15,8 @@
         <title>Your health info</title>
     </head>
     <body>
+        <section style="background-image: url('${pageContext.request.contextPath}/image/login.jpg');">
+            <div class="form-container">
         <%
             Object sessionUserID = session.getAttribute("userID");//Get session's userID
             String userID = "";//Stores userID
@@ -50,8 +52,7 @@
                 weight = healthInfo.getWeight() + "";
             }
         %>
-        <section style="background-image: url('${pageContext.request.contextPath}/image/login.jpg');">
-            <div class="form-container"> 
+         
                 <form method="post" action="healthinfo-control">
                     <div id="results_3">
                         <div class="form-group row">
@@ -151,7 +152,7 @@
 
                     <!--BMR result-->
                     <div class="BMR">
-                        <div class="form-group row" id="results">
+                        <div class="form-group row" id="results"  style="width: 600px;">
                         <div> <!--This is where the results will appear.  This is hidden when the program loads and appears when the user clicks 'submit'-->
                             <div class="results-container">
                                 <h1 class="title">Your daily BMI is:</h1>
@@ -162,11 +163,11 @@
                         <!--Plan result-->
                         <div>  
                             <div class="results-container">
-                                <h1 class="title">Which plan will you choose?:</h1>
+                                <h3 class="title">Which plan will you choose?:</h3>
                                 <p id="plan-result">Placeholder text</p>
                             </div>
                         </div>
-                        <h1 class="title">Your choice:</h1> 
+                        <h3 class="title">Your choice:</h3> 
                         <div class="col-8">
                             <div class="custom-controls-stacked">
                                 <div class="custom-control custom-radio">
@@ -225,8 +226,7 @@
                     </div>
 
                 </form>
-            </div>
-        </section>
+
         <script src="./scripts/calculateTDEE.js"></script>
         <script>
             //GET INPUT FIELDS
@@ -251,9 +251,7 @@
             height.value = "<%=height%>";
             weight.value = "<%=weight%>";
         </script>
-
-
-
-
+            </div>
+        </section>
     </body>
 </html>
