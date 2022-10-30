@@ -171,4 +171,18 @@ public class MealDAO {
         ps.setString(4, name);
         ps.executeUpdate();
     }
+    
+    public List<Meal> getMealsGroupedByDate(String userID){
+        List<Meal> res = this.getMealsByUserID(userID);
+        res = Meal.groupMealsByDate(res);
+        return res;
+    }
+    
+    public static void main(String[] args) {
+        MealDAO dao = new MealDAO();
+        ArrayList<Meal> meals = (ArrayList)dao.getMealsByUserID("2");
+        System.out.println(meals);
+        meals=(ArrayList)Meal.groupMealsByDate(meals);
+        System.out.println(meals);
+    }
 }
