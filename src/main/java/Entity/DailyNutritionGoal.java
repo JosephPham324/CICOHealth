@@ -2,7 +2,7 @@ package Entity;
 
 /**
  *
- * @author ASUS
+ * @author Nguyen Le Quang Thinh
  */
 public class DailyNutritionGoal {
     private int userID;

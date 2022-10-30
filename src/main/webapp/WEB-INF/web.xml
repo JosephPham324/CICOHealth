@@ -102,6 +102,8 @@
     <servlet>
         <servlet-name>Statistics</servlet-name>
         <jsp-file>/Statistics.jsp</jsp-file>
+        <servlet-name>EditGoalControl</servlet-name>
+        <servlet-class>Control.HealthInfo.EditGoalControl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
@@ -206,6 +208,8 @@
     <servlet-mapping>
         <servlet-name>Statistics</servlet-name>
         <url-pattern>/user-statistics</url-pattern>
+        <servlet-name>EditGoalControl</servlet-name>
+        <url-pattern>/edit-goal-control</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

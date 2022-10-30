@@ -17,6 +17,7 @@ import java.util.logging.Logger;
  */
 public class ExerciseTypeDAO {
 
+
     /**
      * Connection to database
      */
@@ -30,6 +31,7 @@ public class ExerciseTypeDAO {
     /**
      * Save query result
      */
+
     ResultSet rs = null; 
 
     /**
@@ -38,6 +40,7 @@ public class ExerciseTypeDAO {
     String query;
 
     /**
+     * Search an exercise type
      *
      * @param name
      * @return
@@ -59,7 +62,9 @@ public class ExerciseTypeDAO {
         return res;
     }
 
+
     /**
+     * Get all exercise types
      *
      * @return
      * @throws SQLException
@@ -89,11 +94,11 @@ public class ExerciseTypeDAO {
         query = "SELECT * FROM EXERCISETYPES where EXERCISENAME = ?";
         con = new DBContext().getConnection(); // open connection to SQL
         ps = con.prepareStatement(query); // move query from Netbeen to SQl
-        ps.setString(1,name);
+        ps.setString(1, name);
         rs = ps.executeQuery();
         ExerciseType res = null;
-        while (rs.next()){
-            res = new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"), rs.getString("DESCRIPTION"),rs.getDouble("CALPERHOUR"));
+        while (rs.next()) {
+            res = new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"), rs.getString("DESCRIPTION"), rs.getDouble("CALPERHOUR"));
         }
         return res;
     }

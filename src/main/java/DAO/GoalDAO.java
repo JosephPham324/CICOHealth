@@ -5,6 +5,9 @@ import context.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -48,9 +51,9 @@ public class GoalDAO {
 
         double c = Double.parseDouble(calorie);
 
-        double protein = 0.3 * c / 4; //Mac dinh 30% protein
+        double protein = 0.25 * c / 4; //Mac dinh 25% protein
         double fat = 0.3 * c / 9; //Mac dinh 30% fat
-        double carb = 0.4 * c / 4; //Mac dinh 40% carb
+        double carb = 0.45 * c / 4; //Mac dinh 45% carb
 
         String queryInsert = "insert into DAILYNUTRITIONGOAL values(?,?,?,?,?)";
         String queryEdit = "update DAILYNUTRITIONGOAL set CALORIE = ?,\n"
@@ -135,6 +138,56 @@ public class GoalDAO {
         } catch (Exception e) {
         }
         return null;
+    }
+
+    /**
+     *
+     * @param userID
+     * @param protein
+     * @param fat
+     * @param carb
+     */
+    public void editMacroGoal(String userID, String protein, String fat, String carb) throws SQLException {
+        String query = "update DAILYNUTRITIONGOAL\n"
+                + "set PROTEIN = ?,\n"
+                + "FAT = ?,\n"
+                + "CARB =?,\n"
+                + "CALORIE=?\n"
+                + "where USERID = ?";
+        Double calorie = Double.parseDouble(fat)*9 + Double.parseDouble(protein)*4 +Double.parseDouble(carb)*4;
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, protein);
+        ps.setString(2, fat);
+        ps.setString(3, carb);
+        ps.setString(4, calorie+"");
+        ps.setString(5, userID);
+
+        ps.executeUpdate();
+    }
+
+    public void editCalorieGoal(String userID, String calorie, String proteinPercentage, String fatPercentage, String carbPercentage) throws SQLException {
+        String query = "update DAILYNUTRITIONGOAL\n"
+                + "set CALORIE = ?,\n"
+                + "PROTEIN = ?,\n"
+                + "FAT = ?,\n"
+                + "CARB = ?\n"
+                + "where USERID = ?";
+
+        Double cal = Double.parseDouble(calorie);
+        Double pro = Double.parseDouble(proteinPercentage) * cal / 4;
+        Double fat = Double.parseDouble(fatPercentage) * cal / 9;
+        Double carb = Double.parseDouble(carbPercentage) * cal / 4;
+
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, calorie);
+        ps.setString(2, pro+"");
+        ps.setString(3, fat+"");
+        ps.setString(4, carb+"");
+        ps.setString(5, userID);
+
+        ps.executeUpdate();
     }
 
     /**
