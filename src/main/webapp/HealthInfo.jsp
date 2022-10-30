@@ -138,18 +138,20 @@
                         </div> 
 
                         <!--BUTTON-->
-                        <div class="form-group row">
-                            <div class="offset-4 col-8">
-                                <button name="submit" class="submit" id="smit">Submit</button>
+                        <div class="submit">
+                            <div class="form-group row">
+                                <div class="col-md-12 text-center">
+                                    <button name="submit"  id="smit" class="btn btn-success">Submit</button>
+                                </div>
                             </div>
                         </div>
-
                     </div>
 
 
 
                     <!--BMR result-->
-                    <div class="form-group row" id="results">
+                    <div class="BMR">
+                        <div class="form-group row" id="results">
                         <div> <!--This is where the results will appear.  This is hidden when the program loads and appears when the user clicks 'submit'-->
                             <div class="results-container">
                                 <h1 class="title">Your daily BMI is:</h1>
@@ -209,16 +211,17 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div> 
 
 
                     <!--Submit-->
                     <div class="submit">
                         <div class="form-group row" id="results_2">
-                        <div class="offset-4 col-8" id="results_2">
-                            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                            <div class="col-md-12 text-center" id="results_2">
+                                <button name="submit" type="submit" class="btn btn-success">Submit</button>
+                            </div>
                         </div>
-                    </div>
                     </div>
 
                 </form>

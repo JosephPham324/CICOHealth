@@ -38,6 +38,19 @@ legend{
 .form-group.row:last-child{
     margin-bottom: 0;
 }
+.BMR{
+     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 200px;
+    height: 200px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 7px 7px 60px #000;
+    border-radius: 30px;
+}
 .form-container {
     position: absolute;
     top: 50%;
@@ -74,7 +87,6 @@ button.submit {
     
 }
 .submit{
-    margin-bottom: 15px;
     border-radius: 25px;
     margin-top: 10px;
 }
