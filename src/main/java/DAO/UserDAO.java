@@ -15,48 +15,51 @@ import java.util.List;
  */
 public class UserDAO {
 
-    Connection con = null; // connect to SQL server
-    PreparedStatement ps = null; // move query from Netbeen to SQl
-    ResultSet rs = null; // save result query
+    /**
+     * Connection to database
+     */
+    Connection con = null;
 
-//    private int userID;
-//    private int loginID;
-//    private int userRoleId;
-//    private String firstName;
-//    private String lastName;
-//    private String email;
-//    private String phone;
-    public List<User> getListUser() {
-        try {
-            String query = "select * from dbo.[USER]";
-            con = new DBContext().getConnection(); // open connection to SQL
-            ps = con.prepareStatement(query); // move query from Netbeen to SQl
-            rs = ps.executeQuery(); // the same with click to "excute" btn;
-            List<User> list = new ArrayList<>();
-            while (rs.next()) {
-                User User = new User(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
-                list.add(User);
-            }
-            return list;
-        } catch (Exception e) {
-            e.getMessage();
+    /**
+     * Move query from Netbeans to SQl
+     */
+    PreparedStatement ps = null;
+
+    /**
+     * Save query result
+     */
+    ResultSet rs = null;
+
+    /**
+     * Get the full lists of users in USER table
+     *
+     * @return User objects of all users in database
+     */
+    public List<User> getListUser() throws SQLException {
+        String query = "select * from dbo.[USER]";
+        con = new DBContext().getConnection(); // open connection to SQL
+        ps = con.prepareStatement(query); // move query from Netbeen to SQl
+        rs = ps.executeQuery(); // the same with click to "excute" btn;
+        List<User> list = new ArrayList<>();
+        while (rs.next()) {
+            User User = new User(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                    rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+            list.add(User);
         }
-        return null;
+        return list;
     }
 
-    public void deleteUser(String id) {
-        String query = "delete from User where MASP = ?";
-        try {
-            con = new DBContext().getConnection();
-            ps = con.prepareStatement(query);
-            ps.setString(1, id);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
+    /**
+     * Add a user in the database
+     *
+     * @param USERID
+     * @param USERROLEID
+     * @param FIRSTNAME
+     * @param LASTNAME
+     * @param PHONE
+     * @param EMAIL
+     * @throws SQLException When update query to database encounters error
+     */
     public void addUser(String USERID, String USERROLEID, String FIRSTNAME, String LASTNAME, String PHONE, String EMAIL) throws SQLException {
         String query = "insert into dbo.[User] values(?,?,?,?,?,?)";
 
@@ -71,6 +74,11 @@ public class UserDAO {
         ps.executeUpdate();
     }
 
+    /**
+     * Get the last ID present in USER table
+     *
+     * @return ID number
+     */
     public int getLastID() {
         String query = "SELECT TOP 1 * FROM dbo.[USER] ORDER BY USERID DESC";
         try {
@@ -86,6 +94,13 @@ public class UserDAO {
         return -1;
     }
 
+    /**
+     * Get a user from database using ID
+     *
+     * @param id User ID
+     * @return User object
+     * @throws SQLException When query to database encounters error
+     */
     public User getUserByID(String id) throws SQLException {
         String query = "select * from dbo.[User]\n"
                 + "where USERID = ?";
@@ -106,6 +121,16 @@ public class UserDAO {
         return null;
     }
 
+    /**
+     * Edit user info in USER table
+     *
+     * @param USERID
+     * @param FIRSTNAME
+     * @param LASTNAME
+     * @param EMAIL
+     * @param PHONE
+     * @throws SQLException When query to update database encounters error
+     */
     public void editUser(String USERID, String FIRSTNAME, String LASTNAME, String EMAIL, String PHONE) throws SQLException {
         String query = "update [USER]\n"
                 + "set FIRSTNAME = ?,\n"
@@ -113,19 +138,13 @@ public class UserDAO {
                 + "EMAILADDRESS = ?,\n"
                 + "PHONENUMBER = ?\n"
                 + "where USERID = ?";
-            con = new DBContext().getConnection(); // open connection to SQL
-            ps = con.prepareStatement(query); // move query from Netbeen to SQl
-            ps.setString(1, FIRSTNAME);
-            ps.setString(2, LASTNAME);
-            ps.setString(3, EMAIL);
-            ps.setString(4, PHONE);
-            ps.setString(5, USERID);
-            ps.executeUpdate();
+        con = new DBContext().getConnection(); // open connection to SQL
+        ps = con.prepareStatement(query); // move query from Netbeen to SQl
+        ps.setString(1, FIRSTNAME);
+        ps.setString(2, LASTNAME);
+        ps.setString(3, EMAIL);
+        ps.setString(4, PHONE);
+        ps.setString(5, USERID);
+        ps.executeUpdate();
     }
-
-//    public static void main(String[] args) {
-//        UserDAO dao = new UserDAO();
-//
-//        dao.addUser("7", "2", "quang", "pham", "0857974230", "2222");
-//    }
 }

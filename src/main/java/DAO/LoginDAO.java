@@ -12,8 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -21,10 +19,29 @@ import java.util.logging.Logger;
  */
 public class LoginDAO {
 
+    /**
+     * Connection to database
+     */
     Connection con = null;
+
+    /**
+     * Move query from Netbeans to SQl
+     */
     PreparedStatement ps = null;
+
+    /**
+     * Save query result
+     */
     ResultSet rs = null;
 
+    /**
+     * Add a record into database Login table
+     *
+     * @param username Username
+     * @param salt Password salt
+     * @param hashedPassword Password hash
+     * @throws SQLException When update query encounters error
+     */
     public void addLoginInfo(String username, String salt, String hashedPassword) throws SQLException {
         String query = "insert into login values(?,?,?,null)";
         con = new DBContext().getConnection(); // open connection to SQL
@@ -37,6 +54,13 @@ public class LoginDAO {
         ps.executeUpdate(); // the same with click to "excute" btn;
     }
 
+    /**
+     * Update the user id for a login record
+     *
+     * @param loginID Login ID to identify record in login table
+     * @param userID The user ID
+     * @throws SQLException When update query encounters error
+     */
     public void updateUserID(int loginID, int userID) throws SQLException {
         String query = "UPDATE dbo.LOGIN SET USER_ID = ? where LOGINID = ?";
         con = new DBContext().getConnection();
@@ -46,6 +70,10 @@ public class LoginDAO {
         ps.executeUpdate();
     }
 
+    /**
+     * Get the last LoginID in the Login table
+     * @return @throws SQLException When query encounters error
+     */
     public int getLastID() throws SQLException {
         String query = "SELECT TOP 1 * FROM dbo.LOGIN ORDER BY LOGINID DESC";
         con = new DBContext().getConnection();
@@ -56,19 +84,31 @@ public class LoginDAO {
         }
         return -1;
     }
-     public int checkUserNameDuplicate(String username) throws SQLException {
+
+    /**
+     * Check if a username already exists in the database
+     * @param username Username to check
+     * @return The number of that username in the database
+     * @throws SQLException
+     */
+    public int checkUserNameDuplicate(String username) throws SQLException {
         String query = "SELECT COUNT(*) FROM [LOGIN] where username=?";
         con = new DBContext().getConnection();
         ps = con.prepareStatement(query);
-        
+
         ps.setString(1, username);
         rs = ps.executeQuery();
-         while (rs.next()) {
+        while (rs.next()) {
             return rs.getInt(1);
         }
         return 0;
     }
-    
+
+    /**
+     * Get login record from username
+     * @param username Username to query
+     * @return A Login object
+     */
     public Login findUserName(String username) {
         String query = "select * from LOGIN where USERNAME = ?";
         try {
@@ -88,26 +128,36 @@ public class LoginDAO {
         return null;
     }
 
-    public List<User> getListMember() throws SQLException {
-        String query = "select * from [Nutrition].[dbo].[USER]";
-        con = new DBContext().getConnection(); // open connection to SQL
-        ps = con.prepareStatement(query); // move query from Netbeen to SQl
-        rs = ps.executeQuery(); // the same with click to "excute" btn;
-        List<User> list = new ArrayList<>();
-        while (rs.next()) {
-            User acc = new User(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
-                    rs.getString(5), rs.getString(6), rs.getString(7));
-            list.add(acc);
-        }
-        return list;
-    }
+//    /**
+//     * 
+//     * @return @throws SQLException
+//     */
+//    public List<User> getListMember() throws SQLException {
+//        String query = "select * from [Nutrition].[dbo].[USER]";
+//        con = new DBContext().getConnection(); // open connection to SQL
+//        ps = con.prepareStatement(query); // move query from Netbeen to SQl
+//        rs = ps.executeQuery(); // the same with click to "excute" btn;
+//        List<User> list = new ArrayList<>();
+//        while (rs.next()) {
+//            User acc = new User(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
+//                    rs.getString(5), rs.getString(6), rs.getString(7));
+//            list.add(acc);
+//        }
+//        return list;
+//    }
 
-    public Login checkLogin(String user, String enteredPassword) {
+    /**
+     * Check if login info is correct
+     * @param username Username to check
+     * @param enteredPassword Password to check
+     * @return Login object if login info is correct
+     */
+    public Login checkLogin(String username, String enteredPassword) {
         try {
             String query = "select * from [Nutrition].[dbo].[LOGIN] where [USERNAME] = ?";
             con = new DBContext().getConnection();
             ps = con.prepareStatement(query);
-            ps.setString(1, user);
+            ps.setString(1, username);
             rs = ps.executeQuery();
             System.out.println(ps.toString());
             while (rs.next()) {
@@ -117,31 +167,23 @@ public class LoginDAO {
                 System.out.println(salt);
                 System.out.println(hash);
 
-                if (Security.RegLoginLogic.verifyPassword(enteredPassword, salt, hash))
-                return a;
+                if (Security.RegLoginLogic.verifyPassword(enteredPassword, salt, hash)) {
+                    return a;
+                }
             }
         } catch (Exception e) {
             System.out.println(e);
         }
         return null;
     }
+    
 
-    public void insertHealthInfo(String userId, String gender, String height, String weight, String activeness, String age) {
-        String query = "insert into [Nutrition].[dbo].[USERHEALTHINFO] values(?,?,?,?,?,?)";
-        try {
-            con = new DBContext().getConnection();
-            ps = con.prepareStatement(query);
-            ps.setString(1, userId);
-            ps.setString(2, gender);
-            ps.setString(3, height);
-            ps.setString(4, weight);
-            ps.setString(5, activeness);
-            ps.setString(6, age);
-            ps.executeUpdate();
-        } catch (Exception e) {
-        }
-    }
-
+    /**
+     * Get login info from user ID
+     * @param userID User ID
+     * @return Login object of the user
+     * @throws SQLException When query to database encounter error
+     */
     public Login getLoginInfo(String userID) throws SQLException {
         String query = "select * from LOGIN where USER_ID = ?";
         Login res = null;
@@ -161,6 +203,15 @@ public class LoginDAO {
         return res;
     }
 
+    /**
+     * Edit login info in database (change username, password salt and password
+     * hash)
+     * 
+     * @param userID User ID to change
+     * @param username New username
+     * @param password New password to generate salt and hash
+     * @throws Exception When update query encounters error
+     */
     public void editLoginInfo(String userID, String username, String password) throws Exception {
         String empString = "";
         String salt = Encryption.generateSalt(username, password);
@@ -185,6 +236,11 @@ public class LoginDAO {
         ps.executeUpdate();
     }
 
+    /**
+     *
+     * @param args
+     * @throws SQLException
+     */
     public static void main(String[] args) throws SQLException {
         LoginDAO dao = new LoginDAO();
 //            try {
@@ -193,7 +249,7 @@ public class LoginDAO {
 //            } catch (Exception ex) {
 //                Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
 //            }
-        System.out.println(dao.checkLogin("quangthinh130102", "123")); 
+        System.out.println(dao.checkLogin("quangthinh130102", "123"));
         int test = dao.checkUserNameDuplicate("nlordqting4444");
         System.out.println(test);
     }

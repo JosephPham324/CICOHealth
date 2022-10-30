@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAO;
 
 import Entity.DailyNutritionGoal;
@@ -15,14 +11,33 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author ASUS
+ * @author Nguyen Le Quang Thinh
  */
 public class GoalDAO {
 
-    Connection con = null; // connect to SQL server
-    PreparedStatement ps = null; // move query from Netbeen to SQl
-    ResultSet rs = null; // save result query
+    /**
+     * Connection to database
+     */
+    Connection con = null;
 
+    /**
+     * Move query from Netbeans to SQl
+     */
+    PreparedStatement ps = null;
+
+    /**
+     * Save query result
+     */
+    ResultSet rs = null;
+
+    /**
+     * Add nutrition goal in the database or edit existing goal, macro goals are
+     * automatically calculated from calorie Percentages: Protein 30%, Fat 30%,
+     * Carbs 40% of the goal calories
+     *
+     * @param userId ID of user
+     * @param calorie Calorie goal
+     */
     public void addGoal(String userId, String calorie) {
         //Công thức macro: 
         //Cứ 4 calo = 01g Protein
@@ -36,9 +51,9 @@ public class GoalDAO {
 
         double c = Double.parseDouble(calorie);
 
-        double protein = 0.25 * c / 4; //Mac dinh 30% protein
+        double protein = 0.25 * c / 4; //Mac dinh 25% protein
         double fat = 0.3 * c / 9; //Mac dinh 30% fat
-        double carb = 0.45 * c / 4; //Mac dinh 40% carb
+        double carb = 0.45 * c / 4; //Mac dinh 45% carb
 
         String queryInsert = "insert into DAILYNUTRITIONGOAL values(?,?,?,?,?)";
         String queryEdit = "update DAILYNUTRITIONGOAL set CALORIE = ?,\n"
@@ -73,8 +88,18 @@ public class GoalDAO {
         }
     }
 
-    public double calculateTDEE(String weight, String height, String age, String gender, String activity) {
-        int av = Integer.parseInt(activity);
+    /**
+     * Calculate Total Daily Energy Expenditure from health information
+     *
+     * @param gender Gender of user (male or female)
+     * @param height Height of user (centimeters)
+     * @param weight Weight of user (kilograms)
+     * @param activeness Activeness of user (0-3)
+     * @param age Age of user
+     * @return Total calories as TDEE
+     */
+    public double calculateTDEE(String weight, String height, String age, String gender, String activeness) {
+        int av = Integer.parseInt(activeness);
         double r = 0;
         double calories = 0;
         double[] activenessMap = {1.2, 1.375, 1.55, 1.725};
@@ -93,7 +118,6 @@ public class GoalDAO {
 
     /**
      * Get a goal record from user ID
-     *
      * @param id User ID
      * @return DailyNutritionalGoal object containing goals of the user
      */

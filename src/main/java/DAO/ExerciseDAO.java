@@ -20,13 +20,45 @@ import java.util.logging.Logger;
  */
 public class ExerciseDAO {
 
-    Connection con = null; // connect to SQL server
-    PreparedStatement ps = null; // move query from Netbeen to SQl
-    ResultSet rs = null; // save result query
+    /**
+     * Connection to database
+     */
+    Connection con = null;
+
+    /**
+     * Move query from Netbeans to SQl
+     */
+    PreparedStatement ps = null;
+
+    /**
+     * Save query result
+     */
+    ResultSet rs = null; 
+
+    /**
+     *
+     */
     String query;
+
+    /**
+     *
+     */
     String datetimePattern = "yyyy-MM-dd hh:mm:ss";
+
+    /**
+     *
+     */
     SimpleDateFormat dateFormatter;
 
+    /**
+     *
+     * @param time
+     * @param userID
+     * @param exerciseType
+     * @param duration
+     * @param calories
+     * @throws SQLException
+     */
     public void insertExercise(Date time, int userID, ExerciseType exerciseType, double duration, double calories) throws SQLException {
         query = "insert into EXERCISE values(?,?,?,?,?,?)";
 
@@ -44,6 +76,12 @@ public class ExerciseDAO {
         ps.executeUpdate();
     }
 
+    /**
+     *
+     * @param userID
+     * @return
+     * @throws SQLException
+     */
     public List<Exercise> getExerciseByUserID(String userID) throws SQLException {
         List<Exercise> res = new ArrayList<>();
         query = "select * from EXERCISE where USERID = ?";
@@ -62,6 +100,15 @@ public class ExerciseDAO {
         return res;
     }
 
+    /**
+     *
+     * @param duration
+     * @param exerciseID
+     * @param userID
+     * @param date
+     * @param time
+     * @throws SQLException
+     */
     public void updateExercise(String duration, String exerciseID, String userID, String date, String time) throws SQLException {
         query = "update EXERCISE\n"
                 + "set duration = ?,\n"
@@ -83,6 +130,13 @@ public class ExerciseDAO {
         ps.executeUpdate();
     }
 
+    /**
+     *
+     * @param userID
+     * @param date
+     * @param time
+     * @throws SQLException
+     */
     public void deleteExercise(String userID, String date, String time) throws SQLException {
         query = "delete from EXERCISE\n"
                 + "where\n"
@@ -98,6 +152,10 @@ public class ExerciseDAO {
         ps.executeUpdate();
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         ExerciseDAO dao = new ExerciseDAO();
         ArrayList<Exercise> lol;

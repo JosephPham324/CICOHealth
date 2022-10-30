@@ -31,7 +31,8 @@ public class ExerciseTypeDAO {
     /**
      * Save query result
      */
-    ResultSet rs = null;
+
+    ResultSet rs = null; 
 
     /**
      *
@@ -68,7 +69,6 @@ public class ExerciseTypeDAO {
      * @return
      * @throws SQLException
      */
-
     public List<ExerciseType> getAllExerciseTypes() throws SQLException {
         List<ExerciseType> res = new ArrayList<>();
 
@@ -84,6 +84,12 @@ public class ExerciseTypeDAO {
         return res;
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     * @throws SQLException
+     */
     public ExerciseType getExerciseByName(String name) throws SQLException {
         query = "SELECT * FROM EXERCISETYPES where EXERCISENAME = ?";
         con = new DBContext().getConnection(); // open connection to SQL
@@ -97,6 +103,10 @@ public class ExerciseTypeDAO {
         return res;
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         ExerciseTypeDAO dao = new ExerciseTypeDAO();
         try {

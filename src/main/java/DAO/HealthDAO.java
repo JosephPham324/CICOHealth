@@ -11,14 +11,36 @@ import java.util.List;
 
 /**
  *
- * @author ASUS
+ * @author Nguyen Le Quang Thinh
  */
 public class HealthDAO {
 
-    Connection con = null; // connect to SQL server
-    PreparedStatement ps = null; // move query from Netbeen to SQl
-    ResultSet rs = null; // save result query
+    /**
+     * Connection to database
+     */
+    Connection con = null;
 
+    /**
+     * Move query from Netbeans to SQl
+     */
+    PreparedStatement ps = null;
+
+    /**
+     * Save query result
+     */
+    ResultSet rs = null;
+
+    /**
+     * Insert health info of a user into database
+     *
+     * @param userID ID of user
+     * @param gender Gender of user (male or female)
+     * @param height Height of user (centimeters)
+     * @param weight Weight of user (kilograms)
+     * @param activeness Activeness of user (0-3)
+     * @param age Age of user
+     * @throws SQLException When update query encounters error
+     */
     public void insertHealthInfo(String userID, String gender, String height, String weight, String activeness, String age) throws SQLException {
         String queryInsert = "insert into [Nutrition].[dbo].[USERHEALTHINFO] values(?,?,?,?,?,?)";
         String queryEdit = "update USERHEALTHINFO\n"
@@ -53,6 +75,13 @@ public class HealthDAO {
         }
     }
 
+    /**
+     * Get health info of a user using ID
+     *
+     * @param ID User ID
+     * @return UserHealthInfo object
+     * @throws SQLException When query encounters error
+     */
     public UserHealthInfo findUserHealthInfo(int ID) throws SQLException {
         String query = "select * from USERHEALTHINFO where USERID = ?";
 
@@ -70,6 +99,12 @@ public class HealthDAO {
         return null;
     }
 
+    /**
+     * Get health info records of all users
+     *
+     * @return List of UserHealthInfo 
+     * @throws SQLException When query encounters error
+     */
     public List<UserHealthInfo> getAllUserHealthInfo() throws SQLException {
         String query = "select * from [Nutrition].[dbo].[USERHEALTHINFO]";
         con = new DBContext().getConnection(); // open connection to SQL
