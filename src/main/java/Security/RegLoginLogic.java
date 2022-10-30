@@ -40,6 +40,19 @@ public class RegLoginLogic {
         return "";
     }
     
+    public static SecretKey getSecretKey(String salt, String password){
+        try {
+            SecretKey key = Encryption.getKeyFromPassword(password, salt);
+            
+            return key;
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(RegLoginLogic.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(RegLoginLogic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     
     public static boolean verifyPassword(String enteredPassword, String salt, String passwordHash){
         try {
@@ -67,7 +80,26 @@ public class RegLoginLogic {
         return false;
     }
     
+    public static String decryptPassword(SecretKey key,String hash){
+        try {
+            return Encryption.decrypt(hash, key);
+        } catch (NoSuchPaddingException ex) {
+            Logger.getLogger(RegLoginLogic.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(RegLoginLogic.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidAlgorithmParameterException ex) {
+            Logger.getLogger(RegLoginLogic.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeyException ex) {
+            Logger.getLogger(RegLoginLogic.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadPaddingException ex) {
+            Logger.getLogger(RegLoginLogic.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalBlockSizeException ex) {
+            Logger.getLogger(RegLoginLogic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     public static void main(String[] args) {
-        System.out.println(RegLoginLogic.encryptPassword("JospehPham", "password"));
+//        System.out.println(RegLoginLogic.decryptPassword("", "password"));
     }
 }

@@ -95,7 +95,7 @@ public class AddExerciseControl extends HttpServlet {
             et = etDAO.getExerciseByName(name);
             eDAO.insertExercise(now, userID, et, (double) kcal / kcalph * 60, kcal);
 //            response.getWriter().write((double)kcal/kcalph+"");
-            response.sendRedirect("/search-exercise");
+            response.sendRedirect("search-exercise");
         } catch (SQLException ex) {
             try (PrintWriter out = response.getWriter()) {
                 out.println(ex);

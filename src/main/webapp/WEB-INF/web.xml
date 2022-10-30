@@ -3,15 +3,10 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    
     <servlet>
         <servlet-name>LoginControl</servlet-name>
-        <servlet-class>Control.LoginControl</servlet-class>
+        <servlet-class>Control.Login.LoginControl</servlet-class>
     </servlet>
-    <!--    <servlet>
-        <servlet-name>DeleteControl</servlet-name>
-        <servlet-class>Control.DeleteControl</servlet-class>
-    </servlet>-->
     <servlet>
         <servlet-name>SearchControl</servlet-name>
         <servlet-class>Control.SearchControl</servlet-class>
@@ -21,16 +16,12 @@
         <servlet-class>Control.HealthInfoControl</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UserInfoControl</servlet-name>
-        <servlet-class>Control.UserInfoControl</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RegisterControl</servlet-name>
-        <servlet-class>Control.RegisterControl</servlet-class>
+        <servlet-class>Control.Login.RegisterControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutControl</servlet-name>
-        <servlet-class>Control.LogoutControl</servlet-class>
+        <servlet-class>Control.Login.LogoutControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HomeControl</servlet-name>
@@ -38,7 +29,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreateMealControl</servlet-name>
-        <servlet-class>Control.CreateMealControl</servlet-class>
+        <servlet-class>Control.Meal.CreateMealControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddExerciseControl</servlet-name>
@@ -70,7 +61,7 @@
     </servlet>
     <servlet>
         <servlet-name>UserExercises</servlet-name>
-        <jsp-file>/Exercises.jsp</jsp-file>
+        <jsp-file>/UserExercises.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>EditExerciseControl</servlet-name>
@@ -79,6 +70,38 @@
     <servlet>
         <servlet-name>DeleteExerciseControl</servlet-name>
         <servlet-class>Control.Exercise.DeleteExerciseControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserMeals</servlet-name>
+        <jsp-file>/UserMeals.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>EditMealControl</servlet-name>
+        <servlet-class>Control.Meal.EditMealControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteMealControl</servlet-name>
+        <servlet-class>Control.Meal.DeleteMealControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserInfo</servlet-name>
+        <jsp-file>/UserInfo.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginEditControl</servlet-name>
+        <servlet-class>Control.Login.LoginEditControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditUserInfoControl</servlet-name>
+        <servlet-class>Control.EditUserInfoControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditHealthInfo</servlet-name>
+        <servlet-class>Control.HealthInfo.EditHealthInfo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditGoalControl</servlet-name>
+        <servlet-class>Control.HealthInfo.EditGoalControl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
@@ -95,10 +118,6 @@
     <servlet-mapping>
         <servlet-name>HealthInfoControl</servlet-name>
         <url-pattern>/healthinfo-control</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UserInfoControl</servlet-name>
-        <url-pattern>/userinfo-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterControl</servlet-name>
@@ -155,6 +174,38 @@
     <servlet-mapping>
         <servlet-name>DeleteExerciseControl</servlet-name>
         <url-pattern>/delete-exercise-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserMeals</servlet-name>
+        <url-pattern>/user-meals</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditMealControl</servlet-name>
+        <url-pattern>/edit-meal-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteMealControl</servlet-name>
+        <url-pattern>/delete-meal-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserInfo</servlet-name>
+        <url-pattern>/user-info</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginEditControl</servlet-name>
+        <url-pattern>/login-edit-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUserInfoControl</servlet-name>
+        <url-pattern>/edit-user-info-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditHealthInfo</servlet-name>
+        <url-pattern>/edit-health-info-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditGoalControl</servlet-name>
+        <url-pattern>/edit-goal-control</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

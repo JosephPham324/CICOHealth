@@ -1,26 +1,23 @@
+package Control.HealthInfo;
 
-package Control;
-
+import Control.HealthInfoControl;
 import DAO.GoalDAO;
 import DAO.HealthDAO;
-import DAO.LoginDAO;
-import DAO.UserDAO;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Thinh
+ * @author Pham Nhat Quang
  */
-public class HealthInfoControl extends HttpServlet {
+public class EditHealthInfo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,15 +31,15 @@ public class HealthInfoControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InfoControl</title>");            
+            out.println("<title>Servlet EditHealthInfo</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet InfoControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditHealthInfo at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,13 +57,7 @@ public class HealthInfoControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-//        String id = request.getParameter("bid");
-//        
-//        Member m = dao.getMemberByID(id);
-//        request.setAttribute("sb", m);
-
-      
+        processRequest(request, response);
     }
 
     /**
@@ -80,26 +71,31 @@ public class HealthInfoControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userID = request.getParameter("userID");
+        String userID = request.getSession().getAttribute("userID").toString();
         HealthDAO heath = new HealthDAO();
         GoalDAO goal = new GoalDAO();
         String gender = request.getParameter("gender");
         String height = request.getParameter("height");
         String weight = request.getParameter("weight");
-        String activity = request.getParameter("activity");
+        String activity = request.getParameter("activeness");
         String age = request.getParameter("age");
         try {
-            heath.insertHealthInfo(userID+"",gender,height, weight,activity,age);
+            heath.insertHealthInfo(
+                    userID+"",
+                    gender,
+                    height,
+                    weight,
+                    activity,
+                    age);
             double calories = goal.calculateTDEE(weight, height, age, gender, activity);
             String finalCalories = Double.toString(calories);
             goal.addGoal(userID, finalCalories);
-            response.sendRedirect("home-control");
+            request.getSession().setAttribute("panel", "healthInfo");
+            response.sendRedirect("user-info");
         } catch (SQLException ex) {
             response.getWriter().write(ex.getMessage());
             Logger.getLogger(HealthInfoControl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
     }
 
     /**

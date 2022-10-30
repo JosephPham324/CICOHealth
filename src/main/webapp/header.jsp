@@ -15,15 +15,14 @@
         <li class="navbar__link"><a href="#footer">Contact</a></li>
         <c:choose>
             <c:when test = "${sessionScope.userID!=null}">
-                <li class="navbar__link"><a href=""><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
+                <li class="navbar__link"><a href="user-meals" target="_blank"><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
                 <li class="navbar__link"><a href="user-exercises" target="_blank"><img class="add-exercise-logo" src="image/addExercise-logo.png"></a></li>
                 <li class="navbar__link">
                     <div class="dropdown">
                         <img class="personal-logo" src="image/personal-logo.png" onclick="myDropdownF()">
 
                         <div id="myDropdown" class="dropdown-content">
-                            <a href="HealthInfo.jsp">Health Info</a>
-                            <a href="#">User Info</a>
+                            <a href="user-info">Profile</a>
                             <a href="logout-control">Log out</a>
                         </div>
                     </div>

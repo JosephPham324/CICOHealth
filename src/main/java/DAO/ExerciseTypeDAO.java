@@ -17,11 +17,34 @@ import java.util.logging.Logger;
  */
 public class ExerciseTypeDAO {
 
-    Connection con = null; // connect to SQL server
-    PreparedStatement ps = null; // move query from Netbeen to SQl
-    ResultSet rs = null; // save result query
+
+    /**
+     * Connection to database
+     */
+    Connection con = null;
+
+    /**
+     * Move query from Netbeans to SQl
+     */
+    PreparedStatement ps = null;
+
+    /**
+     * Save query result
+     */
+    ResultSet rs = null;
+
+    /**
+     *
+     */
     String query;
 
+    /**
+     * Search an exercise type
+     *
+     * @param name
+     * @return
+     * @throws SQLException
+     */
     public List<ExerciseType> searchExerciseTypes(String name) throws SQLException {
         List<ExerciseType> res = new ArrayList<>();
 
@@ -37,6 +60,14 @@ public class ExerciseTypeDAO {
 
         return res;
     }
+
+
+    /**
+     * Get all exercise types
+     *
+     * @return
+     * @throws SQLException
+     */
 
     public List<ExerciseType> getAllExerciseTypes() throws SQLException {
         List<ExerciseType> res = new ArrayList<>();
@@ -57,11 +88,11 @@ public class ExerciseTypeDAO {
         query = "SELECT * FROM EXERCISETYPES where EXERCISENAME = ?";
         con = new DBContext().getConnection(); // open connection to SQL
         ps = con.prepareStatement(query); // move query from Netbeen to SQl
-        ps.setString(1,name);
+        ps.setString(1, name);
         rs = ps.executeQuery();
         ExerciseType res = null;
-        while (rs.next()){
-            res = new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"), rs.getString("DESCRIPTION"),rs.getDouble("CALPERHOUR"));
+        while (rs.next()) {
+            res = new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"), rs.getString("DESCRIPTION"), rs.getDouble("CALPERHOUR"));
         }
         return res;
     }

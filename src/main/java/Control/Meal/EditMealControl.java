@@ -1,20 +1,24 @@
-package Control.Exercise;
+package Control.Meal;
 
-import DAO.ExerciseDAO;
+import DAO.MealDAO;
+import DAO.MealItemDAO;
+import Entity.Meal;
+import Entity.MealItem;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.SQLException;
 
 /**
  *
- * @author Pham Nhat Quang
+ * @author M S I
  */
-public class DeleteExerciseControl extends HttpServlet {
+public class EditMealControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,10 +37,10 @@ public class DeleteExerciseControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteExerciseControl</title>");
+            out.println("<title>Servlet EditMealControl</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteExerciseControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditMealControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,19 +72,56 @@ public class DeleteExerciseControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        try {
-            String date = request.getParameter("date");
-            String time = request.getParameter("time");
-            String userID = request.getSession().getAttribute("userID").toString();
-            ExerciseDAO dao = new ExerciseDAO();
-            dao.deleteExercise(userID, date, time);
-            response.sendRedirect("user-exercises");
-        } catch (Exception ex) {
-            response.getWriter().write(ex.getMessage());
-            Logger.getLogger(DeleteExerciseControl.class.getName()).log(Level.SEVERE, null, ex);
+        Object userID = request.getSession().getAttribute("userID");
+        if (userID == null) {//Guard clause
+            response.sendRedirect("home");
         }
 
+        Gson gson = new Gson();
+        String mealJSON = request.getParameter("meal");
+        Meal meal = gson.fromJson(mealJSON, Meal.class);
+        MealDAO mealDAO = new MealDAO();
+
+        MealItemDAO mealItemDAO = new MealItemDAO();
+
+        try {
+            mealItemDAO.deleteMealItems(
+                    meal.getMealDate(),
+                    meal.getMealTime(),
+                    meal.getMealName(),
+                    userID.toString());
+
+            mealDAO.deleteMeal(
+                    meal.getMealDate(),
+                    meal.getMealTime(),
+                    meal.getMealName(),
+                    userID.toString() + "");
+
+            mealDAO.insertMeal(
+                    meal.getMealName(),
+                    meal.getMealDate() + " " + meal.getMealTime(),
+                    userID.toString(), meal.getTotalCal() + "",
+                    meal.getProteinWeight() + "",
+                    meal.getFatWeight() + "",
+                    meal.getCarbWeight() + "");
+
+            for (MealItem item : meal.getFoodItems()) {
+                mealItemDAO.insertMealItem(
+                        meal.getMealName(),
+                        meal.getMealDate() + " " + meal.getMealTime(),
+                        userID.toString(), item.getName(),
+                        item.getTotalCal() + "",
+                        item.getProteinWeight() + "",
+                        item.getFatWeight() + "",
+                        item.getCarbWeight() + "",
+                        item.getTotalWeight() + ""
+                );
+
+            }
+            response.sendRedirect("user-meals");
+        } catch (IOException | NumberFormatException | SQLException | NullPointerException ex) {
+            response.getWriter().write(ex.getMessage());
+        }
     }
 
     /**

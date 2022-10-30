@@ -1,26 +1,22 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package Control.Login;
 
-package Control;
-
-import DAO.GoalDAO;
-import DAO.HealthDAO;
-import DAO.LoginDAO;
-import DAO.UserDAO;
+import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 /**
  *
- * @author Thinh
+ * @author Pham Nhat Quang
  */
-public class HealthInfoControl extends HttpServlet {
+public class LogoutControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +35,10 @@ public class HealthInfoControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InfoControl</title>");            
+            out.println("<title>Servlet LogoutControl</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet InfoControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LogoutControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,12 +57,15 @@ public class HealthInfoControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-//        String id = request.getParameter("bid");
-//        
-//        Member m = dao.getMemberByID(id);
-//        request.setAttribute("sb", m);
-
-      
+        request.getSession().invalidate();//Invalidate current session when user register account
+        request.getSession();
+        for (Cookie ck:request.getCookies()){
+            ck.setValue("");
+            ck.setMaxAge(0);
+            response.addCookie(ck);
+        }
+        
+        response.sendRedirect("home-control");
     }
 
     /**
@@ -80,26 +79,7 @@ public class HealthInfoControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userID = request.getParameter("userID");
-        HealthDAO heath = new HealthDAO();
-        GoalDAO goal = new GoalDAO();
-        String gender = request.getParameter("gender");
-        String height = request.getParameter("height");
-        String weight = request.getParameter("weight");
-        String activity = request.getParameter("activity");
-        String age = request.getParameter("age");
-        try {
-            heath.insertHealthInfo(userID+"",gender,height, weight,activity,age);
-            double calories = goal.calculateTDEE(weight, height, age, gender, activity);
-            String finalCalories = Double.toString(calories);
-            goal.addGoal(userID, finalCalories);
-            response.sendRedirect("home-control");
-        } catch (SQLException ex) {
-            response.getWriter().write(ex.getMessage());
-            Logger.getLogger(HealthInfoControl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+        processRequest(request, response);
     }
 
     /**

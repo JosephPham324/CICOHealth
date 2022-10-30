@@ -1,8 +1,9 @@
 <%-- Document : Exercises.jsp Created on : Oct 19, 2022, 11:33:30 AM Author :
-Pham Nhat Quang --%> <%@ taglib prefix="c"
-                                uri="http://java.sun.com/jsp/jstl/core" %> <%@page import="DAO.ExerciseDAO"%>
-<%@page import="Entity.Exercise"%> <%@page import="java.util.List"%> <%@page
-    contentType="text/html" pageEncoding="UTF-8"%>
+Pham Nhat Quang --%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="DAO.ExerciseDAO"%>
+<%@page import="Entity.Exercise"%> <%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -37,23 +38,19 @@ Pham Nhat Quang --%> <%@ taglib prefix="c"
             <c:if test="${sessionScope.userID == null}">
                 <c:redirect url="search-exercise"></c:redirect>
             </c:if>
-            <jsp:useBean
-                id="eDAO"
-                class="DAO.ExerciseDAO"
-                scope="request"
-                ></jsp:useBean>
-                <div class="edit-form">
-                    <div class="overlay"></div>
+            <jsp:useBean id="eDAO" class="DAO.ExerciseDAO" scope="request"></jsp:useBean>
+            <div class="edit-form">
+                <div class="overlay"></div>
 
-                    <form action="edit-exercise-control" method = "post" id = "editForm">
-                        <fieldset class="form-group">
-                            <legend>EDIT EXERCISE</legend>
-                            <div class="form-group row">
-                                <label for="date" class="col-4 col-form-label">Date</label>
-                                <div class="col-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
+                <form action="edit-exercise-control" method = "post" id = "editForm">
+                    <fieldset class="form-group">
+                        <legend>EDIT EXERCISE</legend>
+                        <div class="form-group row">
+                        <label for="date" class="col-4 col-form-label">Date</label>
+                        <div class="col-8">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                <div class="input-group-text">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                         </div>
@@ -175,10 +172,12 @@ Pham Nhat Quang --%> <%@ taglib prefix="c"
                                     <th scope="col">Name</th>
                                     <th scope="col">Duration</th>
                                     <th scope="col">Kcal</th>
+                                    <th scope="col">Total Kcal</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            
                             <c:forEach
                                 items="${eDAO.getExerciseByUserID(sessionScope.userID)}"
                                 var="item"
@@ -190,6 +189,7 @@ Pham Nhat Quang --%> <%@ taglib prefix="c"
                                     <td>${item.getName()}</td>
                                     <td>${item.getDuration()}</td>
                                     <td>${item.getCalorie()}</td>
+                                    <td></td>
                                     <td>
                                         <form action="#" class="item-form" onsubmit="return fillEditForm(this)">
                                             <input type="hidden" name="date" value="${item.getDate()}">
@@ -201,9 +201,11 @@ Pham Nhat Quang --%> <%@ taglib prefix="c"
                                             <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                                         </form>
                                         |
-                                        <a href="delete-exercise-control?name=lmao" style="color: red"
-                                           ><i class="fa-solid fa-xmark"></i
-                                            ></a>
+                                        <form action="delete-exercise-control" method="post" class="delete-item-form">
+                                            <input type="hidden" name="date" value="${item.getDate()}">
+                                            <input type="hidden" name="time" value="${item.getTime()}">
+                                            <button type="submit"><i class="fa-solid fa-xmark"></i></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -215,6 +217,7 @@ Pham Nhat Quang --%> <%@ taglib prefix="c"
                                 <th scope="col">Name</th>
                                 <th scope="col">Duration</th>
                                 <th scope="col">Kcal</th>
+                                <th scope="col">Total Kcal</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </tfoot>

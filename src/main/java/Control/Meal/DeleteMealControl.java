@@ -1,26 +1,20 @@
+package Control.Meal;
 
-package Control;
-
-import DAO.GoalDAO;
-import DAO.HealthDAO;
-import DAO.LoginDAO;
-import DAO.UserDAO;
+import DAO.MealDAO;
+import DAO.MealItemDAO;
+import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 /**
  *
- * @author Thinh
+ * @author Pham Nhat Quang
  */
-public class HealthInfoControl extends HttpServlet {
+public class DeleteMealControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,15 +28,15 @@ public class HealthInfoControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InfoControl</title>");            
+            out.println("<title>Servlet DeleteMealControl</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet InfoControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteMealControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,13 +54,7 @@ public class HealthInfoControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-//        String id = request.getParameter("bid");
-//        
-//        Member m = dao.getMemberByID(id);
-//        request.setAttribute("sb", m);
-
-      
+        processRequest(request, response);
     }
 
     /**
@@ -80,26 +68,37 @@ public class HealthInfoControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userID = request.getParameter("userID");
-        HealthDAO heath = new HealthDAO();
-        GoalDAO goal = new GoalDAO();
-        String gender = request.getParameter("gender");
-        String height = request.getParameter("height");
-        String weight = request.getParameter("weight");
-        String activity = request.getParameter("activity");
-        String age = request.getParameter("age");
-        try {
-            heath.insertHealthInfo(userID+"",gender,height, weight,activity,age);
-            double calories = goal.calculateTDEE(weight, height, age, gender, activity);
-            String finalCalories = Double.toString(calories);
-            goal.addGoal(userID, finalCalories);
-            response.sendRedirect("home-control");
-        } catch (SQLException ex) {
-            response.getWriter().write(ex.getMessage());
-            Logger.getLogger(HealthInfoControl.class.getName()).log(Level.SEVERE, null, ex);
+        Object userID = request.getSession().getAttribute("userID");
+        if (userID == null) {//Guard clause
+            response.sendRedirect("home");
         }
+
+        String mealName = request.getParameter("name");
+        String mealDate = request.getParameter("date");
+        String mealTime = request.getParameter("time");
         
-        
+        MealDAO mealDAO = new MealDAO();
+        MealItemDAO mealItemDAO = new MealItemDAO();
+
+        try {
+            mealItemDAO.deleteMealItems(
+                    mealDate,
+                    mealTime,
+                    mealName,
+                    userID.toString()
+            );
+            
+            mealDAO.deleteMeal(
+                    mealDate,
+                    mealTime,
+                    mealName,
+                    userID.toString()
+            );
+            
+            response.sendRedirect("user-meals");
+        } catch (IOException | NumberFormatException | SQLException | NullPointerException ex) {
+            response.getWriter().write(ex.getMessage());
+        }
     }
 
     /**

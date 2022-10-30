@@ -274,18 +274,17 @@ class Meal {
  * @returns Meal object with attribute values calculated from foodItems
  */
 function createMeal(mealName, foodItems) {
+  console.log('hello')
   let totalCal = 0;
   let proteinWeight = 0;
   let fatWeight = 0;
   let carbWeight = 0;
   foodItems.forEach((item) => {
-    if (item instanceof FoodItem) {
       console.log(item);
-      totalCal += item.get("totalCal");
-      proteinWeight += item.get("proteinWeight");
-      fatWeight += item.get("fatWeight");
-      carbWeight += item.get("carbWeight");
-    }
+      totalCal += item["totalCal"];
+      proteinWeight += item["proteinWeight"];
+      fatWeight += item["fatWeight"];
+      carbWeight += item["carbWeight"];
   });
   return new Meal(
     mealName,
