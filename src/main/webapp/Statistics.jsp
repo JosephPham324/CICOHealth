@@ -41,6 +41,8 @@ Pham Nhat Quang CE170036 (FPTU CANTHO) --%>
         </c:if>
         <jsp:useBean class="DAO.GoalDAO" id="goalsDAO" scope="page"></jsp:useBean>
         <jsp:useBean class="DAO.MealDAO" id="mealDAO" scope="page"></jsp:useBean>
+        <jsp:useBean class="DAO.ExerciseDAO" id="exerciseDAO" scope="page"></jsp:useBean>
+        <c:set var="userID" value="${sessionScope.userID}"></c:set>
         <c:set
             var="goals"
             value="${goalsDAO.getGoalByID(sessionScope.userID)}"
@@ -51,7 +53,7 @@ Pham Nhat Quang CE170036 (FPTU CANTHO) --%>
         <c:set var="calorieGoal" value="${goals.getCalories()}"></c:set>
         <c:set
             var="meals"
-            value="${mealDAO.getMealsGroupedByDate(sessionScope.userID)}"
+            value="${mealDAO.getMealsGroupedByDate(userID)}"
             scope="request"
             ></c:set>
 
@@ -76,6 +78,8 @@ Pham Nhat Quang CE170036 (FPTU CANTHO) --%>
                                 <th>Fat (kcal)</th>
                                 <th>Carbs (kcal)</th>
                                 <th>Calorie (kcal)</th>
+                                <th>Calorie burned</th>
+                                <th>Total calorie</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -87,7 +91,7 @@ Pham Nhat Quang CE170036 (FPTU CANTHO) --%>
                         </script>
                     <c:forEach var="meal" items="${meals}">
                         <script>
-                                mealKcal.push(${meal.getTotalCal()});
+                                mealKcal.push(${meal.getTotalCal()-exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())});
                                 goalKcal.push(${calorieGoal});
                                 date = `${meal.getDate("yy-MM-dd")}`
                                 chartLabel.push(date);
@@ -151,6 +155,22 @@ Pham Nhat Quang CE170036 (FPTU CANTHO) --%>
                                     value="${meal.getTotalCal()}"
                                     />
                             </td>
+                            <td>
+                                <fmt:formatNumber
+                                    type="number"
+                                    maxFractionDigits="1"
+                                    minFractionDigits="1"
+                                    value="${exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())}"
+                                    />
+                            </td>
+                            <td>
+                                <fmt:formatNumber
+                                    type="number"
+                                    maxFractionDigits="1"
+                                    minFractionDigits="1"
+                                    value="${meal.getTotalCal()-exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())}"
+                                    />
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -205,6 +225,8 @@ Pham Nhat Quang CE170036 (FPTU CANTHO) --%>
                                     value="${carbGoal*4}"
                                     />
                             </th>
+                            <th>---</th>
+                            <th>---</th>
                             <th>
                                 <fmt:formatNumber
                                     type="number"

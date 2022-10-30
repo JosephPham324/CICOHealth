@@ -172,6 +172,14 @@ public class Meal {
     public void setMealTime(String mealTime) {
         this.mealTime = mealTime;
     }
+    
+    public double calculateTotalCalorie(List<Exercise> list){
+        double res = 0;
+        for (Exercise exercise: list){
+            res+=exercise.getCalorie();
+        }
+        return res;
+    }
 
     public static List<Meal> groupMealsByDate(List<Meal> meals) {
         String currentDate = "";
