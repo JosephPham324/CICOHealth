@@ -47,8 +47,12 @@ Author : Pham Nhat Quang
                 <form id="nameForm" onsubmit="return enterName();">
                     <h3>ENTER MEAL NAME</h3>
 
-                    <input type="text" name = "name" value="Breakfast">
-                    <input type="submit" value="SUBMIT" name="submit">
+                    <select id="mySelect">
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                    </select>
+                    <input type="submit" value="SUBMIT" name="submit" onclick="enterName()">
                 </form>
                 <form action="create-meal-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
                     <fieldset>
