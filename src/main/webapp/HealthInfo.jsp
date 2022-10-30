@@ -213,10 +213,12 @@
 
 
                     <!--Submit-->
-                    <div class="form-group row" id="results_2">
+                    <div class="submit">
+                        <div class="form-group row" id="results_2">
                         <div class="offset-4 col-8" id="results_2">
                             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
                         </div>
+                    </div>
                     </div>
 
                 </form>
