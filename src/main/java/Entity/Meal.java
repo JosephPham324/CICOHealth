@@ -130,6 +130,13 @@ public class Meal {
 
         return formatter.format(this.mealDateTime);
     }
+    
+    public String getDate(String format){
+        this.formatter
+                = new SimpleDateFormat(format);
+
+        return formatter.format(this.mealDateTime);
+    }
 
     public String getTime() {
         this.formatter

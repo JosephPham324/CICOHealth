@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -123,7 +124,7 @@ public class MealDAO {
      */
     public List<Meal> getMealsByUserID(String userID) {
         try {
-            query = "select * from dbo.MEAL where USERID = ?";
+            query = "select * from dbo.MEAL where USERID = ? order by MEALDATETIME";
             List<Meal> res = new ArrayList<>();
             con = new DBContext().getConnection();
             ps = con.prepareStatement(query);
@@ -175,6 +176,12 @@ public class MealDAO {
     public List<Meal> getMealsGroupedByDate(String userID){
         List<Meal> res = this.getMealsByUserID(userID);
         res = Meal.groupMealsByDate(res);
+        res.sort(new Comparator<Meal>(){
+            @Override
+            public int compare(Meal o1, Meal o2) {
+                return o1.getMealDateTime().compareTo(o1.getMealDateTime());
+            }
+        });
         return res;
     }
     

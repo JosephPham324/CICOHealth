@@ -1,6 +1,9 @@
 $(document).ready(function () {
     var groupColumn = 0;
     var table = $('#stats-table').DataTable({
+        scrollY: '600px',
+        scrollCollapse: true,
+        paging: false,
         columnDefs: [{ visible: false, targets: groupColumn }],
         order: [[groupColumn, 'asc']],
         displayLength: 25,
@@ -34,3 +37,20 @@ $(document).ready(function () {
         }
     });
 });
+
+
+let buttonTable = document.getElementById("buttonTable")
+let buttonChart = document.getElementById("buttonChart")
+
+buttonTable.addEventListener('click',()=>{
+    buttonTable.classList.add('active')
+    buttonChart.classList.remove('active')
+    document.querySelector('.info-table').classList.add('active')
+    document.querySelector('.info-chart').classList.remove('active')
+})
+buttonChart.addEventListener('click',()=>{
+    buttonChart.classList.add('active')
+    buttonTable.classList.remove('active')
+    document.querySelector('.info-chart').classList.add('active')
+    document.querySelector('.info-table').classList.remove('active')
+})
