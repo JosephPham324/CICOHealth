@@ -188,7 +188,8 @@ function createFormItem(item, index) {
   <strong><i class ='fas fa-bread-slice carbs'></i></strong>
   <span class="carbs">${item.get("carbWeight").toFixed(1)}g</span>
   <strong><i class="fa-solid fa-weight-scale"></i></strong>
-  <span class="weight"><input type="number" value="${item.get(
+  <span class="weight"><input type="number" min="1" max="10000" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189"
+    value="${item.get(
     "totalWeight"
   )}">g</span>
   <i class="fa-solid fa-x"></i>
@@ -311,7 +312,7 @@ overlay.addEventListener("click", () => {
  * @returns false to disable submitting form
  */
 function enterName() {
-  let name = document.querySelector('#nameForm input[type="text"]');
+  let name = document.getElementById("mySelect");
   document.querySelector("#mealForm").style.display = "flex";
   document.querySelector("#nameForm").style.display = "none";
   meal.set("mealName", name.value);
