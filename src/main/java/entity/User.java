@@ -33,15 +33,6 @@ public class User {
         this.phone = phone;
     }
 
-    public User(int userID, String firstName, String lastName, String email, String phone) {
-        this.userID = userID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-    }
-    
-
     /**
      *
      * @return

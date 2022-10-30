@@ -5,17 +5,18 @@ package Entity;
  * @author Thinh
  */
 public class UserHealthInfo {
-
     private int userId;
     private String gender;
     private float height;
     private float weight;
-    private int activeness;
+    private float activeness;
     private int age;
 
     public UserHealthInfo(int userID) {
-        this.userId = userID;
+        this.userId =userID;
     }
+    
+    
 
     /**
      *
@@ -26,7 +27,7 @@ public class UserHealthInfo {
      * @param activeness
      * @param age
      */
-    public UserHealthInfo(int userId, String gender, float height, float weight, int activeness, int age) {
+    public UserHealthInfo(int userId, String gender, float height, float weight, float activeness, int age) {
         this.userId = userId;
         this.gender = gender;
         this.height = height;
@@ -103,7 +104,7 @@ public class UserHealthInfo {
      *
      * @return
      */
-    public int getActiveness() {
+    public float getActiveness() {
         return activeness;
     }
 
@@ -111,7 +112,7 @@ public class UserHealthInfo {
      *
      * @param activeness
      */
-    public void setActiveness(int activeness) {
+    public void setActiveness(float activeness) {
         this.activeness = activeness;
     }
 
@@ -131,13 +132,5 @@ public class UserHealthInfo {
         this.age = age;
     }
 
-    public String getActivenessString() {
-        switch (this.activeness) {
-            case 0: return "Not active";
-            case 1: return "Lightly active";
-            case 2: return "Active";
-            case 3: return "Very active";
-        }
-        return "Not active";
-    }
+    
 }

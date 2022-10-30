@@ -33,10 +33,10 @@ Author : Pham Nhat Quang
                             <fieldset>
                                 <legend>Register</legend>
                                 <div class="form-group row">
-                                    <label for="username" class="col-4 col-form-label"
+                                    <label for="username" class="col-5 col-form-label"
                                            >Username</label
                                     >
-                                    <div class="col-8">
+                                    <div class="col-7">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -57,10 +57,10 @@ Author : Pham Nhat Quang
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="password" class="col-4 col-form-label"
+                                    <label for="password" class="col-5 col-form-label"
                                            >Password</label
                                     >
-                                    <div class="col-8">
+                                    <div class="col-7">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -81,10 +81,9 @@ Author : Pham Nhat Quang
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="password" class="col-4 col-form-label"
-                                           >Confirm password</label
-                                    >
-                                    <div class="col-8">
+                                    <label for="password" class="col-5 col-form-label"
+                                           >Confirm password</label>
+                                    <div class="col-7">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -106,10 +105,10 @@ Author : Pham Nhat Quang
 
 
                                 <div class="form-group row">
-                                    <label for="firstName" class="col-4 col-form-label"
+                                    <label for="firstName" class="col-5 col-form-label"
                                            >First Name</label
                                     >
-                                    <div class="col-8">
+                                    <div class="col-7">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -129,10 +128,10 @@ Author : Pham Nhat Quang
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="lastName" class="col-4 col-form-label"
+                                    <label for="lastName" class="col-5 col-form-label"
                                            >Last Name</label
                                     >
-                                    <div class="col-8">
+                                    <div class="col-7">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -152,8 +151,8 @@ Author : Pham Nhat Quang
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="email" class="col-4 col-form-label">Email</label>
-                                    <div class="col-8">
+                                    <label for="email" class="col-5 col-form-label">Email</label>
+                                    <div class="col-7">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -173,12 +172,12 @@ Author : Pham Nhat Quang
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="phone" class="col-4 col-form-label">Phone</label>
-                                    <div class="col-8">
+                                    <label for="phone" class="col-5 col-form-label">Phone</label>
+                                    <div class="col-7">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="fa fa-address-book"></i>
+                                                    <i class="fa fa-phone"></i>
                                                 </div>
                                             </div>
                                             <input
