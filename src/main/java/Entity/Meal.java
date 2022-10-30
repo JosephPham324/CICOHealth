@@ -1,6 +1,7 @@
 package Entity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,8 +21,10 @@ public class Meal {
     private double fatWeight;
     private double carbWeight;
     private List<MealItem> foodItems;
-    private String dateFormat = "yyyy-MM-dd";
-    private String timeFormat = "HH:mm:ss";
+    private final String dateFormat = "yyyy-MM-dd";
+    private final String monthYearFormat = "yyyy-MM";
+    private final String monthDayFormat = "dd";
+    private final String timeFormat = "HH:mm:ss";
     private SimpleDateFormat formatter;
 
     public Meal(String mealName, Date mealDateTime, int userID, double totalCal, double proteinWeight, double fatWeight, double carbWeight, List<MealItem> foodItems) {
@@ -56,8 +59,6 @@ public class Meal {
         this.carbWeight = carbWeight;
         this.foodItems = foodItems;
     }
-    
-    
 
     public String getMealName() {
         return mealName;
@@ -124,19 +125,37 @@ public class Meal {
     }
 
     public String getDate() {
-        this.formatter = 
-                new SimpleDateFormat(dateFormat);
+        this.formatter
+                = new SimpleDateFormat(dateFormat);
+
+        return formatter.format(this.mealDateTime);
+    }
+    
+    public String getDate(String format){
+        this.formatter
+                = new SimpleDateFormat(format);
 
         return formatter.format(this.mealDateTime);
     }
 
     public String getTime() {
-        this.formatter = 
-                new SimpleDateFormat(timeFormat);
+        this.formatter
+                = new SimpleDateFormat(timeFormat);
 
         return formatter.format(this.mealDateTime);
     }
-    
+
+    public String getMonthYear() {
+        this.formatter = new SimpleDateFormat(monthYearFormat);
+
+        return formatter.format(this.mealDateTime);
+    }
+
+    public String getMonthDay() {
+        this.formatter = new SimpleDateFormat(monthDayFormat);
+
+        return formatter.format(this.mealDateTime);
+    }
 
     public String getMealDate() {
         return mealDate;
@@ -154,10 +173,57 @@ public class Meal {
         this.mealTime = mealTime;
     }
     
+    public double calculateTotalCalorie(List<Exercise> list){
+        double res = 0;
+        for (Exercise exercise: list){
+            res+=exercise.getCalorie();
+        }
+        return res;
+    }
+
+    public static List<Meal> groupMealsByDate(List<Meal> meals) {
+        String currentDate = "";
+        ArrayList<Meal> res = new ArrayList<>();
+        Meal resItem = null;
+        for (Meal meal : meals) {
+            String itemDate = meal.getDate();
+            System.out.println(itemDate);
+            if (itemDate.equals(currentDate) && resItem != null) {
+                resItem.setProteinWeight(resItem.getProteinWeight() + meal.getProteinWeight());
+                resItem.setFatWeight(resItem.getFatWeight() + meal.getFatWeight());
+                resItem.setCarbWeight(resItem.getCarbWeight() + meal.getCarbWeight());
+                resItem.setTotalCal(resItem.getTotalCal() + meal.getTotalCal());
+            } else {
+                currentDate = itemDate;
+                if (resItem != null) {
+                    res.add(resItem);
+                }
+                resItem = new Meal(itemDate, 0, 0, 0, 0, null);
+                resItem.setMealDateTime(meal.getMealDateTime());
+                
+                resItem.setProteinWeight(resItem.getProteinWeight() + meal.getProteinWeight());
+                resItem.setFatWeight(resItem.getFatWeight() + meal.getFatWeight());
+                resItem.setCarbWeight(resItem.getCarbWeight() + meal.getCarbWeight());
+                resItem.setTotalCal(resItem.getTotalCal() + meal.getTotalCal());
+            }
+            if (meal == meals.get(meals.size() - 1)) {
+                resItem = new Meal(itemDate, 0, 0, 0, 0, null);
+                resItem.setMealDateTime(meal.getMealDateTime());
+                
+                
+                resItem.setProteinWeight(resItem.getProteinWeight() + meal.getProteinWeight());
+                resItem.setFatWeight(resItem.getFatWeight() + meal.getFatWeight());
+                resItem.setCarbWeight(resItem.getCarbWeight() + meal.getCarbWeight());
+                resItem.setTotalCal(resItem.getTotalCal() + meal.getTotalCal());
+                res.add(resItem);
+            }
+        }
+        return res;
+    }
 
     @Override
     public String toString() {
-        return "{" + "mealName:'" + mealName + "', mealDate:'" +((this.mealDateTime!=null)? this.getDate():this.mealDate) +"',mealTime:'"+(this.mealDateTime!=null? this.getTime():this.mealTime) + "', userID:" + userID + ", totalCal:" + totalCal + ", proteinWeight:" + proteinWeight + ", fatWeight:" + fatWeight + ", carbWeight:" + carbWeight + ", foodItems:" + foodItems + '}';
+        return "{" + "mealName:'" + mealName + "', mealDate:'" + ((this.mealDateTime != null) ? this.getDate() : this.mealDate) + "',mealTime:'" + (this.mealDateTime != null ? this.getTime() : this.mealTime) + "', userID:" + userID + ", totalCal:" + totalCal + ", proteinWeight:" + proteinWeight + ", fatWeight:" + fatWeight + ", carbWeight:" + carbWeight + ", foodItems:" + foodItems + '}';
     }
 
 }

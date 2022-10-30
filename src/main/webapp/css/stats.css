@@ -1,0 +1,51 @@
+.buttons{
+    z-index: 100;
+    position:fixed;
+    display:flex;
+    width: auto;
+    height: auto;
+    gap:10px;
+    left: 10%;
+    top:20px;
+}
+
+.buttons button{
+    width: 80px;
+    height: 50px;
+    border: none;
+    cursor:pointer;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.buttons button:first-child{
+    background-color: rgb(241, 150, 30);
+    color:aquamarine;
+}
+.buttons button:last-child{
+    color:antiquewhite;
+    background-color: rgb(9, 100, 69);
+}
+.buttons button:active, .buttons button:focus{
+    outline: none;
+}
+
+.buttons button:active{
+    transform: scale(0.98);
+}
+.buttons button.active{
+    color:red;
+}
+
+.info-table{
+    display:none;
+}
+.info-table.active{
+    display:block;
+}
+.info-chart{
+    display:none;
+}
+.info-chart.active{
+    display:block;
+}

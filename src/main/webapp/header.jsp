@@ -23,6 +23,7 @@
 
                         <div id="myDropdown" class="dropdown-content">
                             <a href="user-info">Profile</a>
+                            <a href="user-statistics">Nutrition Statistics</a>
                             <a href="logout-control">Log out</a>
                         </div>
                     </div>
