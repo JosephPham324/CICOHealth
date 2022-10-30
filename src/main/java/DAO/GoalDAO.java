@@ -59,7 +59,7 @@ public class GoalDAO {
                 + "							 CARB = ?\n"
                 + "							 where USERID = ?";
         try {
-            if (new GoalDAO().getGoalbyID(Integer.parseInt(userId)) != null) {
+            if (new GoalDAO().getGoalByID(Integer.parseInt(userId)) != null) {
                 con = new DBContext().getConnection(); // open connection to SQL
                 ps = con.prepareStatement(queryEdit); // move query from Netbeen to SQl
                 ps.setString(1, calorie);
@@ -118,7 +118,7 @@ public class GoalDAO {
      * @param id User ID
      * @return DailyNutritionalGoal object containing goals of the user
      */
-    public DailyNutritionGoal getGoalbyID(int id) {
+    public DailyNutritionGoal getGoalByID(int id) {
         String query = "select * from DAILYNUTRITIONGOAL\n"
                 + "where USERID = ?";
         try {
@@ -143,7 +143,7 @@ public class GoalDAO {
      */
     public static void main(String[] args) {
         GoalDAO g = new GoalDAO();
-        DailyNutritionGoal info = g.getGoalbyID(1);
+        DailyNutritionGoal info = g.getGoalByID(1);
         System.out.println(info);
     }
 }
