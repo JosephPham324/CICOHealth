@@ -16,7 +16,6 @@
         <link rel="stylesheet" href = "./css/termconditions.css"/>
         <%@ include file = "headfootlink.jsp"%>
         <title>Nutrition</title>
-
     </head>
     <body>
         <%@ include file="header.jsp" %>
