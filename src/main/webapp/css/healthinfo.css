@@ -1,0 +1,84 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-image: url('${pageContext.request.contextPath}/image/login.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+body{
+/*    width: 100vw;
+    height: 100vh;*/
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+/*    background-color: aliceblue;*/
+}
+
+legend{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 48px;
+    font-weight: 700;
+    color: black;
+    padding-bottom: 10px;
+    margin-top: 15px;
+}
+
+.form-group.row:last-child{
+    margin-bottom: 0;
+}
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-image: linear-gradient((0,0,0,0.3),(0,0,0,0.3));
+    width: 485px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 7px 7px 60px #000;
+    border-radius: 30px;
+}
+form{
+ padding:5px 10px;
+}
+input[type=checkbox] {
+    height: 13px;
+    
+}
+.form-check {
+        display: inline-flex;
+        font-size: 13px;
+       font-weight: 550;
+       margin-bottom: 10px;
+       color: #5e5e5e;
+}
+.term {
+    font-size: 11px;
+    display: inline-flex;
+}
+button.submit {
+    margin-bottom: 20px;
+    
+}
+.submit{
+    margin-bottom: 15px;
+    border-radius: 25px;
+    margin-top: 10px;
+}
+.error{
+    font-size: 12px;
+}
+
