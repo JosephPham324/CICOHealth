@@ -94,6 +94,7 @@ public class UserDAO {
         return -1;
     }
 
+
     /**
      * Get a user from database using ID
      *
@@ -121,6 +122,7 @@ public class UserDAO {
         return null;
     }
 
+
     /**
      * Edit user info in USER table
      *
@@ -138,6 +140,7 @@ public class UserDAO {
                 + "EMAILADDRESS = ?,\n"
                 + "PHONENUMBER = ?\n"
                 + "where USERID = ?";
+
         con = new DBContext().getConnection(); // open connection to SQL
         ps = con.prepareStatement(query); // move query from Netbeen to SQl
         ps.setString(1, FIRSTNAME);
