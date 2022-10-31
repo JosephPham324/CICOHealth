@@ -15,7 +15,7 @@
         <title>Your health info</title>
     </head>
     <body>
-        <section style="background-image: url('${pageContext.request.contextPath}/image/login.jpg');">
+        <section style="background-image: url('${pageContext.request.contextPath}/image/healthinfor.jpg');">
             <div class="form-container">
         <%
             Object sessionUserID = session.getAttribute("userID");//Get session's userID
@@ -142,7 +142,7 @@
                         <div class="submit">
                             <div class="form-group row">
                                 <div class="col-md-12 text-center">
-                                    <button name="submit"  id="smit" class="btn btn-success">Submit</button>
+                                    <button name="submit"  id="smit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </div>
