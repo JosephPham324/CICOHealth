@@ -223,7 +223,6 @@ Author : Pham Nhat Quang
 
         </section>
     </body>
-
     <script>
         document.getElementById("ErrorDuplicate").style.display = 'none';
     </script>

@@ -54,7 +54,7 @@
             Login loginInfo = lDAO.getLoginInfo(id);
             User user = uDAO.getUserByID(id);
             UserHealthInfo healthInfo = hDAO.findUserHealthInfo(Integer.parseInt(id));
-            DailyNutritionGoal goals = gDAO.getGoalbyID(Integer.parseInt(id));
+            DailyNutritionGoal goals = gDAO.getGoalByID(Integer.parseInt(id));
             
             String enteredPassword = request.getParameter("password");
             
