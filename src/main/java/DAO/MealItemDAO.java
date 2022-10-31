@@ -47,6 +47,7 @@ public class MealItemDAO {
      */
     SimpleDateFormat dateFormatter;
 
+
     /**
      * Insert meal item into database
      *
@@ -116,6 +117,7 @@ public class MealItemDAO {
 
     }
 
+
     /**
      * Get meal items related to a meal using meal name, meal date time and user
      * ID
@@ -135,6 +137,7 @@ public class MealItemDAO {
         ps = con.prepareStatement(query);
         ps.setString(1, mealName);
         ps.setString(2, mealDateTime);
+
         ps.setString(3, userID + "");
         rs = ps.executeQuery();
         while (rs.next()) {
@@ -144,6 +147,7 @@ public class MealItemDAO {
         }
         return res;
     }
+
 
     /**
      * Delete meal items related to a meal in the database

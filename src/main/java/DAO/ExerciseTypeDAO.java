@@ -31,7 +31,6 @@ public class ExerciseTypeDAO {
     /**
      * Save query result
      */
-
     ResultSet rs = null; 
 
     /**

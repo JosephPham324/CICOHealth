@@ -14,7 +14,6 @@ section {
     background-image: url('${pageContext.request.contextPath}/image/login.jpg');
     background-size: cover;
     background-position: center center;
-
 }
 body{
 /*    width: 100vw;
@@ -82,3 +81,4 @@ button.submit {
 .error{
     font-size: 12px;
 }
+

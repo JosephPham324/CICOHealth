@@ -20,7 +20,6 @@ $(document).ready( function () {
                         $(rows)
                             .eq(i)
                             .before('<tr class="group"><td colspan="8">' + group + '</td></tr>');
- 
                         last = group;
                     }
                 });

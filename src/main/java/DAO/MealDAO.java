@@ -86,7 +86,6 @@ public class MealDAO {
         ps.setString(7, carbs + "");
         ps.executeUpdate();
     }
-
     /**
      * Insert meal into database
      *
@@ -148,6 +147,7 @@ public class MealDAO {
         return null;
     }
 
+
     /**
      * Delete meal from database
      *
@@ -172,6 +172,7 @@ public class MealDAO {
         ps.setString(4, name);
         ps.executeUpdate();
     }
+
     
     public List<Meal> getMealsGroupedByDate(String userID){
         List<Meal> res = this.getMealsByUserID(userID);
