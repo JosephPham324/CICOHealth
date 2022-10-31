@@ -52,98 +52,54 @@
                 <div class="overlay"></div>
 
                 <div class="create-meal">
-                <form action="edit-meal-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
+                    <form action="edit-meal-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
                     <fieldset>
                         <legend>EDIT MEAL</legend>
                         <input type="submit" value="SUBMIT" name="submit" id="submit">
                     </fieldset>
                 </form>
-                </div>
             </div>
-            <div>
-                <div class="info-container">
-                    <h1 style="text-align: center">List of your meals</h1>
-                    <table
-                        class="table table-striped table-hover display"
-                        id="meals"
-                        title="Meals List"
-                        >
-                        <thead>
-                            <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Time</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Protein</th>
-                                <th scope="col">Fat</th>
-                                <th scope="col">Carbs</th>
-                                <th scope="col">Calories</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+        </div>
+        <div>
+            <div class="info-container">
+                <h1 style="text-align: center">List of your meals</h1>
+                <table
+                    class="table table-striped table-hover display"
+                    id="meals"
+                    title="Meals List"
+                    >
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Protein</th>
+                            <th scope="col">Fat</th>
+                            <th scope="col">Carbs</th>
+                            <th scope="col">Calories</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <c:set var="sumCal" value="${0}"></c:set>
                         <c:set var="sumPro" value="${0}"></c:set>
                         <c:set var="sumFat" value="${0}"></c:set>
                         <c:set var="sumCarb" value="${0}"></c:set>
-                        
+
                         <c:set var="previousDate" value=""></c:set>
                         <c:set var="currentDate" value=""></c:set>
                         <c:set var="index" value ="1"></c:set>
                         <c:set var="meals" value = "${mDAO.getMealsByUserID(sessionScope.userID+'')}"></c:set>
                         <c:forEach items="${meals}" var="item" varStatus="loop">
-                            
+
                             <c:set var="currentDate" value="${item.getDate()}"></c:set>
                             <c:choose>
                                 <c:when test="${currentDate!= previousDate && previousDate!=''}">
                                     <c:set var="index" value ="1"></c:set>
                                     <tr class = "dayStat group">
-                                        <td></td>
-                                        <th scope="row">${previousDate}</th>
-                                        <td></td>
-                                        <td>Total of day</td>
-                                        <td><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumPro}"/></td>
-                                        <td><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumFat}"/></td>
-                                        <td><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumCarb}"/></td>
-                                        <td>
-                                            <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumCal}"/>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                </c:when>
-                            </c:choose>
-                            <c:set var="sumCal" value="${sumCal+item.getTotalCal()}"></c:set>
-                            <c:set var="sumPro" value="${sumPro+item.getProteinWeight()}"></c:set>
-                            <c:set var="sumFat" value="${sumFat+item.getFatWeight()}"></c:set>
-                            <c:set var="sumCarb" value="${sumCarb+item.getCarbWeight()}"></c:set>
-                            <tr>
-                                    <td>${index}</td>
-                                    <th scope="row">${item.getDate()}</th>
-                                    <td>${item.getTime()}</td>
-                                    <td>${item.getMealName()}</td>
-                                    <td>${item.getProteinWeight()}</td>
-                                    <td>${item.getFatWeight()}</td>
-                                    <td>${item.getCarbWeight()}</td>
-                                    <td>${item.getTotalCal()}</td>
-                                    <c:set var="previousDate" value="${currentDate}"></c:set>
-                                    <td>
-                                        <form action="#" class="item-form" onsubmit="return fillEditForm(${item})">
-                                            <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
-                                        </form>
-                                        |
-                                        <form action="delete-meal-control" method="post" class="delete-item-form"
-                                              onsubmit="return askDelete('Are you sure you want to delete this meal?')">
-                                            <input type="hidden" name="date" value="${item.getDate()}">
-                                            <input type="hidden" name="time" value="${item.getTime()}">
-                                            <input type="hidden" name="name" value="${item.getMealName()}">
-                                            <button type="submit"><i class="fa-solid fa-xmark"></i></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <c:if test="${loop.last}">
-                                    <tr class = "dayStat group">
-                                        <td></td>
-                                        <th scope="row">${previousDate}</th>
+                                            <td></td>
+                                            <th scope="row">${previousDate}</th>
                                         <td></td>
                                         <td>Total of day</td>
                                         <td><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumPro}"/></td>
@@ -155,22 +111,74 @@
                                         <td></td>
                                     </tr>
                                     <c:set var="sumCal" value="${0}"></c:set>
-                                </c:if>
-                                <c:set var="index" value ="${index+1}"></c:set>
+                                    <c:set var="sumPro" value="${0}"></c:set>
+                                    <c:set var="sumFat" value="${0}"></c:set>
+                                    <c:set var="sumCarb" value="${0}"></c:set>
+                                </c:when>
+                            </c:choose>
+                            <c:set var="sumCal" value="${sumCal+item.getTotalCal()}"></c:set>
+                            <c:set var="sumPro" value="${sumPro+item.getProteinWeight()}"></c:set>
+                            <c:set var="sumFat" value="${sumFat+item.getFatWeight()}"></c:set>
+                            <c:set var="sumCarb" value="${sumCarb+item.getCarbWeight()}"></c:set>
+                                <tr>
+                                    <td>${index}</td>
+                                <th scope="row">${item.getDate()}</th>
+                                <td>${item.getTime()}</td>
+                                <td>${item.getMealName()}</td>
+                                <td>${item.getProteinWeight()}</td>
+                                <td>${item.getFatWeight()}</td>
+                                <td>${item.getCarbWeight()}</td>
+                                <td>${item.getTotalCal()}</td>
+                                <c:set var="previousDate" value="${currentDate}"></c:set>
+                                    <td>
+                                        <form action="#" class="item-form" onsubmit="return fillEditForm(${item})">
+                                        <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
+                                    </form>
+                                    |
+                                    <form action="delete-meal-control" method="post" class="delete-item-form"
+                                          onsubmit="return askDelete('Are you sure you want to delete this meal?')">
+                                        <input type="hidden" name="date" value="${item.getDate()}">
+                                        <input type="hidden" name="time" value="${item.getTime()}">
+                                        <input type="hidden" name="name" value="${item.getMealName()}">
+                                        <button type="submit"><i class="fa-solid fa-xmark"></i></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <c:if test="${loop.last}">
+                                <tr class = "dayStat group">
+                                    <td></td>
+                                    <th scope="row">${previousDate}</th>
+                                    <td></td>
+                                    <td>Total of day</td>
+                                    <td><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumPro}"/></td>
+                                    <td><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumFat}"/></td>
+                                    <td><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumCarb}"/></td>
+                                    <td>
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${sumCal}"/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <c:set var="sumCal" value="${0}"></c:set>
+                                <c:set var="sumPro" value="${0}"></c:set>
+                                <c:set var="sumFat" value="${0}"></c:set>
+                                <c:set var="sumCarb" value="${0}"></c:set>
+
+                            </c:if>
+                            <c:set var="index" value ="${index+1}"></c:set>
                         </c:forEach>
                     </tbody>
                     <tfoot>
                         <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Time</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Protein</th>
-                                <th scope="col">Fat</th>
-                                <th scope="col">Carbs</th>
-                                <th scope="col">Calories</th>
-                                <th scope="col">Actions</th>
-                            </tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Protein</th>
+                            <th scope="col">Fat</th>
+                            <th scope="col">Carbs</th>
+                            <th scope="col">Calories</th>
+                            <th scope="col">Actions</th>
+                        </tr>
                     </tfoot>
                 </table>
             </div>
