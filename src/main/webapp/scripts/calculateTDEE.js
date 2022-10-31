@@ -75,7 +75,8 @@ createCaloriePlans = (weight, height, age, gender, activeness) => {
     document.getElementById('results_2').style.display = 'block'; // Reveals the 'results' box which was originally hidden (see line 1)
     var strMsg = "";
     strMsg += "<style>";
-    strMsg += "td {text-align: center;}";
+    strMsg += "td {text-align: center; color:black;}";
+    strMsg += "tr {color:white;}";
     strMsg += "</style>";
     strMsg += "<table>";
     strMsg += "<tr>";
