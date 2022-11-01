@@ -74,12 +74,15 @@ createCaloriePlans = (weight, height, age, gender, activeness) => {
     document.getElementById('results_3').style.display = 'none';
     document.getElementById('results_2').style.display = 'block'; // Reveals the 'results' box which was originally hidden (see line 1)
     var strMsg = "";
+    strMsg += "<style>";
+    strMsg += "td {text-align: center; color: white; padding-right: 8px;}";
+    strMsg += "</style>";
     strMsg += "<table>";
     strMsg += "<tr>";
-    strMsg += "<th> name </th>";
-    strMsg += "<th> maintenanceCal </th>";
-    strMsg += "<th> planCal </th>";
-    strMsg += "<th> energyBalancePerWeek </th>";
+    strMsg += "<td><b>Name<br/>&ensp;</b></td>";
+    strMsg += "<td><b>Maintenance <br/>Calories </b></td>";
+    strMsg += "<td><b>Calorie <br/>plan </b></td>";
+    strMsg += "<td><b>Energy Balance <br/>Per Week </b></td>";
     strMsg += "</tr>";
     for (const index in plans) {
         console.log(index);

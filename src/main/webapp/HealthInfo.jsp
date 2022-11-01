@@ -15,8 +15,8 @@
         <title>Your health info</title>
     </head>
     <body>
-        <section style="background-image: url('${pageContext.request.contextPath}/image/login.jpg');">
-            <div class="form-container"> 
+        <section style="background-image: url('${pageContext.request.contextPath}/image/healthinfo.jpg');">
+            <div class="form-container">
                 <%
                     Object sessionUserID = session.getAttribute("userID");//Get session's userID
                     String userID = "";//Stores userID
@@ -138,88 +138,92 @@
                         </div> 
 
                         <!--BUTTON-->
-                        <div class="form-group row">
-                            <div class="offset-4 col-8">
-                                <button name="submit" class="submit" id="smit">Submit</button>
+                        <div class="submit">
+                            <div class="form-group row">
+                                <div class="col-md-12 text-center">
+                                    <button name="submit"  id="smit" class="btn btn-primary">Submit</button>
+                                </div>
                             </div>
                         </div>
-
                     </div>
 
 
-
                     <!--BMR result-->
-                    <div class="form-group row" id="results">
-                        <div> <!--This is where the results will appear.  This is hidden when the program loads and appears when the user clicks 'submit'-->
-                            <div class="results-container">
-                                <h1 class="title">Your daily BMI is:</h1>
-                                <p id="bmi-result">Placeholder text</p>
+                    <div class="BMR">
+                        <div class="form-group row" id="results"  style="width: 600px;">
+                            <div> <!--This is where the results will appear.  This is hidden when the program loads and appears when the user clicks 'submit'-->
+                                <div class="results-container">
+                                    <h1  class="title">Your daily BMI is:</h1>
+                                    <p id="bmi-result">Placeholder text</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <!--Plan result-->
-                        <div>  
-                            <div class="results-container">
-                                <h1 class="title">Which plan will you choose?:</h1>
-                                <p id="plan-result">Placeholder text</p>
-                            </div>
-                        </div>
-                        <h1 class="title">Your choice:</h1> 
-                        <div class="col-8">
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_0" type="radio" class="custom-control-input" value="Maintenance"> 
-                                    <label for="planChoice_0" class="custom-control-label">Maintenance</label>
+                            <!--Plan result-->
+                            <div>  
+                                <div class="results-container">
+                                    <h3 class="title">Which plan will you choose?:</h3>
+                                    <p id="plan-result">Placeholder text</p>
                                 </div>
                             </div>
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_1" type="radio" class="custom-control-input" value="Light Weight Loss"> 
-                                    <label for="planChoice_1" class="custom-control-label">Light Weight Loss</label>
+                            <h3  class="title">Your choice:</h3> 
+                            <div class="col-8">
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_0" type="radio" class="custom-control-input" value="Maintenance"> 
+                                        <label for="planChoice_0" class="custom-control-label">Maintenance</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_2" type="radio" class="custom-control-input" value="Moderate Weight Loss"> 
-                                    <label for="planChoice_2" class="custom-control-label">Moderate Weight Loss</label>
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_1" type="radio" class="custom-control-input" value="Light Weight Loss"> 
+                                        <label for="planChoice_1" class="custom-control-label">Light Weight Loss</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_3" type="radio" class="custom-control-input" value="Extreme Weight Loss"> 
-                                    <label for="planChoice_3" class="custom-control-label">Extreme Weight Loss</label>
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_2" type="radio" class="custom-control-input" value="Moderate Weight Loss"> 
+                                        <label for="planChoice_2" class="custom-control-label">Moderate Weight Loss</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_4" type="radio" class="custom-control-input" value="Light Weight Gain"> 
-                                    <label for="planChoice_4" class="custom-control-label">Light Weight Gain</label>
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_3" type="radio" class="custom-control-input" value="Extreme Weight Loss"> 
+                                        <label for="planChoice_3" class="custom-control-label">Extreme Weight Loss</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_5" type="radio" class="custom-control-input" value="Moderate Weight Gain"> 
-                                    <label for="planChoice_5" class="custom-control-label">Moderate Weight Gain</label>
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_4" type="radio" class="custom-control-input" value="Light Weight Gain"> 
+                                        <label for="planChoice_4" class="custom-control-label">Light Weight Gain</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_6" type="radio" class="custom-control-input" value="Extreme Weight Gain"> 
-                                    <label for="planChoice_6" class="custom-control-label">Extreme Weight Gain</label>
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_5" type="radio" class="custom-control-input" value="Moderate Weight Gain"> 
+                                        <label for="planChoice_5" class="custom-control-label">Moderate Weight Gain</label>
+                                    </div>
+                                </div>
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_6" type="radio" class="custom-control-input" value="Extreme Weight Gain"> 
+                                        <label for="planChoice_6" class="custom-control-label">Extreme Weight Gain</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div> 
 
-
                     <!--Submit-->
-                    <div class="form-group row" id="results_2">
-                        <div class="offset-4 col-8" id="results_2">
-                            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <div class="submit">
+                        <div class="form-group row" id="results_2">
+                            <div class="col-md-12 text-center" id="results_2">
+                                <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                         </div>
                     </div>
 
                 </form>
+
                 <script src="./scripts/calculateTDEE.js"></script>
                 <script>
                     //GET INPUT FIELDS

@@ -16,29 +16,34 @@ section {
     background-position: center center;
 }
 body{
-/*    width: 100vw;
-    height: 100vh;*/
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-/*    background-color: aliceblue;*/
 }
 
 legend{
     text-align: center;
     margin-bottom: 20px;
     font-size: 48px;
-    font-weight: 700;
-    color: black;
+    font-weight: 751;
+    color: white;
     padding-bottom: 10px;
     margin-top: 15px;
+
+
+}
+label{
+    color: #FFFFFF;
+    font-weight: 600;
 }
 
 .form-group.row:last-child{
     margin-bottom: 0;
 }
+
 .form-container {
+    color: white;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -51,19 +56,19 @@ legend{
     box-shadow: 7px 7px 60px #000;
     border-radius: 30px;
 }
+
 form{
- padding:5px 10px;
+    padding:5px 10px;
 }
 input[type=checkbox] {
     height: 13px;
-    
+
 }
 .form-check {
-        display: inline-flex;
-        font-size: 13px;
-       font-weight: 550;
-       margin-bottom: 10px;
-       color: #5e5e5e;
+    display: inline-flex;
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: #5e5e5e;
 }
 .term {
     font-size: 11px;
@@ -71,14 +76,22 @@ input[type=checkbox] {
 }
 button.submit {
     margin-bottom: 20px;
-    
+
 }
 .submit{
-    margin-bottom: 15px;
     border-radius: 25px;
     margin-top: 10px;
 }
 .error{
     font-size: 12px;
+}
+.BMR{
+    padding: 10px;
+    width: 600px;
+    color: white;
+}
+.title{
+    color: white;
+    font-weight: 600;
 }
 
