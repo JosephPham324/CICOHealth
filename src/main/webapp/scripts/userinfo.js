@@ -1,24 +1,34 @@
-let nav_links = document.querySelectorAll(".nav-link");
+/**
+ * Script for showing user info, and interactions within the page
+ * @author Pham Nhat Quang
+ * 
+ */
+
+
+let nav_links = document.querySelectorAll(".nav-link");//Nav links to switch view
 let contents = document.querySelectorAll(".info>div");
-let form_container = document.querySelector(".form");
-let form = document.querySelector(".form form");
-let overlay = document.querySelector(".form .overlay");
-let password_value = document.querySelector("#password-value").textContent;
-let password_span = document.querySelector("#password-value");
-let toggle_password = document.querySelector("#toggle-password-visibility");
-let eye_open = '<i class="fa fa-eye" aria-hidden="true"></i>';
-let eye_close = '<i class="fa fa-eye-slash" aria-hidden="true"></i>';
+let form_container = document.querySelector(".form");//Form wrapper div
+let form = document.querySelector(".form form");//Form to submit data
+let overlay = document.querySelector(".form .overlay");//Overlay to prevent interaction under the form
+let password_value = document.querySelector("#password-value").textContent;//Store the password value
+let password_span = document.querySelector("#password-value");//Element that has the password
+let toggle_password = document.querySelector("#toggle-password-visibility");//Element to toggle password visibility
+let eye_open = '<i class="fa fa-eye" aria-hidden="true"></i>';//Indicates password is visible
+let eye_close = '<i class="fa fa-eye-slash" aria-hidden="true"></i>';//Indicate password is not visible
 
-hideTextContent(password_span, "*");
+hideTextContent(password_span, "*");//Replace password with *
 
-//Toggle password visibility
+//Click the toggle password element to toggle visibility
 toggle_password.addEventListener("click", () => {
-  if (password_span.classList.contains("hidden")) {
+
+  if (password_span.classList.contains("hidden")) {//If password is hidden
+    //Reveal password
     password_span.classList.remove("hidden");
     password_span.classList.add("visible");
     toggle_password.innerHTML = eye_open;
     showTextContent(password_span, password_value);
-  } else {
+  } else {//If password is revealed
+    //Hide password
     password_span.classList.remove("visible");
     password_span.classList.add("hidden");
     toggle_password.innerHTML = eye_close;
@@ -29,17 +39,19 @@ toggle_password.addEventListener("click", () => {
 //Change content when clicking on nav links
 nav_links.forEach((item) => {
   item.addEventListener("click", () => {
-    let destination = document.querySelector(
+    let destination = document.querySelector(//Get the desired view element
       `${item.getAttribute("data-destination")}`
     );
+    //Remove active state of nav links and content view
     contents.forEach((item) => item.classList.remove("active"));
     nav_links.forEach((item) => item.classList.remove("active"));
+    //Add active state to selected nav link and view element
     destination.classList.add("active");
     item.classList.add("active");
   });
 });
 
-let edit_buttons = document.querySelectorAll(".edit");
+let edit_buttons = document.querySelectorAll(".edit");//All edit buttons
 
 //Show form when clicking on an edit button
 edit_buttons.forEach((button) => {
@@ -73,21 +85,25 @@ function showTextContent(element, content) {
   element.textContent = content;
 }
 
-let loginEditButtons = document.querySelectorAll(".login-info .edit");
-let userEditButtons = document.querySelectorAll(".user-info .edit");
+//Edit buttons for individual content view
+let loginEditButtons = document.querySelectorAll(".login-info .edit");//Login info
+let userEditButtons = document.querySelectorAll(".user-info .edit");//User info
 let healthEditButtons = Array.from(
-  document.querySelectorAll(".health-info .edit")
+  document.querySelectorAll(".health-info .edit")//Health info
 );
-let goalEditButtons = healthEditButtons.splice(5, 4);
+let goalEditButtons = healthEditButtons.splice(5, 4);//Separate goal buttons from health info array
 
+//Logic for login edit buttons
 loginEditButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    if (button == loginEditButtons[1] && !correctPassword) {
-      checkPassword();
+  button.addEventListener("click", () => {//On clicking edit button
+    if (button == loginEditButtons[1] && !correctPassword) {//Guard clause for password edit
+      checkPassword();//User must enter password correctly before editing
       return;
     }
-    let field = button.parentElement.childNodes[3];
-    let loginFields = document.querySelectorAll(".login-info .field-value");
+    let field = button.parentElement.childNodes[3];//Get the span element that contains info
+    let loginFields = document.querySelectorAll(".login-info .field-value");//Get all span elements that contains info
+    //Content to show in form
+    //Only selected field is displayed
     let formContent = `
     <div class="form-group row" style = "display:${
       loginFields[0] === field ? "flex" : "none"
@@ -152,23 +168,26 @@ loginEditButtons.forEach((button) => {
         </button>
       </div>    
     </div>`;
-    form.innerHTML = formContent;
-    form.action = "login-edit-control";
-    if (button == loginEditButtons[1]) {
+    form.innerHTML = formContent;//Change the form content
+    form.action = "login-edit-control";//Change the form action
+    if (button == loginEditButtons[1]) {//If user is editing password
       form.onsubmit = function () {
         return (
-          document.getElementById("password").value ===
-            document.getElementById("confirmPassword").value && correctPassword
+          //Make sure user entered matching passwords
+          document.getElementById("password").value === document.getElementById("confirmPassword").value
+           && correctPassword//And have confirmed the old password
         );
       };
     }
   });
 });
 
+//Logic for user edit button
 userEditButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    let field = button.parentElement.childNodes[3];
-    let userFields = document.querySelectorAll(".user-info .field-value");
+  button.addEventListener("click", () => {//On clicking edit button
+    let field = button.parentElement.childNodes[3];//Get span element
+    let userFields = document.querySelectorAll(".user-info .field-value");//Get span elements
+    //Content for form
     let formContent = `
         <div class="form-group row" style = "display:${
           userFields[0] === field ? "flex" : "none"
@@ -253,15 +272,17 @@ userEditButtons.forEach((button) => {
             </button>
           </div>
         </div>`;
-    form.innerHTML = formContent;
-    form.action = "edit-user-info-control";
+    form.innerHTML = formContent;//Change form content
+    form.action = "edit-user-info-control";//Change form action
   });
 });
 
+//Logic for health edit button (excluding goal buttons)
 healthEditButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    let field = button.parentElement.childNodes[3];
-    let healthFields = document.querySelectorAll(".health-info .field-value");
+  button.addEventListener("click", () => {//On clicking
+    let field = button.parentElement.childNodes[3];//Get span element
+    let healthFields = document.querySelectorAll(".health-info .field-value");//Get span elements
+    //Content for form
     let formContent = `
         <div class="form-group row" style = "display:${
           healthFields[0] === field ? "flex" : "none"
@@ -380,14 +401,18 @@ healthEditButtons.forEach((button) => {
             </button>
           </div>
         </div>`;
-    form.innerHTML = formContent;
+    form.innerHTML = formContent;//Change form content
+    document.getElementById(`activeness_${activeness}`).checked = true;//Check the current activeness level
 
-    document.getElementById(`activeness_${activeness}`).checked = true;
-    form.action = "edit-health-info-control";
+    form.action = "edit-health-info-control";//Change form action
   });
 });
 
+//Logic for goal edit button
+
+//Caloie goal
 goalEditButtons[0].addEventListener("click", () => {
+  //Form content
   let formContent = `
   <div class="form-group row">
     <label for="dailyCalorie" class="col-4 col-form-label">Daily calorie</label> 
@@ -453,26 +478,27 @@ goalEditButtons[0].addEventListener("click", () => {
     </div>
   </div>
   `;
-  form.innerHTML = formContent;
-  form.action = "edit-goal-control";
-  let proteinPercentage = document.getElementById("proteinPercentage");
-  let fatPercentage = document.getElementById("fatPercentage");
-  let carbPercentage = document.getElementById("carbPercentage");
-  let percentages = [proteinPercentage, fatPercentage, carbPercentage];
-  console.log(percentages);
-  let totalPercentage;
+  form.innerHTML = formContent;//Change form content
+  form.action = "edit-goal-control";//Change form action
+
+  //For changing macro percentages
+  let proteinPercentage = document.getElementById("proteinPercentage");//Protein
+  let fatPercentage = document.getElementById("fatPercentage");//Fat
+  let carbPercentage = document.getElementById("carbPercentage");//Carb
+  let percentages = [proteinPercentage, fatPercentage, carbPercentage];//All 3 macros
 
   percentages.forEach((percentage) => {
-    percentage.addEventListener("input", () => {
+    percentage.addEventListener("input", () => {//When user changes percentage in input
+      //Check total percentage
       let totalPercentage =
         Number(proteinPercentage.value) +
         Number(carbPercentage.value) +
         Number(fatPercentage.value);
-      let helpBlock = document.getElementById(percentage.id + "HelpBlock");
-      if (totalPercentage > 100 || totalPercentage < 0) {
-        helpBlock.innerText = "Total percentage of 3 macro must be 100!";
+      let helpBlock = document.getElementById(percentage.id + "HelpBlock");//Help block element
+      if (totalPercentage > 100 || totalPercentage < 0) {//If 3 macros out of 100% range
+        helpBlock.innerText = "Total percentage of 3 macro must be 100!";//Warning
       } else {
-        percentages.forEach((item) => {
+        percentages.forEach((item) => {//No warning
           document.getElementById(item.id + "HelpBlock").innerText = "";
         });
       }
@@ -480,12 +506,9 @@ goalEditButtons[0].addEventListener("click", () => {
   });
 });
 
+//Macro weight goals
 goalEditButtons.slice(1).forEach((button) => {
   button.addEventListener("click", () => {
-    let field = button.parentElement.childNodes[4];
-    let goalFields = document.querySelectorAll(".nutrition-goal .field-value");
-    console.log(field);
-    console.log(goalFields);
     let formContent = `
     <div class="form-group row">
     <label for="proteinPercentage" class="col-4 col-form-label">Protein</label> 
@@ -536,7 +559,7 @@ goalEditButtons.slice(1).forEach((button) => {
     </div>
   </div> 
   <div class ="form-group row">
-      <div class ="col-form-label col-4">Total macro calorie</div>
+      <div class ="col-form-label col-4">New calorie goal</div>
       <div class ="col-8" id ="totalCalorie">${cal}</div>
   </div>
   <input type="hidden" name="purpose" value ="edit-macro">
@@ -546,14 +569,18 @@ goalEditButtons.slice(1).forEach((button) => {
     </div>
   </div>
     `;
+    //Change form content and action
     form.innerHTML = formContent;
     form.action="edit-goal-control"
+
     let proteinWeight = document.getElementById("proteinPercentage");
     let fatWeight = document.getElementById("fatPercentage");
     let carbWeight = document.getElementById("carbPercentage");
     let weights = [proteinWeight, fatWeight, carbWeight];
     let macroMap = [4, 9, 4];
 
+    //Update help block content to show calorie percentage of 
+    //macros compared to saved calorie goal
     weights.forEach((weight) => {
       weight.addEventListener("input", () => {
         let calPerGram = macroMap[weights.indexOf(weight)];
