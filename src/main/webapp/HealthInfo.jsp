@@ -15,48 +15,48 @@
         <title>Your health info</title>
     </head>
     <body>
-        <section style="background-image: url('${pageContext.request.contextPath}/image/healthinforr.jpg');">
+        <section style="background-image: url('${pageContext.request.contextPath}/image/healthinfo.jpg');">
             <div class="form-container">
-        <%
-            Object sessionUserID = session.getAttribute("userID");//Get session's userID
-            String userID = "";//Stores userID
-            if (sessionUserID != null) {
-                userID = sessionUserID.toString();
-            }
-            Entity.UserHealthInfo healthInfo = null;//Stores userID's UserHeatlhInfo entry
-            if (!userID.equals("")) {
-                //Find entry if ID isn't empty
-                healthInfo = new HealthDAO().findUserHealthInfo(Integer.parseInt(userID));
-            }
-            //Stores UserHealthInfo attributes values
-            //Initiated with a preset value
-            String activeness = "0";
-            String gender = "0";
-            String age = "20";
-            String height = "180";
-            String weight = "75";
+                <%
+                    Object sessionUserID = session.getAttribute("userID");//Get session's userID
+                    String userID = "";//Stores userID
+                    if (sessionUserID != null) {
+                        userID = sessionUserID.toString();
+                    }
+                    Entity.UserHealthInfo healthInfo = null;//Stores userID's UserHeatlhInfo entry
+                    if (!userID.equals("")) {
+                        //Find entry if ID isn't empty
+                        healthInfo = new HealthDAO().findUserHealthInfo(Integer.parseInt(userID));
+                    }
+                    //Stores UserHealthInfo attributes values
+                    //Initiated with a preset value
+                    String activeness = "0";
+                    String gender = "0";
+                    String age = "20";
+                    String height = "180";
+                    String weight = "75";
 
-            if (healthInfo != null) {//If an entry is found
-                //Assign values to variables
-                activeness = healthInfo.getActiveness() + "";//Activeness is stored as numbers
-                gender = healthInfo.getGender() + "";
-                switch (gender) {//Map gender value into number
-                    case "Female"://Female: 1
-                        gender = "1";
-                        break;
-                    default://Male and others: 0
-                        gender = "0";
-                }
-                age = healthInfo.getAge() + "";
-                height = healthInfo.getHeight() + "";
-                weight = healthInfo.getWeight() + "";
-            }
-        %>
-         
+                    if (healthInfo != null) {//If an entry is found
+                        //Assign values to variables
+                        activeness = healthInfo.getActiveness() + "";//Activeness is stored as numbers
+                        gender = healthInfo.getGender() + "";
+                        switch (gender) {//Map gender value into number
+                            case "Female"://Female: 1
+                                gender = "1";
+                                break;
+                            default://Male and others: 0
+                                gender = "0";
+                        }
+                        age = healthInfo.getAge() + "";
+                        height = healthInfo.getHeight() + "";
+                        weight = healthInfo.getWeight() + "";
+                    }
+                %>
+
                 <form method="post" action="healthinfo-control">
                     <div id="results_3">
                         <div class="form-group row">
-                            <legend style="color: white;">
+                            <legend>
                                 <%if (session.getAttribute("username") != null)//If session stores a user name
                                     {
                                         out.print(session.getAttribute("username") + "'s");//Print username
@@ -153,104 +153,103 @@
                     <!--BMR result-->
                     <div class="BMR">
                         <div class="form-group row" id="results"  style="width: 600px;">
-                        <div> <!--This is where the results will appear.  This is hidden when the program loads and appears when the user clicks 'submit'-->
-                            <div class="results-container">
-                                <h1  class="title">Your daily BMI is:</h1>
-                                <p id="bmi-result">Placeholder text</p>
+                            <div> <!--This is where the results will appear.  This is hidden when the program loads and appears when the user clicks 'submit'-->
+                                <div class="results-container">
+                                    <h1  class="title">Your daily BMI is:</h1>
+                                    <p id="bmi-result">Placeholder text</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <!--Plan result-->
-                        <div>  
-                            <div class="results-container">
-                                <h3 class="title">Which plan will you choose?:</h3>
-                                <p id="plan-result">Placeholder text</p>
+                            <!--Plan result-->
+                            <div>  
+                                <div class="results-container">
+                                    <h3 class="title">Which plan will you choose?:</h3>
+                                    <p id="plan-result">Placeholder text</p>
+                                </div>
+                            </div>
+                            <h3  class="title">Your choice:</h3> 
+                            <div class="col-8">
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_0" type="radio" class="custom-control-input" value="Maintenance"> 
+                                        <label for="planChoice_0" class="custom-control-label">Maintenance</label>
+                                    </div>
+                                </div>
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_1" type="radio" class="custom-control-input" value="Light Weight Loss"> 
+                                        <label for="planChoice_1" class="custom-control-label">Light Weight Loss</label>
+                                    </div>
+                                </div>
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_2" type="radio" class="custom-control-input" value="Moderate Weight Loss"> 
+                                        <label for="planChoice_2" class="custom-control-label">Moderate Weight Loss</label>
+                                    </div>
+                                </div>
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_3" type="radio" class="custom-control-input" value="Extreme Weight Loss"> 
+                                        <label for="planChoice_3" class="custom-control-label">Extreme Weight Loss</label>
+                                    </div>
+                                </div>
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_4" type="radio" class="custom-control-input" value="Light Weight Gain"> 
+                                        <label for="planChoice_4" class="custom-control-label">Light Weight Gain</label>
+                                    </div>
+                                </div>
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_5" type="radio" class="custom-control-input" value="Moderate Weight Gain"> 
+                                        <label for="planChoice_5" class="custom-control-label">Moderate Weight Gain</label>
+                                    </div>
+                                </div>
+                                <div class="custom-controls-stacked">
+                                    <div class="custom-control custom-radio">
+                                        <input name="planChoice" id="planChoice_6" type="radio" class="custom-control-input" value="Extreme Weight Gain"> 
+                                        <label for="planChoice_6" class="custom-control-label">Extreme Weight Gain</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <h3  class="title">Your choice:</h3> 
-                        <div class="col-8">
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_0" type="radio" class="custom-control-input" value="Maintenance"> 
-                                    <label for="planChoice_0" class="custom-control-label">Maintenance</label>
-                                </div>
-                            </div>
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_1" type="radio" class="custom-control-input" value="Light Weight Loss"> 
-                                    <label for="planChoice_1" class="custom-control-label">Light Weight Loss</label>
-                                </div>
-                            </div>
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_2" type="radio" class="custom-control-input" value="Moderate Weight Loss"> 
-                                    <label for="planChoice_2" class="custom-control-label">Moderate Weight Loss</label>
-                                </div>
-                            </div>
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_3" type="radio" class="custom-control-input" value="Extreme Weight Loss"> 
-                                    <label for="planChoice_3" class="custom-control-label">Extreme Weight Loss</label>
-                                </div>
-                            </div>
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_4" type="radio" class="custom-control-input" value="Light Weight Gain"> 
-                                    <label for="planChoice_4" class="custom-control-label">Light Weight Gain</label>
-                                </div>
-                            </div>
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_5" type="radio" class="custom-control-input" value="Moderate Weight Gain"> 
-                                    <label for="planChoice_5" class="custom-control-label">Moderate Weight Gain</label>
-                                </div>
-                            </div>
-                            <div class="custom-controls-stacked">
-                                <div class="custom-control custom-radio">
-                                    <input name="planChoice" id="planChoice_6" type="radio" class="custom-control-input" value="Extreme Weight Gain"> 
-                                    <label for="planChoice_6" class="custom-control-label">Extreme Weight Gain</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     </div> 
-
 
                     <!--Submit-->
                     <div class="submit">
                         <div class="form-group row" id="results_2">
                             <div class="col-md-12 text-center" id="results_2">
-                                <button name="submit" type="submit" class="btn btn-success">Submit</button>
+                                <button name="submit" type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
                     </div>
 
                 </form>
 
-        <script src="./scripts/calculateTDEE.js"></script>
-        <script>
-            //GET INPUT FIELDS
-            let activeness = document.querySelectorAll('input[name="activity"]');
-            let gender = document.querySelectorAll('input[name="gender"]');
-            let age = document.querySelector('input[name="age"]');
-            let height = document.querySelector('input[name="height"]');
-            let weight = document.querySelector('input[name="weight"]');
-            let userID = document.querySelector('input[name="userID"]');
+                <script src="./scripts/calculateTDEE.js"></script>
+                <script>
+                    //GET INPUT FIELDS
+                    let activeness = document.querySelectorAll('input[name="activity"]');
+                    let gender = document.querySelectorAll('input[name="gender"]');
+                    let age = document.querySelector('input[name="age"]');
+                    let height = document.querySelector('input[name="height"]');
+                    let weight = document.querySelector('input[name="weight"]');
+                    let userID = document.querySelector('input[name="userID"]');
 
-            let requestUserID = ${userID} + "";//Get userID from request
+                    let requestUserID = ${userID} + "";//Get userID from request
 
-            if (<%=userID != null%> && <%= !userID.equals("")%>) {
-                userID.value = <%=userID%> + "";//If there is userID from session, use this
-            } else {
-                userID.value = requestUserID;//If not, use from request
-            }
-            //Assign initial values for form inputs
-            activeness[<%=activeness%>].checked = "true";
-            gender[<%=gender%>].checked = "true";
-            age.value = "<%=age%>";
-            height.value = "<%=height%>";
-            weight.value = "<%=weight%>";
-        </script>
+                    if (<%=userID != null%> && <%= !userID.equals("")%>) {
+                        userID.value = <%=userID%> + "";//If there is userID from session, use this
+                    } else {
+                        userID.value = requestUserID;//If not, use from request
+                    }
+                    //Assign initial values for form inputs
+                    activeness[<%=activeness%>].checked = "true";
+                    gender[<%=gender%>].checked = "true";
+                    age.value = "<%=age%>";
+                    height.value = "<%=height%>";
+                    weight.value = "<%=weight%>";
+                </script>
             </div>
         </section>
     </body>
