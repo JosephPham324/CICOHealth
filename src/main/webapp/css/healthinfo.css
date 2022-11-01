@@ -30,7 +30,7 @@ legend{
     margin-bottom: 20px;
     font-size: 48px;
     font-weight: 750;
-    color: white;
+    color: black;
     padding-bottom: 10px;
     margin-top: 15px;
    
@@ -92,6 +92,6 @@ button.submit {
     width: 600px;
 }
 .title{
-    color: black;
+    color: white;
     font-weight: 650;
 }
