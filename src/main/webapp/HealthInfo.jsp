@@ -15,7 +15,7 @@
         <title>Your health info</title>
     </head>
     <body>
-        <section style="background-image: url('${pageContext.request.contextPath}/image/healthinfor.jpg');">
+        <section style="background-image: url('${pageContext.request.contextPath}/image/healthinforr.jpg');">
             <div class="form-container">
         <%
             Object sessionUserID = session.getAttribute("userID");//Get session's userID

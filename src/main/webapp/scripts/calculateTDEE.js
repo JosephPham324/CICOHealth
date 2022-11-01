@@ -76,7 +76,6 @@ createCaloriePlans = (weight, height, age, gender, activeness) => {
     var strMsg = "";
     strMsg += "<style>";
     strMsg += "td {text-align: center; color:black;}";
-    strMsg += "tr {color:white;}";
     strMsg += "</style>";
     strMsg += "<table>";
     strMsg += "<tr>";
