@@ -95,3 +95,6 @@ body{
     border-bottom: 2px dashed black;
     padding: 5px;
 }
+.li{
+    display:inline-grid;
+}

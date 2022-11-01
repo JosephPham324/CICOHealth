@@ -99,6 +99,15 @@
         <servlet-name>EditHealthInfo</servlet-name>
         <servlet-class>Control.HealthInfo.EditHealthInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Statistics</servlet-name>
+        <jsp-file>/Statistics.jsp</jsp-file>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>EditGoalControl</servlet-name>
+        <servlet-class>Control.HealthInfo.EditGoalControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/login-control</url-pattern>
@@ -198,6 +207,14 @@
     <servlet-mapping>
         <servlet-name>EditHealthInfo</servlet-name>
         <url-pattern>/edit-health-info-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Statistics</servlet-name>
+        <url-pattern>/user-statistics</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditGoalControl</servlet-name>
+        <url-pattern>/edit-goal-control</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -52,7 +52,6 @@
                         weight = healthInfo.getWeight() + "";
                     }
                 %>
-
                 <form method="post" action="healthinfo-control">
                     <div id="results_3">
                         <div class="form-group row">
@@ -147,7 +146,6 @@
                             </div>
                         </div>
                     </div>
-
 
 
                     <!--BMR result-->

@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -104,6 +106,7 @@ public class LoginDAO {
         return 0;
     }
 
+
     /**
      * Get login record from username
      * @param username Username to query
@@ -166,6 +169,7 @@ public class LoginDAO {
                 String hash = a.getPasswordHash();
                 System.out.println(salt);
                 System.out.println(hash);
+
 
                 if (Security.RegLoginLogic.verifyPassword(enteredPassword, salt, hash)) {
                     return a;
@@ -249,6 +253,7 @@ public class LoginDAO {
 //            } catch (Exception ex) {
 //                Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
 //            }
+
         System.out.println(dao.checkLogin("quangthinh130102", "123"));
         int test = dao.checkUserNameDuplicate("nlordqting4444");
         System.out.println(test);

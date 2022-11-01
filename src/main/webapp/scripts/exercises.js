@@ -19,8 +19,7 @@ $(document).ready( function () {
                     if (last !== group) {
                         $(rows)
                             .eq(i)
-                            .before('<tr class="group"><td colspan="6">' + group + '</td></tr>');
- 
+                            .before('<tr class="group"><td colspan="8">' + group + '</td></tr>');
                         last = group;
                     }
                 });

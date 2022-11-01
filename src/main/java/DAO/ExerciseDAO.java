@@ -33,7 +33,7 @@ public class ExerciseDAO {
     /**
      * Save query result
      */
-    ResultSet rs = null; 
+    ResultSet rs = null;
 
     /**
      *
@@ -100,6 +100,35 @@ public class ExerciseDAO {
         return res;
     }
 
+    public double getExercisesCalorieByDate(String userID, String date) throws SQLException {
+        query = "select * from EXERCISE\n"
+                + "WHERE USERID = ?\n"
+                + "AND CAST(DATETIME as DATE) = ?";
+        
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, userID);
+        ps.setString(2, date);
+        
+        rs  = ps.executeQuery();
+        ArrayList<Exercise> queryResult = new ArrayList<>();
+        double res = 0;
+        while (rs.next()){
+            Exercise exercise = new Exercise(
+                    rs.getDate("DATETIME"),
+                    rs.getInt("USERID"),
+                    rs.getDouble("DURATION"),
+                    rs.getDouble("CALORIE"),
+                    null
+            );
+            queryResult.add(exercise);
+        }
+        for (Exercise exercise:queryResult){
+            res+=exercise.getCalorie();
+        }
+        return res;
+    }
+
     /**
      *
      * @param duration
@@ -148,7 +177,7 @@ public class ExerciseDAO {
         ps.setString(1, userID);
         ps.setString(2, date);
         ps.setString(3, time);
-        
+
         ps.executeUpdate();
     }
 
@@ -160,7 +189,7 @@ public class ExerciseDAO {
         ExerciseDAO dao = new ExerciseDAO();
         ArrayList<Exercise> lol;
         try {
-            dao.deleteExercise(2+"", "2022-10-18", "3:38:53");
+            System.out.println(dao.getExercisesCalorieByDate("2","2022-10-25"));
         } catch (SQLException ex) {
             Logger.getLogger(ExerciseDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

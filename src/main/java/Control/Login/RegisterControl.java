@@ -1,5 +1,7 @@
 package Control.Login;
 
+import DAO.GoalDAO;
+import DAO.HealthDAO;
 import DAO.LoginDAO;
 import DAO.UserDAO;
 import Security.Encryption;
@@ -81,6 +83,8 @@ public class RegisterControl extends HttpServlet {
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         LoginDAO logDAO = new LoginDAO();
+        HealthDAO heath = new HealthDAO();
+        GoalDAO goal = new GoalDAO();
 
         int checkDuplicate;
         try {
@@ -114,6 +118,9 @@ public class RegisterControl extends HttpServlet {
                     request.setAttribute("userID", loginID);
                     response.getWriter().println(loginID);
                     response.getWriter().print(request.getAttribute("userID"));
+                    
+                    heath.insertHealthInfo(loginID+"",0+"",0+"", 0+"",0+"",0+"");
+                    goal.addGoal(loginID+"", 0+"");
 
                     request.getRequestDispatcher("healthinfo")
                             .forward(request, response);

@@ -394,6 +394,9 @@ add DESCRIPTION varchar(256) not null
 
 
 
+							
+
+
 --insert into dbo.USERROLE values (1, 'admin')
 --insert into dbo.USERROLE values (2,'user')
 

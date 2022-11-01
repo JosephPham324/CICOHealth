@@ -5,6 +5,9 @@ import context.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -48,9 +51,9 @@ public class GoalDAO {
 
         double c = Double.parseDouble(calorie);
 
-        double protein = 0.3 * c / 4; //Mac dinh 30% protein
+        double protein = 0.25 * c / 4; //Mac dinh 25% protein
         double fat = 0.3 * c / 9; //Mac dinh 30% fat
-        double carb = 0.4 * c / 4; //Mac dinh 40% carb
+        double carb = 0.45 * c / 4; //Mac dinh 45% carb
 
         String queryInsert = "insert into DAILYNUTRITIONGOAL values(?,?,?,?,?)";
         String queryEdit = "update DAILYNUTRITIONGOAL set CALORIE = ?,\n"
@@ -59,7 +62,7 @@ public class GoalDAO {
                 + "							 CARB = ?\n"
                 + "							 where USERID = ?";
         try {
-            if (new GoalDAO().getGoalbyID(Integer.parseInt(userId)) != null) {
+            if (new GoalDAO().getGoalByID(Integer.parseInt(userId)) != null) {
                 con = new DBContext().getConnection(); // open connection to SQL
                 ps = con.prepareStatement(queryEdit); // move query from Netbeen to SQl
                 ps.setString(1, calorie);
@@ -118,7 +121,7 @@ public class GoalDAO {
      * @param id User ID
      * @return DailyNutritionalGoal object containing goals of the user
      */
-    public DailyNutritionGoal getGoalbyID(int id) {
+    public DailyNutritionGoal getGoalByID(int id) {
         String query = "select * from DAILYNUTRITIONGOAL\n"
                 + "where USERID = ?";
         try {
@@ -139,11 +142,61 @@ public class GoalDAO {
 
     /**
      *
+     * @param userID
+     * @param protein
+     * @param fat
+     * @param carb
+     */
+    public void editMacroGoal(String userID, String protein, String fat, String carb) throws SQLException {
+        String query = "update DAILYNUTRITIONGOAL\n"
+                + "set PROTEIN = ?,\n"
+                + "FAT = ?,\n"
+                + "CARB =?,\n"
+                + "CALORIE=?\n"
+                + "where USERID = ?";
+        Double calorie = Double.parseDouble(fat)*9 + Double.parseDouble(protein)*4 +Double.parseDouble(carb)*4;
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, protein);
+        ps.setString(2, fat);
+        ps.setString(3, carb);
+        ps.setString(4, calorie+"");
+        ps.setString(5, userID);
+
+        ps.executeUpdate();
+    }
+
+    public void editCalorieGoal(String userID, String calorie, String proteinPercentage, String fatPercentage, String carbPercentage) throws SQLException {
+        String query = "update DAILYNUTRITIONGOAL\n"
+                + "set CALORIE = ?,\n"
+                + "PROTEIN = ?,\n"
+                + "FAT = ?,\n"
+                + "CARB = ?\n"
+                + "where USERID = ?";
+
+        Double cal = Double.parseDouble(calorie);
+        Double pro = Double.parseDouble(proteinPercentage)/100 * cal / 4;
+        Double fat = Double.parseDouble(fatPercentage)/100 * cal / 9;
+        Double carb = Double.parseDouble(carbPercentage)/100 * cal / 4;
+
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, calorie);
+        ps.setString(2, pro+"");
+        ps.setString(3, fat+"");
+        ps.setString(4, carb+"");
+        ps.setString(5, userID);
+
+        ps.executeUpdate();
+    }
+
+    /**
+     *
      * @param args
      */
     public static void main(String[] args) {
         GoalDAO g = new GoalDAO();
-        DailyNutritionGoal info = g.getGoalbyID(1);
+        DailyNutritionGoal info = g.getGoalByID(1);
         System.out.println(info);
     }
 }
