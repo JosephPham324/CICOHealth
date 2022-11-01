@@ -175,9 +175,9 @@ public class GoalDAO {
                 + "where USERID = ?";
 
         Double cal = Double.parseDouble(calorie);
-        Double pro = Double.parseDouble(proteinPercentage) * cal / 4;
-        Double fat = Double.parseDouble(fatPercentage) * cal / 9;
-        Double carb = Double.parseDouble(carbPercentage) * cal / 4;
+        Double pro = Double.parseDouble(proteinPercentage)/100 * cal / 4;
+        Double fat = Double.parseDouble(fatPercentage)/100 * cal / 9;
+        Double carb = Double.parseDouble(carbPercentage)/100 * cal / 4;
 
         con = new DBContext().getConnection();
         ps = con.prepareStatement(query);
