@@ -56,7 +56,7 @@
                 <form method="post" action="healthinfo-control">
                     <div id="results_3">
                         <div class="form-group row">
-                            <legend>
+                            <legend style="color: white;">
                                 <%if (session.getAttribute("username") != null)//If session stores a user name
                                     {
                                         out.print(session.getAttribute("username") + "'s");//Print username
@@ -155,7 +155,7 @@
                         <div class="form-group row" id="results"  style="width: 600px;">
                         <div> <!--This is where the results will appear.  This is hidden when the program loads and appears when the user clicks 'submit'-->
                             <div class="results-container">
-                                <h1 class="title">Your daily BMI is:</h1>
+                                <h1  class="title">Your daily BMI is:</h1>
                                 <p id="bmi-result">Placeholder text</p>
                             </div>
                         </div>
@@ -167,7 +167,7 @@
                                 <p id="plan-result">Placeholder text</p>
                             </div>
                         </div>
-                        <h3 class="title">Your choice:</h3> 
+                        <h3  class="title">Your choice:</h3> 
                         <div class="col-8">
                             <div class="custom-controls-stacked">
                                 <div class="custom-control custom-radio">
