@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+#stats-table{
+    max-width: 100vw;
+}
 .buttons{
     z-index: 100;
-    position:fixed;
+    position:absolute;
     display:flex;
     width: auto;
     height: auto;
@@ -50,9 +53,6 @@
 .info-chart.active{
     display:block;
 }
-th{
-    font-family:Lato;
-}
 thead{
     background-color:antiquewhite;
 }
@@ -74,4 +74,62 @@ tr.group td{
     font-weight:bolder;
     font-size:1.2em;
     text-align:left;
+}
+
+.plus{
+    position:relative;  
+    z-index:1;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    background-color: aliceblue;
+}
+.plus::before {
+  z-index:-1;
+  content: "+";
+  color:#66e266;
+  height:100%;
+  width:100%;
+  font-size:4em;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  font-family:courier;
+  position:absolute;
+  top:0;
+  left:0;
+}
+.minus{
+    position:relative;  
+    z-index:1;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    background-color: aliceblue;
+}
+.minus::before {
+  z-index:-1;
+  content: "-";
+  color: rgb(241, 131, 106);
+  height:100%;
+  width:100%;
+  font-size:5em;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  font-family:courier;
+  position:absolute;
+  top:0;
+  left:0;
+}
+
+th{
+    font-family:Lato;
+}
+
+
+#stats-table th{
+  text-align:center;
 }

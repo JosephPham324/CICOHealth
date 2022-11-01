@@ -4,7 +4,7 @@ $(document).ready(function () {
         scrollY: '600px',
         scrollCollapse: true,
         paging: false,
-        columnDefs: [{ visible: false, targets: groupColumn }],
+        columnDefs: [{ visible: false, targets: groupColumn },{"className": "dt-center", "targets": "_all"}],
         order: [[groupColumn, 'asc']],
         displayLength: 25,
         drawCallback: function (settings) {

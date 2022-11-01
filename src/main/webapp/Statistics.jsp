@@ -176,10 +176,10 @@
                                     </td>
                                 </c:otherwise>
                             </c:choose>
-                            <td>
+                            <td class="plus">
                                 <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getTotalCal()}"/>
                             </td>
-                            <td>
+                            <td class="minus">
                                 <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())}"/>
                             </td>
                             <c:choose>
