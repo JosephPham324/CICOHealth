@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 .buttons{
     z-index: 100;
     position:fixed;
@@ -48,4 +49,29 @@
 }
 .info-chart.active{
     display:block;
+}
+th{
+    font-family:Lato;
+}
+thead{
+    background-color:antiquewhite;
+}
+tfoot{
+    background:gold;
+}
+td.failure{
+    color:white;
+    background-color:#e95a3a;
+}
+td.success{
+    color:white;
+    background-color:green;
+}
+td{
+    text-align:center;
+}
+tr.group td{
+    font-weight:bolder;
+    font-size:1.2em;
+    text-align:left;
 }

@@ -1,5 +1,8 @@
-<%-- Document : Statistics.jsp Created on : Oct 30, 2022, 7:07:09 AM Author :
-Pham Nhat Quang CE170036 (FPTU CANTHO) --%>
+<%-- 
+    Document : Statistics.jsp
+    Created on : Oct 30, 2022, 7:07:09 AM
+    Author : Pham Nhat Quang CE170036 (FPTU CANTHO) 
+--%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -39,23 +42,22 @@ Pham Nhat Quang CE170036 (FPTU CANTHO) --%>
         <c:if test="${sessionScope.userID == null}">
             <c:redirect url="home"></c:redirect>
         </c:if>
+        <%--Beans to access data--%>
         <jsp:useBean class="DAO.GoalDAO" id="goalsDAO" scope="page"></jsp:useBean>
         <jsp:useBean class="DAO.MealDAO" id="mealDAO" scope="page"></jsp:useBean>
         <jsp:useBean class="DAO.ExerciseDAO" id="exerciseDAO" scope="page"></jsp:useBean>
+
+        <%--Variables--%>
         <c:set var="userID" value="${sessionScope.userID}"></c:set>
-        <c:set
-            var="goals"
-            value="${goalsDAO.getGoalByID(sessionScope.userID)}"
-            ></c:set>
+        <%--Goal object of user--%>
+        <c:set var="goals" value="${goalsDAO.getGoalByID(sessionScope.userID)}" ></c:set>
+        <%--Specific goals' values--%>
         <c:set var="proteinGoal" value="${goals.getProtein()}"></c:set>
         <c:set var="fatGoal" value="${goals.getFat()}"></c:set>
         <c:set var="carbGoal" value="${goals.getCarb()}"></c:set>
         <c:set var="calorieGoal" value="${goals.getCalories()}"></c:set>
-        <c:set
-            var="meals"
-            value="${mealDAO.getMealsGroupedByDate(userID)}"
-            scope="request"
-            ></c:set>
+        <%--Meals data grouped into 1 meal per day--%>
+        <c:set var="meals" value="${mealDAO.getMealsGroupedByDate(userID)}" scope="request"></c:set>
 
             <div class="info-container">
                 <div class="buttons">
@@ -84,93 +86,114 @@ Pham Nhat Quang CE170036 (FPTU CANTHO) --%>
                         </thead>
                         <tbody>
                         <script>
+                            //Declaring variables to draw chart
                             let mealKcal = [];
                             let goalKcal = [];
                             let chartLabel = [];
                             let date = "";
                         </script>
-                    <c:forEach var="meal" items="${meals}">
+                    <c:forEach var="meal" items="${meals}"><%--Loop through meals data, adding rows to table--%>
                         <script>
-                                mealKcal.push(${meal.getTotalCal()-exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())});
-                                goalKcal.push(${calorieGoal});
-                                date = `${meal.getDate("yy-MM-dd")}`
-                                chartLabel.push(date);
+                            //Push data to chart variables
+                            mealKcal.push(${meal.getTotalCal()-exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())});
+                            goalKcal.push(${calorieGoal});
+                            date = `${meal.getDate("yy-MM-dd")}`;
+                            chartLabel.push(date);
                         </script>
+                        <%--Adding statistics data for showing--%>
                         <tr>
                             <td>${meal.getMonthYear()}</td>
                             <td>${meal.getMonthDay()}</td>
+                            <c:choose>
+                                <c:when test="${meal.getProteinWeight()>=proteinGoal}">
+                                    <td class = 'success'>
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getProteinWeight()}"/>
+                                    </td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td class = "failure">
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getProteinWeight()}"/>
+                                    </td>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${meal.getFatWeight()>=fatGoal}">
+                                    <td class = 'success'>
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getFatWeight()}"/>
+                                    </td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td class = "failure">
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getFatWeight()}"/>
+                                    </td>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${meal.getCarbWeight()>=carbGoal}">
+                                    <td class = 'success'>
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getCarbWeight()}"/>
+                                    </td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td class = "failure">
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getCarbWeight()}"/>
+                                    </td>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${meal.getProteinWeight()*4>=proteinGoal*4}">
+                                    <td class = 'success'>
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getProteinWeight()*4}"/>
+                                    </td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td class = "failure">
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getProteinWeight()*4}"/>
+                                    </td>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${meal.getFatWeight()*9>=fatGoal*9}">
+                                    <td class = 'success'>
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getFatWeight()*9}"/>
+                                    </td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td class = "failure">
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getFatWeight()*9}"/>
+                                    </td>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${meal.getCarbWeight()*4>=carbGoal*4}">
+                                    <td class = 'success'>
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getCarbWeight()*4}"/>
+                                    </td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td class = "failure">
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getCarbWeight()*4}"/>
+                                    </td>
+                                </c:otherwise>
+                            </c:choose>
                             <td>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${meal.getProteinWeight()}"
-                                    />
+                                <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getTotalCal()}"/>
                             </td>
                             <td>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${meal.getFatWeight()}"
-                                    />
+                                <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())}"/>
                             </td>
-                            <td>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${meal.getCarbWeight()}"
-                                    />
-                            </td>
-                            <td>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${meal.getProteinWeight()*4}"
-                                    />
-                            </td>
-                            <td>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${meal.getFatWeight()*9}"
-                                    />
-                            </td>
-                            <td>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${meal.getCarbWeight()*4}"
-                                    />
-                            </td>
-                            <td>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${meal.getTotalCal()}"
-                                    />
-                            </td>
-                            <td>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())}"
-                                    />
-                            </td>
-                            <td>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${meal.getTotalCal()-exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())}"
-                                    />
-                            </td>
+                            <c:choose>
+                                <c:when test="${meal.getTotalCal()-exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())>=calorieGoal}">
+                                    <td class = 'success'>
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getTotalCal()-exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())}"/>
+                                    </td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td class = "failure">
+                                        <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getTotalCal()-exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())}"/>
+                                    </td>
+                                </c:otherwise>
+                            </c:choose>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -178,68 +201,32 @@ Pham Nhat Quang CE170036 (FPTU CANTHO) --%>
                         <tr>
                             <th colspan="2">Goals:</th>
                             <th>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${proteinGoal}"
-                                    />
+                                <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${proteinGoal}"/>
                             </th>
                             <th>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${fatGoal}"
-                                    />
+                                <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${fatGoal}"/>
                             </th>
                             <th>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${carbGoal}"
-                                    />
+                                <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${carbGoal}"/>
                             </th>
                             <th>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${proteinGoal*4}"
-                                    />
+                                <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${proteinGoal*4}"/>
                             </th>
                             <th>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${fatGoal*9}"
-                                    />
+                                <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${fatGoal*9}"/>
                             </th>
                             <th>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${carbGoal*4}"
-                                    />
+                                <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${carbGoal*4}"/>
                             </th>
                             <th>---</th>
                             <th>---</th>
                             <th>
-                                <fmt:formatNumber
-                                    type="number"
-                                    maxFractionDigits="1"
-                                    minFractionDigits="1"
-                                    value="${calorieGoal}"
-                                    />
+                                <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${calorieGoal}"/>
                             </th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
-
             <div class="info-chart">
                 <canvas id="myChart" style="width: 60vw; min-width: 800px"></canvas>
                 <script src="scripts/statcharts.js"></script>
