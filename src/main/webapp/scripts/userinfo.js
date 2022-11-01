@@ -278,7 +278,7 @@ healthEditButtons.forEach((button) => {
               value = "${healthFields[0].textContent}"
             />
             <span id="ageBlock" class="form-text text-muted"
-              >Changing this will also change your nutrition goal</span
+              >Changing this will also change your nutrition goal to maintenance</span
             >
           </div>
         </div>
@@ -297,7 +297,7 @@ healthEditButtons.forEach((button) => {
               value = "${healthFields[1].textContent}"
             />
             <span id="genderHelpBlock" class="form-text text-muted"
-              >Changing this will also change your nutrition goal</span
+              >Changing this will also change your nutrition goal to maintenance</span
             >
           </div>
         </div>
@@ -316,7 +316,7 @@ healthEditButtons.forEach((button) => {
                 value = "${healthFields[2].textContent}"
               />
               <span id="heightHelpBlock" class="form-text text-muted"
-                >Changing this will also change your nutrition goal</span
+                >Changing this will also change your nutrition goal to maintenance</span
               >
             </div>
         </div>
@@ -336,7 +336,7 @@ healthEditButtons.forEach((button) => {
                 value = "${healthFields[3].textContent}"
               />
               <span id="weightHelpBlock" class="form-text text-muted"
-                >Changing this will also change your nutrition goal</span
+                >Changing this will also change your nutrition goal to maintenance</span
               >
             </div>
         </div>
@@ -369,7 +369,7 @@ healthEditButtons.forEach((button) => {
               <label for="activeness_3" class="custom-control-label">Very active</label>
             </div>
           </div> 
-          <span id="activenessHelpBlock" class="form-text text-muted">Changing this will also change your nutrition goal</span>
+          <span id="activenessHelpBlock" class="form-text text-muted">Changing this will also change your nutrition goal to maintenance</span>
         </div>
       </div> 
       <input type = "hidden" name ="destination" value = "user-info">

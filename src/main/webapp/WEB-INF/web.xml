@@ -211,7 +211,8 @@
     <servlet-mapping>
         <servlet-name>Statistics</servlet-name>
         <url-pattern>/user-statistics</url-pattern>
-        
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>EditGoalControl</servlet-name>
         <url-pattern>/edit-goal-control</url-pattern>
     </servlet-mapping>
