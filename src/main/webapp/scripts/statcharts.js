@@ -1,17 +1,23 @@
-var speedCanvas = document.getElementById("myChart");
+/**
+ * Configuration for statistics chart
+ * @Author Pham Nhat Quang
+ */
 
+var canvas = document.getElementById("myChart");//Canvas to draw
+
+//Font settings
 Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 
-var dataFirst = {
-  label: "Your daily consumption",
+var dataFirst = {//Data for first line graph
+  label: "Total daily calorie",
   data: mealKcal,
   lineTension: 0,
   fill: false,
   borderColor: "red",
 };
 
-var dataSecond = {
+var dataSecond = {//Data for second line graph
   label: "Calorie Goal",
   data: goalKcal,
   lineTension: 0,
@@ -19,13 +25,13 @@ var dataSecond = {
   borderColor: "blue",
 };
 
-var nutritionData = {
+var nutritionData = {//To draw
   labels: chartLabel,
   datasets: [dataFirst, dataSecond],
 };
 
-var chartOptions = {
-  legend: {
+var chartOptions = {//Options
+  legend: {//Legend display
     display: true,
     position: "top",
     labels: {
@@ -33,9 +39,23 @@ var chartOptions = {
       fontColor: "black",
     },
   },
+  scales: {//Naming axes
+    yAxes: [{
+      scaleLabel: {
+        display: true,
+        labelString: 'kcal'
+      }
+    }],
+    xAxes: [{
+      scaleLabel: {
+        display: true,
+        labelString: 'date'
+      }
+    }]
+  }  
 };
-
-var lineChart = new Chart(speedCanvas, {
+//Display the chart
+var lineChart = new Chart(canvas, {
   type: "line",
   data: nutritionData,
   options: chartOptions,

@@ -4,7 +4,6 @@
  * 
  */
 
-
 let nav_links = document.querySelectorAll(".nav-link");//Nav links to switch view
 let contents = document.querySelectorAll(".info>div");
 let form_container = document.querySelector(".form");//Form wrapper div
@@ -104,6 +103,7 @@ loginEditButtons.forEach((button) => {
     let loginFields = document.querySelectorAll(".login-info .field-value");//Get all span elements that contains info
     //Content to show in form
     //Only selected field is displayed
+    //Inputs: username, password
     let formContent = `
     <div class="form-group row" style = "display:${
       loginFields[0] === field ? "flex" : "none"
@@ -188,6 +188,7 @@ userEditButtons.forEach((button) => {
     let field = button.parentElement.childNodes[3];//Get span element
     let userFields = document.querySelectorAll(".user-info .field-value");//Get span elements
     //Content for form
+    //Inputs: First name, last name, email, phone number
     let formContent = `
         <div class="form-group row" style = "display:${
           userFields[0] === field ? "flex" : "none"
@@ -283,6 +284,7 @@ healthEditButtons.forEach((button) => {
     let field = button.parentElement.childNodes[3];//Get span element
     let healthFields = document.querySelectorAll(".health-info .field-value");//Get span elements
     //Content for form
+    //Inputs include: age, gender, height, weight, activeness
     let formContent = `
         <div class="form-group row" style = "display:${
           healthFields[0] === field ? "flex" : "none"
@@ -413,6 +415,9 @@ healthEditButtons.forEach((button) => {
 //Caloie goal
 goalEditButtons[0].addEventListener("click", () => {
   //Form content
+  //Inputs:
+  //Daily calorie + macro percentages
+  //Macro weights
   let formContent = `
   <div class="form-group row">
     <label for="dailyCalorie" class="col-4 col-form-label">Daily calorie</label> 
