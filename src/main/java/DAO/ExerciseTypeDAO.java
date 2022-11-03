@@ -17,7 +17,6 @@ import java.util.logging.Logger;
  */
 public class ExerciseTypeDAO {
 
-
     /**
      * Connection to database
      */
@@ -31,7 +30,7 @@ public class ExerciseTypeDAO {
     /**
      * Save query result
      */
-    ResultSet rs = null; 
+    ResultSet rs = null;
 
     /**
      *
@@ -45,22 +44,23 @@ public class ExerciseTypeDAO {
      * @return
      * @throws SQLException
      */
-    public List<ExerciseType> searchExerciseTypes(String name) throws SQLException {
+    public List<ExerciseType> searchExerciseTypes(String name) {
         List<ExerciseType> res = new ArrayList<>();
+        try {
+            query = "SELECT * FROM EXERCISETYPES WHERE EXERCISENAME like '%' + ? +'%'";
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setString(1, name);
+            rs = ps.executeQuery();
 
-        query = "SELECT * FROM EXERCISETYPES WHERE EXERCISENAME like '%' + ? +'%'";
-        con = new DBContext().getConnection(); // open connection to SQL
-        ps = con.prepareStatement(query); // move query from Netbeen to SQl
-        ps.setString(1, name);
-        rs = ps.executeQuery();
-
-        while (rs.next()) {
-            res.add(new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"), rs.getDouble("CALPERHOUR"), rs.getString("DESCRIPTION")));
+            while (rs.next()) {
+                res.add(new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"), rs.getDouble("CALPERHOUR"), rs.getString("DESCRIPTION")));
+            }
+        } catch (Exception e) {
         }
 
         return res;
     }
-
 
     /**
      * Get all exercise types
@@ -68,7 +68,7 @@ public class ExerciseTypeDAO {
      * @return
      * @throws SQLException
      */
-   public List<ExerciseType> getAllExerciseTypes() {
+    public List<ExerciseType> getAllExerciseTypes() {
         List<ExerciseType> res = new ArrayList<>();
         try {
             String query = "SELECT * FROM EXERCISETYPES";
@@ -77,8 +77,8 @@ public class ExerciseTypeDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-            ExerciseType ex = new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"), rs.getDouble("CALPERHOUR"), rs.getString("DESCRIPTION"));
-            res.add(ex);
+                ExerciseType ex = new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"), rs.getDouble("CALPERHOUR"), rs.getString("DESCRIPTION"));
+                res.add(ex);
             }
         } catch (Exception e) {
         }
@@ -104,7 +104,7 @@ public class ExerciseTypeDAO {
         }
         return res;
     }
-    
+
     public void deleteExerciseType(String id) {
         String query = "delete from EXERCISETYPES where EXERCISEID = ?";
         try {
@@ -116,26 +116,26 @@ public class ExerciseTypeDAO {
         } catch (Exception e) {
         }
     }
-    
-    public ExerciseType getExerciseTypeByID (String id) {
-        String query = "select * from EXERCISETYPES\n" +
-                        "where EXERCISEID = ?";
+
+    public ExerciseType getExerciseTypeByID(String id) {
+        String query = "select * from EXERCISETYPES\n"
+                + "where EXERCISEID = ?";
         try {
-             con = new DBContext().getConnection(); // open connection to SQL
+            con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setString(1, id);
             rs = ps.executeQuery();
-            while(rs.next()) {
-                return new ExerciseType(rs.getInt(1), rs.getString(2), rs.getFloat(3),rs.getString(4));
+            while (rs.next()) {
+                return new ExerciseType(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4));
             }
         } catch (Exception e) {
         }
         return null;
     }
-    
-    public void updateExercise(String id, String exercisename, String calperhour,String description) {
-        String query = "update EXERCISETYPES set EXERCISENAME = ?, CALPERHOUR = ?, DESCRIPTION = ?\n" +
-                        "where EXERCISEID = ?";
+
+    public void updateExercise(String id, String exercisename, String calperhour, String description) {
+        String query = "update EXERCISETYPES set EXERCISENAME = ?, CALPERHOUR = ?, DESCRIPTION = ?\n"
+                + "where EXERCISEID = ?";
         try {
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
@@ -148,17 +148,17 @@ public class ExerciseTypeDAO {
         } catch (Exception e) {
         }
     }
-    
-     public void addExerciseType(String exid, String exname, String calperhour, String description) {
+
+    public void addExerciseType(String exid, String exname, String calperhour, String description) {
         String query = "insert into EXERCISETYPES values (?,?,?,?)";
 
         try {
             con = new DBContext().getConnection();
             ps = con.prepareStatement(query);
-            ps.setString(1,exid);
-            ps.setString(2,exname);
-            ps.setString(3,calperhour);
-            ps.setString(4,description);
+            ps.setString(1, exid);
+            ps.setString(2, exname);
+            ps.setString(3, calperhour);
+            ps.setString(4, description);
             ps.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e.getMessage());

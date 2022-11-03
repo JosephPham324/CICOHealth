@@ -172,6 +172,49 @@ public class UserDAO {
 
         return null;
     }
+    
+    public List<User> getUserByName(String username) {
+        List<User> list = new ArrayList<>();
+        String query = "Select * from [USER] where (FIRSTNAME LIKE ? OR LASTNAME LIKE ?) AND USERROLEID = 2";
+        try {
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+
+            ps.setString(1,"%"+username+"%");
+            ps.setString(2,"%"+username+"%");
+            rs = ps.executeQuery();
+             while (rs.next()) {
+                User user = new User(rs.getInt(1), rs.getInt(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6));
+                list.add(user);
+            }
+        } catch (Exception e) {
+        }
+
+        return list;
+    }
+    
+    public List<User> getAdminByName(String username) {
+        List<User> list = new ArrayList<>();
+        String query = "Select * from [USER] where (FIRSTNAME LIKE ? OR LASTNAME LIKE ?) AND USERROLEID = 1";
+        try {
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+
+            ps.setString(1,"%"+username+"%");
+            ps.setString(2,"%"+username+"%");
+            rs = ps.executeQuery();
+             while (rs.next()) {
+                User user = new User(rs.getInt(1), rs.getInt(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6));
+                list.add(user);
+            }
+        } catch (Exception e) {
+        }
+
+        return list;
+    }
+
 
     public User getRoleByUserID(int id) throws SQLException {
         String query = "select USERROLEID from dbo.[User]\n"
@@ -221,23 +264,27 @@ public class UserDAO {
     }
 
     public static void main(String[] args) throws SQLException {
-        String username = "THINHNLQCE161130";
-        String password = "group4prj301";
-
-        LoginDAO loginDAO = new LoginDAO();
-        UserDAO userDAO = new UserDAO();
-
-        Login b = loginDAO.findUserName(username);
-        int userid = b.getUserID();
-        User u = userDAO.getRoleByUserID(userid);
-        System.out.println(u);
-        //Get an instance of Login entry if username and password is correct
-        Login a = null;
-        if (u.getUserRoleId() == 2) {
-            a = loginDAO.checkLogin(username, password);
-        } else {
-            a = loginDAO.checkAdminLogin(username, password);
-        }
-        System.out.println(a);
+//        String username = "THINHNLQCE161130";
+//        String password = "group4prj301";
+//
+//        LoginDAO loginDAO = new LoginDAO();
+//        UserDAO userDAO = new UserDAO();
+//
+//        Login b = loginDAO.findUserName(username);
+//        int userid = b.getUserID();
+//        User u = userDAO.getRoleByUserID(userid);
+//        System.out.println(u);
+//        //Get an instance of Login entry if username and password is correct
+//        Login a = null;
+//        if (u.getUserRoleId() == 2) {
+//            a = loginDAO.checkLogin(username, password);
+//        } else {
+//            a = loginDAO.checkAdminLogin(username, password);
+//        }
+//        System.out.println(a);
+        String username = "Thinh";
+        UserDAO user = new UserDAO();
+    	List<User> list = user.getUserByName(username);
+        System.out.println(list);
     }
 }

@@ -75,7 +75,11 @@ public class AdminLoadControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String username = request.getParameter("txtSearch");
+        UserDAO user = new UserDAO();
+    	List<User> list = user.getAdminByName(username);
+        request.setAttribute("listAdmin", list);
+        request.getRequestDispatcher("AdminInfo.jsp").forward(request, response);
     }
 
     /**

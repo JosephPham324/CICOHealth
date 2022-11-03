@@ -53,6 +53,14 @@
         <a href="ADMIN.jsp" class="previous round">Back</a>
         <div class="info-container">
             <div class="info-table">
+                <div  class="widget_search">
+                    <form role="search" method="post" action="admin-loadcontrol">
+                        <div style="text-align: right;">
+                            <input type="Search" name="txtSearch" placeholder="First name or last name">
+                            <input type="submit" id="searchsubmit" value="Search"/>
+                        </div>
+                    </form>
+                </div>
                 <table id="info-table" class="table table-striped table-hover display">
                     <thead>
                         <tr>
@@ -73,7 +81,7 @@
                                 <td>${i.email}</td>
                                 <td>${i.phone}</td>
                                 <td>
-                                   <a class="fa-solid fa-pen-to-square edit-button" href="update-control?id=${i.userID}" style="color: blue;"></a>
+                                    <a class="fa-solid fa-pen-to-square edit-button" href="update-control?id=${i.userID}" style="color: blue;"></a>
                                     |
                                     <a class="delete-usercontrol" href = "#" onclick = "askDelete(${i.userID})" style="color: red"
                                        ><i class="fa-solid fa-xmark"></i

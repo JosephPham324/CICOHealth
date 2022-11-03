@@ -76,7 +76,11 @@ public class AdminExerciseType extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String exercisename = request.getParameter("txtSearch");
+        ExerciseTypeDAO exDAO = new ExerciseTypeDAO();
+    	List<ExerciseType> list = exDAO.searchExerciseTypes(exercisename);
+        request.setAttribute("listExercise", list);
+        request.getRequestDispatcher("AdminExercise.jsp").forward(request, response);
     }
 
     /**

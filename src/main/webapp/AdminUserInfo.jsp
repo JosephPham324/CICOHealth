@@ -53,6 +53,14 @@
          <a href="ADMIN.jsp" class="previous round">Back</a>
         <div class="info-container">
             <div class="info-table">
+                <div  class="widget_search">
+                    <form role="search" method="post" action="user-loadcontrol">
+                        <div style="text-align: right;">
+                            <input type="Search" name="txtSearch" placeholder="First name or last name">
+                            <input type="submit" id="searchsubmit" value="Search"/>
+                        </div>
+                    </form>
+                </div>
                 <table id="info-table" class="table table-striped table-hover display">
                     <thead>
                         <tr>

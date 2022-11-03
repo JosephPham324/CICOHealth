@@ -54,6 +54,14 @@
         <div class="info-container">
              <a href = "Update/AdminAddExercise.jsp" class="add">Add new exercise</a>
             <div class="info-table">
+                 <div  class="widget_search">
+                    <form role="search" method="post" action="admin-exercisetype">
+                        <div style="text-align: right;">
+                            <input type="Search" name="txtSearch" placeholder="Enter exercise name">
+                            <input type="submit" id="searchsubmit" value="Search"/>
+                        </div>
+                    </form>
+                </div>
                 <table id="info-table" class="table table-striped table-hover display">
                     <thead>
                         <tr>

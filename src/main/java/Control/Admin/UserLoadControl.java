@@ -75,7 +75,11 @@ public class UserLoadControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String username = request.getParameter("txtSearch");
+        UserDAO user = new UserDAO();
+    	List<User> list = user.getUserByName(username);
+        request.setAttribute("listUser", list);
+        request.getRequestDispatcher("AdminUserInfo.jsp").forward(request, response);
     }
 
     /**
