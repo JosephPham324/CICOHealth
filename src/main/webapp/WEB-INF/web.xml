@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index</welcome-file>
     </welcome-file-list>
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
     <servlet>
         <servlet-name>LoginControl</servlet-name>
         <servlet-class>Control.Login.LoginControl</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SearchControl</servlet-name>
-        <servlet-class>Control.SearchControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HealthInfoControl</servlet-name>
@@ -103,22 +103,57 @@
         <servlet-name>Statistics</servlet-name>
         <jsp-file>/Statistics.jsp</jsp-file>
     </servlet>
-    
     <servlet>
         <servlet-name>EditGoalControl</servlet-name>
         <servlet-class>Control.HealthInfo.EditGoalControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminControl</servlet-name>
+        <servlet-class>Control.Admin.AdminControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminLoadControl</servlet-name>
+        <servlet-class>Control.Admin.AdminLoadControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteUserControl</servlet-name>
+        <servlet-class>Control.Admin.DeleteUserControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetUserExerciseID</servlet-name>
+        <servlet-class>Control.Admin.GetUserExerciseID</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserLoadControl</servlet-name>
+        <servlet-class>Control.Admin.UserLoadControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminExerciseType</servlet-name>
+        <servlet-class>Control.Admin.AdminExerciseType</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteExerciseType</servlet-name>
+        <servlet-class>Control.Admin.DeleteExerciseType</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateExerciseType</servlet-name>
+        <servlet-class>Control.Admin.UpdateExerciseType</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddExerciseType</servlet-name>
+        <servlet-class>Control.Admin.AddExerciseType</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updatecontrol</servlet-name>
+        <servlet-class>Control.Admin.UpdateControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/login-control</url-pattern>
-    </servlet-mapping>
-    <!--    <servlet-mapping>
-        <servlet-name>DeleteControl</servlet-name>
-        <url-pattern>/delete-control</url-pattern>
-    </servlet-mapping>-->
-    <servlet-mapping>
-        <servlet-name>SearchControl</servlet-name>
-        <url-pattern>/search-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HealthInfoControl</servlet-name>
@@ -215,6 +250,46 @@
     <servlet-mapping>
         <servlet-name>EditGoalControl</servlet-name>
         <url-pattern>/edit-goal-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminControl</servlet-name>
+        <url-pattern>/admin-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminLoadControl</servlet-name>
+        <url-pattern>/admin-loadcontrol</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteUserControl</servlet-name>
+        <url-pattern>/delete-usercontrol</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetUserExerciseID</servlet-name>
+        <url-pattern>/getuser-exerciseid</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserLoadControl</servlet-name>
+        <url-pattern>/user-loadcontrol</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminExerciseType</servlet-name>
+        <url-pattern>/admin-exercisetype</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteExerciseType</servlet-name>
+        <url-pattern>/delete-exercisetype</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateExerciseType</servlet-name>
+        <url-pattern>/update-exercisetype</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddExerciseType</servlet-name>
+        <url-pattern>/add-exercisetype</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updatecontrol</servlet-name>
+        <url-pattern>/update-control</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

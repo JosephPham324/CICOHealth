@@ -7,21 +7,20 @@ package Entity;
 public class ExerciseType {
     private int exerciseID;
     private String exerciseName;
-    private String description;
     private double calPerHour;
+    private String description;
+
 
     public ExerciseType(int exerciseID, String exerciseName) {
         this.exerciseID = exerciseID;
         this.exerciseName = exerciseName;
     }
-    
-    
 
-    public ExerciseType(int exerciseID, String exerciseName, String description, double calPerHour) {
+    public ExerciseType(int exerciseID, String exerciseName, double calPerHour, String description) {
         this.exerciseID = exerciseID;
         this.exerciseName = exerciseName;
-        this.description = description;
         this.calPerHour = calPerHour;
+        this.description = description;
     }
 
     public int getExerciseID() {
@@ -40,6 +39,14 @@ public class ExerciseType {
         this.exerciseName = exerciseName;
     }
 
+    public double getCalPerHour() {
+        return calPerHour;
+    }
+
+    public void setCalPerHour(double calPerHour) {
+        this.calPerHour = calPerHour;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -48,13 +55,12 @@ public class ExerciseType {
         this.description = description;
     }
 
-    public double getCalPerHour() {
-        return calPerHour;
+    @Override
+    public String toString() {
+        return "ExerciseType{" + "exerciseID=" + exerciseID + ", exerciseName=" + exerciseName + ", calPerHour=" + calPerHour + ", description=" + description + '}';
     }
-
-    public void setCalPerHour(double calPerHour) {
-        this.calPerHour = calPerHour;
-    }
+    
+    
 
     
     

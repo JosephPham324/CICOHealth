@@ -1,5 +1,6 @@
 package DAO;
 
+import Entity.Login;
 import Entity.User;
 import context.DBContext;
 import java.sql.Connection;
@@ -35,16 +36,40 @@ public class UserDAO {
      *
      * @return User objects of all users in database
      */
-    public List<User> getListUser() throws SQLException {
-        String query = "select * from dbo.[USER]";
-        con = new DBContext().getConnection(); // open connection to SQL
-        ps = con.prepareStatement(query); // move query from Netbeen to SQl
-        rs = ps.executeQuery(); // the same with click to "excute" btn;
+    public List<User> getListUser() {
         List<User> list = new ArrayList<>();
-        while (rs.next()) {
-            User User = new User(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                    rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
-            list.add(User);
+        try {
+            String query = "select * from dbo.[USER] where USERROLEID = 2";
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            rs = ps.executeQuery(); // the same with click to "excute" btn;
+
+            while (rs.next()) {
+                User user = new User(rs.getInt(1), rs.getInt(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6));
+                list.add(user);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return list;
+    }
+
+    public List<User> getListAdmin() {
+        List<User> list = new ArrayList<>();
+        try {
+            String query = "select * from dbo.[USER] where USERROLEID = 1";
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            rs = ps.executeQuery(); // the same with click to "excute" btn;
+
+            while (rs.next()) {
+                User user = new User(rs.getInt(1), rs.getInt(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6));
+                list.add(user);
+            }
+        } catch (Exception e) {
+            e.getMessage();
         }
         return list;
     }
@@ -74,6 +99,30 @@ public class UserDAO {
         ps.executeUpdate();
     }
 
+    public void deleteUSER(String id) {
+        String query = "delete from MEALITEM where USERID = ?\n"
+                + "delete from MEAL where USERID = ?\n"
+                + "delete from EXERCISE where USERID = ?\n"
+                + "delete from DAILYNUTRITIONGOAL where USERID = ?\n"
+                + "delete from USERHEALTHINFO where USERID = ?\n"
+                + "delete from [USER] where USERID = ?\n"
+                + "delete from [LOGIN] where USER_ID = ?";
+        try {
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setString(1, id);
+            ps.setString(2, id);
+            ps.setString(3, id);
+            ps.setString(4, id);
+            ps.setString(5, id);
+            ps.setString(6, id);
+            ps.setString(7, id);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+        }
+    }
+
     /**
      * Get the last ID present in USER table
      *
@@ -94,34 +143,51 @@ public class UserDAO {
         return -1;
     }
 
-
     /**
      * Get a user from database using ID
      *
      * @param id User ID
      * @return User object
-     * @throws SQLException When query to database encounters error
      */
-    public User getUserByID(String id) throws SQLException {
+    public User getUserByID(String id) {
         String query = "select * from dbo.[User]\n"
+                + "where USERID = ?";
+        try {
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new User(
+                        rs.getInt("USERID"),
+                        rs.getString("FIRSTNAME"),
+                        rs.getString("LASTNAME"),
+                        rs.getString("EMAILADDRESS"),
+                        rs.getString("PHONENUMBER")
+                );
+            }
+        } catch (Exception e) {
+        }
+
+        return null;
+    }
+
+    public User getRoleByUserID(int id) throws SQLException {
+        String query = "select USERROLEID from dbo.[User]\n"
                 + "where USERID = ?";
         con = new DBContext().getConnection(); // open connection to SQL
         ps = con.prepareStatement(query); // move query from Netbeen to SQl
 
-        ps.setString(1, id);
+        ps.setInt(1, id);
         rs = ps.executeQuery();
         while (rs.next()) {
             return new User(
-                    rs.getInt("USERID"),
-                    rs.getString("FIRSTNAME"),
-                    rs.getString("LASTNAME"),
-                    rs.getString("EMAILADDRESS"),
-                    rs.getString("PHONENUMBER")
+                    rs.getInt("USERROLEID")
             );
         }
         return null;
     }
-
 
     /**
      * Edit user info in USER table
@@ -133,21 +199,45 @@ public class UserDAO {
      * @param PHONE
      * @throws SQLException When query to update database encounters error
      */
-    public void editUser(String USERID, String FIRSTNAME, String LASTNAME, String EMAIL, String PHONE) throws SQLException {
+    public void editUser(String USERID, String FIRSTNAME, String LASTNAME, String EMAIL, String PHONE) {
         String query = "update [USER]\n"
                 + "set FIRSTNAME = ?,\n"
                 + "LASTNAME = ?,\n"
                 + "EMAILADDRESS = ?,\n"
                 + "PHONENUMBER = ?\n"
                 + "where USERID = ?";
+        try {
+            con = new DBContext().getConnection(); // open connection to SQL
+            ps = con.prepareStatement(query); // move query from Netbeen to SQl
+            ps.setString(1, FIRSTNAME);
+            ps.setString(2, LASTNAME);
+            ps.setString(3, EMAIL);
+            ps.setString(4, PHONE);
+            ps.setString(5, USERID);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
 
-        con = new DBContext().getConnection(); // open connection to SQL
-        ps = con.prepareStatement(query); // move query from Netbeen to SQl
-        ps.setString(1, FIRSTNAME);
-        ps.setString(2, LASTNAME);
-        ps.setString(3, EMAIL);
-        ps.setString(4, PHONE);
-        ps.setString(5, USERID);
-        ps.executeUpdate();
+    }
+
+    public static void main(String[] args) throws SQLException {
+        String username = "THINHNLQCE161130";
+        String password = "group4prj301";
+
+        LoginDAO loginDAO = new LoginDAO();
+        UserDAO userDAO = new UserDAO();
+
+        Login b = loginDAO.findUserName(username);
+        int userid = b.getUserID();
+        User u = userDAO.getRoleByUserID(userid);
+        System.out.println(u);
+        //Get an instance of Login entry if username and password is correct
+        Login a = null;
+        if (u.getUserRoleId() == 2) {
+            a = loginDAO.checkLogin(username, password);
+        } else {
+            a = loginDAO.checkAdminLogin(username, password);
+        }
+        System.out.println(a);
     }
 }

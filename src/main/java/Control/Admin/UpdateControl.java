@@ -1,21 +1,26 @@
-package Control;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package Control.Admin;
 
 import DAO.UserDAO;
+import Entity.User;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author M S I
+ * @author ASUS
  */
-public class EditUserInfoControl extends HttpServlet {
+public class UpdateControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,15 +34,15 @@ public class EditUserInfoControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditUserInfoControl</title>");            
+            out.println("<title>Servlet UpdateControl</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditUserInfoControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UpdateControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -55,7 +60,22 @@ public class EditUserInfoControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String id = request.getParameter("id");
+        UserDAO uDAO = new UserDAO();
+        try {
+            User u = uDAO.getUserByID(id);
+            User u2 = uDAO.getRoleByUserID(Integer.parseInt(id));
+            request.setAttribute("id", u);
+            if (u2.getUserRoleId() == 1) {
+                request.getRequestDispatcher("Update/AdminUpdateAdmin.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("Update/AdminUpdateUser.jsp").forward(request, response);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DeleteUserControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -69,20 +89,24 @@ public class EditUserInfoControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String userid = request.getParameter("userid");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        UserDAO uDAO = new UserDAO();
+        uDAO.editUser(userid, firstName, lastName, email, phone);
         try {
-            String firstName = request.getParameter("firstName");
-            String lastName = request.getParameter("lastName");
-            String email = request.getParameter("email");
-            String phone = request.getParameter("phone");
-            String userID = request.getSession().getAttribute("userID").toString();
-            
-            UserDAO uDAO = new UserDAO();
-            uDAO.editUser(userID, firstName, lastName, email, phone);
-            request.getSession().setAttribute("panel", "userInfo");
-            response.sendRedirect("user-info");
-        } catch (Exception ex) {
-            Logger.getLogger(EditUserInfoControl.class.getName()).log(Level.SEVERE, null, ex);
+            User u2 = uDAO.getRoleByUserID(Integer.parseInt(userid));
+            if (u2.getUserRoleId() == 1) {
+               response.sendRedirect("admin-loadcontrol");
+            } else {
+                response.sendRedirect("user-loadcontrol");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UpdateControl.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
     /**
