@@ -247,15 +247,15 @@ public class LoginDAO {
      */
     public static void main(String[] args) throws SQLException {
         LoginDAO dao = new LoginDAO();
-//            try {
-//                //        List<User> users = dao.getListMember();
-//                dao.editLoginInfo(2+"", "QuangPNCE170036", "prj301");
-//            } catch (Exception ex) {
-//                Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            try {
+//                        List<User> users = dao.getListMember();
+                dao.editLoginInfo(2+"", "QuangPNCE170036", "prj301");
+            } catch (Exception ex) {
+                Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-        System.out.println(dao.checkLogin("quangthinh130102", "123"));
-        int test = dao.checkUserNameDuplicate("nlordqting4444");
-        System.out.println(test);
+//        System.out.println(dao.checkLogin("QuangPNCE73768665", "prj301"));
+//        int test = dao.checkUserNameDuplicate("nlordqting4444");
+//        System.out.println(test);
     }
 }

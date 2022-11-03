@@ -104,7 +104,17 @@ public class RouterFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String url = httpRequest.getServletPath();
         if (url.endsWith(".jsp") && !url.contains("Error.jsp")) {
-            httpResponse.sendRedirect("home");
+            httpResponse.sendRedirect("home-control");
+        }
+        Paths paths = new Paths();
+        if (url.endsWith("control") && !url.endsWith("home-control")) {
+            String referer = httpRequest.getHeader("referer");
+            if (referer != null && !paths.checkCorrectReferer(url, referer)) {
+                httpResponse.getWriter().write("here");
+//                httpResponse.sendRedirect(referer);
+            } else {
+                httpResponse.sendRedirect("home-control");
+            }
         }
 //        Object userID = httpRequest.getSession().getAttribute("userID");
         Throwable problem = null;

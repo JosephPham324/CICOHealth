@@ -19,10 +19,6 @@
         <servlet-name>LoginControl</servlet-name>
         <servlet-class>Control.Login.LoginControl</servlet-class>
     </servlet>
-    <!--    <servlet>
-        <servlet-name>SearchControl</servlet-name>
-        <servlet-class>Control.SearchControl</servlet-class>
-    </servlet>-->
     <servlet>
         <servlet-name>HealthInfoControl</servlet-name>
         <servlet-class>Control.HealthInfoControl</servlet-class>
@@ -127,10 +123,6 @@
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/login-control</url-pattern>
     </servlet-mapping>
-    <!--    <servlet-mapping>
-        <servlet-name>SearchControl</servlet-name>
-        <url-pattern>/search-control</url-pattern>
-    </servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>HealthInfoControl</servlet-name>
         <url-pattern>/healthinfo-control</url-pattern>
