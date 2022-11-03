@@ -21,7 +21,7 @@ public class SupportedPaths {
     public SupportedPaths() {
         correspondingReferer = new HashMap<>();
         correspondingReferer.put("/login-control", "/login");
-        correspondingReferer.put("/healthinfo-control", "/healthinfo");
+        correspondingReferer.put("/healthinfo-control", "/register-control");
         correspondingReferer.put("/register-control", "/register");
 
         correspondingReferer.put("/create-meal-control", "/search-food");

@@ -38,7 +38,7 @@ public class RouterFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String url = httpRequest.getServletPath();
-        if (url.endsWith("/home-control")) {
+        if (url.endsWith("/home-control") || url.endsWith("/logout-control")) {
             return;
         }
         if (url.endsWith(".jsp") && !url.contains("Error.jsp")) {//Redirect .jsp
@@ -74,6 +74,7 @@ public class RouterFilter implements Filter {
                 return;
             } else if (!correctReferer) {
                 httpResponse.sendRedirect(referer);
+                return;
             }
         }
 
