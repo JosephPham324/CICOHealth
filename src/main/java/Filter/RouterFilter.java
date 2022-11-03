@@ -35,6 +35,47 @@ public class RouterFilter implements Filter {
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        String url = httpRequest.getServletPath();
+        if (url.endsWith("/home-control")) {
+            return;
+        }
+        if (url.endsWith(".jsp") && !url.contains("Error.jsp")) {//Redirect .jsp
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/home-control");
+            return;
+        }
+
+        Map<String, ServletRegistration> servletRegistrations = (Map) request.getServletContext().getServletRegistrations();//Key: servlet name, value: registration
+        boolean acceptedPath = false;
+        for (String key : servletRegistrations.keySet()) {
+            HashSet<String> path = (HashSet) servletRegistrations.get(key).getMappings();
+            if (path.contains(url)) {
+                acceptedPath = true;
+                break;
+            }
+        }
+
+        if (url.contains("scripts/") || url.contains("css/")) {//To load resources
+            acceptedPath = true;
+        }
+        if (!acceptedPath) {
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/home-control");
+            return;
+        }
+
+        SupportedPaths paths = new SupportedPaths();
+        if (url.endsWith("control") && !url.endsWith("home-control")) {//Redirect if user enters url ending with control
+            String referer = httpRequest.getHeader("referer");
+            boolean correctReferer = paths.checkCorrectReferer(url, referer);
+            httpResponse.getWriter().write(correctReferer + "");
+            if (referer == null || !paths.availableServlet(url)) {
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/home-control");
+                return;
+            } else if (!correctReferer) {
+                httpResponse.sendRedirect(referer);
+            }
+        }
 
 //        Object userID = httpRequest.getSession().getAttribute("userID");
         if (debug) {
@@ -106,43 +147,6 @@ public class RouterFilter implements Filter {
         }
 
         doBeforeProcessing(request, response);
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
-        String url = httpRequest.getServletPath();
-        if (url.endsWith(".jsp") && !url.contains("Error.jsp")) {//Redirect .jsp
-            httpResponse.sendRedirect(httpRequest.getContextPath()+"/home-control");
-            return;
-        }
-        
-        Map<String, ServletRegistration> servletRegistrations = (Map) request.getServletContext().getServletRegistrations();//Key: servlet name, value: registration
-        boolean acceptedPath = false;
-        for (String key : servletRegistrations.keySet()) {
-            HashSet<String> path = (HashSet) servletRegistrations.get(key).getMappings();
-            if (path.contains(url)) {
-                acceptedPath = true;
-                break;
-            }
-        }
-        if (url.contains("scripts/") || url.contains("css/")) {
-            acceptedPath = true;
-        }
-        if (!acceptedPath) {
-            httpResponse.sendRedirect(httpRequest.getContextPath()+"/home-control");
-            return;
-        }
-
-        SupportedPaths paths = new SupportedPaths();
-        if (url.endsWith("control") && !url.endsWith("home-control")) {//Redirect if user enters url ending with control
-            String referer = httpRequest.getHeader("referer");
-            boolean correctReferer = paths.checkCorrectReferer(url, referer);
-            httpResponse.getWriter().write(correctReferer + "");
-            if (!correctReferer) {
-                httpResponse.sendRedirect(referer);
-//                httpResponse.getWriter().write(paths.checkCorrectReferer(url, referer) + "");
-            } else if (referer == null || !paths.availableServlet(url)) {
-                httpResponse.sendRedirect(httpRequest.getContextPath()+"/home-control");
-            }
-        }
 
         Throwable problem = null;
         try {
@@ -156,7 +160,7 @@ public class RouterFilter implements Filter {
         }
 
         doAfterProcessing(request, response);
-        
+
         // If there was a problem, we want to rethrow it if it is
         // a known type, otherwise log it.
         if (problem != null) {
