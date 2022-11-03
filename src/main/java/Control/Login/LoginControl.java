@@ -1,7 +1,9 @@
 package Control.Login;
 
 import DAO.LoginDAO;
+import DAO.UserDAO;
 import Entity.Login;
+import Entity.User;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -36,12 +38,23 @@ public class LoginControl extends HttpServlet {
             String remember = request.getParameter("remember");
             
             LoginDAO loginDAO = new LoginDAO();
+            UserDAO userDAO   = new UserDAO();
+            
+            Login b = loginDAO.findUserName(username);
+            int userid = b.getUserID();
+            User u = userDAO.getRoleByUserID(userid);
             
             //Get an instance of Login entry if username and password is correct
-            Login a = loginDAO.checkLogin(username, password);
+            Login a = null;
+            if (u.getUserRoleId() == 2){
+                a = loginDAO.checkLogin(username, password);
+            } else {
+                a = loginDAO.checkAdminLogin(username, password);
+            }
+            
             
             if (a == null) {//If there's no instance, redirect to error page
-                response.sendRedirect("login-error.jsp");
+                    response.sendRedirect("login-error.jsp");            
             } else {//If login info is correct
                 HttpSession session = request.getSession();//Get current session
                 
@@ -55,7 +68,12 @@ public class LoginControl extends HttpServlet {
                     response.addCookie(userID);
                     response.addCookie(userName);
                 }
-                response.sendRedirect("home-control");//Redirect to home controller
+                if (u.getUserRoleId() == 2) {
+                    response.sendRedirect("home-control");//Redirect to home controller
+                } else {
+                    response.sendRedirect("ADMIN.jsp");//Redirect to home controller
+                }
+                
             }
         } catch (Exception e) {
             response.getWriter().println(e);

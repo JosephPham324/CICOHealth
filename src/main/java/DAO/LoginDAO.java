@@ -150,14 +150,50 @@ public class LoginDAO {
 //    }
 
     /**
-     * Check if login info is correct
+     * Check if user login info is correct
      * @param username Username to check
      * @param enteredPassword Password to check
      * @return Login object if login info is correct
      */
     public Login checkLogin(String username, String enteredPassword) {
         try {
-            String query = "select * from [Nutrition].[dbo].[LOGIN] where [USERNAME] = ?";
+            String query = "Select  [LOGIN].LOGINID,[LOGIN].USERNAME,[LOGIN].PASSWORDSALT,[LOGIN].PASSWORDHASH,[LOGIN].USER_ID from [LOGIN]\n" +
+                           "INNER JOIN [USER] ON [USER].USERID = [LOGIN].USER_ID\n" +
+                           "where [USER].USERROLEID = 2 AND [LOGIN].USERNAME = ?";
+            con = new DBContext().getConnection();
+            ps = con.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            System.out.println(ps.toString());
+            while (rs.next()) {
+                Login a = new Login(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+                String salt = a.getPasswordSalt();
+                String hash = a.getPasswordHash();
+                System.out.println(salt);
+                System.out.println(hash);
+
+
+                if (Security.RegLoginLogic.verifyPassword(enteredPassword, salt, hash)) {
+                    return a;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+     /**
+     * Check if admin login info is correct
+     * @param username Username to check
+     * @param enteredPassword Password to check
+     * @return Login object if login info is correct
+     */
+    public Login checkAdminLogin(String username, String enteredPassword) {
+        try {
+            String query = "Select [LOGIN].LOGINID,[LOGIN].USERNAME,[LOGIN].PASSWORDSALT,[LOGIN].PASSWORDHASH,[LOGIN].USER_ID from [LOGIN]\n" +
+                           "INNER JOIN [USER] ON [USER].USERID = [LOGIN].USER_ID\n" +
+                           "where [USER].USERROLEID = 1 AND [LOGIN].USERNAME = ?";
             con = new DBContext().getConnection();
             ps = con.prepareStatement(query);
             ps.setString(1, username);
@@ -254,8 +290,9 @@ public class LoginDAO {
 //                Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
 //            }
 
-        System.out.println(dao.checkLogin("quangthinh130102", "123"));
-        int test = dao.checkUserNameDuplicate("nlordqting4444");
-        System.out.println(test);
+       Login a = dao.checkAdminLogin("THINHNLQCE161130", "group4prj301");
+       Login b = dao.checkLogin("THINHNLQCE161130", "group4prj301");
+        System.out.println(a);
+        System.out.println(b);
     }
 }
