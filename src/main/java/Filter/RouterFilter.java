@@ -10,8 +10,12 @@ import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRegistration;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
 
 /**
  *
@@ -31,6 +35,8 @@ public class RouterFilter implements Filter {
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
+
+//        Object userID = httpRequest.getSession().getAttribute("userID");
         if (debug) {
             log("RouterFilter:DoBeforeProcessing");
         }
@@ -103,20 +109,41 @@ public class RouterFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String url = httpRequest.getServletPath();
-        if (url.endsWith(".jsp") && !url.contains("Error.jsp")) {
-            httpResponse.sendRedirect("home-control");
+        if (url.endsWith(".jsp") && !url.contains("Error.jsp")) {//Redirect .jsp
+            httpResponse.sendRedirect(httpRequest.getContextPath()+"/home-control");
+            return;
         }
-        Paths paths = new Paths();
-        if (url.endsWith("control") && !url.endsWith("home-control")) {
-            String referer = httpRequest.getHeader("referer");
-            if (referer != null && !paths.checkCorrectReferer(url, referer)) {
-                httpResponse.getWriter().write("here");
-//                httpResponse.sendRedirect(referer);
-            } else {
-                httpResponse.sendRedirect("home-control");
+        
+        Map<String, ServletRegistration> servletRegistrations = (Map) request.getServletContext().getServletRegistrations();//Key: servlet name, value: registration
+        boolean acceptedPath = false;
+        for (String key : servletRegistrations.keySet()) {
+            HashSet<String> path = (HashSet) servletRegistrations.get(key).getMappings();
+            if (path.contains(url)) {
+                acceptedPath = true;
+                break;
             }
         }
-//        Object userID = httpRequest.getSession().getAttribute("userID");
+        if (url.contains("scripts/") || url.contains("css/")) {
+            acceptedPath = true;
+        }
+        if (!acceptedPath) {
+            httpResponse.sendRedirect(httpRequest.getContextPath()+"/home-control");
+            return;
+        }
+
+        SupportedPaths paths = new SupportedPaths();
+        if (url.endsWith("control") && !url.endsWith("home-control")) {//Redirect if user enters url ending with control
+            String referer = httpRequest.getHeader("referer");
+            boolean correctReferer = paths.checkCorrectReferer(url, referer);
+            httpResponse.getWriter().write(correctReferer + "");
+            if (!correctReferer) {
+                httpResponse.sendRedirect(referer);
+//                httpResponse.getWriter().write(paths.checkCorrectReferer(url, referer) + "");
+            } else if (referer == null || !paths.availableServlet(url)) {
+                httpResponse.sendRedirect(httpRequest.getContextPath()+"/home-control");
+            }
+        }
+
         Throwable problem = null;
         try {
             chain.doFilter(request, response);
@@ -129,7 +156,7 @@ public class RouterFilter implements Filter {
         }
 
         doAfterProcessing(request, response);
-
+        
         // If there was a problem, we want to rethrow it if it is
         // a known type, otherwise log it.
         if (problem != null) {
