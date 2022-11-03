@@ -66,14 +66,14 @@ public class RouterFilter implements Filter {
 
         SupportedPaths paths = new SupportedPaths();
         if (url.endsWith("control") && !url.endsWith("home-control")) {//Redirect if user enters url ending with control
-            String referer = httpRequest.getHeader("referer");
-            boolean correctReferer = paths.checkCorrectReferer(url, referer);
-            httpResponse.getWriter().write(correctReferer + "");
-            if (referer == null || !paths.availableServlet(url)) {
+            String referrer = httpRequest.getHeader("referer");
+            boolean correctReferrer = paths.checkCorrectReferrer(url, referrer);
+            httpResponse.getWriter().write(correctReferrer + "");
+            if (referrer == null || !paths.availableServlet(url)) {
                 httpResponse.sendRedirect(httpRequest.getContextPath() + "/home-control");
                 return;
-            } else if (!correctReferer) {
-                httpResponse.sendRedirect(referer);
+            } else if (!correctReferrer) {
+                httpResponse.sendRedirect(referrer);
                 return;
             }
         }
