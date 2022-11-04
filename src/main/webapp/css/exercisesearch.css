@@ -98,7 +98,10 @@ input{
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background:url('../image/cardio-exercises.png') no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
     background-color: #faebd7;
     background-size: 100%;
     margin: 2px;

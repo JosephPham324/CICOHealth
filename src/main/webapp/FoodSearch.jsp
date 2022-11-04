@@ -64,7 +64,7 @@ Author : Pham Nhat Quang
             <div class="belly">
                 <div class="wrapper">
                     <span>0</span>
-                    <img src="${pageContext.request.contextPath}/image/stomach_!.png" alt="Stomach image" />
+                    <img src="image/stomach_!.png" alt="Stomach image" />
                 </div>
             </div>
         </header>
