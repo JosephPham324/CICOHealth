@@ -25,7 +25,8 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        request.getCookies();
+        
         response.sendRedirect("home");
     }
 

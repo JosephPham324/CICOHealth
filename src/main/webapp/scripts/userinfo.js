@@ -95,7 +95,7 @@ let goalEditButtons = healthEditButtons.splice(5, 4);//Separate goal buttons fro
 //Logic for login edit buttons
 loginEditButtons.forEach((button) => {
   button.addEventListener("click", () => {//On clicking edit button
-    if (!correctPassword) {//Guard clause for password edit
+    if (!correctPassword) {//Guard clause 
       checkPassword();//User must enter password correctly before editing
       return;
     }
