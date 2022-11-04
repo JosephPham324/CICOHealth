@@ -55,6 +55,7 @@ Author : Pham Nhat Quang
                         <legend>Selected Items</legend>
                         <p>Note that you have to be logged in to create meal</p>
                         <input type="submit" value="CREATE MEAL" name="submit" id="submit">
+                        <input type ="hidden" value="ADD MEAL" name="action">
                     </fieldset>
                 </form>
             </div>

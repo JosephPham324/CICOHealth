@@ -97,7 +97,7 @@
                             <c:choose>
                                 <c:when test="${currentDate!= previousDate && previousDate!=''}">
                                     <c:set var="index" value ="1"></c:set>
-                                    <tr class = "dayStat group">
+                                        <tr class = "dayStat group">
                                             <td></td>
                                             <th scope="row">${previousDate}</th>
                                         <td></td>
@@ -131,8 +131,9 @@
                                 <td>${item.getTotalCal()}</td>
                                 <c:set var="previousDate" value="${currentDate}"></c:set>
                                     <td>
-                                        <form action="#" class="item-form" onsubmit="return fillEditForm(${item})">
+                                    <form action="#" class="item-form" onsubmit="return fillEditForm(${item})">
                                         <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
+                                        <input type="hidden" name="action" value="EDIT MEAL">
                                     </form>
                                     |
                                     <form action="delete-meal-control" method="post" class="delete-item-form"
@@ -140,6 +141,7 @@
                                         <input type="hidden" name="date" value="${item.getDate()}">
                                         <input type="hidden" name="time" value="${item.getTime()}">
                                         <input type="hidden" name="name" value="${item.getMealName()}">
+                                        <input type="hidden" name="action" value="DELETE MEAL">
                                         <button type="submit"><i class="fa-solid fa-xmark"></i></i></button>
                                     </form>
                                 </td>

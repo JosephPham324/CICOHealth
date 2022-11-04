@@ -59,6 +59,7 @@ Author : Pham Nhat Quang
                     </div>
 
                     <input type="submit" value="ADD EXERCISE" name="submit" id="submit" />
+                    <input type="hidden" value="ADD EXERCISE" name="action">
                 </fieldset>
             </form>
         </div>
