@@ -29,8 +29,8 @@ public class SupportedPaths {
         correspondingReferrer.put("/delete-meal-control", "/user-meals");
 
         correspondingReferrer.put("/add-exercise-control", "/search-exercise");
-        correspondingReferrer.put("/edit-exercise-control", "/search-exercise");
-        correspondingReferrer.put("/delete-exercise-control", "/search-exercise");
+        correspondingReferrer.put("/edit-exercise-control", "/user-exercises");
+        correspondingReferrer.put("/delete-exercise-control", "/user-exercises");
 
         correspondingReferrer.put("/login-edit-control", "/user-info");
         correspondingReferrer.put("/edit-user-info-control", "/user-info");
@@ -50,6 +50,10 @@ public class SupportedPaths {
             return true;
         }
         return referrerPath.endsWith("Nutrition" + this.correspondingReferrer.get(servletPath));
+    }
+    
+    public String getCorrectReferrer(String servletPath){
+        return this.correspondingReferrer.get(servletPath);
     }
 
 //    public Set<String> listFilesUsingDirectoryStream(String dir) throws IOException {

@@ -70,6 +70,11 @@ public class RouterFilter implements Filter {
             boolean correctReferrer = paths.checkCorrectReferrer(url, referrer);
             httpResponse.getWriter().write(correctReferrer + "");
             if (referrer == null || !paths.availableServlet(url)) {
+                String referrerPath = paths.getCorrectReferrer(url);
+                if (referrerPath!=null){
+                    httpResponse.sendRedirect(httpRequest.getContextPath() + referrerPath);
+                    return;
+                }
                 httpResponse.sendRedirect(httpRequest.getContextPath() + "/home-control");
                 return;
             } else if (!correctReferrer) {

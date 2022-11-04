@@ -41,7 +41,7 @@
     </head>
     <body>
         <c:if test="${sessionScope.userID == null}">
-            <c:redirect url="search-exercise"></c:redirect>
+            <c:redirect url="search-food"></c:redirect>
         </c:if>
         <jsp:useBean
             id="mDAO"
