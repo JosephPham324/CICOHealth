@@ -25,9 +25,21 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getCookies();
-        
-        response.sendRedirect("home");
+        String action = request.getParameter("action");
+        if (action==null){
+            response.sendRedirect("home");
+        }
+        switch (action){
+            case "EDIT MEAL":
+                request.getRequestDispatcher("edit-meal-control")
+                        .forward(request, response);
+            case "DELETE MEAL":
+                request.getRequestDispatcher("delete-meal-control")
+                        .forward(request, response);
+                break;
+            default:
+                response.sendRedirect("home");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

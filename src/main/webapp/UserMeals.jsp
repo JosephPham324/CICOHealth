@@ -52,10 +52,11 @@
                 <div class="overlay"></div>
 
                 <div class="create-meal">
-                    <form action="edit-meal-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
+                    <form action="home-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
                     <fieldset>
                         <legend>EDIT MEAL</legend>
                         <input type="submit" value="SUBMIT" name="submit" id="submit">
+                        <input type="hidden" name="action" value="EDIT MEAL">
                     </fieldset>
                 </form>
             </div>
@@ -133,10 +134,9 @@
                                     <td>
                                     <form action="#" class="item-form" onsubmit="return fillEditForm(${item})">
                                         <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
-                                        <input type="hidden" name="action" value="EDIT MEAL">
                                     </form>
                                     |
-                                    <form action="delete-meal-control" method="post" class="delete-item-form"
+                                    <form action="home-control" method="post" class="delete-item-form"
                                           onsubmit="return askDelete('Are you sure you want to delete this meal?')">
                                         <input type="hidden" name="date" value="${item.getDate()}">
                                         <input type="hidden" name="time" value="${item.getTime()}">
