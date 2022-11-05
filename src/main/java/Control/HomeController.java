@@ -26,11 +26,11 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-        if (action==null){
+        if (action == null) {
             response.sendRedirect("home");
             return;
         }
-        switch (action){
+        switch (action) {
             case "ADD MEAL":
                 request.getRequestDispatcher("create-meal-control")
                         .forward(request, response);
@@ -52,6 +52,22 @@ public class HomeController extends HttpServlet {
                         .forward(request, response);
                 break;
             case "DELETE EXERCISE":
+                request.getRequestDispatcher("delete-exercise-control")
+                        .forward(request, response);
+                break;
+            case "EDIT LOGIN":
+                request.getRequestDispatcher("add-exercise-control")
+                        .forward(request, response);
+                break;
+            case "EDIT USER":
+                request.getRequestDispatcher("edit-exercise-control")
+                        .forward(request, response);
+                break;
+            case "EDIT HEALTH":
+                request.getRequestDispatcher("delete-exercise-control")
+                        .forward(request, response);
+                break;
+            case "EDIT GOAL":
                 request.getRequestDispatcher("delete-exercise-control")
                         .forward(request, response);
                 break;
