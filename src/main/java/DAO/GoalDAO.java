@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -118,6 +120,7 @@ public class GoalDAO {
 
     /**
      * Get a goal record from user ID
+     *
      * @param id User ID
      * @return DailyNutritionalGoal object containing goals of the user
      */
@@ -154,13 +157,13 @@ public class GoalDAO {
                 + "CARB =?,\n"
                 + "CALORIE=?\n"
                 + "where USERID = ?";
-        Double calorie = Double.parseDouble(fat)*9 + Double.parseDouble(protein)*4 +Double.parseDouble(carb)*4;
+        Double calorie = Double.parseDouble(fat) * 9 + Double.parseDouble(protein) * 4 + Double.parseDouble(carb) * 4;
         con = new DBContext().getConnection();
         ps = con.prepareStatement(query);
         ps.setString(1, protein);
         ps.setString(2, fat);
         ps.setString(3, carb);
-        ps.setString(4, calorie+"");
+        ps.setString(4, calorie + "");
         ps.setString(5, userID);
 
         ps.executeUpdate();
@@ -175,19 +178,32 @@ public class GoalDAO {
                 + "where USERID = ?";
 
         Double cal = Double.parseDouble(calorie);
-        Double pro = Double.parseDouble(proteinPercentage)/100 * cal / 4;
-        Double fat = Double.parseDouble(fatPercentage)/100 * cal / 9;
-        Double carb = Double.parseDouble(carbPercentage)/100 * cal / 4;
+        Double pro = Double.parseDouble(proteinPercentage) / 100 * cal / 4;
+        Double fat = Double.parseDouble(fatPercentage) / 100 * cal / 9;
+        Double carb = Double.parseDouble(carbPercentage) / 100 * cal / 4;
 
         con = new DBContext().getConnection();
         ps = con.prepareStatement(query);
         ps.setString(1, calorie);
-        ps.setString(2, pro+"");
-        ps.setString(3, fat+"");
-        ps.setString(4, carb+"");
+        ps.setString(2, pro + "");
+        ps.setString(3, fat + "");
+        ps.setString(4, carb + "");
         ps.setString(5, userID);
 
         ps.executeUpdate();
+    }
+
+    public double[] getTodayNumbers(String userID) throws SQLException {
+        DailyNutritionGoal goal = this.getGoalByID(Integer.parseInt(userID));
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        MealDAO mDAO = new MealDAO();
+        ExerciseDAO eDAO = new ExerciseDAO();
+        double[] consumed = mDAO.getExercisesCalorieByDate(userID, dtf.format(now));
+        double burned = eDAO.getExercisesCalorieByDate(userID, dtf.format(now));
+        return new double[]{goal.getCalories(), goal.getProtein(), goal.getFat(), goal.getCarb(),
+            consumed[0], consumed[1], consumed[2], consumed[3],
+            burned};
     }
 
     /**
@@ -197,6 +213,13 @@ public class GoalDAO {
     public static void main(String[] args) {
         GoalDAO g = new GoalDAO();
         DailyNutritionGoal info = g.getGoalByID(1);
-        System.out.println(info);
+        try {
+            for (double i: g.getTodayNumbers("2")) {
+                System.out.println(i);
+            }
+//            System.out.println(g.getTodayNumbers("2"));
+        } catch (SQLException ex) {
+            Logger.getLogger(GoalDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
