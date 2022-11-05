@@ -1,7 +1,5 @@
 var patt_email = /^[a-zA-Z]+[\w-_\.]*\@([\w]+\.)+[\w]+[\w]$/;
 var patt_phone = /^0[1-9]\d{8,10}$/;
-
-
  
 
 
