@@ -50,11 +50,12 @@ Author : Pham Nhat Quang
                     <input type="text" name = "name" value="Breakfast">
                     <input type="submit" value="SUBMIT" name="submit">
                 </form>
-                <form action="create-meal-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
+                <form action="home-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
                     <fieldset>
                         <legend>Selected Items</legend>
                         <p>Note that you have to be logged in to create meal</p>
                         <input type="submit" value="CREATE MEAL" name="submit" id="submit">
+                        <input type ="hidden" value="ADD MEAL" name="action">
                     </fieldset>
                 </form>
             </div>
@@ -64,7 +65,7 @@ Author : Pham Nhat Quang
             <div class="belly">
                 <div class="wrapper">
                     <span>0</span>
-                    <img src="${pageContext.request.contextPath}/image/stomach_!.png" alt="Stomach image" />
+                    <img src="image/stomach_!.png" alt="Stomach image" />
                 </div>
             </div>
         </header>
