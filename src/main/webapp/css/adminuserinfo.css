@@ -1,0 +1,90 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Nov 5, 2022, 10:33:03 PM
+    Author     : ACER
+*/
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    /*    padding: 8px 16px;*/
+}
+
+a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.previous {
+    background-color: #04AA6D;
+    color: white;
+}
+/*.round {
+    border-radius: 50%;
+}*/
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: captiontext;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    width: 75px;
+    transition: all 0.5s;
+    cursor: pointer;
+    /*  margin: 15px;*/
+    margin-left: 7px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-weight: 600;
+
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\226A';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 25px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-left: 20px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    left: 0;
+}
+h1{
+    text-align: center;
+    margin-top: 15px;
+
+    font-weight: 600;
+}
+.navbar-brand {
+    font-size: 35px;
+    color: captiontext;
+}
+.search {
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+thead {
+    background-color: rgba(80,120,40,255);
+}
+th {
+    color: captiontext;
+}
