@@ -28,13 +28,31 @@ public class HomeController extends HttpServlet {
         String action = request.getParameter("action");
         if (action==null){
             response.sendRedirect("home");
+            return;
         }
         switch (action){
+            case "ADD MEAL":
+                request.getRequestDispatcher("create-meal-control")
+                        .forward(request, response);
+                break;
             case "EDIT MEAL":
                 request.getRequestDispatcher("edit-meal-control")
                         .forward(request, response);
+                break;
             case "DELETE MEAL":
                 request.getRequestDispatcher("delete-meal-control")
+                        .forward(request, response);
+                break;
+            case "ADD EXERCISE":
+                request.getRequestDispatcher("add-exercise-control")
+                        .forward(request, response);
+                break;
+            case "EDIT EXERCISE":
+                request.getRequestDispatcher("edit-exercise-control")
+                        .forward(request, response);
+                break;
+            case "DELETE EXERCISE":
+                request.getRequestDispatcher("delete-exercise-control")
                         .forward(request, response);
                 break;
             default:

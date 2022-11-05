@@ -59,7 +59,6 @@ function fillEditForm(form) {
                 editFormInput[j].value = (editFormInput[j - 1].value * base).toFixed(1)
             })
         }
-
         i++
     }
     return false;

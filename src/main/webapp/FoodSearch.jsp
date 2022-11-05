@@ -50,7 +50,7 @@ Author : Pham Nhat Quang
                     <input type="text" name = "name" value="Breakfast">
                     <input type="submit" value="SUBMIT" name="submit">
                 </form>
-                <form action="create-meal-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
+                <form action="home-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
                     <fieldset>
                         <legend>Selected Items</legend>
                         <p>Note that you have to be logged in to create meal</p>

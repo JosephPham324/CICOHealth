@@ -49,7 +49,7 @@ Author : Pham Nhat Quang
             <div class="edit-form">
                 <div class="overlay"></div>
 
-                <form action="edit-exercise-control" method = "post" id = "editForm">
+                <form action="home-control" method = "post" id = "editForm">
                     <fieldset class="form-group">
                         <legend>EDIT EXERCISE</legend>
                         <div class="form-group row">
@@ -154,6 +154,7 @@ Author : Pham Nhat Quang
                             </div>
                         </div>
                         <input type="hidden" name="exerciseID" value = "">
+                        <input type ="hidden" name="action" value="EDIT EXERCISE">
                         <div class="form-group row">
                             <div class="offset-4 col-8">
                                 <button name="submit" type="submit" class="btn btn-primary">
@@ -228,11 +229,10 @@ Author : Pham Nhat Quang
                                         <input type="hidden" name="duration" value="${item.getDuration()}">
                                         <input type="hidden" name="calories" value="${item.getCalorie()}">
                                         <input type="hidden" name="exerciseID" value="${item.getExerciseID()}">
-                                        <input type="hidden" name="action" value="EDIT EXERCISE">
                                         <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                                     </form>
                                     |
-                                    <form action="delete-exercise-control" method="post" class="delete-item-form"
+                                    <form action="home-control" method="post" class="delete-item-form"
                                           onsubmit = "return askDelete('Are you sure you want to delete this exercise?')">
                                         <input type="hidden" name="date" value="${item.getDate()}">
                                         <input type="hidden" name="time" value="${item.getTime()}">

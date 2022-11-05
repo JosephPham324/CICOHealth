@@ -28,36 +28,10 @@ Author : Pham Nhat Quang
 
             <div class="create-exercise">
                 <div class="overlay"></div>
-                <form action="add-exercise-control" id="exerciseForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
+                <form action="home-control" id="exerciseForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
                 <fieldset>
                     <legend>Selected Exercise</legend>
                     <p>Note that you have to be logged in to add an exercise</p>
-                    <div class="description">
-                        <div class="exercise-name">RUNNING</div>
-                        <div class="energy-expenditure">
-                            <strong
-                                ><i class="fa-solid fa-bolt-lightning"
-                                >&nbsp;684kcal/h</i
-                                ></strong
-                            >
-                        </div>
-                        <div class="duration">
-                            <label for="duration">Duration (minutes):</label>
-                            <input type="number" name="duration" value="60" />
-                        </div>
-                        <div class="energy-expenditure totalCal">
-                            <strong
-                                ><i class="fa-solid fa-bolt-lightning"
-                                >&nbsp;684kcal/h</i
-                                ></strong
-                            >
-                        </div>
-                        <input type="hidden" name = "exerciseName" value = "">
-                        <input type="hidden" name = "description" value = "">
-                        <input type="hidden" name = "kcalph" value = "">
-                        <input type="hidden" name="kcal">
-                    </div>
-
                     <input type="submit" value="ADD EXERCISE" name="submit" id="submit" />
                     <input type="hidden" value="ADD EXERCISE" name="action">
                 </fieldset>
