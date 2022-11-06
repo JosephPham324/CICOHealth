@@ -194,3 +194,7 @@ tr.dayStat td{
     font-size:0.8em;
     color:red;
 }
+
+.form-control,.btn{
+    font-size: 1em !important;
+}
