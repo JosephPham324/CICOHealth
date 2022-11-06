@@ -1,6 +1,7 @@
 <%-- 
-Document : FoodSearch Created on : Oct 13, 2022, 5:45:06 AM 
-Author : Pham Nhat Quang
+    Document : FoodSearch 
+    Created on : Oct 13, 2022, 5:45:06 AM 
+    Author : Pham Nhat Quang
 --%> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,11 +22,12 @@ Author : Pham Nhat Quang
             href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
             rel="stylesheet"
             />
+        <%@ include file = "headfootlink.jsp"%>
         <title>Search Food</title>
     </head>
     <body>
-        <%
-            Object userID = request.getSession().getAttribute("userID");
+        <%@ include file="header.jsp" %>
+        <%            Object userID = request.getSession().getAttribute("userID");
         %>
         <section style="position:fixed;
                  width:100vw;
@@ -46,33 +48,28 @@ Author : Pham Nhat Quang
                 <div class="overlay"></div>
                 <form id="nameForm" onsubmit="return enterName();">
                     <h3>ENTER MEAL NAME</h3>
-
                     <input type="text" name = "name" value="Breakfast">
                     <input type="submit" value="SUBMIT" name="submit">
                 </form>
-                <form action="create-meal-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
+                <form action="home-control" id="mealForm" method="post">
                     <fieldset>
                         <legend>Selected Items</legend>
                         <p>Note that you have to be logged in to create meal</p>
-                        <input type="submit" value="CREATE MEAL" name="submit" id="submit">
+                        <input type="submit" value="CREATE MEAL" name="submit" id="submit" ${sessionScope.userID!=null?"":"disabled"}>
+                        <input type ="hidden" value="ADD MEAL" name="action">
                     </fieldset>
                 </form>
             </div>
         </section>
 
-        <header>
-            <div class="belly">
-                <div class="wrapper">
-                    <span>0</span>
-                    <img src="./image/stomach_!.png" alt="Stomach image" />
-                </div>
-            </div>
-        </header>
+        <!--<header>-->
+
+        <!--</header>-->
 
         <div class="food-search">
             <div class="search-wrapper">
-                <label for="search">Search Food</label>
                 <form action="#" onsubmit="event.preventDefault();button.click()">
+                    <label for="search">Search Food</label>
                     <div class="input">
                         <i class="fa-solid fa-magnifying-glass button"></i>
                         <input
@@ -82,15 +79,23 @@ Author : Pham Nhat Quang
                             />
                     </div>
                 </form>
+                <div class="belly">
+                    <div class="wrapper">
+                        <span>0</span>
+                        <img src="image/stomach_!.png" alt="Stomach image" />
+                    </div>
+                </div>
             </div>
             <div class="search-results"></div>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="${pageContext.request.contextPath}/scripts/calculations.js"></script>
+        <jsp:include page="footer.jsp"></jsp:include>
+            <script src="scripts/headfootscript.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="${pageContext.request.contextPath}/scripts/calculations.js"></script>
         <script src="${pageContext.request.contextPath}/scripts/foodsearch.js"></script>
         <script>
                     if (<%=request.getSession().getAttribute("createMeal")%> === true) {
-                        <%request.getSession().setAttribute("createMeal", false);%>
+            <%request.getSession().setAttribute("createMeal", false);%>
                         document.querySelector('#success').style.display = 'flex';
                         setTimeout(() => {
                             document.querySelector('#success').style.display = 'none';

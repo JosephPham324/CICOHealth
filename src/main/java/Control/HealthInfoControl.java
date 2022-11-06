@@ -93,7 +93,7 @@ public class HealthInfoControl extends HttpServlet {
             double calories = goal.calculateTDEE(weight, height, age, gender, activity);
             String finalCalories = Double.toString(calories);
             goal.addGoal(userID, finalCalories);
-            response.sendRedirect("home-control");
+            response.sendRedirect(request.getContextPath() + "/home-control");
         } catch (SQLException ex) {
             response.getWriter().write(ex.getMessage());
             Logger.getLogger(HealthInfoControl.class.getName()).log(Level.SEVERE, null, ex);

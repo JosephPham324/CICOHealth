@@ -12,10 +12,11 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href = "./css/healthinfo.css"/>
+        <link rel="icon" type="image/png" href="favicon.png"/>
         <title>Your health info</title>
     </head>
     <body>
-        <section style="background-image: url('${pageContext.request.contextPath}/image/healthinfo.jpg');">
+        <section style="background-image: url('image/healthinfo.jpg');">
             <div class="form-container">
                 <%
                     Object sessionUserID = session.getAttribute("userID");//Get session's userID

@@ -11,15 +11,13 @@ section {
     position: relative;
     height: 100vh;
     width: 100%;
-    background-image: url('${pageContext.request.contextPath}/image/login.jpg');
+    /*background-image: url('/image/login.jpg');*/
     background-size: cover;
     background-position: center center;
 }
 body{
     overflow: hidden;
     display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 legend{

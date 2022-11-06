@@ -1,7 +1,7 @@
 <%-- 
-Document : Exercises.jsp 
-Created on : Oct 19, 2022, 11:33:30 AM 
-Author : Pham Nhat Quang 
+    Document : Exercises.jsp 
+    Created on : Oct 19, 2022, 11:33:30 AM 
+    Author : Pham Nhat Quang 
 --%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="DAO.ExerciseDAO"%>
@@ -13,12 +13,6 @@ Author : Pham Nhat Quang
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
-            />
         <link
             rel="stylesheet"
             href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"
@@ -35,9 +29,11 @@ Author : Pham Nhat Quang
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
+        <%@ include file = "headfootlink.jsp"%>
         <title>Your Exercises</title>
     </head>
     <body>
+        <%@ include file="header.jsp" %>
         <c:if test="${sessionScope.userID == null}">
             <c:redirect url="search-exercise"></c:redirect>
         </c:if>
@@ -49,7 +45,7 @@ Author : Pham Nhat Quang
             <div class="edit-form">
                 <div class="overlay"></div>
 
-                <form action="edit-exercise-control" method = "post" id = "editForm">
+                <form action="home-control" method = "post" id = "editForm">
                     <fieldset class="form-group">
                         <legend>EDIT EXERCISE</legend>
                         <div class="form-group row">
@@ -154,6 +150,7 @@ Author : Pham Nhat Quang
                             </div>
                         </div>
                         <input type="hidden" name="exerciseID" value = "">
+                        <input type ="hidden" name="action" value="EDIT EXERCISE">
                         <div class="form-group row">
                             <div class="offset-4 col-8">
                                 <button name="submit" type="submit" class="btn btn-primary">
@@ -198,9 +195,9 @@ Author : Pham Nhat Quang
                             <c:choose>
                                 <c:when test="${currentDate!= previousDate && previousDate!=''}">
                                     <c:set var="index" value ="1"></c:set>
-                                    <tr class = "dayStat group">
-                                        <td></td>
-                                        <th scope="row">${previousDate}</th>
+                                        <tr class = "dayStat group">
+                                            <td></td>
+                                            <th scope="row">${previousDate}</th>
                                         <td></td>
                                         <td>Total of day</td>
                                         <td>${sumTime}</td>
@@ -210,64 +207,67 @@ Author : Pham Nhat Quang
                                     <c:set var="sumCal" value="${0}"></c:set>
                                 </c:when>
                             </c:choose>
-                           <c:set var="sumCal" value="${sumCal+item.getCalorie()}"></c:set>
-                           <c:set var="sumTime" value="${sumTime+item.getDuration()}"></c:set>
-                           <c:set var="previousDate" value="${currentDate}"></c:set>
+                            <c:set var="sumCal" value="${sumCal+item.getCalorie()}"></c:set>
+                            <c:set var="sumTime" value="${sumTime+item.getDuration()}"></c:set>
+                            <c:set var="previousDate" value="${currentDate}"></c:set>
                                 <tr>
                                     <td>${index}</td>
-                                    <th scope="row">${item.getDate()}</th>
-                                    <td>${item.getTime()}</td>
-                                    <td>${item.getName()}</td>
-                                    <td>${item.getDuration()}</td>
-                                    <td>${item.getCalorie()}</td>
-                                    <td>
-                                        <form action="#" class="item-form" onsubmit="return fillEditForm(this)">
-                                            <input type="hidden" name="date" value="${item.getDate()}">
-                                            <input type="hidden" name="time" value="${item.getTime()}">
-                                            <input type="hidden" name="name" value="${item.getName()}">
-                                            <input type="hidden" name="duration" value="${item.getDuration()}">
-                                            <input type="hidden" name="calories" value="${item.getCalorie()}">
-                                            <input type="hidden" name="exerciseID" value="${item.getExerciseID()}">
-                                            <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
-                                        </form>
-                                        |
-                                        <form action="delete-exercise-control" method="post" class="delete-item-form"
-                                              onsubmit = "return askDelete('Are you sure you want to delete this exercise?')">
-                                            <input type="hidden" name="date" value="${item.getDate()}">
-                                            <input type="hidden" name="time" value="${item.getTime()}">
-                                            <button type="submit"><i class="fa-solid fa-xmark"></i></i></button>
-                                        </form>
-                                    </td>
+                                <th scope="row">${item.getDate()}</th>
+                                <td>${item.getTime()}</td>
+                                <td>${item.getName()}</td>
+                                <td>${item.getDuration()}</td>
+                                <td>${item.getCalorie()}</td>
+                                <td>
+                                    <form action="#" class="item-form" onsubmit="return fillEditForm(this)">
+                                        <input type="hidden" name="date" value="${item.getDate()}">
+                                        <input type="hidden" name="time" value="${item.getTime()}">
+                                        <input type="hidden" name="name" value="${item.getName()}">
+                                        <input type="hidden" name="duration" value="${item.getDuration()}">
+                                        <input type="hidden" name="calories" value="${item.getCalorie()}">
+                                        <input type="hidden" name="exerciseID" value="${item.getExerciseID()}">
+                                        <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
+                                    </form>
+                                    |
+                                    <form action="home-control" method="post" class="delete-item-form"
+                                          onsubmit = "return askDelete('Are you sure you want to delete this exercise?')">
+                                        <input type="hidden" name="date" value="${item.getDate()}">
+                                        <input type="hidden" name="time" value="${item.getTime()}">
+                                        <input type="hidden" name="action" value="DELETE EXERCISE">
+                                        <button type="submit"><i class="fa-solid fa-xmark"></i></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <c:if test="${loop.last}">
+                                <tr class = "dayStat group">
+                                    <td></td>
+                                    <th scope="row">${previousDate}</th>
+                                    <td></td>
+                                    <td>Total of day</td>
+                                    <td>${sumTime}</td>
+                                    <td>${sumCal}</td>
+                                    <td></td>
                                 </tr>
-                                <c:if test="${loop.last}">
-                                    <tr class = "dayStat group">
-                                        <td></td>
-                                        <th scope="row">${previousDate}</th>
-                                        <td></td>
-                                        <td>Total of day</td>
-                                        <td>${sumTime}</td>
-                                        <td>${sumCal}</td>
-                                        <td></td>
-                                    </tr>
-                                    <c:set var="sumCal" value="${0}"></c:set>
-                                </c:if>
-                                <c:set var="index" value ="${index+1}"></c:set>
+                                <c:set var="sumCal" value="${0}"></c:set>
+                            </c:if>
+                            <c:set var="index" value ="${index+1}"></c:set>
                         </c:forEach>
                     </tbody>
                     <tfoot>
                         <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Time</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Duration</th>
-                                <th scope="col">Kcal</th>
-                                <th scope="col">Actions</th>
+                            <th scope="col">No.</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Kcal</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
         </div>
+                        <jsp:include page="footer.jsp"></jsp:include>
+        <script src="scripts/headfootscript.js"></script>
         <script
             src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

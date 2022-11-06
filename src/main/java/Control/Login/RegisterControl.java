@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author M S I
+ * @author Pham Nhat Quang
  */
 public class RegisterControl extends HttpServlet {
 
@@ -116,8 +116,8 @@ public class RegisterControl extends HttpServlet {
                     logDAO.updateUserID(loginID, loginID);
 
                     request.setAttribute("userID", loginID);
-                    response.getWriter().println(loginID);
-                    response.getWriter().print(request.getAttribute("userID"));
+//                    response.getWriter().println(loginID);
+//                    response.getWriter().print(request.getAttribute("userID"));
                     
                     heath.insertHealthInfo(loginID+"",0+"",0+"", 0+"",0+"",0+"");
                     goal.addGoal(loginID+"", 0+"");
