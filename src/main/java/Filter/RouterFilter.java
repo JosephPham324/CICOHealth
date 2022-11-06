@@ -132,7 +132,7 @@ public class RouterFilter implements Filter {
                 }
             }
 
-            if (url.contains("scripts/") || url.contains("css/")) {//To load resources
+            if (url.contains("scripts/") || url.contains("css/") || url.contains("image/")) {//To load resources
                 acceptedPath = true;
             }
             if (!acceptedPath) {
