@@ -27,8 +27,7 @@
     </head>
     <body>
         <%@ include file="header.jsp" %>
-        <%
-            Object userID = request.getSession().getAttribute("userID");
+        <%            Object userID = request.getSession().getAttribute("userID");
         %>
         <section style="position:fixed;
                  width:100vw;
@@ -49,7 +48,6 @@
                 <div class="overlay"></div>
                 <form id="nameForm" onsubmit="return enterName();">
                     <h3>ENTER MEAL NAME</h3>
-
                     <input type="text" name = "name" value="Breakfast">
                     <input type="submit" value="SUBMIT" name="submit">
                 </form>
@@ -64,19 +62,14 @@
             </div>
         </section>
 
-        <header>
-            <div class="belly">
-                <div class="wrapper">
-                    <span>0</span>
-                    <img src="image/stomach_!.png" alt="Stomach image" />
-                </div>
-            </div>
-        </header>
+        <!--<header>-->
+
+        <!--</header>-->
 
         <div class="food-search">
             <div class="search-wrapper">
-                <label for="search">Search Food</label>
                 <form action="#" onsubmit="event.preventDefault();button.click()">
+                    <label for="search">Search Food</label>
                     <div class="input">
                         <i class="fa-solid fa-magnifying-glass button"></i>
                         <input
@@ -86,13 +79,19 @@
                             />
                     </div>
                 </form>
+                <div class="belly">
+                    <div class="wrapper">
+                        <span>0</span>
+                        <img src="image/stomach_!.png" alt="Stomach image" />
+                    </div>
+                </div>
             </div>
             <div class="search-results"></div>
         </div>
-                    <jsp:include page="footer.jsp"></jsp:include>
-        <script src="scripts/headfootscript.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="${pageContext.request.contextPath}/scripts/calculations.js"></script>
+        <jsp:include page="footer.jsp"></jsp:include>
+            <script src="scripts/headfootscript.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="${pageContext.request.contextPath}/scripts/calculations.js"></script>
         <script src="${pageContext.request.contextPath}/scripts/foodsearch.js"></script>
         <script>
                     if (<%=request.getSession().getAttribute("createMeal")%> === true) {

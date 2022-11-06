@@ -13,8 +13,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 /* Style the header */
-.header {
-    background: #555;
+.menu-list .header {
+    /*background: #555;*/
     color: white;
     margin: 0px;
     z-index:100;
