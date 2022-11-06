@@ -12,8 +12,9 @@
         <li class="nav-link"><a class="txt" href="#footer">About</a></li>
         <li class="nav-link"><a class="txt" href="search-food">Food</a></li>
         <li class="nav-link"><a class="txt" href="search-exercise">Exercise</a></li>
-        <c:choose>
-            <c:when test = "${sessionScope.userID!=null}">
+            <c:choose>
+                <c:when test = "${sessionScope.userID!=null}">
+                <li class="nav-link"><a href="admin"><i class="fa-solid fa-user-gear" style="color:red;"></i></a></li>
                 <li class="nav-link"><a href="user-meals"><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
                 <li class="nav-link"><a href="user-exercises"><img class="add-exercise-logo" src="image/addExercise-logo.png"></a></li>
                 <li class="nav-link">
@@ -31,8 +32,8 @@
             <c:otherwise>
                 <li class="nav-link"><a class="txt" href="login">Login</a></li>
                 <li class="nav-link"><a class="txt" href="register">Register</a></li>
-            </c:otherwise>
-        </c:choose>
+                </c:otherwise>
+            </c:choose>
 
         <form id="demo-2">
             <input type="search" placeholder="Search">
@@ -42,7 +43,7 @@
 <c:if test="${sessionScope.userID!=null}">
     <jsp:include page="TodayNumbers.jsp" />
 </c:if>
-<% 
+<%
 //    if (request.getSession().getAttribute("userID")!=null){
 //    out.println("<jsp:include page=\"TodayNumbers.jsp\"></jsp:include>");
 //    }
