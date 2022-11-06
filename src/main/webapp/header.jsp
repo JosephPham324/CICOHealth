@@ -8,16 +8,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="menu-list">
     <ul class="navbar-fixed-top header navbar" id="myHeader" >
-        <li class="nav-link"><a class="txt" href="#"><img class="nutrition-logo" src="image/nutrition-logo.png"></a></li>
-        <li class="nav-link"><a class="txt" href="home">Home</a></li>
+        <li class="nav-link"><a class="txt" href="home"><img class="nutrition-logo" src="image/nutrition-logo.png"></a></li>
         <li class="nav-link"><a class="txt" href="#footer">About</a></li>
-        <li class="nav-link"><a class="txt" href="search-food" target="_blank">Food</a></li>
+        <li class="nav-link"><a class="txt" href="search-food">Food</a></li>
         <li class="nav-link"><a class="txt" href="search-exercise">Exercise</a></li>
-        <li class="nav-link"><a class="txt" href="#footer">Contact</a></li>
         <c:choose>
             <c:when test = "${sessionScope.userID!=null}">
-                <li class="nav-link"><a href="user-meals" target="_blank"><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
-                <li class="nav-link"><a href="user-exercises" target="_blank"><img class="add-exercise-logo" src="image/addExercise-logo.png"></a></li>
+                <li class="nav-link"><a href="user-meals"><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
+                <li class="nav-link"><a href="user-exercises"><img class="add-exercise-logo" src="image/addExercise-logo.png"></a></li>
                 <li class="nav-link">
                     <div class="dropdown">
                         <img class="personal-logo" src="image/personal-logo.png" onclick="myDropdownF()">
