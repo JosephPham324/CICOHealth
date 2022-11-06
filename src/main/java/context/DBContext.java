@@ -11,12 +11,12 @@ import java.sql.SQLException;
  */
 public class DBContext {
 
-    private static final String dbPrefix = "jdbc:sqlserver://LAPTOP-5FDEO73O:1433;databaseName=Nutrition [sa on db_accessadmin]";
+    private static final String dbPrefix = "jdbc:sqlserver://localhost:1433;databaseName=Nutrition [sa on SA]";
     private static final String dbPort = "1433";
     private static final String databaseName = "Nutrition";
     private final String instance = "";
     private static final String user = "sa";
-    private static final String pass = "12345";
+    private static final String pass = "123456";
 
     public Connection getConnection() {
         Connection conn = null;
