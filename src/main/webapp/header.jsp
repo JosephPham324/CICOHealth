@@ -41,11 +41,11 @@
         </form>
     </ul>
 </div>
-<%--<c:if test="${sessionScope.userID!=null}">
+<c:if test="${sessionScope.userID!=null}">
     <jsp:include page="TodayNumbers.jsp" />
-</c:if>--%>
+</c:if>
 <% 
-    if (request.getSession().getAttribute("userID")!=null){
-    out.println("<jsp:include page=\"TodayNumbers.jsp\" />");
-    }
+//    if (request.getSession().getAttribute("userID")!=null){
+//    out.println("<jsp:include page=\"TodayNumbers.jsp\"></jsp:include>");
+//    }
 %>
