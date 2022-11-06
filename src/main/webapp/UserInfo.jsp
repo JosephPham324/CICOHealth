@@ -1,7 +1,7 @@
 <%-- 
     Document   : UserInfo
     Created on : Oct 9, 2022, 7:35:44 PM
-    Author     : ASUS
+    Author     : Thinh, Pham Nhat Quang
 --%>
 
 <%@page import="Entity.DailyNutritionGoal"%>

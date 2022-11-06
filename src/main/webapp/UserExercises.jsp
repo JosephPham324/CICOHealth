@@ -1,7 +1,7 @@
 <%-- 
-Document : Exercises.jsp 
-Created on : Oct 19, 2022, 11:33:30 AM 
-Author : Pham Nhat Quang 
+    Document : Exercises.jsp 
+    Created on : Oct 19, 2022, 11:33:30 AM 
+    Author : Pham Nhat Quang 
 --%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="DAO.ExerciseDAO"%>

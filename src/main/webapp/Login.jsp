@@ -67,12 +67,12 @@
                         </div>
                 </form>
             </div>
-                    <div id="txtError" style="color:red">
-                        Your username or password is not correct!!
-                    </div>
+            <div id="txtError" style="color:red">
+                Your username or password is not correct!!
+            </div>
         </section>
     </body>
     <script>
         document.getElementById('txtError').style.display = 'none';
-        </script>
+    </script>
 </html>
