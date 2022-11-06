@@ -11,7 +11,7 @@
 <c:set var ="numbers" value ="${gDAO.getTodayNumbers(sessionScope.userID)}"></c:set>
     <div class="today-numbers">
         <div class="cal-eaten" id="cal-eaten">
-            <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${numbers[4]}"/>
+            <div class="cal"><fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${numbers[0]-(numbers[4]-numbers[8])}"/></div>
     </div>
     <div class="all-numbers">
         <div class="goals">
