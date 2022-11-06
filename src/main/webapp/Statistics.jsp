@@ -102,7 +102,7 @@
                             <td>${meal.getMonthDay()}</td>
                             <c:choose>
                                 <c:when test="${meal.getProteinWeight()>=proteinGoal}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getProteinWeight()}"/>
                                     </td>
                                 </c:when>
@@ -114,7 +114,7 @@
                             </c:choose>
                             <c:choose>
                                 <c:when test="${meal.getFatWeight()>=fatGoal}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getFatWeight()}"/>
                                     </td>
                                 </c:when>
@@ -126,7 +126,7 @@
                             </c:choose>
                             <c:choose>
                                 <c:when test="${meal.getCarbWeight()>=carbGoal}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getCarbWeight()}"/>
                                     </td>
                                 </c:when>
@@ -138,7 +138,7 @@
                             </c:choose>
                             <c:choose>
                                 <c:when test="${meal.getProteinWeight()*4>=proteinGoal*4}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getProteinWeight()*4}"/>
                                     </td>
                                 </c:when>
@@ -150,7 +150,7 @@
                             </c:choose>
                             <c:choose>
                                 <c:when test="${meal.getFatWeight()*9>=fatGoal*9}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getFatWeight()*9}"/>
                                     </td>
                                 </c:when>
@@ -162,7 +162,7 @@
                             </c:choose>
                             <c:choose>
                                 <c:when test="${meal.getCarbWeight()*4>=carbGoal*4}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getCarbWeight()*4}"/>
                                     </td>
                                 </c:when>
@@ -180,7 +180,7 @@
                             </td>
                             <c:choose>
                                 <c:when test="${meal.getTotalCal()-exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())>=calorieGoal}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getTotalCal()-exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())}"/>
                                     </td>
                                 </c:when>

@@ -7,6 +7,9 @@
     max-width: 200px;
     font-family: 'Roboto Condensed';
 }
+.today-numbers.active{
+    z-index:100;
+}
 .cal-eaten{
     max-width: 100px;
     max-height: 80px;
@@ -48,12 +51,14 @@
 }
 .all-numbers>div>div{
     padding: 1px 5px;
+    font-size:15px;
 }
 .all-numbers div::before{
     font-style: italic;
     background-color: gold;
     display: block;
     text-align: center;
+    font-size:18px;
     margin: 0;
 }
 .all-numbers.active{
