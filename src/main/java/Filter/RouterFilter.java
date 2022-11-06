@@ -112,11 +112,11 @@ public class RouterFilter implements Filter {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             String url = httpRequest.getServletPath();
             
-            if (url.endsWith("/home-control") || url.endsWith("/logout-control") || url.endsWith("/admin-control")) {
+            if (url.endsWith("/home-control") || url.endsWith("/logout-control") || url.endsWith("/admin-control") || url.contains("?")) {
                 chain.doFilter(request, response);
                 return;
             }
-            if (url.endsWith(".jsp") && !url.contains("Error.jsp")) {//Redirect .jsp
+            if (url.endsWith(".jsp") && !url.contains("Error404.jsp")) {//Redirect .jsp
                 httpResponse.sendRedirect(httpRequest.getContextPath() + "/home-control");
                 return;
             }

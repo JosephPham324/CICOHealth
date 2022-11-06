@@ -29,19 +29,32 @@ public class AdminControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdminControl</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AdminControl at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String action = request.getParameter("action");
+        HttpSession session = request.getSession();//Get current session
+        if (session.getAttribute("username") == null) {
+            response.sendRedirect("login");
         }
+        if (action == null) {
+            response.sendRedirect("admin");
+            return;
+        }
+        switch (action) {
+            case "SEARCH USER":
+                request.getRequestDispatcher("user-load-control").forward(request, response);
+                break;
+            case "USER INFO":
+                request.getRequestDispatcher("user-load-control").forward(request, response);
+                break;
+            case "EXERCISE MANAGEMENT":
+                request.getRequestDispatcher("admin-exercisetype-control").forward(request, response);
+                break;
+            case "LOG OUT":
+                response.sendRedirect("logout-control");
+                break;
+            default:
+                response.sendRedirect("admin");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

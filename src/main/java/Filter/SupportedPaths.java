@@ -1,6 +1,8 @@
 package Filter;
 
+import DAO.ExerciseTypeDAO;
 import DAO.UserDAO;
+import Entity.ExerciseType;
 import Entity.User;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -23,8 +25,10 @@ public class SupportedPaths {
 
     public SupportedPaths() {
         UserDAO dao = new UserDAO();
+        ExerciseTypeDAO exDAO = new ExerciseTypeDAO();
     	List<User> user = dao.getListUser();
         List<User> admin = dao.getListAdmin();
+        List<ExerciseType> ex = exDAO.getAllExerciseTypes();
         
         correspondingReferrer = new HashMap<>();
         correspondingReferrer.put("/login-control", "/login");
@@ -46,9 +50,14 @@ public class SupportedPaths {
         
         for (User o : user) {
             correspondingReferrer.put("/update-control?id="+o.getUserID(),"/login");
+            correspondingReferrer.put("/user-healthinfo?id="+o.getUserID(),"/login");
+            correspondingReferrer.put("/user-goal?id="+o.getUserID(),"/login");
         }
         for (User o : admin) {
             correspondingReferrer.put("/update-control?id="+o.getUserID(),"/login");
+        }
+        for (ExerciseType exType : ex) {
+            correspondingReferrer.put("/update-exercisetype?exerciseid="+exType.getExerciseID(),"/login");
         }
         correspondingReferrer.put("/admin", "/login");
         correspondingReferrer.put("/admin-control", "/login");
@@ -59,10 +68,13 @@ public class SupportedPaths {
         correspondingReferrer.put("/delete-user-control", "/login");
         correspondingReferrer.put("/getuser-exerciseid-control", "/login");
         correspondingReferrer.put("/user-load-control", "/login");
+        correspondingReferrer.put("/user-exercise", "/login");
+        
         correspondingReferrer.put("/admin-exercisetype-control", "/login");
         correspondingReferrer.put("/delete-exercisetype-control", "/login");
         correspondingReferrer.put("/update-exercisetype-control", "/login");
         correspondingReferrer.put("/add-exercisetype-control", "/login");
+        correspondingReferrer.put("/adminadd-exercise", "/login");
         correspondingReferrer.put("/update-control","/login");
     }
 

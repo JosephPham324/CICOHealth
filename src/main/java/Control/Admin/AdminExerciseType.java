@@ -80,7 +80,7 @@ public class AdminExerciseType extends HttpServlet {
         ExerciseTypeDAO exDAO = new ExerciseTypeDAO();
     	List<ExerciseType> list = exDAO.searchExerciseTypes(exercisename);
         request.setAttribute("listExercise", list);
-        request.getRequestDispatcher("AdminExercise.jsp").forward(request, response);
+        request.getRequestDispatcher("adminexercise-info").forward(request, response);
     }
 
     /**
