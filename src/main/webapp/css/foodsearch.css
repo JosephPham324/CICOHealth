@@ -82,7 +82,7 @@ input{
     border-radius: 50%;
     background-color: white;
     border: 1px solid black;
-    font-size: 1.8em;
+    font-size: 1.4em;
 }
 .result .add i.selected{
     background-color: green;
