@@ -132,7 +132,7 @@
                                 <td>${item.getTotalCal()}</td>
                                 <c:set var="previousDate" value="${currentDate}"></c:set>
                                     <td>
-                                    <form action="#" class="item-form" onsubmit="return fillEditForm(${item})">
+                                        <form action="#" class="item-form" onsubmit="return fillEditForm(${item})">
                                         <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                                     </form>
                                     |
