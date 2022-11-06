@@ -339,6 +339,7 @@ healthEditButtons.forEach((button) => {
                 class="form-control"
                 aria-describedby="heightHelpBlock"
                 value = "${healthFields[2].textContent}"
+                min = "10"
               />
               <span id="heightHelpBlock" class="form-text text-muted"
                 >Changing this will also change your nutrition goal to maintenance</span
@@ -359,6 +360,7 @@ healthEditButtons.forEach((button) => {
                 class="form-control"
                 aria-describedby="weightHelpBlock"
                 value = "${healthFields[3].textContent}"
+                min="0.3"
               />
               <span id="weightHelpBlock" class="form-text text-muted"
                 >Changing this will also change your nutrition goal to maintenance</span
@@ -439,9 +441,7 @@ goalEditButtons[0].addEventListener("click", () => {
     <div class="col-8">
       <div class="input-group">
         <input id="proteinPercentage" name="proteinPercentage" placeholder="Enter protein percentage" type="number" class="form-control" required="required"
-        value = "${
-          ((protein * 4) / cal).toFixed(2) * 100
-        }" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
+        value = "${((protein * 4) / cal).toFixed(2) * 100}" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
@@ -454,9 +454,7 @@ goalEditButtons[0].addEventListener("click", () => {
     <div class="col-8">
       <div class="input-group">
         <input id="fatPercentage" name="fatPercentage" placeholder="Enter fat percentage" type="number" class="form-control" required="required"
-        value ="${
-          ((fat * 9) / cal).toFixed(2) * 100
-        }" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
+        value ="${((fat * 9) / cal).toFixed(2) * 100}" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
@@ -469,9 +467,7 @@ goalEditButtons[0].addEventListener("click", () => {
     <div class="col-8">
       <div class="input-group">
         <input id="carbPercentage" name="carbPercentage" placeholder="Enter carb percentage" type="number" class="form-control"
-        value = "${
-          ((carb * 4) / cal).toFixed(2) * 100
-        }" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
+        value = "${((carb * 4) / cal).toFixed(2) * 100}" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>

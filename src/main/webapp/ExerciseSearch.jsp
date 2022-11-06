@@ -1,6 +1,7 @@
-<%-- Document : ExerciseSearch 
-Created on : Oct 17, 2022, 2:50:48 PM 
-Author : Pham Nhat Quang
+<%-- 
+    Document : ExerciseSearch 
+    Created on : Oct 17, 2022, 2:50:48 PM 
+    Author : Pham Nhat Quang
 --%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -56,6 +57,8 @@ Author : Pham Nhat Quang
                 <div class="search-results"></div>
             </div>
         </section>
+        <jsp:include page="footer.jsp"></jsp:include>
+        <script src="scripts/headfootscript.js"></script>
         <script src="./scripts/calculations.js"></script>
         <script>
                     let exerciseTypes = [];

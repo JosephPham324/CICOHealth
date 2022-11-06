@@ -61,7 +61,7 @@ function createFormItem(item, index) {
   <strong><i class ='fas fa-bread-slice carbs'></i></strong>
   <span class="carbs">${item["carbWeight"].toFixed(1)}g</span>
   <strong><i class="fa-solid fa-weight-scale"></i></strong>
-  <span class="weight"><input type="number" value="${item["totalWeight"]}">g</span>
+  <span class="weight"><input type="number" value="${item["totalWeight"]}" min="1">g</span>
   <i class="fa-solid fa-x"></i>
   `;
     let element = document.createElement("div");
