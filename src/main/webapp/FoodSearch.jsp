@@ -22,9 +22,11 @@
             href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
             rel="stylesheet"
             />
+        <%@ include file = "headfootlink.jsp"%>
         <title>Search Food</title>
     </head>
     <body>
+        <%@ include file="header.jsp" %>
         <%
             Object userID = request.getSession().getAttribute("userID");
         %>
@@ -51,11 +53,11 @@
                     <input type="text" name = "name" value="Breakfast">
                     <input type="submit" value="SUBMIT" name="submit">
                 </form>
-                <form action="home-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
+                <form action="home-control" id="mealForm" method="post">
                     <fieldset>
                         <legend>Selected Items</legend>
                         <p>Note that you have to be logged in to create meal</p>
-                        <input type="submit" value="CREATE MEAL" name="submit" id="submit">
+                        <input type="submit" value="CREATE MEAL" name="submit" id="submit" ${sessionScope.userID!=null?"":"disabled"}>
                         <input type ="hidden" value="ADD MEAL" name="action">
                     </fieldset>
                 </form>
@@ -87,6 +89,8 @@
             </div>
             <div class="search-results"></div>
         </div>
+                    <jsp:include page="footer.jsp"></jsp:include>
+        <script src="scripts/headfootscript.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/scripts/calculations.js"></script>
         <script src="${pageContext.request.contextPath}/scripts/foodsearch.js"></script>

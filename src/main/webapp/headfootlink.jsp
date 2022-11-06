@@ -1,4 +1,7 @@
-<link rel="stylesheet" href="./css/boostrap.css">
+<link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
 <link rel="stylesheet" href="./css/mainMenu.css" />
 <link rel="stylesheet" href="./css/footer.css">
 <link rel="icon" type="image/png" href="favicon.png"/>

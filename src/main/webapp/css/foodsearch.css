@@ -34,7 +34,7 @@ input{
     margin: 1rem 1rem;
     border:1px dashed rgb(77, 35, 35);
     width: 90vw;
-    min-height: 150px;
+    min-height: 80vh;
     height: auto;
     display:grid;
     grid-template-columns: repeat(auto-fill,minmax(300px,1fr));

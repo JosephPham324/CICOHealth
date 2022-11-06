@@ -57,6 +57,8 @@
                 <div class="search-results"></div>
             </div>
         </section>
+        <jsp:include page="footer.jsp"></jsp:include>
+        <script src="scripts/headfootscript.js"></script>
         <script src="./scripts/calculations.js"></script>
         <script>
                     let exerciseTypes = [];
