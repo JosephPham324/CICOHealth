@@ -21,9 +21,11 @@ Author : Pham Nhat Quang
             href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
             rel="stylesheet"
             />
+        <%@ include file = "headfootlink.jsp"%>
         <title>Search Food</title>
     </head>
     <body>
+        <%@ include file="header.jsp" %>
         <%
             Object userID = request.getSession().getAttribute("userID");
         %>
@@ -86,6 +88,8 @@ Author : Pham Nhat Quang
             </div>
             <div class="search-results"></div>
         </div>
+                    <jsp:include page="footer.jsp"></jsp:include>
+        <script src="scripts/headfootscript.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/scripts/calculations.js"></script>
         <script src="${pageContext.request.contextPath}/scripts/foodsearch.js"></script>
