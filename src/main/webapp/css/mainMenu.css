@@ -11,6 +11,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     padding: 0px;
     margin: 0px;
 }
+body{
+    font-size:15px !important;
+}
 
 /* Style the header */
 .menu-list .header {
