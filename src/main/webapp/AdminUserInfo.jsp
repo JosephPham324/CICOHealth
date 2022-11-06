@@ -29,34 +29,24 @@
             />
         <link rel="stylesheet" href="css/adminuserinfo.css">
         <style>
-            a {
-                text-decoration: none;
-                display: inline-block;
-                padding: 8px 16px;
-            }
-
-            a:hover {
-                background-color: #ddd;
-                color: black;
-            }
-            .previous {
-                background-color: #04AA6D;
-                color: white;
-            }
-            .round {
-                border-radius: 50%;
-            }
+         
         </style>
         <title>Users Info</title>
     </head>
     <body>
-         <a href="ADMIN.jsp" class="previous round">Back</a>
+        <div class="nav">
+            <a href="ADMIN.jsp" class="button" style="vertical-align:middle"><span>Back </span></a>
+            <h1 class="navbar-brand mx-auto">USER INFO</h1>
+        </div>
+        
+        
+<!--         <a href="ADMIN.jsp" class="previous round">Back</a>-->
         <div class="info-container">
             <div class="info-table">
-                <div  class="widget_search">
+                <div  class="widget_search" style=" margin-right: 10px;">
                     <form role="search" method="post" action="user-loadcontrol">
                         <div style="text-align: right;">
-                            <input type="Search" name="txtSearch" placeholder="First name or last name">
+                            <input style="margin-bottom: 5px;border-radius: 4px;" type="Search" name="txtSearch" placeholder="&nbsp First name or last name">
                             <input type="submit" id="searchsubmit" value="Search"/>
                         </div>
                     </form>
