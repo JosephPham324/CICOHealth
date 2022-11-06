@@ -60,7 +60,7 @@ input{
     border:1px dashed rgb(77, 35, 35);
     min-width:400px;
     max-width: 600px;
-    min-height: 150px;
+    min-height: 80vh;
     height: auto;
     display:flex;
     flex-direction: column;
