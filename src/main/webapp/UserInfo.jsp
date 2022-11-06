@@ -30,6 +30,7 @@
             referrerpolicy="no-referrer"
             />
         <link rel="stylesheet" href="css/userinfo.css" />
+        <link rel="stylesheet" href="css/header.css" />
         <title>User Profile</title>
         <style>
             .error {
@@ -103,16 +104,15 @@
                 </div>
                 <div class="form-group row">
                     <div class="offset-4 col-8">
-                        <button name="submit" type="submit" class="btn btn-primary">
+                        <button name="submit" type="submit" class="btn btn-dark">
                             Submit
                         </button>
                     </div>
                 </div>
             </form>
         </div>
-
         <div class="info-container row g-0">
-            <div class="col-sm-2">
+            <div class="col-sm-2" style="background-color: #080808;">
                 <ul class="nav flex-column nav-pills nav-fill">
                     <li class="nav-item">
                         <a class="nav-link <%=panelSwitch == 0 ? "active" : ""%>" href="#" data-destination="#login-info"
@@ -131,8 +131,13 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-sm-10 row g-0 info tab-content" id="pills-tabContent">
+            <div class="col-sm-10 row g-0 info tab-content" id="pills-tabContent"
+                 style="background-image: url('${pageContext.request.contextPath}/image/backgroundyourlogininfo.png'); 
+                 background-size: cover;
+                 background-position: center center;"
+                 >
                 <div class="login-info <%=panelSwitch == 0 ? "active" : ""%>" id="login-info">
+                    <img src="image/person.png" alt="AVATAR" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;display: block;"/>
                     <h1>Your Login Information</h1>
                     <div class="field">
                         <div class="label">Username:</div>
@@ -154,7 +159,7 @@
                 </div>
 
 
-                <div class="user-info <%=panelSwitch == 1 ? "active" : ""%>" id="user-info">
+                <div class="user-info <%=panelSwitch == 1 ? "active" : ""%>" id="user-info" >
                     <h1>Your Personal Information</h1>
                     <div class="field">
                         <div class="label">First name:</div>
