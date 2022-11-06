@@ -1,6 +1,7 @@
 <%-- 
-Document : FoodSearch Created on : Oct 13, 2022, 5:45:06 AM 
-Author : Pham Nhat Quang
+    Document : FoodSearch 
+    Created on : Oct 13, 2022, 5:45:06 AM 
+    Author : Pham Nhat Quang
 --%> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -95,7 +96,7 @@ Author : Pham Nhat Quang
         <script src="${pageContext.request.contextPath}/scripts/foodsearch.js"></script>
         <script>
                     if (<%=request.getSession().getAttribute("createMeal")%> === true) {
-                        <%request.getSession().setAttribute("createMeal", false);%>
+            <%request.getSession().setAttribute("createMeal", false);%>
                         document.querySelector('#success').style.display = 'flex';
                         setTimeout(() => {
                             document.querySelector('#success').style.display = 'none';

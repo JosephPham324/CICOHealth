@@ -64,6 +64,11 @@ function fillEditForm(form) {
     return false;
 }
 
+/**
+ * Show a message that requires approval
+ * @param {type} message Message to show
+ * @returns {boolean} true if approved, false if not
+ */
 function askDelete(message) {
     return confirm(message);
 }

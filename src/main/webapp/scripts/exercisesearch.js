@@ -1,8 +1,17 @@
+/**
+ * Append a result element to results
+ * @param {Node} element Result element to be appended
+ */
 function appendResultElement(element) {
     let results = document.querySelector(".exercise-search .search-results");
     results.appendChild(element);
 }
 
+/**
+ * Generate a result element to to display
+ * @param {ExerciseType} exerciseType Info of the exercise type 
+ * @returns {Node} result element
+ */
 function generateResultElement(exerciseType) {
     let html = `
     <header>
@@ -47,10 +56,18 @@ results.forEach((result) => {
 
 hideResults();
 
+/**
+ * Hide all results
+ */
 function hideResults() {
     results.forEach(result => result.style.display = 'none')
 }
 
+/**
+ * Generate element representing an exercise in the form
+ * @param {type} exerciseType Info of the exercise
+ * @returns {Node} Element representing exercise in the form
+ */
 function generateFormExercise(exerciseType) {
     let html = `
       <div class="exercise-name">${exerciseType.exerciseName}</div>
@@ -62,7 +79,7 @@ function generateFormExercise(exerciseType) {
         </div>
       <div class="duration">
         <label for="duration">Duration (minutes):</label>
-        <input type="number" name="duration" value="60" />
+        <input type="number" name="duration" value="60" min = "1" required/>
       </div>
         <div class="energy-expenditure totalCal">
         <strong>
@@ -91,6 +108,10 @@ function clearExerciseForm() {
     });
 }
 
+/**
+ * Add an exercise in the form
+ * @param {Node} element Represents the exercise
+ */
 function addFormExercise(element) {
     clearExerciseForm();
 
@@ -123,6 +144,11 @@ function addFormExercise(element) {
     });
 }
 
+/**
+ * Extract number value in a text representing calories
+ * @param {string} text Text to get value
+ * @returns Number extracted
+ */
 function extractKcalPH(text) {
     let regex = /\d+(\.\d+)?/;
     return regex.exec(text)[0];
@@ -142,18 +168,26 @@ searchBar.addEventListener('input', () => {
     showResultElements(searchBar.value)
 })
 
-function showResultElements(exerciseName) {
-    if (exerciseName != '') {
-        let show = results.filter(o => checkExerciseName(o, exerciseName))
+/**
+ * Show results elements with a desired content
+ * @param {type} content Desired content
+ */
+function showResultElements(content) {
+    if (content !== '') {
+        let show = results.filter(o => checkExerciseName(o, content))
 
         show.forEach(element => element.style.display = 'flex')
     }
 }
 
-function checkExerciseName(element, exerciseName) {
-    let regex = new RegExp(`${exerciseName.toLowerCase()}`)
-//  console.log(exerciseName)
-//  console.log(element.textContent)
+/**
+ * Check if text content of an element contains desired content
+ * @param {type} element Result element to check
+ * @param {type} content Desired content
+ * @returns {Node} The element if content is found
+ */
+function checkExerciseName(element, content) {
+    let regex = new RegExp(`${content.toLowerCase()}`)
 
     if (regex.test((element.textContent).toLowerCase())) {
         return element
