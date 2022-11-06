@@ -183,7 +183,7 @@
                     </div>
                 </div>
                 <div class="health-info <%=panelSwitch == 2 ? "active" : ""%>" id="health-info">
-                    <h1>Quang's Health Information</h1>
+                    <h1><%=user.getLastName()%>'s Health Information</h1>
                     <div class="field">
                         <div class="label">Age:</div>
                         <span class="field-value" id="age-value"><%=healthInfo.getAge()%></span>

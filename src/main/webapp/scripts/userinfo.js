@@ -4,7 +4,7 @@
  * 
  */
 
-let nav_links = document.querySelectorAll(".nav-link");//Nav links to switch view
+let nav_links = document.querySelectorAll(".info-container .nav-link");//Nav links to switch view
 let contents = document.querySelectorAll(".info>div");
 let form_container = document.querySelector(".form");//Form wrapper div
 let form = document.querySelector(".form form");//Form to submit data
