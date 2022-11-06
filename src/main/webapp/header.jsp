@@ -4,6 +4,7 @@
     Author     : Pham Nhat Quang
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="menu-list">
     <ul class="navbar header" id="myHeader" >
@@ -13,8 +14,8 @@
         <li class="navbar__link"><a href="search-food" target="_blank">Food</a></li>
         <li class="navbar__link"><a href="search-exercise">Exercise</a></li>
         <li class="navbar__link"><a href="#footer">Contact</a></li>
-        <c:choose>
-            <c:when test = "${sessionScope.userID!=null}">
+            <c:choose>
+                <c:when test = "${sessionScope.userID!=null}">
                 <li class="navbar__link"><a href="user-meals" target="_blank"><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
                 <li class="navbar__link"><a href="user-exercises" target="_blank"><img class="add-exercise-logo" src="image/addExercise-logo.png"></a></li>
                 <li class="navbar__link">
@@ -32,11 +33,19 @@
             <c:otherwise>
                 <li class="navbar__link"><a href="login">Login</a></li>
                 <li class="navbar__link"><a href="register">Register</a></li>
-            </c:otherwise>
-        </c:choose>
+                </c:otherwise>
+            </c:choose>
 
         <form id="demo-2">
             <input type="search" placeholder="Search">
         </form>
     </ul>
 </div>
+<%--<c:if test="${sessionScope.userID!=null}">
+    <jsp:include page="TodayNumbers.jsp" />
+</c:if>--%>
+<% 
+    if (request.getSession().getAttribute("userID")!=null){
+    out.println("<jsp:include page=\"TodayNumbers.jsp\" />");
+    }
+%>
