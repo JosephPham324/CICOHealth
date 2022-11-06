@@ -41,7 +41,7 @@
     </head>
     <body>
         <c:if test="${sessionScope.userID == null}">
-            <c:redirect url="search-exercise"></c:redirect>
+            <c:redirect url="search-food"></c:redirect>
         </c:if>
         <jsp:useBean
             id="mDAO"
@@ -52,10 +52,11 @@
                 <div class="overlay"></div>
 
                 <div class="create-meal">
-                    <form action="edit-meal-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
+                    <form action="home-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
                     <fieldset>
                         <legend>EDIT MEAL</legend>
                         <input type="submit" value="SUBMIT" name="submit" id="submit">
+                        <input type="hidden" name="action" value="EDIT MEAL">
                     </fieldset>
                 </form>
             </div>
@@ -97,7 +98,7 @@
                             <c:choose>
                                 <c:when test="${currentDate!= previousDate && previousDate!=''}">
                                     <c:set var="index" value ="1"></c:set>
-                                    <tr class = "dayStat group">
+                                        <tr class = "dayStat group">
                                             <td></td>
                                             <th scope="row">${previousDate}</th>
                                         <td></td>
@@ -131,15 +132,16 @@
                                 <td>${item.getTotalCal()}</td>
                                 <c:set var="previousDate" value="${currentDate}"></c:set>
                                     <td>
-                                        <form action="#" class="item-form" onsubmit="return fillEditForm(${item})">
+                                    <form action="#" class="item-form" onsubmit="return fillEditForm(${item})">
                                         <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                                     </form>
                                     |
-                                    <form action="delete-meal-control" method="post" class="delete-item-form"
+                                    <form action="home-control" method="post" class="delete-item-form"
                                           onsubmit="return askDelete('Are you sure you want to delete this meal?')">
                                         <input type="hidden" name="date" value="${item.getDate()}">
                                         <input type="hidden" name="time" value="${item.getTime()}">
                                         <input type="hidden" name="name" value="${item.getMealName()}">
+                                        <input type="hidden" name="action" value="DELETE MEAL">
                                         <button type="submit"><i class="fa-solid fa-xmark"></i></i></button>
                                     </form>
                                 </td>

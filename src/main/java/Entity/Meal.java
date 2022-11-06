@@ -39,6 +39,16 @@ public class Meal {
         this.foodItems = foodItems;
     }
 
+    public Meal(String mealDate, int userID, double totalCal, double proteinWeight, double fatWeight, double carbWeight) {
+        this.mealDate = mealDate;
+        this.userID = userID;
+        this.totalCal = totalCal;
+        this.proteinWeight = proteinWeight;
+        this.fatWeight = fatWeight;
+        this.carbWeight = carbWeight;
+    }
+    
+
     public Meal(String mealName, double totalCal, double proteinWeight, double fatWeight, double carbWeight, List<MealItem> foodItems) {
         this.mealName = mealName;
         this.totalCal = totalCal;

@@ -33,7 +33,7 @@
     </head>
     <body>
          <a href="/Nutrition/admin-control?action=EXERCISE+MANAGEMENT" class="previous round">Back</a>
-        <form action = "/Nutrition/add-exercisetype" method = "post">
+        <form action = "adminadd-exercise" method = "post">
             <fieldset>
             <legend>Add a new exercise</legend>
             

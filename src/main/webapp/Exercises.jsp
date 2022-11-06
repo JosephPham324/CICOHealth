@@ -32,6 +32,7 @@ Pham Nhat Quang --%>
                 rel="stylesheet"
                 href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
                 />
+
             <title>Your Exercises</title>
         </head>
         <body>
@@ -191,19 +192,21 @@ Pham Nhat Quang --%>
                                     <td>${item.getCalorie()}</td>
                                     <td></td>
                                     <td>
-                                        <form action="#" class="item-form" onsubmit="return fillEditForm(this)">
+                                        <form class="item-form" onsubmit="fillEditForm(this);return false;">
                                             <input type="hidden" name="date" value="${item.getDate()}">
                                             <input type="hidden" name="time" value="${item.getTime()}">
                                             <input type="hidden" name="name" value="${item.getName()}">
                                             <input type="hidden" name="duration" value="${item.getDuration()}">
                                             <input type="hidden" name="calories" value="${item.getCalorie()}">
                                             <input type="hidden" name="exerciseID" value="${item.getExerciseID()}">
-                                            <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
+                                            
+                                            <!--<button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>-->
                                         </form>
                                         |
-                                        <form action="delete-exercise-control" method="post" class="delete-item-form">
+                                        <form action="home-control" method="post" class="delete-item-form">
                                             <input type="hidden" name="date" value="${item.getDate()}">
                                             <input type="hidden" name="time" value="${item.getTime()}">
+                                            <input type="hidden" name="action" value="DELETE EXERCISE">
                                             <button type="submit"><i class="fa-solid fa-xmark"></i></i></button>
                                         </form>
                                     </td>

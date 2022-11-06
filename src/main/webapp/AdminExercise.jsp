@@ -50,12 +50,12 @@
         <title>Users Info</title>
     </head>
     <body>
-        <a href="ADMIN.jsp" class="previous round">Back</a>
+        <a href="admin" class="previous round">Back</a>
         <div class="info-container">
-             <a href = "Update/AdminAddExercise.jsp" class="add">Add new exercise</a>
+             <a href = "adminadd-exercise" class="add">Add new exercise</a>
             <div class="info-table">
                  <div  class="widget_search">
-                    <form role="search" method="post" action="admin-exercisetype">
+                    <form role="search" method="post" action="admin-exercisetype-control">
                         <div style="text-align: right;">
                             <input type="Search" name="txtSearch" placeholder="Enter exercise name">
                             <input type="submit" id="searchsubmit" value="Search"/>
@@ -80,7 +80,7 @@
                                 <td>${i.calPerHour}</td>
                                 <td>${i.description}</td>
                                 <td>
-                                    <a class="fa-solid fa-pen-to-square edit-button" href="update-exercisetype?exerciseid=${i.exerciseID}" style="color: blue;"></a>
+                                    <a class="fa-solid fa-pen-to-square edit-button" href="update-exercisetype-control?exerciseid=${i.exerciseID}" style="color: blue;"></a>
                                     |
                                     <a class="delete-usercontrol" href = "#" onclick = "askDelete(${i.exerciseID})" style="color: red"
                                    ><i class="fa-solid fa-xmark"></i
@@ -133,7 +133,7 @@
                                         function askDelete(id) {
                                             let option = confirm('Are you sure you want to delete ' + id);
                                             if (option === true) {
-                                                window.location.href = "delete-exercisetype?exerciseid=" + id;
+                                                window.location.href = "delete-exercisetype-control?exerciseid=" + id;
                                             }
                                         }
     </script>

@@ -67,9 +67,9 @@ public class UpdateControl extends HttpServlet {
             User u2 = uDAO.getRoleByUserID(Integer.parseInt(id));
             request.setAttribute("id", u);
             if (u2.getUserRoleId() == 1) {
-                request.getRequestDispatcher("Update/AdminUpdateAdmin.jsp").forward(request, response);
+                request.getRequestDispatcher("adminupdate-admin").forward(request, response);
             } else {
-                request.getRequestDispatcher("Update/AdminUpdateUser.jsp").forward(request, response);
+                request.getRequestDispatcher("adminupdate-user").forward(request, response);
             }
 
         } catch (SQLException ex) {
@@ -99,9 +99,9 @@ public class UpdateControl extends HttpServlet {
         try {
             User u2 = uDAO.getRoleByUserID(Integer.parseInt(userid));
             if (u2.getUserRoleId() == 1) {
-               response.sendRedirect("admin-loadcontrol");
+                response.sendRedirect("admin-load-control");
             } else {
-                response.sendRedirect("user-loadcontrol");
+                response.sendRedirect("user-load-control");
             }
         } catch (SQLException ex) {
             Logger.getLogger(UpdateControl.class.getName()).log(Level.SEVERE, null, ex);

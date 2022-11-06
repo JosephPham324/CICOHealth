@@ -86,6 +86,7 @@ public class MealDAO {
         ps.setString(7, carbs + "");
         ps.executeUpdate();
     }
+
     /**
      * Insert meal into database
      *
@@ -147,7 +148,6 @@ public class MealDAO {
         return null;
     }
 
-
     /**
      * Delete meal from database
      *
@@ -173,11 +173,10 @@ public class MealDAO {
         ps.executeUpdate();
     }
 
-    
-    public List<Meal> getMealsGroupedByDate(String userID){
+    public List<Meal> getMealsGroupedByDate(String userID) {
         List<Meal> res = this.getMealsByUserID(userID);
         res = Meal.groupMealsByDate(res);
-        res.sort(new Comparator<Meal>(){
+        res.sort(new Comparator<Meal>() {
             @Override
             public int compare(Meal o1, Meal o2) {
                 return o1.getMealDateTime().compareTo(o1.getMealDateTime());
@@ -185,12 +184,47 @@ public class MealDAO {
         });
         return res;
     }
-    
+
+    public double[] getExercisesCalorieByDate(String userID, String date) throws SQLException {
+        query = "select * from MEAL\n"
+                + "WHERE USERID = ?\n"
+                + "AND CAST(MEALDATETIME as DATE) = ?";
+
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, userID);
+        ps.setString(2, date);
+
+        rs = ps.executeQuery();
+        ArrayList<Meal> queryResult = new ArrayList<>();
+        double cal = 0;
+        double pro = 0;
+        double fat = 0;
+        double carb = 0;
+        while (rs.next()) {
+            Meal meal = new Meal(
+                    date,
+                    rs.getInt("USERID"),
+                    rs.getDouble("CALORIE"),
+                    rs.getDouble("PROTEIN"),
+                    rs.getDouble("FAT"),
+                    rs.getDouble("CARB")
+            );
+            cal +=rs.getDouble("CALORIE");
+            pro +=rs.getDouble("PROTEIN");
+            fat += rs.getDouble("FAT");
+            carb +=rs.getDouble("CARB");
+            queryResult.add(meal);
+        }
+
+        return new double[]{cal,pro,fat,carb};
+    }
+
     public static void main(String[] args) {
         MealDAO dao = new MealDAO();
-        ArrayList<Meal> meals = (ArrayList)dao.getMealsByUserID("2");
+        ArrayList<Meal> meals = (ArrayList) dao.getMealsByUserID("2");
         System.out.println(meals);
-        meals=(ArrayList)Meal.groupMealsByDate(meals);
+        meals = (ArrayList) Meal.groupMealsByDate(meals);
         System.out.println(meals);
     }
 }

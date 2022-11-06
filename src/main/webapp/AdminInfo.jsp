@@ -50,11 +50,11 @@
         <title>Users Info</title>
     </head>
     <body>
-        <a href="ADMIN.jsp" class="previous round">Back</a>
+        <a href="admin" class="previous round">Back</a>
         <div class="info-container">
             <div class="info-table">
                 <div  class="widget_search">
-                    <form role="search" method="post" action="admin-loadcontrol">
+                    <form role="search" method="post" action="admin-load-control">
                         <div style="text-align: right;">
                             <input type="Search" name="txtSearch" placeholder="First name or last name">
                             <input type="submit" id="searchsubmit" value="Search"/>
@@ -133,7 +133,7 @@
                                         function askDelete(id) {
                                             let option = confirm('Are you sure you want to delete ' + id);
                                             if (option === true) {
-                                                window.location.href = "delete-usercontrol?userid=" + id;
+                                                window.location.href = "delete-user-control?userid=" + id;
                                             }
                                         }
     </script>

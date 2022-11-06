@@ -25,9 +25,56 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getCookies();
-        
-        response.sendRedirect("home");
+        String action = request.getParameter("action");
+        if (action == null) {
+            response.sendRedirect("home");
+            return;
+        }
+        switch (action) {
+            case "ADD MEAL":
+                request.getRequestDispatcher("create-meal-control")
+                        .forward(request, response);
+                break;
+            case "EDIT MEAL":
+                request.getRequestDispatcher("edit-meal-control")
+                        .forward(request, response);
+                break;
+            case "DELETE MEAL":
+                request.getRequestDispatcher("delete-meal-control")
+                        .forward(request, response);
+                break;
+            case "ADD EXERCISE":
+                request.getRequestDispatcher("add-exercise-control")
+                        .forward(request, response);
+                break;
+            case "EDIT EXERCISE":
+                request.getRequestDispatcher("edit-exercise-control")
+                        .forward(request, response);
+                break;
+            case "DELETE EXERCISE":
+                request.getRequestDispatcher("delete-exercise-control")
+                        .forward(request, response);
+                break;
+            case "EDIT LOGIN":
+                request.getRequestDispatcher("add-exercise-control")
+                        .forward(request, response);
+                break;
+            case "EDIT USER":
+                request.getRequestDispatcher("edit-exercise-control")
+                        .forward(request, response);
+                break;
+            case "EDIT HEALTH":
+                request.getRequestDispatcher("delete-exercise-control")
+                        .forward(request, response);
+                break;
+            case "EDIT GOAL":
+                request.getRequestDispatcher("delete-exercise-control")
+                        .forward(request, response);
+                break;
+            default:
+                response.sendRedirect("home");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

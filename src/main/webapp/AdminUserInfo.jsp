@@ -50,11 +50,11 @@
         <title>Users Info</title>
     </head>
     <body>
-         <a href="ADMIN.jsp" class="previous round">Back</a>
+         <a href="admin" class="previous round">Back</a>
         <div class="info-container">
             <div class="info-table">
                 <div  class="widget_search">
-                    <form role="search" method="post" action="user-loadcontrol">
+                    <form role="search" method="post" action="user-load-control">
                         <div style="text-align: right;">
                             <input type="Search" name="txtSearch" placeholder="First name or last name">
                             <input type="submit" id="searchsubmit" value="Search"/>
@@ -84,13 +84,13 @@
                             <td>${i.email}</td>
                             <td>${i.phone}</td>
                             <td>
-                                <a class="#" href = "UserProfile/UserHealthInfo.jsp?userid=${i.userID}">View</a>
+                                <a class="#" href = "user-healthinfo?userid=${i.userID}">View</a>
                             </td>
                             <td>
-                                <a class="#" href = "getuser-exerciseid?userid=${i.userID}">View</a>
+                                <a class="#" href = "getuser-exerciseid-control?userid=${i.userID}">View</a>
                             </td>
                             <td>
-                                <a class="#" href = "UserProfile/UserGoal.jsp?userid=${i.userID}">View</a>
+                                <a class="#" href = "user-goal?userid=${i.userID}">View</a>
                             </td>
                             <td>
                                <a class="fa-solid fa-pen-to-square edit-button" href="update-control?id=${i.userID}" style="color: blue;"></a>
@@ -145,7 +145,7 @@
             function askDelete(id){
                 let option = confirm('Are you sure you want to delete ' + id);
                 if (option === true){
-                    window.location.href = "delete-usercontrol?userid="+id;
+                    window.location.href = "delete-user-control?userid="+id;
                 }
             }
         </script>
