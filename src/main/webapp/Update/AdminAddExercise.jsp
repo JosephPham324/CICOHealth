@@ -32,6 +32,11 @@
         
     </head>
     <body>
+        <%
+            if (session.getAttribute("AdminRole") == null) {
+                response.sendRedirect("error-page");
+            }
+        %>
          <a href="/Nutrition/admin-control?action=EXERCISE+MANAGEMENT" class="previous round">Back</a>
         <form action = "add-exercisetype-control" method = "post">
             <fieldset>

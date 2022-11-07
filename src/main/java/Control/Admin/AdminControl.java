@@ -31,8 +31,8 @@ public class AdminControl extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         HttpSession session = request.getSession();//Get current session
-        if (session.getAttribute("username") == null) {
-            response.sendRedirect("login");
+        if (session.getAttribute("AdminRole") == null) {
+            response.sendRedirect("error-page");
         }
         if (action == null) {
             response.sendRedirect("admin");
