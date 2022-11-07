@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Nguyen Le Quang Thinh
+ * @author Nguyen Le Quang Thinh, Pham Nhat Quang
  */
 public class GoalDAO {
 
@@ -193,8 +193,22 @@ public class GoalDAO {
         ps.executeUpdate();
     }
 
+    /**
+     * Get the statistics of meal,exercise and goal associated with user in the
+     * current day
+     *
+     * @param userID ID of user
+     * @return Number array in the order: goal calories (kcal), goal protein
+     * (grams), goal fat (grams),<br> goal carbs (grams), calories consumed,
+     * protein consumed, fat consumed,<br> calories burned during exercises
+     *
+     * @throws SQLException
+     */
     public double[] getTodayNumbers(String userID) throws SQLException {
         DailyNutritionGoal goal = this.getGoalByID(Integer.parseInt(userID));
+        if (goal==null){
+            goal = new DailyNutritionGoal();
+        }
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();
         MealDAO mDAO = new MealDAO();
@@ -214,7 +228,7 @@ public class GoalDAO {
         GoalDAO g = new GoalDAO();
         DailyNutritionGoal info = g.getGoalByID(1);
         try {
-            for (double i: g.getTodayNumbers("2")) {
+            for (double i : g.getTodayNumbers("2")) {
                 System.out.println(i);
             }
 //            System.out.println(g.getTodayNumbers("2"));

@@ -10,6 +10,16 @@ public class DailyNutritionGoal {
     private float protein;
     private float fat;
     private float carb;
+
+    public DailyNutritionGoal() {
+        this.userID = 0;
+        this.calories = 0;
+        this.protein = 0;
+        this.fat = 0;
+        this.carb = 0;
+    }
+    
+    
     
     public DailyNutritionGoal(int userID) {
         this.userID = userID;
