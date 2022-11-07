@@ -24,15 +24,13 @@ public class SupportedPaths {
 
 //    private final String[] user_paths = {"/user-exercises", "/user-info", "/user-statistics", "/user-meals", "/healthinfo", "/logout-control"};
     private HashMap<String, String> correspondingReferrer;//Key: servlet, value: referrer
+    private HashSet<String> adminPaths;
 
     public SupportedPaths() {
-//        UserDAO dao = new UserDAO();
-//        ExerciseTypeDAO exDAO = new ExerciseTypeDAO();
-//        List<User> user = dao.getListUser();
-//        List<User> admin = dao.getListAdmin();
-//        List<ExerciseType> ex = exDAO.getAllExerciseTypes();
 
         correspondingReferrer = new HashMap<>();
+        adminPaths = new HashSet<>();
+
         correspondingReferrer.put("/login-control", "/login");
         correspondingReferrer.put("/healthinfo-control", "/register-control");
         correspondingReferrer.put("/register-control", "/register");
@@ -50,39 +48,21 @@ public class SupportedPaths {
         correspondingReferrer.put("/edit-health-info-control", "/user-info");
         correspondingReferrer.put("/edit-goal-control", "/user-info");
 
-//        for (User o : user) {
-//            correspondingReferrer.put("/update-control?id=" + o.getUserID(), "/login");
-//            correspondingReferrer.put("/user-healthinfo?id=" + o.getUserID(), "/login");
-//            correspondingReferrer.put("/user-goal?id=" + o.getUserID(), "/login");
-//        }
-//        for (User o : admin) {
-//            correspondingReferrer.put("/update-control?id=" + o.getUserID(), "/login");
-//        }
-//        for (ExerciseType exType : ex) {
-//            correspondingReferrer.put("/update-exercisetype?exerciseid=" + exType.getExerciseID(), "/login");
-//        }
-//        correspondingReferrer.put("/admin", "/login");
-//        correspondingReferrer.put("/admin-control?action=ADMIN+INFO", "/login");
-//        correspondingReferrer.put("/admin-control?action=USER+INFO", "/login");
-//        correspondingReferrer.put("/admin-control?action=EXERCISE+MANAGEMENT", "/login");
+        adminPaths.add("/admin-control");
+        adminPaths.add("/admin");
+        adminPaths.add("/update-healthinfo");
+        adminPaths.add("/getuser-exerciseid-control");
+        adminPaths.add("/user-load-control");
+        adminPaths.add("/admin-load-control");
 
-        correspondingReferrer.put("/admin-control", "/admin");
-        correspondingReferrer.put("/admin", "/admin-admin-control");
+        adminPaths.add("/admin-exercisetype-control");
+        adminPaths.add("/delete-exercisetype-control");
+        adminPaths.add("/update-exercisetype-control");
+        adminPaths.add("/add-exercisetype-control");
+        adminPaths.add("/adminadd-exercise");
+        adminPaths.add("/update-control");
+        adminPaths.add("/adminupdate-admin");
 
-        correspondingReferrer.put("/update-healthinfo", "/admin-control");
-        correspondingReferrer.put("/user-goal", "/admin-control");
-
-        correspondingReferrer.put("/delete-user-control", "/admin-control");
-        correspondingReferrer.put("/getuser-exerciseid-control", "/admin-control");
-        correspondingReferrer.put("/user-load-control", "/admin-control");
-        correspondingReferrer.put("/user-exercise", "/admin-control");
-
-        correspondingReferrer.put("/admin-exercisetype-control", "/admin-control");
-        correspondingReferrer.put("/delete-exercisetype-control", "/admin-control");
-        correspondingReferrer.put("/update-exercisetype-control", "/admin-control");
-        correspondingReferrer.put("/add-exercisetype-control", "/admin-control");
-        correspondingReferrer.put("/adminadd-exercise", "/admin-control");
-        correspondingReferrer.put("/update-control", "/admin-control");
     }
 
     public boolean availableServlet(String servletPath) {
@@ -113,34 +93,20 @@ public class SupportedPaths {
         return this.correspondingReferrer.get(servletPath);
     }
 
-//    public Set<String> listFilesUsingDirectoryStream(String dir) throws IOException {
-//        Set<String> fileSet = new HashSet<>();
-//        try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(dir))) {
-//            for (Path path : stream) {
-//                if (!Files.isDirectory(path)) {
-//                    fileSet.add(path.getFileName()
-//                            .toString());
-//                }
-//            }
-//        }
-//        return fileSet;
-//    }
-//    public String[] getUser_paths() {
-//        return user_paths;
-//    }
+    public boolean checkAdminPath(String path) {
+        String pattern = "(\\?[a-zA-z]+=.+)";
+        String pattern1 = "(^/*Nutrition)";
+        path = Pattern.compile(pattern).matcher(path).replaceAll("");
+        path = Pattern.compile(pattern1).matcher(path).replaceAll("");
+        return this.adminPaths.contains(path);
+    }
+
     public HashMap<String, String> getCorrespondingReferrer() {
         return correspondingReferrer;
     }
 
-//    public static void main(String[] args) {
-//        try {
-//            System.out.println(new SupportedPaths().listFilesUsingDirectoryStream("scripts"));
-//        } catch (IOException ex) {
-//            Logger.getLogger(SupportedPaths.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
     public static void main(String[] args) {
         SupportedPaths paths = new SupportedPaths();
-        System.out.println(paths.checkCorrectReferrer("/update-control?id=2", "/admin-control?action=ADMIN+INFO"));
+        System.out.println(paths.checkAdminPath("/Nutrition/admin-control?action=USER+INFO"));
     }
 }

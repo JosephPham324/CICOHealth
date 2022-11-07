@@ -65,7 +65,7 @@ public class LoginControl extends HttpServlet {
                 session.setAttribute("username", a.getUsername());//Set username to logged in username
                 if (remember != null) {
                     Cookie userID = new Cookie("userID", a.getUserID() + "");
-                    Cookie userName = new Cookie("userName", a.getUsername());
+                    Cookie userName = new Cookie("username", a.getUsername());
                     userID.setMaxAge(86400 * 3);
                     userName.setMaxAge(86400 * 3);
                     response.addCookie(userID);

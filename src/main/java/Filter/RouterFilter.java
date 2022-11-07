@@ -1,5 +1,6 @@
 package Filter;
 
+import DAO.UserDAO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -111,8 +112,8 @@ public class RouterFilter implements Filter {
             HttpServletRequest httpRequest = (HttpServletRequest) request;
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             String url = httpRequest.getServletPath();
-            
-            if (url.endsWith("/home-control") || url.endsWith("/logout-control") || url.endsWith("/admin-control") || url.contains("?")) {
+
+            if (url.endsWith("/home-control") || url.endsWith("/logout-control")) {
                 chain.doFilter(request, response);
                 return;
             }
@@ -134,18 +135,31 @@ public class RouterFilter implements Filter {
             if (url.contains("scripts/") || url.contains("css/") || url.contains("image/")) {//To load resources
                 acceptedPath = true;
             }
-            
+
             if (url.contains("Update/") || url.contains("UserProfile/")) {//To load resources
                 acceptedPath = true;
             }
-            
+
             if (!acceptedPath) {
                 httpResponse.sendRedirect(httpRequest.getContextPath() + "/home-control");
                 return;
             }
 
             SupportedPaths paths = new SupportedPaths();
-            if (url.endsWith("control") && (!url.endsWith("home-control") || !url.endsWith("admin-control"))) {//Redirect if user enters url ending with control
+            if (paths.checkAdminPath(url) && httpRequest.getSession().getAttribute("userID") != null) {
+                System.out.println(url);
+//                System.out.println((String) httpRequest.getSession().getAttribute("userID"));
+                String userID = httpRequest.getSession().getAttribute("userID")+"";
+                int userRole = new UserDAO().getRoleIDByUserID(Integer.parseInt(userID));
+                if (userRole == 1) {
+                    chain.doFilter(request, response);
+                    return;
+                } else {
+                    httpResponse.sendRedirect(httpRequest.getContextPath() + "/home-control");
+                    return;
+                }
+            }
+            if (url.endsWith("control") && (!url.endsWith("home-control"))) {//Redirect if user enters url ending with control
                 String referrer = httpRequest.getHeader("referer");
                 boolean correctReferrer = paths.checkCorrectReferrer(url, referrer);
                 httpResponse.getWriter().write(correctReferrer + "");
@@ -282,7 +296,8 @@ public class RouterFilter implements Filter {
     public void log(String msg) {
         filterConfig.getServletContext().log(msg);
     }
+
     public static void main(String[] args) {
-        
+
     }
 }
