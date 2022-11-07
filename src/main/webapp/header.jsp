@@ -4,6 +4,7 @@
     Author     : Pham Nhat Quang
 --%>
 
+<%@page import="DAO.UserDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="menu-list">
@@ -14,7 +15,13 @@
         <li class="nav-link"><a class="txt" href="search-exercise">Exercise</a></li>
             <c:choose>
                 <c:when test = "${sessionScope.userID!=null}">
-                <li class="nav-link"><a href="admin"><i class="fa-solid fa-user-gear" style="color:red;"></i></a></li>
+                    <%
+                        String userID = request.getSession().getAttribute("userID") + "";
+                        int userRole = new UserDAO().getRoleIDByUserID(Integer.parseInt(userID));
+                        if (userRole == 1) {
+                            out.println("<li class=\"nav-link\"><a href=\"admin\"><i class=\"fa-solid fa-user-gear\" style=\"color:red;\"></i></a></li>");
+                        }
+                    %>
                 <li class="nav-link"><a href="user-meals"><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
                 <li class="nav-link"><a href="user-exercises"><img class="add-exercise-logo" src="image/addExercise-logo.png"></a></li>
                 <li class="nav-link">

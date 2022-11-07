@@ -25,6 +25,7 @@
                 <!--                <div class="center">-->
                 <h2 style="font-weight: 600;">ADMIN PAGE</h2>
                 <form class="form" action="admin-control">
+                    <input type="submit" class="button" value="HOME" name="action"  /> <br>
                     <input type="submit" class="button" value="ADMIN INFO" name="action"  /> <br>
                     <input type="submit" class="button" value="USER INFO" name="action" /> <br>
                     <input type="submit" class="button" value="EXERCISE MANAGEMENT" name="action" /> <br>

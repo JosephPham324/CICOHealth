@@ -79,6 +79,9 @@ public class AdminControl extends HttpServlet {
             return;
         }
         switch (action) {
+            case "HOME":
+                response.sendRedirect("home-control");
+                break;
             case "ADMIN INFO":
                 request.getRequestDispatcher("admin-load-control").forward(request, response);
                 break;

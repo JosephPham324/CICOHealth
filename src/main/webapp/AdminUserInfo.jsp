@@ -35,7 +35,7 @@
     </head>
     <body>
         <div class="nav">
-            <a href="ADMIN.jsp" class="button" style="vertical-align:middle"><span>Back </span></a>
+            <a href="admin" class="button" style="vertical-align:middle"><span>Back </span></a>
             <h1 class="navbar-brand mx-auto">USER INFO</h1>
         </div>
         
