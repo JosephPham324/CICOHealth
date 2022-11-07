@@ -71,11 +71,11 @@ public class LoginControl extends HttpServlet {
                     response.addCookie(userID);
                     response.addCookie(userName);
                 }
-                if (u.getUserRoleId() == 2) {
-                    response.sendRedirect("home-control");//Redirect to home controller
-                } else {
-                    response.sendRedirect("admin");//Redirect to home controller
-                }
+//                if (u.getUserRoleId() == 2) {
+//                    response.sendRedirect("home-control");//Redirect to home controller
+//                } else {
+//                    response.sendRedirect("admin");//Redirect to home controller
+//                }
 
                 response.sendRedirect("home-control");//Redirect to home controller
             }
