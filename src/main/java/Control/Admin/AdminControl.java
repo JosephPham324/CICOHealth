@@ -1,18 +1,22 @@
-package Control;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package Control.Admin;
 
-import jakarta.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  *
- * @author Pham Nhat Quang
+ * @author ASUS
  */
-public class HomeController extends HttpServlet {
+public class AdminControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -26,53 +30,29 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        HttpSession session = request.getSession();//Get current session
+        if (session.getAttribute("username") == null) {
+            response.sendRedirect("login");
+        }
         if (action == null) {
-            response.sendRedirect("home");
+            response.sendRedirect("admin");
             return;
         }
         switch (action) {
-            case "ADD MEAL":
-                request.getRequestDispatcher("create-meal-control")
-                        .forward(request, response);
+            case "SEARCH USER":
+                request.getRequestDispatcher("user-load-control").forward(request, response);
                 break;
-            case "EDIT MEAL":
-                request.getRequestDispatcher("edit-meal-control")
-                        .forward(request, response);
+            case "USER INFO":
+                request.getRequestDispatcher("user-load-control").forward(request, response);
                 break;
-            case "DELETE MEAL":
-                request.getRequestDispatcher("delete-meal-control")
-                        .forward(request, response);
+            case "EXERCISE MANAGEMENT":
+                request.getRequestDispatcher("admin-exercisetype-control").forward(request, response);
                 break;
-            case "ADD EXERCISE":
-                request.getRequestDispatcher("add-exercise-control")
-                        .forward(request, response);
-                break;
-            case "EDIT EXERCISE":
-                request.getRequestDispatcher("edit-exercise-control")
-                        .forward(request, response);
-                break;
-            case "DELETE EXERCISE":
-                request.getRequestDispatcher("delete-exercise-control")
-                        .forward(request, response);
-                break;
-            case "LOGIN EDIT":
-                request.getRequestDispatcher("login-edit-control")
-                        .forward(request, response);
-                break;
-            case "EDIT USER":
-                request.getRequestDispatcher("edit-user-info-control")
-                        .forward(request, response);
-                break;
-            case "EDIT HEALTH":
-                request.getRequestDispatcher("edit-health-info-control")
-                        .forward(request, response);
-                break;
-            case "EDIT GOAL":
-                request.getRequestDispatcher("edit-goal-control")
-                        .forward(request, response);
+            case "LOG OUT":
+                response.sendRedirect("logout-control");
                 break;
             default:
-                response.sendRedirect("home");
+                response.sendRedirect("admin");
         }
 
     }
@@ -89,7 +69,32 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String action = request.getParameter("action");
+        HttpSession session = request.getSession();//Get current session
+        if (session.getAttribute("username") == null) {
+            response.sendRedirect("login");
+        }
+        if (action == null) {
+            response.sendRedirect("admin");
+            return;
+        }
+        switch (action) {
+            case "ADMIN INFO":
+                request.getRequestDispatcher("admin-load-control").forward(request, response);
+                break;
+            case "USER INFO":
+                request.getRequestDispatcher("user-load-control").forward(request, response);
+                break;
+            case "EXERCISE MANAGEMENT":
+                request.getRequestDispatcher("admin-exercisetype-control").forward(request, response);
+                break;
+            case "LOG OUT":
+                response.sendRedirect("logout-control");
+                break;
+            default:
+                response.sendRedirect("admin");
+        }
+
     }
 
     /**

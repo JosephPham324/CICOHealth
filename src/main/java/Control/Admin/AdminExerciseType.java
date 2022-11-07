@@ -1,23 +1,25 @@
-package Control.Meal;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package Control.Admin;
 
-import DAO.MealDAO;
-import DAO.MealItemDAO;
-import Entity.Meal;
-import Entity.MealItem;
-import com.google.gson.Gson;
-import java.io.IOException;
-import java.io.PrintWriter;
+import DAO.ExerciseTypeDAO;
+import Entity.ExerciseType;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.Date;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
 
 /**
  *
- * @author Pham Nhat Quang
+ * @author ASUS
  */
-public class CreateMealControl extends HttpServlet {
+public class AdminExerciseType extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,19 +33,18 @@ public class CreateMealControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateMealControl</title>");
+            out.println("<title>Servlet AdminExerciseType</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CreateMealControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AdminExerciseType at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,7 +59,10 @@ public class CreateMealControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        ExerciseTypeDAO ex = new ExerciseTypeDAO();
+    	List<ExerciseType> list = ex.getAllExerciseTypes();
+        request.setAttribute("listExercise", list);
+        request.getRequestDispatcher("adminexercise-info").forward(request, response);
     }
 
     /**
@@ -72,51 +76,11 @@ public class CreateMealControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Object userID = request.getSession().getAttribute("userID");
-        if (userID == null) {
-            response.sendRedirect("home");
-        }
-        
-        Gson gson = new Gson();
-        String mealJSON = request.getParameter("meal");
-        Meal meal = gson.fromJson(mealJSON, Meal.class);
-        Date now = new Date();
-        MealDAO mealDAO = new MealDAO();
-        MealItemDAO mealItemDAO = new MealItemDAO();
-
-        try {
-
-            mealDAO.insertMeal(
-                    meal.getMealName(),
-                    now, Integer.parseInt(userID.toString()),
-                    meal.getTotalCal(),
-                    meal.getProteinWeight(),
-                    meal.getFatWeight(),
-                    meal.getCarbWeight()
-            );
-
-            for (MealItem item : meal.getFoodItems()) {
-                mealItemDAO.insertMealItem(
-                        meal.getMealName(),
-                        now,
-                        Integer.parseInt(userID.toString()),
-                        item.getName(),
-                        item.getTotalCal(),
-                        item.getProteinWeight(),
-                        item.getFatWeight(),
-                        item.getCarbWeight(),
-                        item.getTotalWeight() + ""
-                );
-            }
-            request.getSession().setAttribute("createMeal", true);
-
-            response.sendRedirect("search-food");
-        } catch (Exception ex) {
-            response.getWriter().write(ex.getMessage());
-            response.getWriter().write(meal.getMealName());
-            response.getWriter().write(userID.toString());
-        }
-
+        String exercisename = request.getParameter("txtSearch");
+        ExerciseTypeDAO exDAO = new ExerciseTypeDAO();
+    	List<ExerciseType> list = exDAO.searchExerciseTypes(exercisename);
+        request.setAttribute("listExercise", list);
+        request.getRequestDispatcher("adminexercise-info").forward(request, response);
     }
 
     /**
