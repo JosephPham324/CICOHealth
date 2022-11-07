@@ -85,6 +85,7 @@ public class SupportedPaths {
         if (servletPath.endsWith("/home-control") || servletPath.endsWith("/logout-control") || servletPath.endsWith("/admin-control")) {
             return true;
         }
+
         return referrerPath.endsWith(this.correspondingReferrer.get(servletPath));
     }
 

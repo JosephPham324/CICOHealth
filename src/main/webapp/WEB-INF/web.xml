@@ -172,18 +172,6 @@
         <servlet-name>Statistics</servlet-name>
         <jsp-file>/Statistics.jsp</jsp-file>
     </servlet>
-     <servlet>
-        <servlet-name>LoginError</servlet-name>
-        <jsp-file>/login-error.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>RegisterError</servlet-name>
-        <jsp-file>/Register-Error.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>ErrorPage</servlet-name>
-        <jsp-file>/ErrorPage.jsp</jsp-file>
-    </servlet>
     <servlet>
         <servlet-name>EditGoalControl</servlet-name>
         <servlet-class>Control.HealthInfo.EditGoalControl</servlet-class>
@@ -383,18 +371,6 @@
     <servlet-mapping>
         <servlet-name>Statistics</servlet-name>
         <url-pattern>/user-statistics</url-pattern>
-    </servlet-mapping>
-     <servlet-mapping>
-        <servlet-name>LoginError</servlet-name>
-        <url-pattern>/login-error</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RegisterError</servlet-name>
-        <url-pattern>/register-error</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ErrorPage</servlet-name>
-        <url-pattern>/error-page</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EditGoalControl</servlet-name>

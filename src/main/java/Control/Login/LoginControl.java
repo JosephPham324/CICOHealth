@@ -57,7 +57,7 @@ public class LoginControl extends HttpServlet {
             }
             //Get an instance of Login entry if username and password is correct
             if (a == null) {//If there's no instance, redirect to error page
-                    response.sendRedirect("login-error");            
+                    response.sendRedirect("login-error.jsp");            
             } else {//If login info is correct
                 HttpSession session = request.getSession();//Get current session
 
@@ -74,7 +74,6 @@ public class LoginControl extends HttpServlet {
                 if (u.getUserRoleId() == 2) {
                     response.sendRedirect("home-control");//Redirect to home controller
                 } else {
-                    session.setAttribute("AdminRole", u.getUserRoleId());//Set role ID to logged in username
                     response.sendRedirect("admin");//Redirect to home controller
                 }
 

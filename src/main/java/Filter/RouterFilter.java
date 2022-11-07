@@ -171,7 +171,7 @@ public class RouterFilter implements Filter {
                     }
                     httpResponse.sendRedirect(httpRequest.getContextPath() + "/home-control");
                     return;
-                } else if (correctReferrer) {
+                } else if (!correctReferrer) {
                     httpResponse.sendRedirect(referrer);
                     return;
                 }

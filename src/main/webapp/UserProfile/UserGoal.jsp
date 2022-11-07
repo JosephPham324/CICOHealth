@@ -68,10 +68,6 @@
     </head>
     <body>
         <%
-            if (session.getAttribute("AdminRole") == null) {
-                response.sendRedirect("error-page");
-            }
-            
             DAO.LoginDAO lDAO = new DAO.LoginDAO();
             DAO.UserDAO uDAO = new DAO.UserDAO();
             DAO.HealthDAO hDAO = new HealthDAO();

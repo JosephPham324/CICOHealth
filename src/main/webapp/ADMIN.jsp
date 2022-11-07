@@ -46,7 +46,7 @@
             }
 
             .center {
-                padding: 100px;
+               padding: 100px;
                 position: absolute;
                 top: 50%;
                 left: 50%;
@@ -57,11 +57,6 @@
         </style>
     </head>
     <body>
-        <%
-            if (session.getAttribute("AdminRole") == null) {
-                response.sendRedirect("error-page");
-            }
-        %>
         <div class="container"> 
             <div class="center">
                 <h2>ADMIN PAGE</h2>

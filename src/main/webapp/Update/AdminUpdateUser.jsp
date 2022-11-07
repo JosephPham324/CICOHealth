@@ -25,11 +25,6 @@
         </style>
     </head>
     <body>
-        <%
-            if (session.getAttribute("AdminRole") == null) {
-                response.sendRedirect("error-page");
-            }
-        %>
          <a href="user-load-control" class="previous round">Back</a>
         <form action="update-control" method="post">
             <table>
