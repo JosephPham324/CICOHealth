@@ -55,20 +55,20 @@ public class HomeController extends HttpServlet {
                 request.getRequestDispatcher("delete-exercise-control")
                         .forward(request, response);
                 break;
-            case "EDIT LOGIN":
-                request.getRequestDispatcher("add-exercise-control")
+            case "LOGIN EDIT":
+                request.getRequestDispatcher("login-edit-control")
                         .forward(request, response);
                 break;
             case "EDIT USER":
-                request.getRequestDispatcher("edit-exercise-control")
+                request.getRequestDispatcher("edit-user-info-control")
                         .forward(request, response);
                 break;
             case "EDIT HEALTH":
-                request.getRequestDispatcher("delete-exercise-control")
+                request.getRequestDispatcher("edit-health-info-control")
                         .forward(request, response);
                 break;
             case "EDIT GOAL":
-                request.getRequestDispatcher("delete-exercise-control")
+                request.getRequestDispatcher("edit-goal-control")
                         .forward(request, response);
                 break;
             default:

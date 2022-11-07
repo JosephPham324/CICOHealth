@@ -44,8 +44,7 @@
         <c:if test="${sessionScope.userID == null}">
             <c:redirect url="home"></c:redirect>
         </c:if>
-        <%
-            DAO.LoginDAO lDAO = new DAO.LoginDAO();
+        <%            DAO.LoginDAO lDAO = new DAO.LoginDAO();
             DAO.UserDAO uDAO = new DAO.UserDAO();
             DAO.HealthDAO hDAO = new HealthDAO();
             DAO.GoalDAO gDAO = new DAO.GoalDAO();
@@ -64,6 +63,7 @@
                         request.getParameter("password").toString(),
                         loginInfo.getPasswordSalt(),
                         loginInfo.getPasswordHash());
+                request.getSession().setAttribute("panel", "loginInfo");
             }
             Object panel = request.getSession().getAttribute("panel");
             int panelSwitch = 0;
@@ -132,7 +132,7 @@
                 </ul>
             </div>
             <div class="col-sm-10 row g-0 info tab-content" id="pills-tabContent"
-                 style="background-image: url('${pageContext.request.contextPath}/image/backgroundyourlogininfo.png'); 
+                 style="background-image: url('${pageContext.request.contextPath}/image/backgroundyourlogininfo.png');
                  background-size: cover;
                  background-position: center center;"
                  >
