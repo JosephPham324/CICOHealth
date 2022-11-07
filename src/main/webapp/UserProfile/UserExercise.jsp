@@ -62,7 +62,8 @@ Author : Pham Nhat Quang
          <%
             DAO.LoginDAO lDAO = new DAO.LoginDAO();
             DAO.UserDAO uDAO = new DAO.UserDAO();
-            String id = (String) session.getAttribute("userID");
+            
+            String id = (String) session.getAttribute("adminuserID");
             System.out.println(id);
 
             Login loginInfo = lDAO.getLoginInfo(id);
@@ -105,7 +106,7 @@ Author : Pham Nhat Quang
                         <c:set var="currentDate" value=""></c:set>
                         <c:set var="index" value ="1"></c:set>
                         <c:forEach
-                            items="${eDAO.getExerciseByUserID(sessionScope.userID)}"
+                            items="${eDAO.getExerciseByUserID(sessionScope.adminuserID)}"
                             var="item"
                             varStatus="loop"
                             >

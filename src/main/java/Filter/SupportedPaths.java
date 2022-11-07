@@ -50,19 +50,28 @@ public class SupportedPaths {
 
         adminPaths.add("/admin-control");
         adminPaths.add("/admin");
+        adminPaths.add("/admin-info");
+        adminPaths.add("/adminuser-info");
+        adminPaths.add("/adminexercise-info");
         adminPaths.add("/update-healthinfo");
         adminPaths.add("/getuser-exerciseid-control");
         adminPaths.add("/user-load-control");
         adminPaths.add("/admin-load-control");
+        adminPaths.add("/delete-user-control");
 
         adminPaths.add("/admin-exercisetype-control");
         adminPaths.add("/delete-exercisetype-control");
         adminPaths.add("/update-exercisetype-control");
         adminPaths.add("/add-exercisetype-control");
         adminPaths.add("/adminadd-exercise");
+        adminPaths.add("/adminupdate-exercise");
         adminPaths.add("/update-control");
         adminPaths.add("/adminupdate-admin");
-
+        adminPaths.add("/adminupdate-user");
+        
+        adminPaths.add("/user-exercise");
+        adminPaths.add("/user-goal");
+        adminPaths.add("/user-healthinfo");
     }
 
     public boolean availableServlet(String servletPath) {
