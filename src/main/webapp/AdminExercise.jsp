@@ -29,7 +29,7 @@
             />
         <link rel="stylesheet" href="css/adminuserinfo.css">
         <style>
-            a {
+/*            a {
                 text-decoration: none;
                 display: inline-block;
                 padding: 8px 16px;
@@ -45,20 +45,27 @@
             }
             .round {
                 border-radius: 50%;
-            }
+            }*/
         </style>
         <title>Users Info</title>
     </head>
     <body>
-        <a href="admin" class="previous round">Back</a>
+        <div class="nav">
+            <a href="ADMIN.jsp" class="button" style="vertical-align:middle"><span>Back </span></a>
+            <h1 class="navbar-brand mx-auto">EXERCISE MANAGEMENT</h1>
+        </div>
+        
+        
+<!--        <a href="ADMIN.jsp" class="previous round">Back</a>-->
         <div class="info-container">
-             <a href = "adminadd-exercise" class="add">Add new exercise</a>
+             
             <div class="info-table">
-                 <div  class="widget_search">
-                    <form role="search" method="post" action="admin-exercisetype-control">
-                        <div style="text-align: right;">
-                            <input type="Search" name="txtSearch" placeholder="Enter exercise name">
-                            <input type="submit" id="searchsubmit" value="Search"/>
+                <div  class="widget_search" style="margin-left:10px;margin-right:10px;">
+                    <form role="search" method="post" action="admin-exercisetype">
+                        <div style="display: inline;">
+                            <a style="float: left;" href = "Update/AdminAddExercise.jsp" class="add">Add new exercise</a>
+                            <input style="float: right;" type="submit" id="searchsubmit" value="Search"/>
+                            <input style="float: right;margin-bottom: 5px;border-radius: 4px;"  type="Search" name="txtSearch" placeholder="&nbsp Enter exercise name">
                         </div>
                     </form>
                 </div>
