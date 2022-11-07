@@ -15,12 +15,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
-            />
-        <link
-            rel="stylesheet"
             href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"
             />
         <link
@@ -36,9 +30,11 @@
             />
         <link rel="stylesheet" href="css/stats.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <%@ include file = "headfootlink.jsp"%>
         <title>Statistics</title>
     </head>
     <body>
+        <%@ include file="header.jsp" %>
         <c:if test="${sessionScope.userID == null}">
             <c:redirect url="home"></c:redirect>
         </c:if>
@@ -106,7 +102,7 @@
                             <td>${meal.getMonthDay()}</td>
                             <c:choose>
                                 <c:when test="${meal.getProteinWeight()>=proteinGoal}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getProteinWeight()}"/>
                                     </td>
                                 </c:when>
@@ -118,7 +114,7 @@
                             </c:choose>
                             <c:choose>
                                 <c:when test="${meal.getFatWeight()>=fatGoal}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getFatWeight()}"/>
                                     </td>
                                 </c:when>
@@ -130,7 +126,7 @@
                             </c:choose>
                             <c:choose>
                                 <c:when test="${meal.getCarbWeight()>=carbGoal}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getCarbWeight()}"/>
                                     </td>
                                 </c:when>
@@ -142,7 +138,7 @@
                             </c:choose>
                             <c:choose>
                                 <c:when test="${meal.getProteinWeight()*4>=proteinGoal*4}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getProteinWeight()*4}"/>
                                     </td>
                                 </c:when>
@@ -154,7 +150,7 @@
                             </c:choose>
                             <c:choose>
                                 <c:when test="${meal.getFatWeight()*9>=fatGoal*9}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getFatWeight()*9}"/>
                                     </td>
                                 </c:when>
@@ -166,7 +162,7 @@
                             </c:choose>
                             <c:choose>
                                 <c:when test="${meal.getCarbWeight()*4>=carbGoal*4}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getCarbWeight()*4}"/>
                                     </td>
                                 </c:when>
@@ -184,7 +180,7 @@
                             </td>
                             <c:choose>
                                 <c:when test="${meal.getTotalCal()-exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())>=calorieGoal}">
-                                    <td class = 'success'>
+                                    <td class = 'successful'>
                                         <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="1" value="${meal.getTotalCal()-exerciseDAO.getExercisesCalorieByDate(userID,meal.getMealName())}"/>
                                     </td>
                                 </c:when>
@@ -232,6 +228,8 @@
                 <script src="scripts/statcharts.js"></script>
             </div>
         </div>
+                            <jsp:include page="footer.jsp"></jsp:include>
+        <script src="scripts/headfootscript.js"></script>
         <script
             src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

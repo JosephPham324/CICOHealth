@@ -64,7 +64,7 @@ public class DeleteExerciseType extends HttpServlet {
         //b2: pass sid to dao
         ExerciseTypeDAO exDAO = new ExerciseTypeDAO();
         exDAO.deleteExerciseType(id);
-        response.sendRedirect("admin-exercisetype");
+        response.sendRedirect("admin-exercisetype-control");
     }
 
     /**

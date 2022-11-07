@@ -9,6 +9,7 @@ body{
     overflow-x: hidden;
     margin:0;
     z-index: 0;
+    font-size: 15px;
 }
 
 .food-search{
@@ -18,10 +19,19 @@ body{
 }
 .search-wrapper{
     display: flex;
-    flex-direction: column;
+    /*flex-direction: column;*/
     align-items: center;
+    justify-content:center;
+    padding:10px;
     width: 100vw;
-    gap: .25rem;
+    gap: 10px;
+    position:relative
+}
+.search-wrapper form{
+    text-align: center;
+}
+.button{
+    font-size:18px;
 }
 .search-wrapper label{
     font-size: 2rem;
@@ -34,7 +44,7 @@ input{
     margin: 1rem 1rem;
     border:1px dashed rgb(77, 35, 35);
     width: 90vw;
-    min-height: 150px;
+    min-height: 80vh;
     height: auto;
     display:grid;
     grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
@@ -72,6 +82,7 @@ input{
     border-radius: 50%;
     background-color: white;
     border: 1px solid black;
+    font-size: 1.4em;
 }
 .result .add i.selected{
     background-color: green;
@@ -85,11 +96,14 @@ input{
     background-color: white;
     cursor: pointer;
     line-height: 1.2rem;
+    font-size:15px;
 }
 
 .food-search .food>.header{
-
+    height:auto;
     margin-bottom: .25rem;
+    font-weight: bolder;
+    font-style: italic;
     font-size: 1.5em;
 }
 .food-search .food>.serving + .food-search .food>.nutrition-facts{
@@ -98,8 +112,11 @@ input{
 .food-search .food .serving{
     color: red;
 }
+.food-search .food>div{
+    min-height:20px;    
+}
 .food-search .food span{
-    font-size:1rem;
+    font-size:1em;
     display: inline-block;
     margin-right: 0.5em;
 }
@@ -109,15 +126,18 @@ input{
 .nutrition-facts span{
     background-color: rgb(53, 50, 50);
     border-radius: 3px;
-    padding: 5px;
+    padding-block: 10px;
 }
 .nutrition-facts .protein{
+    padding-inline: 5px;
     color: rgb(202, 134, 121);
 }
 .nutrition-facts .carbs{
+    padding-inline: 5px;
     color: white;
 }
 .nutrition-facts .fat{
+    padding-inline: 5px;
     color:  #ffa600;
 }
 
@@ -144,11 +164,11 @@ header{
     position: relative;
 }
 .belly{
-    position: absolute;
+    /*position: absolute;*/
     width: 60px;
     height: 60px;
-    top:calc(20px / 2);
-    right: 8vw;
+    /*top:100px;*/
+    /*right: 8vw;*/
     z-index: 50;
     background-color: rgb(248, 106, 24);
     padding: 5px;

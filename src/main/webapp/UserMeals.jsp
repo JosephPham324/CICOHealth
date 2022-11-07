@@ -7,7 +7,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="DAO.ExerciseDAO"%>
-<%@page import="Entity.Exercise"%> <%@page import="java.util.List"%>
+<%@page import="Entity.Exercise"%> 
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,12 +16,6 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
-            />
         <link
             rel="stylesheet"
             href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"
@@ -37,11 +32,13 @@
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
+        <%@ include file = "headfootlink.jsp"%>
         <title>Your Meals</title>
     </head>
     <body>
+        <%@ include file="header.jsp" %>
         <c:if test="${sessionScope.userID == null}">
-            <c:redirect url="search-exercise"></c:redirect>
+            <c:redirect url="search-food"></c:redirect>
         </c:if>
         <jsp:useBean
             id="mDAO"
@@ -52,10 +49,11 @@
                 <div class="overlay"></div>
 
                 <div class="create-meal">
-                    <form action="edit-meal-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
+                    <form action="home-control" id="mealForm" method="post" onsubmit="return ${sessionScope.userID!=null}">
                     <fieldset>
                         <legend>EDIT MEAL</legend>
                         <input type="submit" value="SUBMIT" name="submit" id="submit">
+                        <input type="hidden" name="action" value="EDIT MEAL">
                     </fieldset>
                 </form>
             </div>
@@ -97,7 +95,7 @@
                             <c:choose>
                                 <c:when test="${currentDate!= previousDate && previousDate!=''}">
                                     <c:set var="index" value ="1"></c:set>
-                                    <tr class = "dayStat group">
+                                        <tr class = "dayStat group">
                                             <td></td>
                                             <th scope="row">${previousDate}</th>
                                         <td></td>
@@ -135,11 +133,12 @@
                                         <button type="submit"><i class="fa-solid fa-pen-to-square edit-button"></i></button>
                                     </form>
                                     |
-                                    <form action="delete-meal-control" method="post" class="delete-item-form"
+                                    <form action="home-control" method="post" class="delete-item-form"
                                           onsubmit="return askDelete('Are you sure you want to delete this meal?')">
                                         <input type="hidden" name="date" value="${item.getDate()}">
                                         <input type="hidden" name="time" value="${item.getTime()}">
                                         <input type="hidden" name="name" value="${item.getMealName()}">
+                                        <input type="hidden" name="action" value="DELETE MEAL">
                                         <button type="submit"><i class="fa-solid fa-xmark"></i></i></button>
                                     </form>
                                 </td>
@@ -183,6 +182,8 @@
                 </table>
             </div>
         </div>
+        <jsp:include page="footer.jsp"></jsp:include>
+        <script src="scripts/headfootscript.js"></script>
         <script
             src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

@@ -74,13 +74,13 @@
                             <td>${i.email}</td>
                             <td>${i.phone}</td>
                             <td>
-                                <a class="#" href = "UserProfile/UserHealthInfo.jsp?userid=${i.userID}">View</a>
+                                <a class="#" href = "user-healthinfo?userid=${i.userID}">View</a>
                             </td>
                             <td>
-                                <a class="#" href = "getuser-exerciseid?userid=${i.userID}">View</a>
+                                <a class="#" href = "getuser-exerciseid-control?userid=${i.userID}">View</a>
                             </td>
                             <td>
-                                <a class="#" href = "UserProfile/UserGoal.jsp?userid=${i.userID}">View</a>
+                                <a class="#" href = "user-goal?userid=${i.userID}">View</a>
                             </td>
                             <td>
                                <a class="fa-solid fa-pen-to-square edit-button" href="update-control?id=${i.userID}" style="color: blue;"></a>
@@ -135,7 +135,7 @@
             function askDelete(id){
                 let option = confirm('Are you sure you want to delete ' + id);
                 if (option === true){
-                    window.location.href = "delete-usercontrol?userid="+id;
+                    window.location.href = "delete-user-control?userid="+id;
                 }
             }
         </script>

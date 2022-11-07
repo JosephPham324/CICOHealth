@@ -3,6 +3,18 @@
     <welcome-file-list>
         <welcome-file>index</welcome-file>
     </welcome-file-list>
+    <filter>
+        <filter-name>RouterFilter</filter-name>
+        <filter-class>Filter.RouterFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>RouterFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/Error404.jsp</location>
+    </error-page>
     <servlet>
         <servlet-name>Index</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
@@ -47,10 +59,67 @@
         <servlet-name>Register</servlet-name>
         <jsp-file>/RegisterAccount.jsp</jsp-file>
     </servlet>
+    
     <servlet>
         <servlet-name>Home</servlet-name>
         <jsp-file>/MainMenu.jsp</jsp-file>
     </servlet>
+    
+     <servlet>
+        <servlet-name>Admin</servlet-name>
+        <jsp-file>/ADMIN.jsp</jsp-file>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>AdminInfo</servlet-name>
+        <jsp-file>/AdminInfo.jsp</jsp-file>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>AdminUserInfo</servlet-name>
+        <jsp-file>/AdminUserInfo.jsp</jsp-file>
+    </servlet>
+    
+     <servlet>
+        <servlet-name>AdminExercise</servlet-name>
+        <jsp-file>/AdminExercise.jsp</jsp-file>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>AdminAddExercise</servlet-name>
+        <jsp-file>/Update/AdminAddExercise.jsp</jsp-file>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>AdminUpdateExercise</servlet-name>
+        <jsp-file>/Update/AdminUpdateExercise.jsp</jsp-file>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>AdminUpdateAdmin</servlet-name>
+        <jsp-file>/Update/AdminUpdateAdmin.jsp</jsp-file>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>AdminUpdateUser</servlet-name>
+        <jsp-file>/Update/AdminUpdateUser.jsp</jsp-file>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>UserExercise</servlet-name>
+        <jsp-file>/UserProfile/UserExercise.jsp</jsp-file>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>UserGoal</servlet-name>
+        <jsp-file>/UserProfile/UserGoal.jsp</jsp-file>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>UserHealthInfo</servlet-name>
+        <jsp-file>/UserProfile/UserHealthInfo.jsp</jsp-file>
+    </servlet>
+    
     <servlet>
         <servlet-name>FoodSearch</servlet-name>
         <jsp-file>/FoodSearch.jsp</jsp-file>
@@ -144,7 +213,7 @@
         <servlet-class>Control.Admin.AddExerciseType</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>updatecontrol</servlet-name>
+        <servlet-name>UpdateControl</servlet-name>
         <servlet-class>Control.Admin.UpdateControl</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -195,6 +264,62 @@
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
+
+     <servlet-mapping>
+        <servlet-name>Admin</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>AdminInfo</servlet-name>
+        <url-pattern>/admin-info</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>AdminUserInfo</servlet-name>
+        <url-pattern>/adminuser-info</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>AdminExercise</servlet-name>
+        <url-pattern>/adminexercise-info</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>AdminAddExercise</servlet-name>
+        <url-pattern>/adminadd-exercise</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>AdminUpdateExercise</servlet-name>
+        <url-pattern>/adminupdate-exercise</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>AdminUpdateAdmin</servlet-name>
+        <url-pattern>/adminupdate-admin</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>AdminUpdateUser</servlet-name>
+        <url-pattern>/adminupdate-user</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>UserExercise</servlet-name>
+        <url-pattern>/user-exercise</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>UserGoal</servlet-name>
+        <url-pattern>/user-goal</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>UserHealthInfo</servlet-name>
+        <url-pattern>/user-healthinfo</url-pattern>
+    </servlet-mapping>
+ 
     <servlet-mapping>
         <servlet-name>FoodSearch</servlet-name>
         <url-pattern>/search-food</url-pattern>
@@ -257,38 +382,38 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminLoadControl</servlet-name>
-        <url-pattern>/admin-loadcontrol</url-pattern>
+        <url-pattern>/admin-load-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteUserControl</servlet-name>
-        <url-pattern>/delete-usercontrol</url-pattern>
+        <url-pattern>/delete-user-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GetUserExerciseID</servlet-name>
-        <url-pattern>/getuser-exerciseid</url-pattern>
+        <url-pattern>/getuser-exerciseid-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserLoadControl</servlet-name>
-        <url-pattern>/user-loadcontrol</url-pattern>
+        <url-pattern>/user-load-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminExerciseType</servlet-name>
-        <url-pattern>/admin-exercisetype</url-pattern>
+        <url-pattern>/admin-exercisetype-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteExerciseType</servlet-name>
-        <url-pattern>/delete-exercisetype</url-pattern>
+        <url-pattern>/delete-exercisetype-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateExerciseType</servlet-name>
-        <url-pattern>/update-exercisetype</url-pattern>
+        <url-pattern>/update-exercisetype-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddExerciseType</servlet-name>
-        <url-pattern>/add-exercisetype</url-pattern>
+        <url-pattern>/add-exercisetype-control</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>updatecontrol</servlet-name>
+        <servlet-name>UpdateControl</servlet-name>
         <url-pattern>/update-control</url-pattern>
     </servlet-mapping>
     <session-config>

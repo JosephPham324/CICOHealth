@@ -67,9 +67,9 @@ public class DeleteUserControl extends HttpServlet {
             User u = user.getRoleByUserID(Integer.parseInt(id));
             user.deleteUSER(id);
             if (u.getUserRoleId() == 2) {
-                 response.sendRedirect("user-loadcontrol");
+                 response.sendRedirect("user-load-control");
             } else {
-                response.sendRedirect("admin-loadcontrol");
+                 response.sendRedirect("admin-load-control");
             }
            
         } catch (SQLException ex) {

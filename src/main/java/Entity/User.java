@@ -13,6 +13,13 @@ public class User {
     private String email;
     private String phone;
 
+    public User(int userRoleId) {
+        this.userRoleId = userRoleId;
+    }
+    
+    
+    
+
     /**
      *
      * @param userID
@@ -23,15 +30,16 @@ public class User {
      * @param email
      * @param phone
      */
-    public User(int userID, int loginID, int userRoleId, String firstName, String lastName, String email, String phone) {
+        public User(int userID, int userRoleId, String firstName, String lastName, String email, String phone) {
         this.userID = userID;
-        this.loginID = loginID;
         this.userRoleId = userRoleId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
     }
+    
+    
 
     public User(int userID, String firstName, String lastName, String email, String phone) {
         this.userID = userID;

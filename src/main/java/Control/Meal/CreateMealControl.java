@@ -74,7 +74,7 @@ public class CreateMealControl extends HttpServlet {
             throws ServletException, IOException {
         Object userID = request.getSession().getAttribute("userID");
         if (userID == null) {
-            response.sendRedirect("MainMenu.jsp");
+            response.sendRedirect("home");
         }
         
         Gson gson = new Gson();

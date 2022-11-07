@@ -26,7 +26,7 @@
     </head>
     <body>
          <a href="/Nutrition/admin-control?action=EXERCISE+MANAGEMENT" class="previous round">Back</a>
-        <form action="update-exercisetype" method="post">
+        <form action="update-exercisetype-control" method="post">
             <table>
                 <tr>
                     <td>Exercise ID</td>

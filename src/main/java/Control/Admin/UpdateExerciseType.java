@@ -61,7 +61,7 @@ public class UpdateExerciseType extends HttpServlet {
         ExerciseTypeDAO exDAO = new ExerciseTypeDAO();
         ExerciseType ex = exDAO.getExerciseTypeByID(id);
         request.setAttribute("ex", ex);
-        request.getRequestDispatcher("Update/AdminUpdateExercise.jsp").forward(request, response);
+        request.getRequestDispatcher("adminupdate-exercise").forward(request, response);
 
     }
 
@@ -82,7 +82,7 @@ public class UpdateExerciseType extends HttpServlet {
         String description = request.getParameter("description");
         ExerciseTypeDAO exDAO = new ExerciseTypeDAO();
         exDAO.updateExercise(exid, exname, calperhour, description);
-        response.sendRedirect("admin-exercisetype");
+        response.sendRedirect("admin-exercisetype-control");
     }
 
     /**

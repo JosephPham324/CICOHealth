@@ -4,7 +4,7 @@
  * 
  */
 
-let nav_links = document.querySelectorAll(".nav-link");//Nav links to switch view
+let nav_links = document.querySelectorAll(".info-container .nav-link");//Nav links to switch view
 let contents = document.querySelectorAll(".info>div");
 let form_container = document.querySelector(".form");//Form wrapper div
 let form = document.querySelector(".form form");//Form to submit data
@@ -95,7 +95,7 @@ let goalEditButtons = healthEditButtons.splice(5, 4);//Separate goal buttons fro
 //Logic for login edit buttons
 loginEditButtons.forEach((button) => {
   button.addEventListener("click", () => {//On clicking edit button
-    if (!correctPassword) {//Guard clause for password edit
+    if (!correctPassword) {//Guard clause 
       checkPassword();//User must enter password correctly before editing
       return;
     }
@@ -120,7 +120,7 @@ loginEditButtons.forEach((button) => {
           value = "${loginFields[0].textContent}"
         />
         <span id="usernameHelpBlock" class="form-text text-muted"
-          >Help text</span
+          >Enter new username</span
         >
       </div>
     </div>
@@ -139,7 +139,7 @@ loginEditButtons.forEach((button) => {
           value = "${password_value}"
         />
         <span id="passwordHelpBlock" class="form-text text-muted"
-          >Help text</span
+          >Enter new password</span
         >
       </div>
     </div>
@@ -157,10 +157,11 @@ loginEditButtons.forEach((button) => {
             aria-describedby="confirmPasswordHelpBlock"
           />
           <span id="confirmPasswordHelpBlock" class="form-text text-muted"
-            >Help text</span
+            >Confirm your new password</span
           >
         </div>
       </div>
+    <input type = "hidden" name = "action" value = "LOGIN EDIT">
     <div class="form-group row">
       <div class="offset-4 col-8">
         <button name="submit" type="submit" class="btn btn-primary">
@@ -169,7 +170,7 @@ loginEditButtons.forEach((button) => {
       </div>    
     </div>`;
     form.innerHTML = formContent;//Change the form content
-    form.action = "login-edit-control";//Change the form action
+    form.action = "home-control";//Change the form action
     if (button == loginEditButtons[1]) {//If user is editing password
       form.onsubmit = function () {
         return (
@@ -205,7 +206,7 @@ userEditButtons.forEach((button) => {
               value = "${userFields[0].textContent}"
             />
             <span id="firstNameHelpBlock" class="form-text text-muted"
-              >Help text</span
+              >Change your first name</span
             >
           </div>
         </div>
@@ -224,7 +225,7 @@ userEditButtons.forEach((button) => {
               value = "${userFields[1].textContent}"
             />
             <span id="lastNameHelpBlock" class="form-text text-muted"
-              >Help text</span
+              >Change your last name</span
             >
           </div>
         </div>
@@ -243,7 +244,7 @@ userEditButtons.forEach((button) => {
                 value = "${userFields[2].textContent}"
               />
               <span id="emailHelpBlock" class="form-text text-muted"
-                >Help text</span
+                >Change your email address</span
               >
             </div>
         </div>
@@ -262,10 +263,11 @@ userEditButtons.forEach((button) => {
                 value = "${userFields[3].textContent}"
               />
               <span id="phonedHelpBlock" class="form-text text-muted"
-                >Help text</span
+                >Change your phone number</span
               >
             </div>
         </div>
+        <input type = "hidden" name = "action" value = "EDIT USER">
         <div class="form-group row">
           <div class="offset-4 col-8">
             <button name="submit" type="submit" class="btn btn-primary">
@@ -274,7 +276,7 @@ userEditButtons.forEach((button) => {
           </div>
         </div>`;
     form.innerHTML = formContent;//Change form content
-    form.action = "edit-user-info-control";//Change form action
+    form.action = "home-control";//Change form action
   });
 });
 
@@ -337,6 +339,7 @@ healthEditButtons.forEach((button) => {
                 class="form-control"
                 aria-describedby="heightHelpBlock"
                 value = "${healthFields[2].textContent}"
+                min = "10"
               />
               <span id="heightHelpBlock" class="form-text text-muted"
                 >Changing this will also change your nutrition goal to maintenance</span
@@ -357,6 +360,7 @@ healthEditButtons.forEach((button) => {
                 class="form-control"
                 aria-describedby="weightHelpBlock"
                 value = "${healthFields[3].textContent}"
+                min="0.3"
               />
               <span id="weightHelpBlock" class="form-text text-muted"
                 >Changing this will also change your nutrition goal to maintenance</span
@@ -396,6 +400,7 @@ healthEditButtons.forEach((button) => {
         </div>
       </div> 
       <input type = "hidden" name ="destination" value = "user-info">
+      <input type = "hidden" name ="action" value = "EDIT HEALTH">
         <div class="form-group row">
           <div class="offset-4 col-8">
             <button name="submit" type="submit" class="btn btn-primary">
@@ -406,7 +411,7 @@ healthEditButtons.forEach((button) => {
     form.innerHTML = formContent;//Change form content
     document.getElementById(`activeness_${activeness}`).checked = true;//Check the current activeness level
 
-    form.action = "edit-health-info-control";//Change form action
+    form.action = "home-control";//Change form action
   });
 });
 
@@ -436,9 +441,7 @@ goalEditButtons[0].addEventListener("click", () => {
     <div class="col-8">
       <div class="input-group">
         <input id="proteinPercentage" name="proteinPercentage" placeholder="Enter protein percentage" type="number" class="form-control" required="required"
-        value = "${
-          ((protein * 4) / cal).toFixed(2) * 100
-        }" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
+        value = "${((protein * 4) / cal).toFixed(2) * 100}" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
@@ -451,9 +454,7 @@ goalEditButtons[0].addEventListener("click", () => {
     <div class="col-8">
       <div class="input-group">
         <input id="fatPercentage" name="fatPercentage" placeholder="Enter fat percentage" type="number" class="form-control" required="required"
-        value ="${
-          ((fat * 9) / cal).toFixed(2) * 100
-        }" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
+        value ="${((fat * 9) / cal).toFixed(2) * 100}" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
@@ -466,9 +467,7 @@ goalEditButtons[0].addEventListener("click", () => {
     <div class="col-8">
       <div class="input-group">
         <input id="carbPercentage" name="carbPercentage" placeholder="Enter carb percentage" type="number" class="form-control"
-        value = "${
-          ((carb * 4) / cal).toFixed(2) * 100
-        }" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
+        value = "${((carb * 4) / cal).toFixed(2) * 100}" min = "0" max = "100" aria-describedby="carbHelpBlock" step="0.1"> 
         <div class="input-group-append">
           <div class="input-group-text">%</div>
         </div>
@@ -477,6 +476,7 @@ goalEditButtons[0].addEventListener("click", () => {
     </div>
   </div> 
   <input type="hidden" name ="purpose" value="edit-cal" id ="purpose">
+  <input type="hidden" name ="action" value="EDIT GOAL">
   <div class="form-group row">
     <div class="offset-4 col-8">
       <button name="submit" type="submit" class="btn btn-primary">Submit</button>
@@ -484,7 +484,7 @@ goalEditButtons[0].addEventListener("click", () => {
   </div>
   `;
   form.innerHTML = formContent;//Change form content
-  form.action = "edit-goal-control";//Change form action
+  form.action = "home-control";//Change form action
 
   //For changing macro percentages
   let proteinPercentage = document.getElementById("proteinPercentage");//Protein
@@ -568,6 +568,7 @@ goalEditButtons.slice(1).forEach((button) => {
       <div class ="col-8" id ="totalCalorie">${cal}</div>
   </div>
   <input type="hidden" name="purpose" value ="edit-macro">
+  <input type="hidden" name="action" value = "EDIT GOAL">
   <div class="form-group row">
     <div class="offset-4 col-8">
       <button name="submit" type="submit" class="btn btn-primary">Submit</button>

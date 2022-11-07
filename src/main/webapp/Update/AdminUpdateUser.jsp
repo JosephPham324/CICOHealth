@@ -25,7 +25,7 @@
         </style>
     </head>
     <body>
-         <a href="user-loadcontrol" class="previous round">Back</a>
+         <a href="user-load-control" class="previous round">Back</a>
         <form action="update-control" method="post">
             <table>
                 <tr>

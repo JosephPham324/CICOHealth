@@ -6,7 +6,6 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
     overflow-x: hidden;
 }
 .edit-form{
@@ -194,4 +193,8 @@ tr.dayStat td{
 #mealForm p{
     font-size:0.8em;
     color:red;
+}
+
+.form-control,.btn{
+    font-size: 1em !important;
 }

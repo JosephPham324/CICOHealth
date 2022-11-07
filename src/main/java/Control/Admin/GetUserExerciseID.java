@@ -58,8 +58,8 @@ public class GetUserExerciseID extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("userid");
         HttpSession session = request.getSession();//Get current session
-        session.setAttribute("userID", id);//Set userID to logged in userID
-        response.sendRedirect("UserProfile/UserExercise.jsp");//Redirect to home controller
+        session.setAttribute("adminuserID", id);//Set userID to logged in userID
+        response.sendRedirect("user-exercise");//Redirect to home controller
     }
 
     /**

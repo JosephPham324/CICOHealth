@@ -77,7 +77,7 @@ public class AddExerciseType extends HttpServlet {
         String description = request.getParameter("description");
         ExerciseTypeDAO exDAO = new ExerciseTypeDAO();
         exDAO.addExerciseType(exid, exname, calperhour, description);
-        response.sendRedirect("admin-exercisetype");
+        response.sendRedirect("admin-exercisetype-control");
     }
 
     /**

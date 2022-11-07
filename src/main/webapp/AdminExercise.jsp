@@ -66,7 +66,6 @@
                             <a style="float: left;" href = "Update/AdminAddExercise.jsp" class="add">Add new exercise</a>
                             <input style="float: right;" type="submit" id="searchsubmit" value="Search"/>
                             <input style="float: right;margin-bottom: 5px;border-radius: 4px;"  type="Search" name="txtSearch" placeholder="&nbsp Enter exercise name">
-                            
                         </div>
                     </form>
                 </div>
@@ -88,7 +87,7 @@
                                 <td>${i.calPerHour}</td>
                                 <td>${i.description}</td>
                                 <td>
-                                    <a class="fa-solid fa-pen-to-square edit-button" href="update-exercisetype?exerciseid=${i.exerciseID}" style="color: blue;"></a>
+                                    <a class="fa-solid fa-pen-to-square edit-button" href="update-exercisetype-control?exerciseid=${i.exerciseID}" style="color: blue;"></a>
                                     |
                                     <a class="delete-usercontrol" href = "#" onclick = "askDelete(${i.exerciseID})" style="color: red"
                                    ><i class="fa-solid fa-xmark"></i
@@ -141,7 +140,7 @@
                                         function askDelete(id) {
                                             let option = confirm('Are you sure you want to delete ' + id);
                                             if (option === true) {
-                                                window.location.href = "delete-exercisetype?exerciseid=" + id;
+                                                window.location.href = "delete-exercisetype-control?exerciseid=" + id;
                                             }
                                         }
     </script>

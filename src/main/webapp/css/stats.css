@@ -19,7 +19,7 @@
     border: none;
     cursor:pointer;
     font-size: 20px;
-    border-radius: 10px;
+    border-radius: 100px;
 }
 
 .buttons button:first-child{
@@ -63,7 +63,7 @@ td.failure{
     color:white;
     background-color:#e95a3a;
 }
-td.success{
+td.successful{
     color:white;
     background-color:green;
 }

@@ -12,8 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@ include file = "headfootlink.jsp"%>
         <link rel="stylesheet" href="css/admin.css" />
-
-        <title>JSP Page</title>
+        <title>ADMIN PAGE</title>
         <style>
 
 

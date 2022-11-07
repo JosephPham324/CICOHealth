@@ -61,7 +61,7 @@ public class UserLoadControl extends HttpServlet {
     	UserDAO user = new UserDAO();
     	List<User> list = user.getListUser();
         request.setAttribute("listUser", list);
-        request.getRequestDispatcher("AdminUserInfo.jsp").forward(request, response);
+        request.getRequestDispatcher("adminuser-info").forward(request, response);
     }
 
     /**
@@ -79,7 +79,7 @@ public class UserLoadControl extends HttpServlet {
         UserDAO user = new UserDAO();
     	List<User> list = user.getUserByName(username);
         request.setAttribute("listUser", list);
-        request.getRequestDispatcher("AdminUserInfo.jsp").forward(request, response);
+        request.getRequestDispatcher("adminuser-info").forward(request, response);
     }
 
     /**

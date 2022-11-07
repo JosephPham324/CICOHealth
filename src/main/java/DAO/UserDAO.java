@@ -231,6 +231,19 @@ public class UserDAO {
         }
         return null;
     }
+        public int getRoleIDByUserID(int id) throws SQLException {
+        String query = "select USERROLEID from dbo.[User]\n"
+                + "where USERID = ?";
+        con = new DBContext().getConnection(); // open connection to SQL
+        ps = con.prepareStatement(query); // move query from Netbeen to SQl
+
+        ps.setString(1, id+"");
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            return rs.getInt("USERROLEID");
+        }
+        return 0;
+    }
 
     /**
      * Edit user info in USER table
@@ -284,7 +297,7 @@ public class UserDAO {
 //        System.out.println(a);
         String username = "Thinh";
         UserDAO user = new UserDAO();
-    	List<User> list = user.getUserByName(username);
-        System.out.println(list);
+//    	List<User> list = user.getUserByName(username);
+        System.out.println(user.getRoleIDByUserID(2));
     }
 }

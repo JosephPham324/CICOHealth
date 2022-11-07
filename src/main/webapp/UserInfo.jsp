@@ -1,7 +1,7 @@
 <%-- 
     Document   : UserInfo
     Created on : Oct 9, 2022, 7:35:44 PM
-    Author     : ASUS
+    Author     : Thinh, Pham Nhat Quang
 --%>
 
 <%@page import="Entity.DailyNutritionGoal"%>
@@ -20,9 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-            crossorigin="anonymous"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
             />
         <link
             rel="stylesheet"
@@ -32,38 +30,40 @@
             referrerpolicy="no-referrer"
             />
         <link rel="stylesheet" href="css/userinfo.css" />
+        <link rel="stylesheet" href="css/header.css" />
         <title>User Profile</title>
         <style>
             .error {
                 color: red;
             }
         </style>
-
+        <%@ include file = "headfootlink.jsp"%>
     </head>
     <body>
+        <%@ include file="header.jsp" %>
         <c:if test="${sessionScope.userID == null}">
             <c:redirect url="home"></c:redirect>
         </c:if>
-        <%
-            DAO.LoginDAO lDAO = new DAO.LoginDAO();
+        <%            DAO.LoginDAO lDAO = new DAO.LoginDAO();
             DAO.UserDAO uDAO = new DAO.UserDAO();
             DAO.HealthDAO hDAO = new HealthDAO();
             DAO.GoalDAO gDAO = new DAO.GoalDAO();
             String id = request.getSession().getAttribute("userID").toString();
-            
+
             Login loginInfo = lDAO.getLoginInfo(id);
             User user = uDAO.getUserByID(id);
             UserHealthInfo healthInfo = hDAO.findUserHealthInfo(Integer.parseInt(id));
             DailyNutritionGoal goals = gDAO.getGoalByID(Integer.parseInt(id));
-            
+
             String enteredPassword = request.getParameter("password");
-            
+
             boolean correctPassword = false;
             if (request.getParameter("password") != null) {
                 correctPassword = Security.RegLoginLogic.verifyPassword(
                         request.getParameter("password").toString(),
                         loginInfo.getPasswordSalt(),
                         loginInfo.getPasswordHash());
+                request.getSession().setAttribute("panel", "loginInfo");
             }
             Object panel = request.getSession().getAttribute("panel");
             int panelSwitch = 0;
@@ -104,17 +104,15 @@
                 </div>
                 <div class="form-group row">
                     <div class="offset-4 col-8">
-                        <button name="submit" type="submit" class="btn btn-primary">
+                        <button name="submit" type="submit" class="btn btn-dark">
                             Submit
                         </button>
                     </div>
                 </div>
             </form>
         </div>
-
-        <div class="header row col-sm-12 g-0">Header</div>
         <div class="info-container row g-0">
-            <div class="col-sm-2">
+            <div class="col-sm-2" style="background-color: #080808;">
                 <ul class="nav flex-column nav-pills nav-fill">
                     <li class="nav-item">
                         <a class="nav-link <%=panelSwitch == 0 ? "active" : ""%>" href="#" data-destination="#login-info"
@@ -133,8 +131,13 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-sm-10 row g-0 info tab-content" id="pills-tabContent">
+            <div class="col-sm-10 row g-0 info tab-content" id="pills-tabContent"
+                 style="background-image: url('${pageContext.request.contextPath}/image/backgroundyourlogininfo.png');
+                 background-size: cover;
+                 background-position: center center;"
+                 >
                 <div class="login-info <%=panelSwitch == 0 ? "active" : ""%>" id="login-info">
+                    <img src="image/person.png" alt="AVATAR" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;display: block;"/>
                     <h1>Your Login Information</h1>
                     <div class="field">
                         <div class="label">Username:</div>
@@ -156,7 +159,7 @@
                 </div>
 
 
-                <div class="user-info <%=panelSwitch == 1 ? "active" : ""%>" id="user-info">
+                <div class="user-info <%=panelSwitch == 1 ? "active" : ""%>" id="user-info" >
                     <h1>Your Personal Information</h1>
                     <div class="field">
                         <div class="label">First name:</div>
@@ -180,7 +183,7 @@
                     </div>
                 </div>
                 <div class="health-info <%=panelSwitch == 2 ? "active" : ""%>" id="health-info">
-                    <h1>Quang's Health Information</h1>
+                    <h1><%=user.getLastName()%>'s Health Information</h1>
                     <div class="field">
                         <div class="label">Age:</div>
                         <span class="field-value" id="age-value"><%=healthInfo.getAge()%></span>
@@ -232,56 +235,58 @@
                 </div>
             </div>
         </div>
-        <script>
-            document.getElementById('txtPassword1Message').style.display = 'none';
-            let correctPassword = <%=correctPassword%>;
-            let activeness = <%=healthInfo.getActiveness()%>;
-            let enteredPassword = "<%=enteredPassword%>";
-            let cal = <%=goals.getCalories()%>
-            let protein = <%=goals.getProtein()%>
-            let fat = <%=goals.getFat()%>
-            let carb = <%=goals.getCarb()%>
-            if (!correctPassword) {
-                let showPassword = document.getElementById('toggle-password-visibility');
-                showPassword.addEventListener('click', checkPassword);
-                if (enteredPassword !== "null") {
-                    document.getElementById('txtPassword1Message').style.display = 'block';
-                }
-            } else {
+        <jsp:include page="footer.jsp"></jsp:include>
+            <script src="scripts/headfootscript.js"></script>
+            <script>
                 document.getElementById('txtPassword1Message').style.display = 'none';
-            }
-            
-            function checkPassword() {
-                {
-                    
-                    let form = document.querySelector('.form form')
-                    form.action = '#';
-                    let html = `
-            <div class="form-group row">
-                <label for="password" class="col-4 col-form-label">Verify Password:</label>
-                <div class="col-8">
-                    <input
-                        id="password"
-                        name="password"
-                        placeholder="Your password"
-                        type="password"
-                        class="form-control"
-                        aria-describedby="passwordHelpBlock"
-                        value = ""
-                        />
-                    <span id="passwordHelpBlock" class="form-text text-muted">Help text</span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="offset-4 col-8">
-                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-            `;
-                    form.innerHTML = html;
-                    document.querySelector('.form').classList.add('active');
+                let correctPassword = <%=correctPassword%>;
+                let activeness = <%=healthInfo.getActiveness()%>;
+                let enteredPassword = "<%=enteredPassword%>";
+                let cal = <%=goals.getCalories()%>
+                let protein = <%=goals.getProtein()%>
+                let fat = <%=goals.getFat()%>
+                let carb = <%=goals.getCarb()%>
+                if (!correctPassword) {
+                    let showPassword = document.getElementById('toggle-password-visibility');
+                    showPassword.addEventListener('click', checkPassword);
+                    if (enteredPassword !== "null") {
+                        document.getElementById('txtPassword1Message').style.display = 'block';
+                    }
+                } else {
+                    document.getElementById('txtPassword1Message').style.display = 'none';
                 }
-            }
+
+                function checkPassword() {
+                    {
+
+                        let form = document.querySelector('.form form')
+                        form.action = '#';
+                        let html = `
+                <div class="form-group row">
+                    <label for="password" class="col-4 col-form-label">Verify Password:</label>
+                    <div class="col-8">
+                        <input
+                            id="password"
+                            name="password"
+                            placeholder="Your password"
+                            type="password"
+                            class="form-control"
+                            aria-describedby="passwordHelpBlock"
+                            value = ""
+                            />
+                        <span id="passwordHelpBlock" class="form-text text-muted">Help text</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="offset-4 col-8">
+                        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                `;
+                        form.innerHTML = html;
+                        document.querySelector('.form').classList.add('active');
+                    }
+                }
         </script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
