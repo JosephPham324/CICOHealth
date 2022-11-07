@@ -50,6 +50,11 @@
         <title>Users Info</title>
     </head>
     <body>
+        <%
+            if (session.getAttribute("AdminRole") == null) {
+                response.sendRedirect("error-page");
+            }
+        %>
          <a href="admin" class="previous round">Back</a>
         <div class="info-container">
             <div class="info-table">

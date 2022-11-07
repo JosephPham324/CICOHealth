@@ -66,23 +66,23 @@ public class SupportedPaths {
 //        correspondingReferrer.put("/admin-control?action=USER+INFO", "/login");
 //        correspondingReferrer.put("/admin-control?action=EXERCISE+MANAGEMENT", "/login");
 
-        correspondingReferrer.put("/admin-control", "/admin");
-        correspondingReferrer.put("/admin", "/admin-admin-control");
+        correspondingReferrer.put("/admin-control", "/error-page");
+        correspondingReferrer.put("/admin", "/error-page");
 
-        correspondingReferrer.put("/update-healthinfo", "/admin-control");
-        correspondingReferrer.put("/user-goal", "/admin-control");
+        correspondingReferrer.put("/update-healthinfo", "/error-page");
+        correspondingReferrer.put("/user-goal", "/error-page");
 
-        correspondingReferrer.put("/delete-user-control", "/admin-control");
-        correspondingReferrer.put("/getuser-exerciseid-control", "/admin-control");
-        correspondingReferrer.put("/user-load-control", "/admin-control");
-        correspondingReferrer.put("/user-exercise", "/admin-control");
+        correspondingReferrer.put("/delete-user-control", "/error-page");
+        correspondingReferrer.put("/getuser-exerciseid-control", "/error-page");
+        correspondingReferrer.put("/user-load-control", "/error-page");
+        correspondingReferrer.put("/user-exercise", "/error-page");
 
-        correspondingReferrer.put("/admin-exercisetype-control", "/admin-control");
-        correspondingReferrer.put("/delete-exercisetype-control", "/admin-control");
-        correspondingReferrer.put("/update-exercisetype-control", "/admin-control");
-        correspondingReferrer.put("/add-exercisetype-control", "/admin-control");
-        correspondingReferrer.put("/adminadd-exercise", "/admin-control");
-        correspondingReferrer.put("/update-control", "/admin-control");
+        correspondingReferrer.put("/admin-exercisetype-control", "/error-page");
+        correspondingReferrer.put("/delete-exercisetype-control", "/error-page");
+        correspondingReferrer.put("/update-exercisetype-control", "/error-page");
+        correspondingReferrer.put("/add-exercisetype-control", "/error-page");
+        correspondingReferrer.put("/adminadd-exercise", "/error-page");
+        correspondingReferrer.put("/update-control", "/error-page");
     }
 
     public boolean availableServlet(String servletPath) {
@@ -105,7 +105,6 @@ public class SupportedPaths {
         if (servletPath.endsWith("/home-control") || servletPath.endsWith("/logout-control") || servletPath.endsWith("/admin-control")) {
             return true;
         }
-
         return referrerPath.endsWith(this.correspondingReferrer.get(servletPath));
     }
 
@@ -141,6 +140,8 @@ public class SupportedPaths {
 //    }
     public static void main(String[] args) {
         SupportedPaths paths = new SupportedPaths();
-        System.out.println(paths.checkCorrectReferrer("/update-control?id=2", "/admin-control?action=ADMIN+INFO"));
+        System.out.println(paths.checkCorrectReferrer("/update-control?id=2", "/admin-control"));
+        String referrerPath = paths.getCorrectReferrer("/update-control");
+        System.out.println(referrerPath);
     }
 }

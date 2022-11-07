@@ -112,7 +112,14 @@ public class RouterFilter implements Filter {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             String url = httpRequest.getServletPath();
             
-            if (url.endsWith("/home-control") || url.endsWith("/logout-control") || url.endsWith("/admin-control") || url.contains("?")) {
+            if (url.endsWith("/home-control") || url.endsWith("/logout-control") || url.endsWith("/admin-control") 
+                || url.endsWith("/getuser-exerciseid-control") || url.endsWith("/update-control")  || url.endsWith("/delete-user-control")
+                || url.endsWith("/admin-load-control") || url.endsWith("/user-load-control") || url.endsWith("/admin-info")
+                || url.endsWith("/adminuser-info")  || url.endsWith("/adminexercise-info") || url.endsWith("/adminadd-exercise") 
+                || url.endsWith("/adminupdate-exercise") || url.endsWith("/delete-exercisetype-control") || url.endsWith("/delete-exercisetype-control") 
+                || url.endsWith("/update-exercisetype-control") || url.endsWith("/admin-exercisetype-control")
+                || url.endsWith("/adminexercise-info")    || url.endsWith("/add-exercisetype-control")
+                || url.endsWith("/login-control") || url.endsWith("/register-control")) {
                 chain.doFilter(request, response);
                 return;
             }
@@ -145,7 +152,7 @@ public class RouterFilter implements Filter {
             }
 
             SupportedPaths paths = new SupportedPaths();
-            if (url.endsWith("control") && (!url.endsWith("home-control") || !url.endsWith("admin-control"))) {//Redirect if user enters url ending with control
+            if ((url.endsWith("control") || url.contains("?")) && (!url.endsWith("home-control") || !url.endsWith("admin-control"))) {//Redirect if user enters url ending with control
                 String referrer = httpRequest.getHeader("referer");
                 boolean correctReferrer = paths.checkCorrectReferrer(url, referrer);
                 httpResponse.getWriter().write(correctReferrer + "");
@@ -157,7 +164,7 @@ public class RouterFilter implements Filter {
                     }
                     httpResponse.sendRedirect(httpRequest.getContextPath() + "/home-control");
                     return;
-                } else if (!correctReferrer) {
+                } else if (correctReferrer) {
                     httpResponse.sendRedirect(referrer);
                     return;
                 }
