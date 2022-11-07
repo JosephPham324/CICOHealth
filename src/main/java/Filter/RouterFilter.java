@@ -149,7 +149,7 @@ public class RouterFilter implements Filter {
             if (paths.checkAdminPath(url) && httpRequest.getSession().getAttribute("userID") != null) {
                 System.out.println(url);
 //                System.out.println((String) httpRequest.getSession().getAttribute("userID"));
-                String userID = httpRequest.getSession().getAttribute("userID")+"";
+                String userID = httpRequest.getSession().getAttribute("userID") + "";
                 int userRole = new UserDAO().getRoleIDByUserID(Integer.parseInt(userID));
                 if (userRole == 1) {
                     chain.doFilter(request, response);
@@ -158,6 +158,9 @@ public class RouterFilter implements Filter {
                     httpResponse.sendRedirect(httpRequest.getContextPath() + "/home-control");
                     return;
                 }
+            } else if (paths.checkAdminPath(url) && httpRequest.getSession().getAttribute("userID") == null) {
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/home-control");
+                return;
             }
             if (url.endsWith("control") && (!url.endsWith("home-control"))) {//Redirect if user enters url ending with control
                 String referrer = httpRequest.getHeader("referer");
