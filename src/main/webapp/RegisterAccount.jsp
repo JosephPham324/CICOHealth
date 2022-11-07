@@ -204,9 +204,9 @@
                             <div class="form-check">
                                 <input type="checkbox" id="invalidCheck" name="remember" class="form-check-input" value = "remember" required>
                                 <label class="form-check-label" for="invalidCheck">
-                                    <a href="TermConditions.jsp" class="text-success text-gradient font-weight-bold">&nbsp;Terms&nbsp;&&nbsp;Conditions&nbsp;</a>
+                                    <a href="terms" class="text-success text-gradient font-weight-bold">&nbsp;Terms&nbsp;&&nbsp;Conditions&nbsp;</a>
                                     and 
-                                    <a href="TermConditions.jsp" class="text-success text-gradient font-weight-bold">&nbsp;Privacy&nbsp;Policy</a>
+                                    <a href="terms" class="text-success text-gradient font-weight-bold">&nbsp;Privacy&nbsp;Policy</a>
                                 </label>
                                 <div class="invalid-feedback">
                                     You must agree before submitting.
