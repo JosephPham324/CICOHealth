@@ -32,8 +32,11 @@ public class SupportedPaths {
         adminPaths = new HashSet<>();
 
         correspondingReferrer.put("/login-control", "/login");
+        correspondingReferrer.put("/login-error-control", "/login");
         correspondingReferrer.put("/healthinfo-control", "/register-control");
         correspondingReferrer.put("/register-control", "/register");
+        correspondingReferrer.put("/register-error-control", "/register");
+        
 
         correspondingReferrer.put("/create-meal-control", "/search-food");
         correspondingReferrer.put("/edit-meal-control", "/user-meals");

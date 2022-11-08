@@ -113,7 +113,7 @@ public class RouterFilter implements Filter {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             String url = httpRequest.getServletPath();
 
-            if (url.endsWith("/home-control") || url.endsWith("/logout-control")) {
+            if (url.endsWith("/home-control") || url.endsWith("/logout-control") || url.endsWith("/login-control") || url.endsWith("/register-control")) {
                 chain.doFilter(request, response);
                 return;
             }
@@ -147,7 +147,7 @@ public class RouterFilter implements Filter {
 
             SupportedPaths paths = new SupportedPaths();
             if (paths.checkAdminPath(url) && httpRequest.getSession().getAttribute("userID") != null) {
-                System.out.println(url);
+//                System.out.println(url);
 //                System.out.println((String) httpRequest.getSession().getAttribute("userID"));
                 String userID = httpRequest.getSession().getAttribute("userID") + "";
                 int userRole = new UserDAO().getRoleIDByUserID(Integer.parseInt(userID));
