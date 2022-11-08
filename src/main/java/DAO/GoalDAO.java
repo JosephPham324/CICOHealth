@@ -111,8 +111,10 @@ public class GoalDAO {
         int ag = Integer.parseInt(age);
         if (gender.equalsIgnoreCase("Male")) {
             calories = ((13.397 * w) + (4.799 * h) - (5.677 * ag) + 88.362) * r;
-        }
+        } else
         if (gender.equalsIgnoreCase("Female")) {
+            calories = ((9.247 * w) + (3.098 * h) - (4.330 * ag) + 447.593) * r;
+        } else {
             calories = ((9.247 * w) + (3.098 * h) - (4.330 * ag) + 447.593) * r;
         }
         return calories;
