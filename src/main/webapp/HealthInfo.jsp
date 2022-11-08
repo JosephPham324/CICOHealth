@@ -65,9 +65,9 @@
                                     }%>
                                 health info</legend>
                             <input type="hidden" id="userID" name="userID">
-                            <label class="col-4 col-form-label">How active are you?</label> 
 
                             <!--FORM GROUP FOR ACTIVENESS-->
+                            <label class="col-4 col-form-label">How active are you?</label> 
                             <div class="col-8">
                                 <div class="custom-controls-stacked">
                                     <div class="custom-control custom-radio">
@@ -118,7 +118,7 @@
                         <div class="form-group row">
                             <label for="a" class="col-4 col-form-label">Age</label> 
                             <div class="col-8">
-                                <input id="age" name="age" type="number" class="form-control">
+                                <input id="age" name="age" type="number" class="form-control" min = "10">
                             </div>
                         </div>
 
@@ -126,7 +126,7 @@
                         <div class="form-group row">
                             <label for="height" class="col-4 col-form-label">Height (cm)</label> 
                             <div class="col-8">
-                                <input id="height" name="height" type="text" required="required" class="form-control">
+                                <input id="height" name="height" type="text" required="required" class="form-control" min = "1">
                             </div>
                         </div>
 
@@ -134,7 +134,7 @@
                         <div class="form-group row">
                             <label for="weight" class="col-4 col-form-label">Weight (kg)</label> 
                             <div class="col-8">
-                                <input id="weight" name="weight" type="text" class="form-control" required="required">
+                                <input id="weight" name="weight" type="text" class="form-control" required="required" min = "0.5">
                             </div>
                         </div> 
 
