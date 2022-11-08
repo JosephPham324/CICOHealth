@@ -1,7 +1,12 @@
 <%-- 
     Document   : footer
     Created on : Oct 18, 2022, 10:16:32 PM
-    Author     : Tran Thi Ngoc Hieu CE161025
+    Author     : Group 4
+    CE161130  Nguyen Le Quang Thinh (Leader)
+    CE170036  Pham Nhat Quang
+    CE160464  Nguyen The Lu
+    CE161096  Nguyen Ngoc My Quyen
+    CE161025  Tran Thi Ngoc Hieu
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

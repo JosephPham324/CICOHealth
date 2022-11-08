@@ -8,12 +8,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- *
- * @author Nguyen Le Quang Thinh, Pham Nhat Quang
+ * Semester: FALL 2022
+ * Subject : FRJ301
+ * Class   : SE1606
+ * Project : Nutrition 
+ * @author : Group 4
+ * CE161130  Nguyen Le Quang Thinh (Leader)
+ * CE170036  Pham Nhat Quang
+ * CE160464  Nguyen The Lu
+ * CE161096  Nguyen Ngoc My Quyen
+ * CE161025  Tran Thi Ngoc Hieu
  */
 public class GoalDAO {
 
@@ -146,11 +152,13 @@ public class GoalDAO {
     }
 
     /**
-     *
-     * @param userID
-     * @param protein
-     * @param fat
-     * @param carb
+     * This function to edit macro goal
+     * 
+     * @param userID    User ID
+     * @param protein   Protein
+     * @param fat       Fat
+     * @param carb      Carb
+     * @throws java.sql.SQLException Exception of SQL
      */
     public void editMacroGoal(String userID, String protein, String fat, String carb) throws SQLException {
         String query = "update DAILYNUTRITIONGOAL\n"
@@ -171,6 +179,16 @@ public class GoalDAO {
         ps.executeUpdate();
     }
 
+    /**
+     * This function edit calorie goal
+     * 
+     * @param userID                User ID
+     * @param calorie               Calorie
+     * @param proteinPercentage     Protein percent
+     * @param fatPercentage         Fat percent
+     * @param carbPercentage        Carb percent
+     * @throws SQLException         Exception of SQL
+     */
     public void editCalorieGoal(String userID, String calorie, String proteinPercentage, String fatPercentage, String carbPercentage) throws SQLException {
         String query = "update DAILYNUTRITIONGOAL\n"
                 + "set CALORIE = ?,\n"
@@ -221,6 +239,7 @@ public class GoalDAO {
             consumed[0], consumed[1], consumed[2], consumed[3],
             burned};
     }
+
 
     /**
      *

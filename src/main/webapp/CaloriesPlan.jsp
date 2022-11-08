@@ -1,7 +1,12 @@
 <%-- 
     Document   : CaloriesPlan
     Created on : Oct 18, 2022, 2:38:19 PM
-    Author     : ASUS
+    Author     : Group 4
+    CE161130  Nguyen Le Quang Thinh (Leader)
+    CE170036  Pham Nhat Quang
+    CE160464  Nguyen The Lu
+    CE161096  Nguyen Ngoc My Quyen
+    CE161025  Tran Thi Ngoc Hieu
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

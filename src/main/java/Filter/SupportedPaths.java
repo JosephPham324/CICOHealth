@@ -17,8 +17,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
- * @author Pham Nhat Quang CE170036 (FPTU CANTHO)
+ * Semester: FALL 2022
+ * Subject : FRJ301
+ * Class   : SE1606
+ * Project : Nutrition 
+ * @author : Group 4
+ * CE161130  Nguyen Le Quang Thinh (Leader)
+ * CE170036  Pham Nhat Quang
+ * CE160464  Nguyen The Lu
+ * CE161096  Nguyen Ngoc My Quyen
+ * CE161025  Tran Thi Ngoc Hieu
  */
 public class SupportedPaths {
 
@@ -26,6 +34,9 @@ public class SupportedPaths {
     private HashMap<String, String> correspondingReferrer;//Key: servlet, value: referrer
     private HashSet<String> adminPaths;
 
+    /**
+     * Constructor supported paths
+     */
     public SupportedPaths() {
 
         correspondingReferrer = new HashMap<>();
@@ -77,10 +88,21 @@ public class SupportedPaths {
         adminPaths.add("/user-healthinfo");
     }
 
+    /**
+     * Available servlet
+     * @param servletPath servlet path 
+     * @return Boolean containsKey
+     */
     public boolean availableServlet(String servletPath) {
         return this.correspondingReferrer.containsKey(servletPath);
     }
 
+    /**
+     * Check correct referrer
+     * @param servletPath servlet path
+     * @param referrerPath referrer path
+     * @return Boolean
+     */
     public boolean checkCorrectReferrer(String servletPath, String referrerPath) {
         String pattern = "(\\?[a-zA-z]+=.+)";
         System.out.println(servletPath);
@@ -103,10 +125,20 @@ public class SupportedPaths {
         return referrerPath.endsWith(this.correspondingReferrer.get(servletPath));
     }
 
+    /**
+     * Get correct referrer
+     * @param servletPath servlet path
+     * @return String corresponding referrer
+     */
     public String getCorrectReferrer(String servletPath) {
         return this.correspondingReferrer.get(servletPath);
     }
 
+    /**
+     * Check admin path
+     * @param path String path
+     * @return boolean
+     */
     public boolean checkAdminPath(String path) {
         String pattern = "(\\?[a-zA-z]+=.+)";
         String pattern1 = "(^/*Nutrition)";
@@ -115,12 +147,12 @@ public class SupportedPaths {
         return this.adminPaths.contains(path);
     }
 
+    /**
+     * Get corresponding referrer
+     * @return HashMap"<String, String>"  hash map string string
+     */
     public HashMap<String, String> getCorrespondingReferrer() {
         return correspondingReferrer;
     }
 
-    public static void main(String[] args) {
-        SupportedPaths paths = new SupportedPaths();
-        System.out.println(paths.checkAdminPath("/Nutrition/admin-control?action=USER+INFO"));
-    }
 }

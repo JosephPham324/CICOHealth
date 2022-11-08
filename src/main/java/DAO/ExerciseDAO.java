@@ -11,12 +11,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
- *
- * @author Pham Nhat Quang
+ * Semester: FALL 2022
+ * Subject : FRJ301
+ * Class   : SE1606
+ * Project : Nutrition 
+ * @author : Group 4
+ * CE161130  Nguyen Le Quang Thinh (Leader)
+ * CE170036  Pham Nhat Quang
+ * CE160464  Nguyen The Lu
+ * CE161096  Nguyen Ngoc My Quyen
+ * CE161025  Tran Thi Ngoc Hieu
  */
 public class ExerciseDAO {
 
@@ -36,28 +43,29 @@ public class ExerciseDAO {
     ResultSet rs = null;
 
     /**
-     *
+     * String query
      */
     String query;
 
     /**
-     *
+     * Pattern time
      */
     String datetimePattern = "yyyy-MM-dd hh:mm:ss";
 
     /**
-     *
+     * Formatted date
      */
     SimpleDateFormat dateFormatter;
 
     /**
+     * This function to insert exercise
      *
-     * @param time
-     * @param userID
-     * @param exerciseType
-     * @param duration
-     * @param calories
-     * @throws SQLException
+     * @param time              time of exercise
+     * @param userID            user id of exercise
+     * @param exerciseType      exercise type of exercise
+     * @param duration          duration of exercise
+     * @param calories          calories of exercise
+     * @throws SQLException     Exception of SQL
      */
     public void insertExercise(Date time, int userID, ExerciseType exerciseType, double duration, double calories) throws SQLException {
         query = "insert into EXERCISE values(?,?,?,?,?,?)";
@@ -77,10 +85,11 @@ public class ExerciseDAO {
     }
 
     /**
-     *
-     * @param userID
-     * @return
-     * @throws SQLException
+     * This function to get list exercise by user id
+     * 
+     * @param userID user id
+     * @return List [Exercise]
+     * @throws SQLException Exception of SQL
      */
     public List<Exercise> getExerciseByUserID(String userID) throws SQLException {
         List<Exercise> res = new ArrayList<>();
@@ -100,6 +109,14 @@ public class ExerciseDAO {
         return res;
     }
 
+    /**
+     * This function to get exercise calorie by date and user id
+     * 
+     * @param userID user id
+     * @param date date of exercise
+     * @return double calories
+     * @throws SQLException Exception of SQL
+     */
     public double getExercisesCalorieByDate(String userID, String date) throws SQLException {
         query = "select * from EXERCISE\n"
                 + "WHERE USERID = ?\n"
@@ -130,13 +147,14 @@ public class ExerciseDAO {
     }
 
     /**
-     *
-     * @param duration
-     * @param exerciseID
-     * @param userID
-     * @param date
-     * @param time
-     * @throws SQLException
+     * This function to update exercise
+     * 
+     * @param duration      duration of exercise
+     * @param exerciseID    exercise id of exercise
+     * @param userID        user id
+     * @param date          date of exercise
+     * @param time          time of exercise
+     * @throws SQLException Exception of SQL
      */
     public void updateExercise(String duration, String exerciseID, String userID, String date, String time) throws SQLException {
         query = "update EXERCISE\n"
@@ -160,11 +178,12 @@ public class ExerciseDAO {
     }
 
     /**
-     *
-     * @param userID
-     * @param date
-     * @param time
-     * @throws SQLException
+     * This function to delete exercise
+     * 
+     * @param userID        user id
+     * @param date          date of exercise
+     * @param time          time of exercise
+     * @throws SQLException Exception of SQL
      */
     public void deleteExercise(String userID, String date, String time) throws SQLException {
         query = "delete from EXERCISE\n"
@@ -181,17 +200,4 @@ public class ExerciseDAO {
         ps.executeUpdate();
     }
 
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        ExerciseDAO dao = new ExerciseDAO();
-        ArrayList<Exercise> lol;
-        try {
-            System.out.println(dao.getExercisesCalorieByDate("2","2022-10-25"));
-        } catch (SQLException ex) {
-            Logger.getLogger(ExerciseDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 }

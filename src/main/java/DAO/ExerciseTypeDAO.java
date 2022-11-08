@@ -8,12 +8,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- *
- * @author Pham Nhat Quang
+ * Semester: FALL 2022
+ * Subject : FRJ301
+ * Class   : SE1606
+ * Project : Nutrition 
+ * @author : Group 4
+ * CE161130  Nguyen Le Quang Thinh (Leader)
+ * CE170036  Pham Nhat Quang
+ * CE160464  Nguyen The Lu
+ * CE161096  Nguyen Ngoc My Quyen
+ * CE161025  Tran Thi Ngoc Hieu
  */
 public class ExerciseTypeDAO {
 
@@ -33,16 +39,15 @@ public class ExerciseTypeDAO {
     ResultSet rs = null;
 
     /**
-     *
+     * String query
      */
     String query;
 
     /**
      * Search an exercise type
      *
-     * @param name
-     * @return
-     * @throws SQLException
+     * @param name name of exercise
+     * @return List [ExerciseType]
      */
     public List<ExerciseType> searchExerciseTypes(String name) {
         List<ExerciseType> res = new ArrayList<>();
@@ -65,8 +70,7 @@ public class ExerciseTypeDAO {
     /**
      * Get all exercise types
      *
-     * @return
-     * @throws SQLException
+     * @return List [ExerciseType]
      */
     public List<ExerciseType> getAllExerciseTypes() {
         List<ExerciseType> res = new ArrayList<>();
@@ -87,10 +91,11 @@ public class ExerciseTypeDAO {
     }
 
     /**
-     *
-     * @param name
-     * @return
-     * @throws SQLException
+     * Get Exercise By Name
+     * 
+     * @param name name of exercise
+     * @return ExerciseType
+     * @throws SQLException Exception of SQL
      */
     public ExerciseType getExerciseByName(String name) throws SQLException {
         query = "SELECT * FROM EXERCISETYPES where EXERCISENAME = ?";
@@ -105,6 +110,10 @@ public class ExerciseTypeDAO {
         return res;
     }
 
+    /**
+     * Delete Exercise type
+     * @param id Exercise ID
+     */
     public void deleteExerciseType(String id) {
         String query = "delete from EXERCISETYPES where EXERCISEID = ?";
         try {
@@ -117,6 +126,12 @@ public class ExerciseTypeDAO {
         }
     }
 
+    /**
+     * Get Exercise type by ID
+     * 
+     * @param id    Exercise ID
+     * @return      Exercise type
+     */
     public ExerciseType getExerciseTypeByID(String id) {
         String query = "select * from EXERCISETYPES\n"
                 + "where EXERCISEID = ?";
@@ -133,6 +148,14 @@ public class ExerciseTypeDAO {
         return null;
     }
 
+    /**
+     * Update exercise
+     * 
+     * @param id            Exercise ID
+     * @param exercisename  Exercise name
+     * @param calperhour    Calorie per hour
+     * @param description   Description of exercise
+     */
     public void updateExercise(String id, String exercisename, String calperhour, String description) {
         String query = "update EXERCISETYPES set EXERCISENAME = ?, CALPERHOUR = ?, DESCRIPTION = ?\n"
                 + "where EXERCISEID = ?";
@@ -149,6 +172,14 @@ public class ExerciseTypeDAO {
         }
     }
 
+    /**
+     * Add exercise type
+     * 
+     * @param exid          Exercise ID
+     * @param exname        Exercise name
+     * @param calperhour    Calorie per hour
+     * @param description   Description of exercise
+     */
     public void addExerciseType(String exid, String exname, String calperhour, String description) {
         String query = "insert into EXERCISETYPES values (?,?,?,?)";
 
@@ -163,19 +194,5 @@ public class ExerciseTypeDAO {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
-    }
-
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        ExerciseTypeDAO dao = new ExerciseTypeDAO();
-        dao.updateExercise("20", "chay cham", "19", "cu chay cham");
-//        try {
-//            System.out.println(dao.getExerciseByName("running"));
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ExerciseTypeDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }
 }

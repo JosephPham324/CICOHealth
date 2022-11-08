@@ -1,7 +1,12 @@
 <%-- 
     Document   : UserInfo
     Created on : Oct 9, 2022, 7:35:44 PM
-    Author     : Thinh, Pham Nhat Quang
+    Author     : Group 4
+    CE161130  Nguyen Le Quang Thinh (Leader)
+    CE170036  Pham Nhat Quang
+    CE160464  Nguyen The Lu
+    CE161096  Nguyen Ngoc My Quyen
+    CE161025  Tran Thi Ngoc Hieu
 --%>
 
 <%@page import="Entity.DailyNutritionGoal"%>
@@ -30,7 +35,6 @@
             referrerpolicy="no-referrer"
             />
         <link rel="stylesheet" href="css/userinfo.css" />
-        <link rel="stylesheet" href="css/header.css" />
         <title>User Profile</title>
         <style>
             .error {

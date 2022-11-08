@@ -1,8 +1,14 @@
 <%-- 
-    Document : RegisterAccount 
-    Created on : Oct 4, 2022, 4:34:32 PM
-    Author : Pham Nhat Quang
---%> 
+    Document   : login-error
+    Created on : Oct 6, 2022, 11:35:56 PM
+    Author     : Group 4
+    CE161130  Nguyen Le Quang Thinh (Leader)
+    CE170036  Pham Nhat Quang
+    CE160464  Nguyen The Lu
+    CE161096  Nguyen Ngoc My Quyen
+    CE161025  Tran Thi Ngoc Hieu
+--%>
+
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

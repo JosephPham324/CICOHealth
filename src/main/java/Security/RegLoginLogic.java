@@ -10,11 +10,25 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 /**
- *
- * @author Pham Nhat Quang
+ * Semester: FALL 2022
+ * Subject : FRJ301
+ * Class   : SE1606
+ * Project : Nutrition 
+ * @author : Group 4
+ * CE161130  Nguyen Le Quang Thinh (Leader)
+ * CE170036  Pham Nhat Quang
+ * CE160464  Nguyen The Lu
+ * CE161096  Nguyen Ngoc My Quyen
+ * CE161025  Tran Thi Ngoc Hieu
  */
 public class RegLoginLogic {
     
+    /**
+     * Encrypt password
+     * @param salt      salt
+     * @param password  password
+     * @return          String encrypted
+     */
     public static String encryptPassword(String salt,String password){
         try {
             SecretKey key = Encryption.getKeyFromPassword(password, salt);
@@ -40,6 +54,12 @@ public class RegLoginLogic {
         return "";
     }
     
+    /**
+     * get secret key
+     * @param salt      salt
+     * @param password  password
+     * @return          SecretKey
+     */
     public static SecretKey getSecretKey(String salt, String password){
         try {
             SecretKey key = Encryption.getKeyFromPassword(password, salt);
@@ -53,7 +73,13 @@ public class RegLoginLogic {
         return null;
     }
     
-    
+    /**
+     * verify password 
+     * @param enteredPassword   entered password 
+     * @param salt              salt
+     * @param passwordHash      hash
+     * @return                  boolean
+     */
     public static boolean verifyPassword(String enteredPassword, String salt, String passwordHash){
         try {
             SecretKey key = Encryption.getKeyFromPassword(enteredPassword, salt);
@@ -80,6 +106,12 @@ public class RegLoginLogic {
         return false;
     }
     
+    /**
+     * decrypt password
+     * @param key   key
+     * @param hash  hash
+     * @return String decrypted password
+     */
     public static String decryptPassword(SecretKey key,String hash){
         try {
             return Encryption.decrypt(hash, key);
@@ -99,7 +131,4 @@ public class RegLoginLogic {
         return null;
     }
     
-    public static void main(String[] args) {
-//        System.out.println(RegLoginLogic.decryptPassword("", "password"));
-    }
 }
