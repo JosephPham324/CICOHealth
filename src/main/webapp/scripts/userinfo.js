@@ -297,7 +297,8 @@ healthEditButtons.forEach((button) => {
               id="age"
               name="age"
               placeholder="Your age"
-              type="text"
+              type="number"
+              min = "1"
               class="form-control"
               aria-describedby="ageHelpBlock"
               value = "${healthFields[0].textContent}"
@@ -310,21 +311,20 @@ healthEditButtons.forEach((button) => {
         <div class="form-group row" style = "display:${
           healthFields[1] === field ? "flex" : "none"
         }">
-          <label for="gender" class="col-4 col-form-label">Gender:</label>
-          <div class="col-8">
-            <input
-              id="gender"
-              name="gender"
-              placeholder="Your gender"
-              type="text"
-              class="form-control"
-              aria-describedby="genderHelpBlock"
-              value = "${healthFields[1].textContent}"
-            />
-            <span id="genderHelpBlock" class="form-text text-muted"
-              >Changing this will also change your nutrition goal to maintenance</span
-            >
-          </div>
+            <label class="col-4">Gender</label> 
+            <div class="col-8">
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input name="gender" id="gender_0" type="radio" class="custom-control-input" value="Male" aria-describedby="genderHelpBlock" required="required"
+                    ${healthFields[1].textContent==='Male'?'checked':''}> 
+                  <label for="gender_0" class="custom-control-label">Male</label>
+                </div>
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input name="gender" id="gender_1" type="radio" class="custom-control-input" value="Female" aria-describedby="genderHelpBlock" required="required"
+                  ${healthFields[1].textContent==='Female'?'checked':''}> 
+                  <label for="gender_1" class="custom-control-label">Female</label>
+                </div> 
+            <span id="genderHelpBlock" class="form-text text-muted">Changing this will also change your nutrition goal to maintenance</span>
+            </div>
         </div>
         <div class="form-group row" style = "display:${
           healthFields[2] === field ? "flex" : "none"
@@ -490,7 +490,12 @@ goalEditButtons[0].addEventListener("click", () => {
   let proteinPercentage = document.getElementById("proteinPercentage");//Protein
   let fatPercentage = document.getElementById("fatPercentage");//Fat
   let carbPercentage = document.getElementById("carbPercentage");//Carb
-  let percentages = [proteinPercentage, fatPercentage, carbPercentage];//All 3 macros
+  let percentages = [proteinPercentage, fatPercentage, carbPercentage];//All 3 macros'
+  form.onsubmit = function(){
+      return Number(proteinPercentage.value) +
+        Number(carbPercentage.value) +
+        Number(fatPercentage.value) === 100;
+  };
 
   percentages.forEach((percentage) => {
     percentage.addEventListener("input", () => {//When user changes percentage in input
