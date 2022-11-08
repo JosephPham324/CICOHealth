@@ -150,9 +150,10 @@ function updateSelectedNumber() {
  */
 function addFoodButtonsEventListener() {
     addFoodButtons = document.querySelectorAll(".add i.icon-food");
+    let resultElements = document.querySelectorAll(".result")
     for (let i in addFoodButtons) {
         if (addFoodButtons[i] instanceof Node)
-            addFoodButtons[i].addEventListener("click", (item) => {
+            resultElements[i].addEventListener("click", (item) => {
                 if (selectedFoodItems[i] == false) {
                     meal.addFoodItem(foodItems[i]);
                     addFoodButtons[i].classList.add("selected");
