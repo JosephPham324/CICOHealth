@@ -54,7 +54,7 @@
         <div class="info-container">
             <div class="info-table">
                 <div  class="widget_search" style=" margin-right: 10px;">
-                    <form role="search" method="post" action="user-loadcontrol">
+                    <form role="search" method="post" action="user-load-control">
                         <div style="text-align: right;">
                             <input style="margin-bottom: 5px;border-radius: 4px;" type="Search" name="txtSearch" placeholder="&nbsp First name or last name">
                             <input type="submit" id="searchsubmit" value="Search"/>

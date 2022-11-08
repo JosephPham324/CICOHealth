@@ -71,9 +71,9 @@
              
             <div class="info-table">
                 <div  class="widget_search" style="margin-left:10px;margin-right:10px;">
-                    <form role="search" method="post" action="admin-exercisetype">
+                    <form role="search" method="post" action="admin-exercisetype-control">
                         <div style="display: inline;">
-                            <a style="float: left;" href = "Update/AdminAddExercise.jsp" class="add">Add new exercise</a>
+                            <a style="float: left;" href = "adminadd-exercise" class="add">Add new exercise</a>
                             <input style="float: right;" type="submit" id="searchsubmit" value="Search"/>
                             <input style="float: right;margin-bottom: 5px;border-radius: 4px;"  type="Search" name="txtSearch" placeholder="&nbsp Enter exercise name">
                         </div>

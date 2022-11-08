@@ -177,7 +177,7 @@ input{
 }
 .create-exercise .overlay{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     opacity: 0.7;
     z-index: 80;
     background-color: #fff;

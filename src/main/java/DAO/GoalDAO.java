@@ -117,8 +117,10 @@ public class GoalDAO {
         int ag = Integer.parseInt(age);
         if (gender.equalsIgnoreCase("Male")) {
             calories = ((13.397 * w) + (4.799 * h) - (5.677 * ag) + 88.362) * r;
-        }
+        } else
         if (gender.equalsIgnoreCase("Female")) {
+            calories = ((9.247 * w) + (3.098 * h) - (4.330 * ag) + 447.593) * r;
+        } else {
             calories = ((9.247 * w) + (3.098 * h) - (4.330 * ag) + 447.593) * r;
         }
         return calories;
@@ -212,14 +214,21 @@ public class GoalDAO {
     }
 
     /**
-     * This function get today numbers
-     * 
-     * @param userID user ID
-     * @return Array double
-     * @throws SQLException Exception of SQL
+     * Get the statistics of meal,exercise and goal associated with user in the
+     * current day
+     *
+     * @param userID ID of user
+     * @return Number array in the order: goal calories (kcal), goal protein
+     * (grams), goal fat (grams),<br> goal carbs (grams), calories consumed,
+     * protein consumed, fat consumed,<br> calories burned during exercises
+     *
+     * @throws SQLException
      */
     public double[] getTodayNumbers(String userID) throws SQLException {
         DailyNutritionGoal goal = this.getGoalByID(Integer.parseInt(userID));
+        if (goal==null){
+            goal = new DailyNutritionGoal();
+        }
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();
         MealDAO mDAO = new MealDAO();
@@ -231,4 +240,21 @@ public class GoalDAO {
             burned};
     }
 
+
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        GoalDAO g = new GoalDAO();
+        DailyNutritionGoal info = g.getGoalByID(1);
+        try {
+            for (double i : g.getTodayNumbers("2")) {
+                System.out.println(i);
+            }
+//            System.out.println(g.getTodayNumbers("2"));
+        } catch (SQLException ex) {
+            Logger.getLogger(GoalDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

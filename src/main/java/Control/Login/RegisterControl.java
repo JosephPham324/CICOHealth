@@ -68,7 +68,8 @@ public class RegisterControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        response.sendRedirect("home-control");
     }
 
     /**
@@ -98,7 +99,7 @@ public class RegisterControl extends HttpServlet {
         try {
             checkDuplicate = logDAO.checkUserNameDuplicate(username);
             if (checkDuplicate == 1) {
-                response.sendRedirect("Register-Error.jsp");
+                request.getRequestDispatcher("register-error-control").forward(request, response);
             } else {
                 String empString = "";
 
@@ -106,10 +107,10 @@ public class RegisterControl extends HttpServlet {
                 String hashedPassword = RegLoginLogic.encryptPassword(salt, password);
 
                 if (hashedPassword.equals(empString) || salt.equals("Unable to generate salt")) {
-                    response.sendRedirect("Register-Error.jsp");
+                    response.sendRedirect("register-error-control");
                 }
                 if (username == null || password == null || firstName == null || lastName == null || email == null || phone == null) {
-                    response.sendRedirect("Register-Error.jsp");
+                    response.sendRedirect("register-error-control");
                 } else {
 
                     logDAO.addLoginInfo(username, salt, hashedPassword);

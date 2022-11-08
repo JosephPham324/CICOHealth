@@ -48,22 +48,27 @@ public class LoginControl extends HttpServlet {
             String remember = request.getParameter("remember");
 
             LoginDAO loginDAO = new LoginDAO();
-            UserDAO userDAO   = new UserDAO();
-            
-            Login b = loginDAO.findUserName(username);
-            int userid = b.getUserID();
-            User u = userDAO.getRoleByUserID(userid);
-            
-            //Get an instance of Login entry if username and password is correct
+            UserDAO userDAO = new UserDAO();
+            User u = null;
             Login a = null;
-            if (u.getUserRoleId() == 2){
-                a = loginDAO.checkLogin(username, password);
-            } else {
-                a = loginDAO.checkAdminLogin(username, password);
+            Login b = loginDAO.findUserName(username);
+            if (b != null) {
+                int userid = b.getUserID();
+                u = userDAO.getRoleByUserID(userid);
             }
-            //Get an instance of Login entry if username and password is correct
+            if (u != null) {
+                //Get an instance of Login entry if username and password is correct
+                if (u.getUserRoleId() == 2) {
+                    a = loginDAO.checkLogin(username, password);
+                } else {
+                    a = loginDAO.checkAdminLogin(username, password);
+                }
+                //Get an instance of Login entry if username and password is correct
+            }
+
             if (a == null) {//If there's no instance, redirect to error page
-                    response.sendRedirect("login-error.jsp");            
+                request.getRequestDispatcher("login-error-control").forward(request, response);
+//                response.sendRedirect("login-error-control");
             } else {//If login info is correct
                 HttpSession session = request.getSession();//Get current session
 

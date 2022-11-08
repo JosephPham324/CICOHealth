@@ -65,7 +65,7 @@
         <jsp-file>/MainMenu.jsp</jsp-file>
     </servlet>
     
-     <servlet>
+    <servlet>
         <servlet-name>Admin</servlet-name>
         <jsp-file>/ADMIN.jsp</jsp-file>
     </servlet>
@@ -80,7 +80,7 @@
         <jsp-file>/AdminUserInfo.jsp</jsp-file>
     </servlet>
     
-     <servlet>
+    <servlet>
         <servlet-name>AdminExercise</servlet-name>
         <jsp-file>/AdminExercise.jsp</jsp-file>
     </servlet>
@@ -131,6 +131,14 @@
     <servlet>
         <servlet-name>UserExercises</servlet-name>
         <jsp-file>/UserExercises.jsp</jsp-file>
+    </servlet>
+     <servlet>
+        <servlet-name>LoginError</servlet-name>
+        <jsp-file>/login-error.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterError</servlet-name>
+        <jsp-file>/Register-Error.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>EditExerciseControl</servlet-name>
@@ -216,6 +224,10 @@
         <servlet-name>UpdateControl</servlet-name>
         <servlet-class>Control.Admin.UpdateControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TermConditions</servlet-name>
+        <jsp-file>/TermConditions.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -265,42 +277,42 @@
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
 
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Admin</servlet-name>
         <url-pattern>/admin</url-pattern>
     </servlet-mapping>
     
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminInfo</servlet-name>
         <url-pattern>/admin-info</url-pattern>
     </servlet-mapping>
     
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminUserInfo</servlet-name>
         <url-pattern>/adminuser-info</url-pattern>
     </servlet-mapping>
     
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminExercise</servlet-name>
         <url-pattern>/adminexercise-info</url-pattern>
     </servlet-mapping>
     
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminAddExercise</servlet-name>
         <url-pattern>/adminadd-exercise</url-pattern>
     </servlet-mapping>
     
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminUpdateExercise</servlet-name>
         <url-pattern>/adminupdate-exercise</url-pattern>
     </servlet-mapping>
     
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminUpdateAdmin</servlet-name>
         <url-pattern>/adminupdate-admin</url-pattern>
     </servlet-mapping>
     
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminUpdateUser</servlet-name>
         <url-pattern>/adminupdate-user</url-pattern>
     </servlet-mapping>
@@ -318,6 +330,16 @@
     <servlet-mapping>
         <servlet-name>UserHealthInfo</servlet-name>
         <url-pattern>/user-healthinfo</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>LoginError</servlet-name>
+        <url-pattern>/login-error-control</url-pattern>
+    </servlet-mapping>
+    
+        <servlet-mapping>
+        <servlet-name>RegisterError</servlet-name>
+        <url-pattern>/register-error-control</url-pattern>
     </servlet-mapping>
  
     <servlet-mapping>
@@ -415,6 +437,10 @@
     <servlet-mapping>
         <servlet-name>UpdateControl</servlet-name>
         <url-pattern>/update-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TermConditions</servlet-name>
+        <url-pattern>/terms</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -18,6 +18,16 @@ public class DailyNutritionGoal {
     private float protein;      //Protein of meal
     private float fat;          //Fat of meal
     private float carb;         //Carb of meal
+
+    public DailyNutritionGoal() {
+        this.userID = 0;
+        this.calories = 0;
+        this.protein = 0;
+        this.fat = 0;
+        this.carb = 0;
+    }
+    
+    
     
     /**
      * Constructor

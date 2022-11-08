@@ -69,7 +69,7 @@
                         </div>-->
 
             <div  class="widget_search">
-                <form role="search" method="post" action="admin-loadcontrol" class="search">
+                <form role="search" method="post" action="admin-load-control" class="search">
                     <div style="text-align: right;">
                         <input type="Search" name="txtSearch" placeholder="&nbsp First name or last name" style=" border-radius: 4px;">
                         <input type="submit" id="searchsubmit" value="Search"/>

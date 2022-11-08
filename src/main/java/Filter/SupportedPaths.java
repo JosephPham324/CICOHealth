@@ -43,8 +43,11 @@ public class SupportedPaths {
         adminPaths = new HashSet<>();
 
         correspondingReferrer.put("/login-control", "/login");
+        correspondingReferrer.put("/login-error-control", "/login");
         correspondingReferrer.put("/healthinfo-control", "/register-control");
         correspondingReferrer.put("/register-control", "/register");
+        correspondingReferrer.put("/register-error-control", "/register");
+        
 
         correspondingReferrer.put("/create-meal-control", "/search-food");
         correspondingReferrer.put("/edit-meal-control", "/user-meals");
@@ -79,7 +82,7 @@ public class SupportedPaths {
         adminPaths.add("/update-control");
         adminPaths.add("/adminupdate-admin");
         adminPaths.add("/adminupdate-user");
-        
+
         adminPaths.add("/user-exercise");
         adminPaths.add("/user-goal");
         adminPaths.add("/user-healthinfo");
@@ -105,7 +108,9 @@ public class SupportedPaths {
         System.out.println(servletPath);
         System.out.println(referrerPath);
         servletPath = Pattern.compile(pattern).matcher(servletPath).replaceAll("");
-        referrerPath = Pattern.compile(pattern).matcher(referrerPath).replaceAll("");
+        if (referrerPath != null) {
+            referrerPath = Pattern.compile(pattern).matcher(referrerPath).replaceAll("");
+        }
         System.out.println(servletPath);
         System.out.println(referrerPath);
         if (referrerPath == null || servletPath == null || !this.correspondingReferrer.containsKey(servletPath)) {
