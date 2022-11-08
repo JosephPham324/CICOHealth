@@ -68,7 +68,7 @@ public class SupportedPaths {
         adminPaths.add("/update-control");
         adminPaths.add("/adminupdate-admin");
         adminPaths.add("/adminupdate-user");
-        
+
         adminPaths.add("/user-exercise");
         adminPaths.add("/user-goal");
         adminPaths.add("/user-healthinfo");
@@ -83,7 +83,9 @@ public class SupportedPaths {
         System.out.println(servletPath);
         System.out.println(referrerPath);
         servletPath = Pattern.compile(pattern).matcher(servletPath).replaceAll("");
-        referrerPath = Pattern.compile(pattern).matcher(referrerPath).replaceAll("");
+        if (referrerPath != null) {
+            referrerPath = Pattern.compile(pattern).matcher(referrerPath).replaceAll("");
+        }
         System.out.println(servletPath);
         System.out.println(referrerPath);
         if (referrerPath == null || servletPath == null || !this.correspondingReferrer.containsKey(servletPath)) {
