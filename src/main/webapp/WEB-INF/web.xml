@@ -132,6 +132,14 @@
         <servlet-name>UserExercises</servlet-name>
         <jsp-file>/UserExercises.jsp</jsp-file>
     </servlet>
+     <servlet>
+        <servlet-name>LoginError</servlet-name>
+        <jsp-file>/login-error.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterError</servlet-name>
+        <jsp-file>/Register-Error.jsp</jsp-file>
+    </servlet>
     <servlet>
         <servlet-name>EditExerciseControl</servlet-name>
         <servlet-class>Control.Exercise.EditExerciseControl</servlet-class>
@@ -322,6 +330,16 @@
     <servlet-mapping>
         <servlet-name>UserHealthInfo</servlet-name>
         <url-pattern>/user-healthinfo</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>LoginError</servlet-name>
+        <url-pattern>/login-error-control</url-pattern>
+    </servlet-mapping>
+    
+        <servlet-mapping>
+        <servlet-name>RegisterError</servlet-name>
+        <url-pattern>/register-error-control</url-pattern>
     </servlet-mapping>
  
     <servlet-mapping>
