@@ -2,13 +2,13 @@
 ## PRJ301 (Java Web Application Development) final project FA22
 ### This is a web application that allows user to watch their nutrition balance and energy consumption - exependiture.
 
-#### I. Run script to create database and insert starter data:
-##### The script is written using Microsoft SQL Server 2019
-##### Starter data includes:
+### I. Run script to create database and insert starter data:
+#### The script is written using Microsoft SQL Server 2019
+#### Starter data includes:
 1. Admin account with username "admin" and password "admin123", along with its other information (can be changed like a normal user).
 2. Some exercise types for the adding exercise feature.
 
-#### II. Source code adjustment and software requirements:
+### II. Source code adjustment and software requirements:
 1. Rename setting in file DBContext.java, package Context:
    + user(sa) - username of account that has access to the database.
    + pass - password of account.
@@ -21,8 +21,8 @@
    + Driver: sqljdbc 4-3.0
    + Microsoft SQL Server Management Studio
 
-#### III. Running the project:
-##### Starting the website:
+### III. Running the project:
+#### Starting the website:
 We are learning students so we run the project with the help of Netbeans IDE. To run the project like we did, install Netbeans IDE and Apache Tomcat on your device and specify the server in Netbeans settings. 
 To connect to the database we used port 1433 and sa account of MSSQLMS. You must create the database using the script and adjust the code in DBContext class for connection establishment.
 ##### Using the website:
