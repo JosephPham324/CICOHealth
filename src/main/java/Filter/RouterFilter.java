@@ -165,7 +165,7 @@ public class RouterFilter implements Filter {
             if (url.endsWith("control") && (!url.endsWith("home-control"))) {//Redirect if user enters url ending with control
                 String referrer = httpRequest.getHeader("referer");
                 boolean correctReferrer = paths.checkCorrectReferrer(url, referrer);
-                httpResponse.getWriter().write(correctReferrer + "");
+//                httpResponse.getWriter().write(correctReferrer + "");
                 if (referrer == null || !paths.availableServlet(url)) {
                     String referrerPath = paths.getCorrectReferrer(url);
                     if (referrerPath != null) {
