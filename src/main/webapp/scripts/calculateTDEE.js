@@ -1,4 +1,6 @@
-
+/**
+* @Author: Nguyen Le Quang Thinh
+*/
 document.getElementById('results').style.display = 'none';
 document.getElementById('results_2').style.display = 'none';
 smit.addEventListener('click', function (e) {  // Runs getValues when form's submit button is clicked.

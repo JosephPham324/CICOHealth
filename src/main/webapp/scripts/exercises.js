@@ -1,3 +1,6 @@
+/**
+* @Author: Pham Nhat Quang
+*/
 $(document).ready(function () {
     var groupColumn = 1;
     var table = $('#exercises').DataTable({

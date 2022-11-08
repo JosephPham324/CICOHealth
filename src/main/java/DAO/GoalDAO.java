@@ -40,8 +40,8 @@ public class GoalDAO {
 
     /**
      * Add nutrition goal in the database or edit existing goal, macro goals are
-     * automatically calculated from calorie Percentages: Protein 30%, Fat 30%,
-     * Carbs 40% of the goal calories
+     * automatically calculated from calorie Percentages: Protein 25%, Fat 30%,
+     * Carbs 45% of the goal calories
      *
      * @param userId ID of user
      * @param calorie Calorie goal
@@ -117,8 +117,7 @@ public class GoalDAO {
         int ag = Integer.parseInt(age);
         if (gender.equalsIgnoreCase("Male")) {
             calories = ((13.397 * w) + (4.799 * h) - (5.677 * ag) + 88.362) * r;
-        } else
-        if (gender.equalsIgnoreCase("Female")) {
+        } else if (gender.equalsIgnoreCase("Female")) {
             calories = ((9.247 * w) + (3.098 * h) - (4.330 * ag) + 447.593) * r;
         } else {
             calories = ((9.247 * w) + (3.098 * h) - (4.330 * ag) + 447.593) * r;
@@ -152,12 +151,13 @@ public class GoalDAO {
     }
 
     /**
-     * This function to edit macro goal
-     * 
-     * @param userID    User ID
-     * @param protein   Protein
-     * @param fat       Fat
-     * @param carb      Carb
+     * @author:Pham Nhat Quang 
+     * Edit macro goal, from new macro calculates new calorie goal
+     *
+     * @param userID User ID
+     * @param protein Protein
+     * @param fat Fat
+     * @param carb Carb
      * @throws java.sql.SQLException Exception of SQL
      */
     public void editMacroGoal(String userID, String protein, String fat, String carb) throws SQLException {
@@ -180,14 +180,15 @@ public class GoalDAO {
     }
 
     /**
-     * This function edit calorie goal
-     * 
-     * @param userID                User ID
-     * @param calorie               Calorie
-     * @param proteinPercentage     Protein percent
-     * @param fatPercentage         Fat percent
-     * @param carbPercentage        Carb percent
-     * @throws SQLException         Exception of SQL
+     * @author:Pham Nhat Quang 
+     * Edit calorie goal, adjust macro goals according to new calorie
+     *
+     * @param userID User ID
+     * @param calorie Calorie
+     * @param proteinPercentage Protein percent
+     * @param fatPercentage Fat percent
+     * @param carbPercentage Carb percent
+     * @throws SQLException Exception of SQL
      */
     public void editCalorieGoal(String userID, String calorie, String proteinPercentage, String fatPercentage, String carbPercentage) throws SQLException {
         String query = "update DAILYNUTRITIONGOAL\n"
@@ -214,7 +215,8 @@ public class GoalDAO {
     }
 
     /**
-     * Get the statistics of meal,exercise and goal associated with user in the
+     * @author:Pham Nhat Quang
+     * Get the statistics of meal,exercise and goal associated with user in the 
      * current day
      *
      * @param userID ID of user
@@ -226,7 +228,7 @@ public class GoalDAO {
      */
     public double[] getTodayNumbers(String userID) throws SQLException {
         DailyNutritionGoal goal = this.getGoalByID(Integer.parseInt(userID));
-        if (goal==null){
+        if (goal == null) {
             goal = new DailyNutritionGoal();
         }
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -239,7 +241,6 @@ public class GoalDAO {
             consumed[0], consumed[1], consumed[2], consumed[3],
             burned};
     }
-
 
     /**
      *
@@ -254,7 +255,7 @@ public class GoalDAO {
             }
 //            System.out.println(g.getTodayNumbers("2"));
         } catch (SQLException ex) {
-            Logger.getLogger(GoalDAO.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(GoalDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

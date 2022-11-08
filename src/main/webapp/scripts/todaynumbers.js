@@ -1,3 +1,6 @@
+/**
+* @Author: Pham Nhat Quang
+*/
 document.addEventListener("DOMContentLoaded", () => {
     let calEaten = document.getElementById("cal-eaten");
     let allNumbers = document.querySelector(".all-numbers");

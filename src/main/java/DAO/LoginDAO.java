@@ -249,7 +249,7 @@ public class LoginDAO {
     /**
      * Edit login info in database (change username, password salt and password
      * hash)
-     *
+     * 
      * @param userID User ID to change
      * @param username New username
      * @param password New password to generate salt and hash

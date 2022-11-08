@@ -2,11 +2,8 @@
     Document : ExerciseSearch 
     Created on : Oct 17, 2022, 2:50:48 PM 
     Author : Group 4
-    CE161130  Nguyen Le Quang Thinh (Leader)
     CE170036  Pham Nhat Quang
-    CE160464  Nguyen The Lu
-    CE161096  Nguyen Ngoc My Quyen
-    CE161025  Tran Thi Ngoc Hieu
+    CE161025  Tran Thi Ngoc Hieu 
 --%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

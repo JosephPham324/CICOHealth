@@ -2,10 +2,7 @@
     Document   : header
     Created on : Oct 20, 2022, 8:15:00 PM
     Author     : Group 4
-    CE161130  Nguyen Le Quang Thinh (Leader)
-    CE170036  Pham Nhat Quang
-    CE160464  Nguyen The Lu
-    CE161096  Nguyen Ngoc My Quyen
+    CE170036  Pham Nhat Quang (today numbers, admin icon)
     CE161025  Tran Thi Ngoc Hieu
 --%>
 
@@ -21,8 +18,8 @@
             <c:choose>
                 <c:when test = "${sessionScope.userID!=null}">
                     <%
-                        String userID = request.getSession().getAttribute("userID") + "";
-                        int userRole = new UserDAO().getRoleIDByUserID(Integer.parseInt(userID));
+                        //String userID = ;
+                        int userRole = new UserDAO().getRoleIDByUserID(Integer.parseInt(request.getSession().getAttribute("userID") + ""));
                         if (userRole == 1) {
                             out.println("<li class=\"nav-link\"><a href=\"admin\"><i class=\"fa-solid fa-user-gear\" style=\"color:red;\"></i></a></li>");
                         }

@@ -1,3 +1,7 @@
+/**
+* @Author: Pham Nhat Quang
+*/
+
 let apiKey = "06Ve1mf2SCu8Ex1P/f6MVg==2N8rX79akXJaUwPS";
 let query;
 let button = document.querySelector(".search-wrapper .button");

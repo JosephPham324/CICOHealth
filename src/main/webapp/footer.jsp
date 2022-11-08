@@ -2,9 +2,6 @@
     Document   : footer
     Created on : Oct 18, 2022, 10:16:32 PM
     Author     : Group 4
-    CE161130  Nguyen Le Quang Thinh (Leader)
-    CE170036  Pham Nhat Quang
-    CE160464  Nguyen The Lu
     CE161096  Nguyen Ngoc My Quyen
     CE161025  Tran Thi Ngoc Hieu
 --%>
@@ -14,9 +11,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7 footer-left">
-                <h3>1250 I Street NW Suite 500 Washington</h3>
+                <h3>Nguyen Van Cu, An Binh, Ninh Kieu, Can Tho</h3>
                 <a href="#">Contact</a><br>
-                <a href="#">1 (866) 293-CSPI (2774)</a><br>         
+                <a href="https://cantho.fpt.edu.vn" target = "_blank">cantho.fpt.edu.vn</a><br>         
                 <div class="footer-icon">
                     <a class="" href=""><i class="fa-brands fa-facebook"></i></a>
                     <a class="" href=""><i class="fa-brands fa-instagram"></i></a>
@@ -34,7 +31,7 @@
                 <a href="#">Nutrition Action Store</a><br>
             </div>
             <div class="col-md-3 footer-right footer-least">
-                <div>© 2005-2022 All rights reserved. Our website services, content, and products are for informational purposes only. Healthline Media does not provide medical advice, diagnosis, or treatment. </div>
+                <div>© 2005-2022 All rights reserved. Our website services, content, and products are for informational purposes only. Nutrition does not provide medical advice, diagnosis, or treatment. </div>
             </div>
         </div>
     </div>

@@ -1,3 +1,6 @@
+/**
+* @Author: Pham Nhat Quang
+*/
 let protein = 4;
 let fat = 9;
 let carb = 4;

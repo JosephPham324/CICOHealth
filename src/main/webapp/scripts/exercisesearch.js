@@ -1,4 +1,8 @@
 /**
+* @Author: Pham Nhat Quang
+*/
+
+/**
  * Append a result element to results
  * @param {Node} element Result element to be appended
  */

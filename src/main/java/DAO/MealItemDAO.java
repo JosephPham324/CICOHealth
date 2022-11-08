@@ -17,11 +17,7 @@ import java.util.List;
  * Class   : SE1606
  * Project : Nutrition 
  * @author : Group 4
- * CE161130  Nguyen Le Quang Thinh (Leader)
  * CE170036  Pham Nhat Quang
- * CE160464  Nguyen The Lu
- * CE161096  Nguyen Ngoc My Quyen
- * CE161025  Tran Thi Ngoc Hieu
  */
 public class MealItemDAO {
 

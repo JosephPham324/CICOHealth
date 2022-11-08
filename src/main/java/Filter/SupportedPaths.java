@@ -1,19 +1,7 @@
 package Filter;
 
-import DAO.ExerciseTypeDAO;
-import DAO.UserDAO;
-import Entity.ExerciseType;
-import Entity.User;
-import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -24,9 +12,6 @@ import java.util.regex.Pattern;
  * @author : Group 4
  * CE161130  Nguyen Le Quang Thinh (Leader)
  * CE170036  Pham Nhat Quang
- * CE160464  Nguyen The Lu
- * CE161096  Nguyen Ngoc My Quyen
- * CE161025  Tran Thi Ngoc Hieu
  */
 public class SupportedPaths {
 
