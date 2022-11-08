@@ -15,8 +15,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Pham Nhat Quang
+ * Semester: FALL 2022
+ * Subject : FRJ301
+ * Class   : SE1606
+ * Project : Nutrition 
+ * @author : Group 4
+ * CE161130  Nguyen Le Quang Thinh (Leader)
+ * CE170036  Pham Nhat Quang
+ * CE160464  Nguyen The Lu
+ * CE161096  Nguyen Ngoc My Quyen
+ * CE161025  Tran Thi Ngoc Hieu
  */
 public class MealDAO {
 
@@ -36,24 +44,24 @@ public class MealDAO {
     ResultSet rs = null;
 
     /**
-     *
+     * String query
      */
     String query;
 
     /**
-     *
+     * Pattern date time
      */
     String datetimePattern = "yyyy-MM-dd HH:mm:ss";
 
     /**
-     *
+     * Formatter date
      */
     SimpleDateFormat dateFormatter;
 
     /**
      * Set date formatter
      *
-     * @param dateFormat
+     * @param dateFormat format date
      */
     public void setDateFormat(SimpleDateFormat dateFormat) {
         this.dateFormatter = dateFormat;
@@ -69,7 +77,7 @@ public class MealDAO {
      * @param protein Total protein in grams of the meal
      * @param fat Total fat in grams of the meal
      * @param carbs Total carbs in grams of the meal
-     * @throws java.sql.SQLException
+     * @throws java.sql.SQLException Exception of SQL
      */
     public void insertMeal(String mealName, Date dateTime, int userID, double calories, double protein, double fat, double carbs)
             throws SQLException {
@@ -156,7 +164,7 @@ public class MealDAO {
      * 0-24)
      * @param name Name of the meal
      * @param userID ID of user the meal belongs to
-     * @throws SQLException
+     * @throws SQLException Exception of SQL
      */
     public void deleteMeal(String date, String time, String name, String userID) throws SQLException {
         query = "delete from MEAL\n"
@@ -173,6 +181,12 @@ public class MealDAO {
         ps.executeUpdate();
     }
 
+    /**
+     * Get meals group by date
+     * 
+     * @param userID user ID
+     * @return List [meal]
+     */
     public List<Meal> getMealsGroupedByDate(String userID) {
         List<Meal> res = this.getMealsByUserID(userID);
         res = Meal.groupMealsByDate(res);
@@ -185,6 +199,14 @@ public class MealDAO {
         return res;
     }
 
+    /**
+     * Get exercise calorie by date
+     * 
+     * @param userID    user ID
+     * @param date      date of exercise
+     * @return          array double
+     * @throws SQLException Exception of SQL
+     */
     public double[] getExercisesCalorieByDate(String userID, String date) throws SQLException {
         query = "select * from MEAL\n"
                 + "WHERE USERID = ?\n"
@@ -220,11 +242,4 @@ public class MealDAO {
         return new double[]{cal,pro,fat,carb};
     }
 
-    public static void main(String[] args) {
-        MealDAO dao = new MealDAO();
-        ArrayList<Meal> meals = (ArrayList) dao.getMealsByUserID("2");
-        System.out.println(meals);
-        meals = (ArrayList) Meal.groupMealsByDate(meals);
-        System.out.println(meals);
-    }
 }

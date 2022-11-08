@@ -12,8 +12,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author M S I
+ * Semester: FALL 2022
+ * Subject : FRJ301
+ * Class   : SE1606
+ * Project : Nutrition 
+ * @author : Group 4
+ * CE161130  Nguyen Le Quang Thinh (Leader)
+ * CE170036  Pham Nhat Quang
+ * CE160464  Nguyen The Lu
+ * CE161096  Nguyen Ngoc My Quyen
+ * CE161025  Tran Thi Ngoc Hieu
  */
 public class EditUserInfoControl extends HttpServlet {
 

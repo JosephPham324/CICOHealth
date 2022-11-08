@@ -2,22 +2,24 @@ package DAO;
 
 import context.DBContext;
 import Entity.Login;
-import Entity.User;
-import Entity.UserHealthInfo;
 import Security.Encryption;
 import Security.RegLoginLogic;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- *
- * @author Thinh
+ * Semester: FALL 2022
+ * Subject : FRJ301
+ * Class   : SE1606
+ * Project : Nutrition 
+ * @author : Group 4
+ * CE161130  Nguyen Le Quang Thinh (Leader)
+ * CE170036  Pham Nhat Quang
+ * CE160464  Nguyen The Lu
+ * CE161096  Nguyen Ngoc My Quyen
+ * CE161025  Tran Thi Ngoc Hieu
  */
 public class LoginDAO {
 
@@ -93,7 +95,7 @@ public class LoginDAO {
      *
      * @param username Username to check
      * @return The number of that username in the database
-     * @throws SQLException
+     * @throws SQLException Exception of SQL
      */
     public int checkUserNameDuplicate(String username) throws SQLException {
         String query = "SELECT COUNT(*) FROM [LOGIN] where username=?";
@@ -277,26 +279,4 @@ public class LoginDAO {
         ps.executeUpdate();
     }
 
-    /**
-     *
-     * @param args
-     * @throws SQLException
-     */
-    public static void main(String[] args) throws SQLException {
-        LoginDAO dao = new LoginDAO();
-        try {
-            Login a = dao.checkAdminLogin("THINHNLQCE161130", "prj301");
-            Login b = dao.checkLogin("THINHNLQCE161130", "prj301");
-            System.out.println(a);
-            System.out.println(b);
-//                        List<User> users = dao.getListMember();
-//                dao.editLoginInfo(2+"", "THINHNLQCE161130", "prj301");
-        } catch (Exception ex) {
-            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-//        System.out.println(dao.checkLogin("QuangPNCE73768665", "prj301"));
-//        int test = dao.checkUserNameDuplicate("nlordqting4444");
-//        System.out.println(test);
-    }
 }

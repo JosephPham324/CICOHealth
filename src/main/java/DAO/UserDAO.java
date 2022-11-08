@@ -1,6 +1,5 @@
 package DAO;
 
-import Entity.Login;
 import Entity.User;
 import context.DBContext;
 import java.sql.Connection;
@@ -11,8 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Pham Nhat Quang
+ * Semester: FALL 2022
+ * Subject : FRJ301
+ * Class   : SE1606
+ * Project : Nutrition 
+ * @author : Group 4
+ * CE161130  Nguyen Le Quang Thinh (Leader)
+ * CE170036  Pham Nhat Quang
+ * CE160464  Nguyen The Lu
+ * CE161096  Nguyen Ngoc My Quyen
+ * CE161025  Tran Thi Ngoc Hieu
  */
 public class UserDAO {
 
@@ -55,6 +62,11 @@ public class UserDAO {
         return list;
     }
 
+    /**
+     * Get list admin
+     * 
+     * @return List [user]
+     */
     public List<User> getListAdmin() {
         List<User> list = new ArrayList<>();
         try {
@@ -77,12 +89,12 @@ public class UserDAO {
     /**
      * Add a user in the database
      *
-     * @param USERID
-     * @param USERROLEID
-     * @param FIRSTNAME
-     * @param LASTNAME
-     * @param PHONE
-     * @param EMAIL
+     * @param USERID        User ID
+     * @param USERROLEID    User role ID
+     * @param FIRSTNAME     First name of user
+     * @param LASTNAME      Last name of user
+     * @param PHONE         Phone of user
+     * @param EMAIL         Email of user
      * @throws SQLException When update query to database encounters error
      */
     public void addUser(String USERID, String USERROLEID, String FIRSTNAME, String LASTNAME, String PHONE, String EMAIL) throws SQLException {
@@ -99,6 +111,11 @@ public class UserDAO {
         ps.executeUpdate();
     }
 
+    /**
+     * Delete of user
+     * 
+     * @param id user id
+     */
     public void deleteUSER(String id) {
         String query = "delete from MEALITEM where USERID = ?\n"
                 + "delete from MEAL where USERID = ?\n"
@@ -126,7 +143,7 @@ public class UserDAO {
     /**
      * Get the last ID present in USER table
      *
-     * @return ID number
+     * @return ID number 
      */
     public int getLastID() {
         String query = "SELECT TOP 1 * FROM dbo.[USER] ORDER BY USERID DESC";
@@ -173,6 +190,12 @@ public class UserDAO {
         return null;
     }
     
+    /**
+     * Get user by name
+     * 
+     * @param username user name
+     * @return List [user]
+     */
     public List<User> getUserByName(String username) {
         List<User> list = new ArrayList<>();
         String query = "Select * from [USER] where (FIRSTNAME LIKE ? OR LASTNAME LIKE ?) AND USERROLEID = 2";
@@ -194,6 +217,12 @@ public class UserDAO {
         return list;
     }
     
+    /**
+     * Get admin by name
+     * 
+     * @param username user name
+     * @return  List [user]
+     */
     public List<User> getAdminByName(String username) {
         List<User> list = new ArrayList<>();
         String query = "Select * from [USER] where (FIRSTNAME LIKE ? OR LASTNAME LIKE ?) AND USERROLEID = 1";
@@ -215,7 +244,13 @@ public class UserDAO {
         return list;
     }
 
-
+    /**
+     * Get role by user ID
+     * 
+     * @param id User ID
+     * @return object User
+     * @throws SQLException Exception of SQL
+     */
     public User getRoleByUserID(int id) throws SQLException {
         String query = "select USERROLEID from dbo.[User]\n"
                 + "where USERID = ?";
@@ -231,7 +266,15 @@ public class UserDAO {
         }
         return null;
     }
-        public int getRoleIDByUserID(int id) throws SQLException {
+
+    /**
+     * Get role id by user id
+     * 
+     * @param id user id
+     * @return int user role id
+     * @throws SQLException Exception of SQL
+     */
+    public int getRoleIDByUserID(int id) throws SQLException {
         String query = "select USERROLEID from dbo.[User]\n"
                 + "where USERID = ?";
         con = new DBContext().getConnection(); // open connection to SQL
@@ -248,12 +291,11 @@ public class UserDAO {
     /**
      * Edit user info in USER table
      *
-     * @param USERID
-     * @param FIRSTNAME
-     * @param LASTNAME
-     * @param EMAIL
-     * @param PHONE
-     * @throws SQLException When query to update database encounters error
+     * @param USERID        User ID
+     * @param FIRSTNAME     First name of user
+     * @param LASTNAME      Last name of user
+     * @param PHONE         Phone of user
+     * @param EMAIL         Email of user
      */
     public void editUser(String USERID, String FIRSTNAME, String LASTNAME, String EMAIL, String PHONE) {
         String query = "update [USER]\n"
@@ -276,28 +318,4 @@ public class UserDAO {
 
     }
 
-    public static void main(String[] args) throws SQLException {
-//        String username = "THINHNLQCE161130";
-//        String password = "group4prj301";
-//
-//        LoginDAO loginDAO = new LoginDAO();
-//        UserDAO userDAO = new UserDAO();
-//
-//        Login b = loginDAO.findUserName(username);
-//        int userid = b.getUserID();
-//        User u = userDAO.getRoleByUserID(userid);
-//        System.out.println(u);
-//        //Get an instance of Login entry if username and password is correct
-//        Login a = null;
-//        if (u.getUserRoleId() == 2) {
-//            a = loginDAO.checkLogin(username, password);
-//        } else {
-//            a = loginDAO.checkAdminLogin(username, password);
-//        }
-//        System.out.println(a);
-        String username = "Thinh";
-        UserDAO user = new UserDAO();
-//    	List<User> list = user.getUserByName(username);
-        System.out.println(user.getRoleIDByUserID(2));
-    }
 }

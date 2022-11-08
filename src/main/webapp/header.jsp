@@ -1,7 +1,12 @@
 <%-- 
     Document   : header
     Created on : Oct 20, 2022, 8:15:00 PM
-    Author     : Pham Nhat Quang
+    Author     : Group 4
+    CE161130  Nguyen Le Quang Thinh (Leader)
+    CE170036  Pham Nhat Quang
+    CE160464  Nguyen The Lu
+    CE161096  Nguyen Ngoc My Quyen
+    CE161025  Tran Thi Ngoc Hieu
 --%>
 
 <%@page import="DAO.UserDAO"%>

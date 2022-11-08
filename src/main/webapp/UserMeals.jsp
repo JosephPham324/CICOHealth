@@ -1,7 +1,12 @@
 <%-- 
     Document   : UserFoods
     Created on : Oct 24, 2022, 6:12:28 AM
-    Author     : Pham Nhat Quang
+    Author     : Group 4
+    CE161130  Nguyen Le Quang Thinh (Leader)
+    CE170036  Pham Nhat Quang
+    CE160464  Nguyen The Lu
+    CE161096  Nguyen Ngoc My Quyen
+    CE161025  Tran Thi Ngoc Hieu
 --%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>

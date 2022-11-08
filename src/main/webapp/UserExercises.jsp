@@ -1,7 +1,12 @@
 <%-- 
     Document : Exercises.jsp 
     Created on : Oct 19, 2022, 11:33:30 AM 
-    Author : Pham Nhat Quang 
+    Author : Group 4
+    CE161130  Nguyen Le Quang Thinh (Leader)
+    CE170036  Pham Nhat Quang
+    CE160464  Nguyen The Lu
+    CE161096  Nguyen Ngoc My Quyen
+    CE161025  Tran Thi Ngoc Hieu
 --%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="DAO.ExerciseDAO"%>

@@ -1,30 +1,42 @@
 package Entity;
 
 /**
- *
- * @author Thinh
+ * Semester: FALL 2022
+ * Subject : FRJ301
+ * Class   : SE1606
+ * Project : Nutrition 
+ * @author : Group 4
+ * CE161130  Nguyen Le Quang Thinh (Leader)
+ * CE170036  Pham Nhat Quang
+ * CE160464  Nguyen The Lu
+ * CE161096  Nguyen Ngoc My Quyen
+ * CE161025  Tran Thi Ngoc Hieu
  */
 public class UserHealthInfo {
 
-    private int userId;
-    private String gender;
-    private float height;
-    private float weight;
-    private int activeness;
-    private int age;
+    private int userId;     //id of user
+    private String gender;  //gender of user
+    private float height;   //height of user
+    private float weight;   //weight of user
+    private int activeness; //activeness of user
+    private int age;        //age of user
 
+    /**
+     * Constructor
+     * @param userID user id of user
+     */
     public UserHealthInfo(int userID) {
         this.userId = userID;
     }
 
     /**
-     *
-     * @param userId
-     * @param gender
-     * @param height
-     * @param weight
-     * @param activeness
-     * @param age
+     * User health info
+     * @param userId id of user
+     * @param gender gender of user
+     * @param height height of user
+     * @param weight weight of user
+     * @param activeness activeness of user
+     * @param age age of user
      */
     public UserHealthInfo(int userId, String gender, float height, float weight, int activeness, int age) {
         this.userId = userId;
@@ -36,101 +48,105 @@ public class UserHealthInfo {
     }
 
     /**
-     *
-     * @return
+     * Get user id
+     * @return id of user
      */
     public int getUserId() {
         return userId;
     }
 
     /**
-     *
-     * @param userId
+     * Set user id
+     * @param userId id of user
      */
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
     /**
-     *
-     * @return
+     * Get gender 
+     * @return gender of user
      */
     public String getGender() {
         return gender;
     }
 
     /**
-     *
-     * @param gender
+     * Set gender
+     * @param gender gender of user
      */
     public void setGender(String gender) {
         this.gender = gender;
     }
 
     /**
-     *
-     * @return
+     * Get height 
+     * @return height of user
      */
     public float getHeight() {
         return height;
     }
 
     /**
-     *
-     * @param height
+     * Set height
+     * @param height height of user
      */
     public void setHeight(float height) {
         this.height = height;
     }
 
     /**
-     *
-     * @return
+     * Get weight
+     * @return weight of user
      */
     public float getWeight() {
         return weight;
     }
 
     /**
-     *
-     * @param weight
+     * Set weight
+     * @param weight weight of user
      */
     public void setWeight(float weight) {
         this.weight = weight;
     }
 
     /**
-     *
-     * @return
+     *  Get activeness 
+     * @return activeness of user
      */
     public int getActiveness() {
         return activeness;
     }
 
     /**
-     *
-     * @param activeness
+     * Set activeness
+     * @param activeness activeness of user
      */
     public void setActiveness(int activeness) {
         this.activeness = activeness;
     }
 
     /**
-     *
-     * @return
+     * Get age
+     * @return age of user
      */
     public int getAge() {
         return age;
     }
 
     /**
-     *
-     * @param age
+     * Set age
+     * @param age age of user
      */
     public void setAge(int age) {
         this.age = age;
     }
 
+    /**
+     * Get activeness string
+     * @return String
+     */
     public String getActivenessString() {
         switch (this.activeness) {
             case 0: return "Not active";

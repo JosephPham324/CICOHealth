@@ -1,7 +1,12 @@
 <%-- 
     Document   : MainMenu
     Created on : Oct 8, 2022, 7:57:33 PM
-    Author     : ASUS
+    Author     : Group 4
+    CE161130  Nguyen Le Quang Thinh (Leader)
+    CE170036  Pham Nhat Quang
+    CE160464  Nguyen The Lu
+    CE161096  Nguyen Ngoc My Quyen
+    CE161025  Tran Thi Ngoc Hieu
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

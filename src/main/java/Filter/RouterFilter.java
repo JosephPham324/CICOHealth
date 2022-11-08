@@ -19,8 +19,16 @@ import java.util.HashSet;
 import java.util.Map;
 
 /**
- *
- * @author Pham Nhat Quang CE170036 (FPTU CANTHO)
+ * Semester: FALL 2022
+ * Subject : FRJ301
+ * Class   : SE1606
+ * Project : Nutrition 
+ * @author : Group 4
+ * CE161130  Nguyen Le Quang Thinh (Leader)
+ * CE170036  Pham Nhat Quang
+ * CE160464  Nguyen The Lu
+ * CE161096  Nguyen Ngoc My Quyen
+ * CE161025  Tran Thi Ngoc Hieu
  */
 public class RouterFilter implements Filter {
 
@@ -31,6 +39,9 @@ public class RouterFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
 
+    /**
+     * Constructor
+     */
     public RouterFilter() {
     }
 
@@ -90,6 +101,8 @@ public class RouterFilter implements Filter {
 
     /**
      *
+     * Filter link
+     * 
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
      * @param chain The filter chain we are processing
@@ -206,6 +219,7 @@ public class RouterFilter implements Filter {
 
     /**
      * Return the filter configuration object for this filter.
+     * @return the filter configuration object for this filter.
      */
     public FilterConfig getFilterConfig() {
         return (this.filterConfig);
@@ -228,6 +242,7 @@ public class RouterFilter implements Filter {
 
     /**
      * Init method for this filter
+     * @param filterConfig filter 
      */
     public void init(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;
@@ -282,6 +297,11 @@ public class RouterFilter implements Filter {
         }
     }
 
+    /**
+     *
+     * @param t throw able
+     * @return String 
+     */
     public static String getStackTrace(Throwable t) {
         String stackTrace = null;
         try {
@@ -296,11 +316,12 @@ public class RouterFilter implements Filter {
         return stackTrace;
     }
 
+    /**
+     * Log filter servlet context
+     * @param msg String
+     */
     public void log(String msg) {
         filterConfig.getServletContext().log(msg);
     }
 
-    public static void main(String[] args) {
-
-    }
 }
