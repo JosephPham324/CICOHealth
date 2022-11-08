@@ -91,7 +91,7 @@ public class RegisterControl extends HttpServlet {
         try {
             checkDuplicate = logDAO.checkUserNameDuplicate(username);
             if (checkDuplicate == 1) {
-                response.sendRedirect("register-error-control");
+                request.getRequestDispatcher("register-error-control").forward(request, response);
             } else {
                 String empString = "";
 

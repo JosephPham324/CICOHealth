@@ -61,7 +61,8 @@ public class LoginControl extends HttpServlet {
             }
 
             if (a == null) {//If there's no instance, redirect to error page
-                response.sendRedirect("login-error-control");
+                request.getRequestDispatcher("login-error-control").forward(request, response);
+//                response.sendRedirect("login-error-control");
             } else {//If login info is correct
                 HttpSession session = request.getSession();//Get current session
 
