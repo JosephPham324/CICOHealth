@@ -87,7 +87,7 @@ function generateFormExercise(exerciseType) {
       </div>
         <div class="energy-expenditure totalCal">
         <strong>
-        <i class="fa-solid fa-bolt-lightning">&nbsp;684kcal</i>
+        <i class="fa-solid fa-bolt-lightning">&nbsp;${exerciseType.calPerHour}kcal</i>
         </strong>
       </div>
       <input type="hidden" name = "exerciseName" value = "${exerciseType.exerciseName}">
@@ -142,7 +142,7 @@ function addFormExercise(element) {
         totalCalElement.innerHTML = `
   <strong><i class="fa-solid fa-bolt-lightning">&nbsp;${(
                 minuteToHour(duration.value) * extractKcalPH(kcalph.innerHTML)
-                ).toFixed(0)}kcal/h</i></strong>
+                ).toFixed(0)}kcal</i></strong>
   `;
         totalCalInput.value = (minuteToHour(duration.value) * extractKcalPH(kcalph.innerHTML)).toFixed(1)
     });
