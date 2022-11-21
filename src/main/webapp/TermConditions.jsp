@@ -20,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href = "./css/termconditions.css"/>
         <%@ include file = "headfootlink.jsp"%>
-        <title>Nutrition</title>
+        <title>Terms and Conditions | ${initParam['webappName']}</title>
     </head>
     <body>
         <%@ include file="header.jsp" %>

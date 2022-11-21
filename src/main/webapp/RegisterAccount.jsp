@@ -25,7 +25,7 @@
             />
         <link rel="icon" type="image/png" href="favicon.png"/>
         <link rel="stylesheet" href = "./css/registeracount.css"/>
-        <title>Register Account</title>
+        <title>Register Account | ${initParam['webappName']}</title>
         <style>
             .error {
                 color: red;

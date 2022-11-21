@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="./css/login.css" />
         <link rel="icon" type="image/png" href="favicon.png"/>
 
-        <title>Login</title>
+        <title>Login | ${initParam['webappName']}</title>
     </head>
     <body>
         <c:if test="${sessionScope.userID != null}">

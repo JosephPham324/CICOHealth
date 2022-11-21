@@ -38,7 +38,7 @@
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
         <%@ include file = "headfootlink.jsp"%>
-        <title>Your Meals</title>
+        <title>${sessionScope.username}'s Meals | ${initParam['webappName']}</title>
     </head>
     <body>
         <%@ include file="header.jsp" %>

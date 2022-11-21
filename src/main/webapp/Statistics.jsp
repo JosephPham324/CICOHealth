@@ -36,7 +36,7 @@
         <link rel="stylesheet" href="css/stats.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
         <%@ include file = "headfootlink.jsp"%>
-        <title>Statistics</title>
+        <title>${sessionScope.username}'s Statistics | ${initParam['webappName']}</title>
     </head>
     <body>
         <%@ include file="header.jsp" %>

@@ -35,7 +35,7 @@
             referrerpolicy="no-referrer"
             />
         <link rel="stylesheet" href="css/userinfo.css" />
-        <title>User Profile</title>
+        <title>${sessionScope.username} | ${initParam['webappName']}</title>
         <style>
             .error {
                 color: red;

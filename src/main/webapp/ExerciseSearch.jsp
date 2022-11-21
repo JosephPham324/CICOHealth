@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Exercise Lookup</title>
+        <title>Exercise Lookup | ${initParam['webappName']}</title>
         <link rel="stylesheet" href="./css/exercisesearch.css" />
         <link
             rel="stylesheet"

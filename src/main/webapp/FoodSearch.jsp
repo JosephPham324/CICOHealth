@@ -26,7 +26,7 @@
             rel="stylesheet"
             />
         <%@ include file = "headfootlink.jsp"%>
-        <title>Search Food</title>
+        <title>Search Food| ${initParam['webappName']}</title>
     </head>
     <body>
         <%@ include file="header.jsp" %>
