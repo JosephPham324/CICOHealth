@@ -37,17 +37,6 @@ nav_links.forEach((link) => {
       `${destinationID} input[name='result']`
     );
     inputAmount.addEventListener("input", () => {
-      //   let fromU = fromUnit.children[fromUnit.selectedIndex].value;
-      //   let toU = toUnit.children[toUnit.selectedIndex].value;
-      // console.log(fromU)
-      // console.log(toU)
-      // console.log(inputAmount.value)
-      // console.log(WeightConverter.convert(fromU,toU,inputAmount.value))
-      //   outputAmount.value = WeightConverter.convert(
-      //     fromU,
-      //     toU,
-      //     inputAmount.value
-      //   ).toFixed(6);
       calculateFromInput(inputAmount, fromUnit, toUnit, outputAmount);
     });
     fromUnit.onchange = function () {

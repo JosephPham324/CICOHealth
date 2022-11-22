@@ -43,3 +43,8 @@ body{
 .converter-panel form label{
     text-transform: uppercase;
 }
+.input-group-append>div{
+    background-color: whitesmoke;
+    color: black;
+    font-weight:bolder !important;
+}
