@@ -42,15 +42,28 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#weight-converter" data-destination ="#weight-converter"
+              <a
+                class="nav-link"
+                href="#weight-converter"
+                data-destination="#weight-converter"
                 >Weight <span class="sr-only">(current)</span></a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#length-converter" data-destination="#length-converter">Length</a>
+              <a
+                class="nav-link"
+                href="#length-converter"
+                data-destination="#length-converter"
+                >Length</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#energy-converter" data-destination="#energy-converter">Energy</a>
+              <a
+                class="nav-link"
+                href="#energy-converter"
+                data-destination="#energy-converter"
+                >Energy</a
+              >
             </li>
           </ul>
         </div>
@@ -58,40 +71,71 @@
       <div class="converter-panel active" id="weight-converter">
         <div class="from">
           <form class="row">
-            <label for="to-convert" class="col-4">From</label>
-            <select name="to-convert" id="to-convert" class="col-8">
-              <option value="mg">Milligrams</option>
-              <option value="g">Grams</option>
-              <option value="kg">Kilograms</option>
-              <option value="oz">Ounce</option>
-              <option value="lbs">Pounds</option>
-              <option value="st">Stone</option>
-              <option value="qtr">Quarter</option>
-              <option value="cwt">Hundredweight</option>
+            <label for="weight-to-convert" class="col-4">From</label>
+            <select name="to-convert" id="weight-to-convert" class="col-8">
+              <option value="mg">Milligrams (mg)</option>
+              <option value="g">Grams (g)</option>
+              <option value="kg">Kilograms (kg)</option>
+              <option value="oz">Ounce (oz)</option>
+              <option value="lbs">Pounds (lbs)</option>
+              <option value="st">Stone (st)</option>
+              <option value="qtr">Quarter (qtr)</option>
+              <option value="cwt">Hundredweight (cwt)</option>
             </select>
           </form>
         </div>
         <div class="to">
           <form class="row">
-            <label for="converted" class="col-4">To</label>
-            <select name="converted" id="converted" class="col-8">
-              <option value="mg">Milligrams</option>
-              <option value="g">Grams</option>
-              <option value="kg">Kilograms</option>
-              <option value="oz">Ounce</option>
-              <option value="lbs">Pounds</option>
-              <option value="st">Stone</option>
-              <option value="qtr">Quarter</option>
-              <option value="cwt">Hundredweight</option>
+            <label for="weight-converted" class="col-4">To</label>
+            <select name="converted" id="weight-converted" class="col-8">
+              <option value="mg">Milligrams (mg)</option>
+              <option value="g">Grams (g)</option>
+              <option value="kg">Kilograms (kg)</option>
+              <option value="oz">Ounce (oz)</option>
+              <option value="lbs">Pounds (lbs)</option>
+              <option value="st">Stone (st)</option>
+              <option value="qtr">Quarter (qtr)</option>
+              <option value="cwt">Hundredweight (cwt)</option>
             </select>
           </form>
         </div>
+        <form class="input-output">
+          <div class="form-group row">
+            <label for="input" class="col-4 col-form-label">Input</label> 
+            <div class="col-8 input-field">
+              <div class="input-group">
+                <input id="input" name="input" placeholder="Enter the amount to convert" type="number" class="form-control" value="0"> 
+                <div class="input-group-append">
+                  <div class="input-group-text">mg</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="result" class="col-4 col-form-label">Result</label> 
+            <div class="col-8">
+              <div class="input-group output-field">
+                <input id="result" name="result" placeholder="Result will be displayed here" type="number" class="form-control" value="0" readonly> 
+                <div class="input-group-append">
+                  <div class="input-group-text">mg</div>
+                </div>
+              </div>
+            </div>
+          </div> 
+          <div class="form-group row">
+            <div class="offset-4 col-8">
+              <button name="submit" class="btn btn-primary">Copy Result</button>
+            </div>
+          </div>
+        </form>
       </div>
+      <!------------------------------------------------------------------>
+
       <div class="converter-panel" id="energy-converter">
         <div class="from">
           <form class="row">
-            <label for="to-convert" class="col-4">From</label>
-            <select name="to-convert" id="to-convert" class="col-8">
+            <label for="engergy-to-convert" class="col-4">From</label>
+            <select name="to-convert" id="energy-to-convert" class="col-8">
               <option value="mg">Joules(J)</option>
               <option value="g">Kilojoules(kJ)</option>
               <option value="kg">Calories(cal)</option>
@@ -101,8 +145,8 @@
         </div>
         <div class="to">
           <form class="row">
-            <label for="converted" class="col-4">To</label>
-            <select name="converted" id="converted" class="col-8">
+            <label for="energy-converted" class="col-4">To</label>
+            <select name="converted" id="energy-converted" class="col-8">
               <option value="mg">Joules(J)</option>
               <option value="g">Kilojoules(kJ)</option>
               <option value="kg">Calories(cal)</option>
@@ -111,11 +155,13 @@
           </form>
         </div>
       </div>
+      <!------------------------------------------------------------------>
+
       <div class="converter-panel" id="length-converter">
         <div class="from">
           <form class="row">
-            <label for="to-convert" class="col-4">From</label>
-            <select name="to-convert" id="to-convert" class="col-8">
+            <label for="length-to-convert" class="col-4">From</label>
+            <select name="to-convert" id="length-to-convert" class="col-8">
               <option value="mg">Meters (m)</option>
               <option value="g">Kilometers (km)</option>
               <option value="kg">Miles (mi)</option>
@@ -125,8 +171,8 @@
         </div>
         <div class="to">
           <form class="row">
-            <label for="converted" class="col-4">To</label>
-            <select name="converted" id="converted" class="col-8">
+            <label for="length-converted" class="col-4">To</label>
+            <select name="converted" id="length-converted" class="col-8">
               <option value="mg">Meters (m)</option>
               <option value="g">Kilometers (km)</option>
               <option value="kg">Miles (mi)</option>
@@ -136,8 +182,7 @@
         </div>
       </div>
     </div>
-    
-  </div>
+    <!-- </div> -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
