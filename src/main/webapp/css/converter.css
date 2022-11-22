@@ -1,0 +1,45 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.converter{
+    width: 50%;
+    max-width: 800px;
+    height: 80vh;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.converter .header{
+    height: 80px;
+    font-size: 1.5em;
+    border-radius: 10px 10px 0 0 ;
+}
+.converter .nav-item.active{
+    background-color: aquamarine;
+    border-radius: 5px 20px 0 5px;
+    }
+.converter .converter-panel{
+    display: none;
+}
+.converter .converter-panel.active{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.converter-panel form{
+    padding: 10px;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+.converter-panel form label{
+    text-transform: uppercase;
+}

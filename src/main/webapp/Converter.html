@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/converter.css" />
+    <!-- <link rel="stylesheet" href="./css/boostrap.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Measurements Converter</title>
+  </head>
+  <body>
+    <div class="converter">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light header">
+        <a class="navbar-brand" href="#"
+          ><img src="favicon.png" alt="Icon" width="60" height="60"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#weight-converter" data-destination ="#weight-converter"
+                >Weight <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#length-converter" data-destination="#length-converter">Length</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#energy-converter" data-destination="#energy-converter">Energy</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="converter-panel active" id="weight-converter">
+        <div class="from">
+          <form class="row">
+            <label for="to-convert" class="col-4">From</label>
+            <select name="to-convert" id="to-convert" class="col-8">
+              <option value="mg">Milligrams</option>
+              <option value="g">Grams</option>
+              <option value="kg">Kilograms</option>
+              <option value="oz">Ounce</option>
+              <option value="lbs">Pounds</option>
+              <option value="st">Stone</option>
+              <option value="qtr">Quarter</option>
+              <option value="cwt">Hundredweight</option>
+            </select>
+          </form>
+        </div>
+        <div class="to">
+          <form class="row">
+            <label for="converted" class="col-4">To</label>
+            <select name="converted" id="converted" class="col-8">
+              <option value="mg">Milligrams</option>
+              <option value="g">Grams</option>
+              <option value="kg">Kilograms</option>
+              <option value="oz">Ounce</option>
+              <option value="lbs">Pounds</option>
+              <option value="st">Stone</option>
+              <option value="qtr">Quarter</option>
+              <option value="cwt">Hundredweight</option>
+            </select>
+          </form>
+        </div>
+      </div>
+      <div class="converter-panel" id="energy-converter">
+        <div class="from">
+          <form class="row">
+            <label for="to-convert" class="col-4">From</label>
+            <select name="to-convert" id="to-convert" class="col-8">
+              <option value="mg">Joules(J)</option>
+              <option value="g">Kilojoules(kJ)</option>
+              <option value="kg">Calories(cal)</option>
+              <option value="oz">Kilocalories(kcal)</option>
+            </select>
+          </form>
+        </div>
+        <div class="to">
+          <form class="row">
+            <label for="converted" class="col-4">To</label>
+            <select name="converted" id="converted" class="col-8">
+              <option value="mg">Joules(J)</option>
+              <option value="g">Kilojoules(kJ)</option>
+              <option value="kg">Calories(cal)</option>
+              <option value="oz">Kilocalories(kcal)</option>
+            </select>
+          </form>
+        </div>
+      </div>
+      <div class="converter-panel" id="length-converter">
+        <div class="from">
+          <form class="row">
+            <label for="to-convert" class="col-4">From</label>
+            <select name="to-convert" id="to-convert" class="col-8">
+              <option value="mg">Meters (m)</option>
+              <option value="g">Kilometers (km)</option>
+              <option value="kg">Miles (mi)</option>
+              <option value="oz">Nautical miles (nmi)</option>
+            </select>
+          </form>
+        </div>
+        <div class="to">
+          <form class="row">
+            <label for="converted" class="col-4">To</label>
+            <select name="converted" id="converted" class="col-8">
+              <option value="mg">Meters (m)</option>
+              <option value="g">Kilometers (km)</option>
+              <option value="kg">Miles (mi)</option>
+              <option value="oz">Nautical miles (nmi)</option>
+            </select>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="scripts/converter.js"></script>
+  </body>
+</html>
