@@ -163,17 +163,20 @@ class WeightConverter {
 }
 console.log(WeightConverter.convert("mg", "kg", 1000000));
 
-function copiedTooltip() {
+function copiedTooltip(tooltip) {
+  // console.log(tooltip.children)
   var copyText = outputAmount
+  // console.log(outputAmount)
   copyText.select();
   copyText.setSelectionRange(0, 99999);
   navigator.clipboard.writeText(copyText.value);
   
-  var tooltip = document.getElementById("myTooltip");
+  // var tooltip = document.getElementById("myTooltip");
   tooltip.innerHTML = "Copied: " + copyText.value;
 }
 
-function resetTooltip() {
-  var tooltip = document.getElementById("myTooltip");
+function resetTooltip(tooltip) {
+  // console.log(tooltip.children)
+  // var tooltip = document.getElementById("myTooltip");
   tooltip.innerHTML = "Copy to clipboard";
 }
