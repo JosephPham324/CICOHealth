@@ -119,6 +119,14 @@ function calculateFromInput(
         inputElement.value
       ).toFixed(6);
       break;
+    case "energy":
+      let output = EnergyConverter.convert(
+        fromU,
+        toU,
+        inputElement.value
+      )
+      outputElement.value = Number(output).toFixed(6)
+      break;
     default:
       outputElement.value = WeightConverter.convert(
         fromU,
@@ -277,6 +285,54 @@ class LengthConverter {
         return amountFt * this.ft_to_mi;
       case "nmi":
         return amountFt * this.ft_to_nmi;
+    }
+  }
+}
+
+class EnergyConverter {
+  static cal_to_kcal = 1 / 1000;
+  static cal_to_j = 4.184;
+  static j_to_cal = 0.239;
+  static j_to_kj = 1 / 1000;
+
+  static toKcal(fromUnit, amount) {
+    switch (fromUnit) {
+      case "J":
+      case "kJ":
+        return this.tokJ(fromUnit,amount) / this.cal_to_j
+      case "cal":
+        return amount * this.cal_to_kcal;
+      case "kcal":
+        return amount;
+      default:
+        return -1;
+    }
+  }
+  static tokJ(fromUnit, amount) {
+    switch (fromUnit) {
+      case "J":
+        return amount * this.j_to_kj
+      case "kJ":
+        return amount
+      case "cal":
+      case "kcal":
+        return this.toKcal(fromUnit,amount) * this.cal_to_j
+    }
+  }
+  static convert(fromUnit, toUnit, amount) {
+    let kcal = this.toKcal(fromUnit, amount);
+    let kJ = this.tokJ(fromUnit,amount)
+    // console.log(kcal)
+    // console.log(kJ)
+    switch (toUnit) {
+      case "J":
+        return kJ * 1000;
+      case "kJ":
+        return kJ
+      case "cal":
+        return kcal * 1000
+      case "kcal":
+        return kcal
     }
   }
 }
