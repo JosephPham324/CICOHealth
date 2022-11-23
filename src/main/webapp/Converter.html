@@ -25,7 +25,7 @@
     <div class="converter">
       <nav class="navbar navbar-expand-lg navbar-light bg-light header">
         <a class="navbar-brand" href="#"
-          ><img src="favicon.png" alt="Icon" width="60" height="60"
+          ><img  style="border-radius: 50%;" src="favicon.png" alt="Icon" width="60" height="60"
         /></a>
         <button
           class="navbar-toggler"
@@ -101,10 +101,17 @@
         </div>
         <form class="input-output">
           <div class="form-group row">
-            <label for="input" class="col-4 col-form-label">Input</label> 
+            <label for="input" class="col-4 col-form-label">Input</label>
             <div class="col-8 input-field">
               <div class="input-group">
-                <input id="input" name="input" placeholder="Enter the amount to convert" type="number" class="form-control" value="0"> 
+                <input
+                  id="input"
+                  name="input"
+                  placeholder="Enter the amount to convert"
+                  type="number"
+                  class="form-control"
+                  value="0"
+                />
                 <div class="input-group-append">
                   <div class="input-group-text">mg</div>
                 </div>
@@ -112,19 +119,39 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="result" class="col-4 col-form-label">Result</label> 
+            <label for="result" class="col-4 col-form-label">Result</label>
             <div class="col-8">
               <div class="input-group output-field">
-                <input id="result" name="result" placeholder="Result will be displayed here" type="number" class="form-control" value="0" readonly> 
+                <input
+                  id="result"
+                  name="result"
+                  placeholder="Result will be displayed here"
+                  type="text"
+                  class="form-control"
+                  value="0"
+                  readonly
+                />
                 <div class="input-group-append">
                   <div class="input-group-text">mg</div>
                 </div>
               </div>
             </div>
-          </div> 
+          </div>
           <div class="form-group row">
             <div class="offset-4 col-8">
-              <button name="submit" class="btn btn-primary">Copy Result</button>
+              <div class="tooltip_">
+                <button
+                name="submit"
+                class="btn btn-primary"
+                onclick="copiedTooltip()"
+                onmouseout="resetTooltip()"
+              >
+                <span class="tooltiptext" id="myTooltip">
+                  Copy to clipboard
+                </span>
+                Copy result
+              </button>
+              </div>
             </div>
           </div>
         </form>

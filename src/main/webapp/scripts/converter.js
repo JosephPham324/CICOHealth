@@ -4,6 +4,7 @@ let fromUnit;
 let toUnit;
 let inputAmount;
 let outputAmount;
+let converterType
 
 function off_links() {
   nav_links.forEach((link) => {
@@ -23,6 +24,19 @@ nav_links.forEach((link) => {
     let destinationID = link.getAttribute("data-destination");
     let destination = document.querySelector(destinationID);
     off_views();
+    switch (destinationID){
+      case "#weight-converter":
+        converterType = "weight";
+        break;
+      case "#length-converter":
+        converterType = "length";
+        break;
+      case "#energy-converter":
+        converterType="energy";
+        break;
+      default:
+        converterType = "weight"
+    }
     destination.classList.add("active");
     fromUnit = document.querySelector(
       `${destinationID} select[name='to-convert']`
@@ -37,24 +51,25 @@ nav_links.forEach((link) => {
       `${destinationID} input[name='result']`
     );
     inputAmount.addEventListener("input", () => {
-      calculateFromInput(inputAmount, fromUnit, toUnit, outputAmount);
+      calculateFromInput(converterType,inputAmount, fromUnit, toUnit, outputAmount);
     });
     fromUnit.onchange = function () {
       // console.log(document.querySelector(`${destinationID} .input-field .input-group-text`))
       document.querySelector(
         `${destinationID} .input-field .input-group-text`
       ).innerText = this.children[this.selectedIndex].value;
-      calculateFromInput(inputAmount, fromUnit, toUnit, outputAmount);
+      calculateFromInput(converterType,inputAmount, fromUnit, toUnit, outputAmount);
     };
     toUnit.onchange = function () {
       document.querySelector(
         `${destinationID} .output-field .input-group-text`
       ).innerText = this.children[this.selectedIndex].value;
-      calculateFromInput(inputAmount, fromUnit, toUnit, outputAmount);
+      calculateFromInput(converterType,inputAmount, fromUnit, toUnit, outputAmount);
     };
   });
 });
 function calculateFromInput(
+  converterType,
   inputElement,
   fromUnitElement,
   toUnitElement,
@@ -146,4 +161,19 @@ class WeightConverter {
     }
   }
 }
-console.log(WeightConverter.convert("mg", "kg", 1_000_000));
+console.log(WeightConverter.convert("mg", "kg", 1000000));
+
+function copiedTooltip() {
+  var copyText = outputAmount
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+  
+  var tooltip = document.getElementById("myTooltip");
+  tooltip.innerHTML = "Copied: " + copyText.value;
+}
+
+function resetTooltip() {
+  var tooltip = document.getElementById("myTooltip");
+  tooltip.innerHTML = "Copy to clipboard";
+}
