@@ -4,7 +4,7 @@ let fromUnit;
 let toUnit;
 let inputAmount;
 let outputAmount;
-let converterType
+let converterType;
 
 function off_links() {
   nav_links.forEach((link) => {
@@ -24,7 +24,7 @@ nav_links.forEach((link) => {
     let destinationID = link.getAttribute("data-destination");
     let destination = document.querySelector(destinationID);
     off_views();
-    switch (destinationID){
+    switch (destinationID) {
       case "#weight-converter":
         converterType = "weight";
         break;
@@ -32,10 +32,10 @@ nav_links.forEach((link) => {
         converterType = "length";
         break;
       case "#energy-converter":
-        converterType="energy";
+        converterType = "energy";
         break;
       default:
-        converterType = "weight"
+        converterType = "weight";
     }
     destination.classList.add("active");
     fromUnit = document.querySelector(
@@ -51,20 +51,44 @@ nav_links.forEach((link) => {
       `${destinationID} input[name='result']`
     );
     inputAmount.addEventListener("input", () => {
-      calculateFromInput(converterType,inputAmount, fromUnit, toUnit, outputAmount);
+      calculateFromInput(
+        converterType,
+        inputAmount,
+        fromUnit,
+        toUnit,
+        outputAmount
+      );
     });
+    document.querySelector(
+      `${destinationID} .input-field .input-group-text`
+    ).innerText = fromUnit.children[fromUnit.selectedIndex].value;
+    document.querySelector(
+      `${destinationID} .output-field .input-group-text`
+    ).innerText = toUnit.children[toUnit.selectedIndex].value;
     fromUnit.onchange = function () {
       // console.log(document.querySelector(`${destinationID} .input-field .input-group-text`))
       document.querySelector(
         `${destinationID} .input-field .input-group-text`
       ).innerText = this.children[this.selectedIndex].value;
-      calculateFromInput(converterType,inputAmount, fromUnit, toUnit, outputAmount);
+      calculateFromInput(
+        converterType,
+        inputAmount,
+        fromUnit,
+        toUnit,
+        outputAmount
+      );
     };
     toUnit.onchange = function () {
       document.querySelector(
         `${destinationID} .output-field .input-group-text`
       ).innerText = this.children[this.selectedIndex].value;
-      calculateFromInput(converterType,inputAmount, fromUnit, toUnit, outputAmount);
+      calculateFromInput(
+        converterType,
+        inputAmount,
+        fromUnit,
+        toUnit,
+        outputAmount
+      );
     };
   });
 });
@@ -77,14 +101,33 @@ function calculateFromInput(
 ) {
   let fromU = fromUnitElement.children[fromUnitElement.selectedIndex].value;
   let toU = toUnitElement.children[toUnitElement.selectedIndex].value;
-//   console.log(fromU);
-//   console.log(toU);
-  outputElement.value = WeightConverter.convert(
-    fromU,
-    toU,
-    inputElement.value
-  ).toFixed(6);
+  //   console.log(fromU);
+  //   console.log(toU);
+
+  switch (converterType) {
+    case "weight":
+      outputElement.value = WeightConverter.convert(
+        fromU,
+        toU,
+        inputElement.value
+      ).toFixed(6);
+      break;
+    case "length":
+      outputElement.value = LengthConverter.convert(
+        fromU,
+        toU,
+        inputElement.value
+      ).toFixed(6);
+      break;
+    default:
+      outputElement.value = WeightConverter.convert(
+        fromU,
+        toU,
+        inputElement.value
+      ).toFixed(6);
+  }
 }
+
 nav_links[0].click();
 
 class WeightConverter {
@@ -161,22 +204,92 @@ class WeightConverter {
     }
   }
 }
+
+class LengthConverter {
+  static m_to_cm = 100;
+  static m_to_dm = 10;
+  static m_to_mm = 1000;
+  static cm_to_mm = 10;
+  static m_to_km = 1 / 1000;
+  static ft_to_m = 0.3048;
+  static ft_to_in = 12;
+  static ft_to_mi = 1 / 5280;
+  static ft_to_nmi = 1 / 6076.1;
+
+  static toMeter(fromUnit, amount) {
+    switch (fromUnit) {
+      case "mm":
+        return amount / this.m_to_mm;
+      case "cm":
+        return amount / this.m_to_cm;
+      case "dm":
+        return amount / this.m_to_dm;
+      case "m":
+        return amount;
+      case "km":
+        return amount / this.m_to_km;
+      case "in":
+      case "ft":
+      case "mi":
+      case "nmi":
+        return this.toFeet(fromUnit, amount) * this.ft_to_m;
+    }
+  }
+  static toFeet(fromUnit, amount) {
+    switch (fromUnit) {
+      case "mm":
+      case "cm":
+      case "dm":
+      case "m":
+      case "km":
+        return this.toMeter(fromUnit, amount) / this.ft_to_m;
+      case "in":
+        return amount / this.ft_to_in;
+      case "ft":
+        return amount;
+      case "mi":
+        return amount / this.ft_to_mi;
+      case "nmi":
+        return amount / this.ft_to_nmi;
+    }
+  }
+  static convert(fromUnit, toUnit, amount) {
+    let amountM = this.toMeter(fromUnit, amount);
+    let amountFt = this.toFeet(fromUnit, amount);
+    // console.log(amountM)
+    // console.log(amountFt)
+    switch (toUnit) {
+      case "mm":
+        return amountM * this.m_to_mm;
+      case "cm":
+        return amountM * this.m_to_cm;
+      case "dm":
+        return amountM * this.m_to_dm;
+      case "m":
+        return amountM;
+      case "km":
+        return amountM * this.m_to_km;
+      case "in":
+        return amountFt * this.ft_to_in;
+      case "ft":
+        return amountFt;
+      case "mi":
+        return amountFt * this.ft_to_mi;
+      case "nmi":
+        return amountFt * this.ft_to_nmi;
+    }
+  }
+}
 console.log(WeightConverter.convert("mg", "kg", 1000000));
 
 function copiedTooltip(tooltip) {
-  // console.log(tooltip.children)
-  var copyText = outputAmount
-  // console.log(outputAmount)
+  var copyText = outputAmount;
   copyText.select();
   copyText.setSelectionRange(0, 99999);
   navigator.clipboard.writeText(copyText.value);
-  
-  // var tooltip = document.getElementById("myTooltip");
   tooltip.innerHTML = "Copied: " + copyText.value;
 }
 
 function resetTooltip(tooltip) {
-  // console.log(tooltip.children)
-  // var tooltip = document.getElementById("myTooltip");
   tooltip.innerHTML = "Copy to clipboard";
 }
