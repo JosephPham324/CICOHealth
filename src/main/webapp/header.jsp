@@ -15,6 +15,7 @@
         <li class="nav-link"><a class="txt" href="#footer">About</a></li>
         <li class="nav-link"><a class="txt" href="search-food">Food</a></li>
         <li class="nav-link"><a class="txt" href="search-exercise">Exercise</a></li>
+        <li class="nav-link"><a class="txt" href="convert-unit">Units</a></li>
             <c:choose>
                 <c:when test = "${sessionScope.userID!=null}">
                     <%
@@ -24,8 +25,6 @@
                             out.println("<li class=\"nav-link\"><a href=\"admin\"><i class=\"fa-solid fa-user-gear\" style=\"color:red;\"></i></a></li>");
                         }
                     %>
-                <li class="nav-link"><a href="user-meals"><img class="add-food-logo" src="image/addFood-logo.png"></a></li>
-                <li class="nav-link"><a href="user-exercises"><img class="add-exercise-logo" src="image/addExercise-logo.png"></a></li>
                 <li class="nav-link">
                     <div class="dropdown">
                         <img class="personal-logo" src="image/personal-logo.png" onclick="myDropdownF()">
@@ -33,6 +32,8 @@
                         <div id="myDropdown" class="dropdown-content">
                             <a href="user-info">Profile</a>
                             <a href="user-statistics">Nutrition Statistics</a>
+                            <a href="user-meals">Added Meals</a>
+                            <a href="user-exercises">Added Exercises</a>
                             <a href="logout-control">Log out</a>
                         </div>
                     </div>

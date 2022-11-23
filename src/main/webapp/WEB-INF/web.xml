@@ -136,7 +136,7 @@
         <servlet-name>UserExercises</servlet-name>
         <jsp-file>/UserExercises.jsp</jsp-file>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>LoginError</servlet-name>
         <jsp-file>/login-error.jsp</jsp-file>
     </servlet>
@@ -231,6 +231,10 @@
     <servlet>
         <servlet-name>TermConditions</servlet-name>
         <jsp-file>/TermConditions.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>UnitConversion</servlet-name>
+        <jsp-file>/UnitConversion.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
@@ -341,7 +345,7 @@
         <url-pattern>/login-error-control</url-pattern>
     </servlet-mapping>
     
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RegisterError</servlet-name>
         <url-pattern>/register-error-control</url-pattern>
     </servlet-mapping>
@@ -445,6 +449,10 @@
     <servlet-mapping>
         <servlet-name>TermConditions</servlet-name>
         <url-pattern>/terms</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UnitConversion</servlet-name>
+        <url-pattern>/convert-unit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

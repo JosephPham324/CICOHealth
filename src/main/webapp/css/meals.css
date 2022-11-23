@@ -2,7 +2,7 @@
 * @Author: Pham Nhat Quang
 */
 *{
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 body{
     width: 100vw;
@@ -24,6 +24,8 @@ body{
 }
 .edit-form .overlay{
     position: fixed;
+    top:0;
+    left:0;
     width: 100%;
     height: 100vh;
     background-color: rgba(0,0,0,0.5);
@@ -179,7 +181,7 @@ tr.dayStat td{
 }
 .create-meal .fat{
     color:  #ffa600;
-    
+
 }
 .create-meal .fa-x{
     color: red;

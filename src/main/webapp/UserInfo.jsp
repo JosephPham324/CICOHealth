@@ -119,17 +119,17 @@
             <div class="col-sm-2" style="background-color: #080808;">
                 <ul class="nav flex-column nav-pills nav-fill">
                     <li class="nav-item">
-                        <a class="nav-link <%=panelSwitch == 0 ? "active" : ""%>" href="#" data-destination="#login-info"
+                        <a class="nav-link <%=panelSwitch == 0 ? "active" : ""%>" href="#login-info" data-destination="#login-info"
                            >Login Info</a
                         >
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <%=panelSwitch == 1 ? "active" : ""%>" href="#" data-destination="#user-info"
+                        <a class="nav-link <%=panelSwitch == 1 ? "active" : ""%>" href="#user-info" data-destination="#user-info"
                            >User Info</a
                         >
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <%=panelSwitch == 2 ? "active" : ""%>" href="#" data-destination="#health-info"
+                        <a class="nav-link <%=panelSwitch == 2 ? "active" : ""%>" href="#health-info" data-destination="#health-info"
                            >Health Info</a
                         >
                     </li>

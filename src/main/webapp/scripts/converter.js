@@ -1,4 +1,4 @@
-let nav_links = document.querySelectorAll(".nav-link");
+let nav_links = document.querySelectorAll(".converter .nav-link");
 let views = document.querySelectorAll(".converter-panel");
 let fromUnit;
 let toUnit;
