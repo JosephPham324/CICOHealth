@@ -50,10 +50,9 @@ async function activateSetTimer() {
   )})`;
 
   for (let i = 0; i < setNum; i++) {
-    console.log(i);
-    clockLabel.innerText = "Set time left";
+    clockLabel.innerHTML = `<span class = 'set-remaining'>Set: ${i+1} of ${setNum}</span><br>Set time left`;
     await countdown(clock, setTime);
-    clockLabel.innerText = "Rest time left";
+    clockLabel.innerHTML = `<span class = 'set-remaining'>Set: ${i+1} of ${setNum}</span><br>Rest time left`;
     await countdown(clock, restTime);
     if (stopClock) {
         stopClock = false

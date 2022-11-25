@@ -78,10 +78,26 @@ body{
     font-weight: bold;
     font-size: 1.2em;
 }
+.set-remaining{
+    color: rgb(200, 200, 9);
+}
 .clock{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
+}
+
+.stop-clock button{
+    background-color: red;
+    color: white;
+    border: 0;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 5px;
+}
+.stop-clock button:active{
+    outline: none;
+    transform: scale(0.9) !important;
 }
