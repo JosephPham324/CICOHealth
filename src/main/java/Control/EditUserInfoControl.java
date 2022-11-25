@@ -87,7 +87,7 @@ public class EditUserInfoControl extends HttpServlet {
             UserDAO uDAO = new UserDAO();
             uDAO.editUser(userID, firstName, lastName, email, phone);
             request.getSession().setAttribute("panel", "userInfo");
-            response.sendRedirect("user-info");
+            response.sendRedirect("/Nutrition/user/user-info");
         } catch (Exception ex) {
             Logger.getLogger(EditUserInfoControl.class.getName()).log(Level.SEVERE, null, ex);
         }

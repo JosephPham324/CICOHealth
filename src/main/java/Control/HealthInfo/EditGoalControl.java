@@ -94,7 +94,7 @@ public class EditGoalControl extends HttpServlet {
                     userID = request.getSession().getAttribute("userID").toString();
                     gDAO.editCalorieGoal(userID, dailyCalorie, proteinPerc, fatPerc, carbPerc);
                     request.getSession().setAttribute("panel", "healthInfo");
-                    response.sendRedirect("user-info");
+                    response.sendRedirect("/Nutrition/user/user-info");
                     break;
                 case "edit-macro":
                     String proteinWeight = request.getParameter("proteinPercentage");
@@ -103,7 +103,7 @@ public class EditGoalControl extends HttpServlet {
                     userID = request.getSession().getAttribute("userID").toString();
                     gDAO.editMacroGoal(userID, proteinWeight, fatWeight, carbWeight);
                     request.getSession().setAttribute("panel", "healthInfo");
-                    response.sendRedirect("user-info");
+                    response.sendRedirect("/Nutrition/user/user-info");
             }
         } catch (SQLException ex) {
             Logger.getLogger(EditGoalControl.class.getName()).log(Level.SEVERE, null, ex);

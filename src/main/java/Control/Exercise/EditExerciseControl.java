@@ -87,7 +87,7 @@ public class EditExerciseControl extends HttpServlet {
         ExerciseDAO dao = new ExerciseDAO();
         try {
             dao.updateExercise(duration, exerciseID, userID, date, time);
-            response.sendRedirect("user-exercises");
+            response.sendRedirect("/Nutrition/user/user-exercises");
         } catch (SQLException ex) {
             response.getWriter().write(ex.getMessage());
         }

@@ -99,7 +99,7 @@ public class EditHealthInfo extends HttpServlet {
             String finalCalories = Double.toString(calories);
             goal.addGoal(userID, finalCalories);
             request.getSession().setAttribute("panel", "healthInfo");
-            response.sendRedirect("user-info");
+            response.sendRedirect("/Nutrition/user/user-info");
         } catch (SQLException ex) {
             response.getWriter().write(ex.getMessage());
             Logger.getLogger(HealthInfoControl.class.getName()).log(Level.SEVERE, null, ex);
