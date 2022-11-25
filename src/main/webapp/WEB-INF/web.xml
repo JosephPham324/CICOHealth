@@ -234,7 +234,7 @@
     </servlet>
     <servlet>
         <servlet-name>UnitConversion</servlet-name>
-        <jsp-file>/UnitConversion.jsp</jsp-file>
+        <jsp-file>/Utilities/UnitConversion.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
@@ -452,7 +452,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UnitConversion</servlet-name>
-        <url-pattern>/convert-unit</url-pattern>
+        <url-pattern>/utilities/convert-unit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

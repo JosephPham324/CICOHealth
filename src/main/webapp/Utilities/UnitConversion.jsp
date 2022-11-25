@@ -11,7 +11,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="css/converter.css" />
+        <link rel="stylesheet" href="../css/converter.css" />
         <!-- <link rel="stylesheet" href="./css/boostrap.css" /> -->
         <link
             rel="stylesheet"
@@ -26,14 +26,14 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
             />
-
+        <%@include file = "../headfootlink.jsp" %>
         <title>Measurements Converter | ${initParam['webappName']}</title>
     </head>
     <body>
-        <%--<%@ include file="header.jsp" %>--%>
+        <%@ include file="../header.jsp" %>
         <div class="converter">
             <nav class="navbar navbar-expand-lg navbar-light bg-light header">
-                <a class="navbar-brand" href="home-control">HOME</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/home-control">HOME</a>
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -354,6 +354,6 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"
         ></script>
-        <script src="scripts/converter.js"></script>
+        <script src="${pageContext.request.contextPath}/scripts/converter.js"></script>
     </body>
 </html>
