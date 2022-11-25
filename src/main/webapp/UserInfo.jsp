@@ -240,7 +240,7 @@
             </div>
         </div>
         <jsp:include page="footer.jsp"></jsp:include>
-            <script src="scripts/headfootscript.js"></script>
+            <!--<script src="scripts/headfootscript.js"></script>-->
             <script>
                 document.getElementById('txtPassword1Message').style.display = 'none';
                 let correctPassword = <%=correctPassword%>;

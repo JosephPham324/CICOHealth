@@ -15,21 +15,28 @@
         <li class="nav-link"><a class="txt" href="#footer">About</a></li>
         <li class="nav-link"><a class="txt" href="search-food">Food</a></li>
         <li class="nav-link"><a class="txt" href="search-exercise">Exercise</a></li>
-        <li class="nav-link"><a class="txt" href="convert-unit">Units</a></li>
-            <c:choose>
-                <c:when test = "${sessionScope.userID!=null}">
-                    <%
-                        //String userID = ;
-                        int userRole = new UserDAO().getRoleIDByUserID(Integer.parseInt(request.getSession().getAttribute("userID") + ""));
-                        if (userRole == 1) {
-                            out.println("<li class=\"nav-link\"><a href=\"admin\"><i class=\"fa-solid fa-user-gear\" style=\"color:red;\"></i></a></li>");
-                        }
-                    %>
-                <li class="nav-link">
+        <li class="nav-link">
+            <div class="dropdown dropdown-toggle" data-id="utilities">
+                <span>Utilities</span>
+                <div id="utilities" class="dropdown-content">
+                    <a href="convert-unit">Utilities</a>
+                </div>
+            </div>
+        </li>
+        <c:choose>
+            <c:when test = "${sessionScope.userID!=null}">
+                <%
+                    //String userID = ;
+                    int userRole = new UserDAO().getRoleIDByUserID(Integer.parseInt(request.getSession().getAttribute("userID") + ""));
+                    if (userRole == 1) {
+                        out.println("<li class=\"nav-link\"><a href=\"admin\"><i class=\"fa-solid fa-user-gear\" style=\"color:red;\"></i></a></li>");
+                    }
+                %>
+                <li class="nav-link dropdown-toggle" data-id="user" >
                     <div class="dropdown">
-                        <img class="personal-logo" src="image/personal-logo.png" onclick="myDropdownF()">
+                        <img class="personal-logo"src="image/personal-logo.png" >
 
-                        <div id="myDropdown" class="dropdown-content">
+                        <div id="user" class="dropdown-content">
                             <a href="user-info">Profile</a>
                             <a href="user-statistics">Nutrition Statistics</a>
                             <a href="user-meals">Added Meals</a>
@@ -53,8 +60,3 @@
 <c:if test="${sessionScope.userID!=null}">
     <jsp:include page="TodayNumbers.jsp" />
 </c:if>
-<%
-//    if (request.getSession().getAttribute("userID")!=null){
-//    out.println("<jsp:include page=\"TodayNumbers.jsp\"></jsp:include>");
-//    }
-%>
