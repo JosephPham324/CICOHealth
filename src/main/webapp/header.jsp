@@ -20,6 +20,7 @@
                 <span>Utilities</span>
                 <div id="utilities" class="dropdown-content">
                     <a href="${pageContext.request.contextPath}/utilities/convert-unit">Convert Units</a>
+                    <a href="${pageContext.request.contextPath}/utilities/timer">Timer</a>
                 </div>
             </div>
         </li>

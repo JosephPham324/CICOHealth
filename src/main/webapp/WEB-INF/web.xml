@@ -236,6 +236,10 @@
         <servlet-name>UnitConversion</servlet-name>
         <jsp-file>/Utilities/UnitConversion.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>Timer</servlet-name>
+        <jsp-file>/Utilities/Timer.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -453,6 +457,10 @@
     <servlet-mapping>
         <servlet-name>UnitConversion</servlet-name>
         <url-pattern>/utilities/convert-unit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Timer</servlet-name>
+        <url-pattern>/utilities/timer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
