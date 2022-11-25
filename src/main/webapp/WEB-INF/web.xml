@@ -182,7 +182,7 @@
     </servlet>
     <servlet>
         <servlet-name>Statistics</servlet-name>
-        <jsp-file>/Statistics.jsp</jsp-file>
+        <jsp-file>/User/Statistics.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>EditGoalControl</servlet-name>
@@ -404,7 +404,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Statistics</servlet-name>
-        <url-pattern>/user-statistics</url-pattern>
+        <url-pattern>/user/user-statistics</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EditGoalControl</servlet-name>

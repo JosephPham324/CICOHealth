@@ -39,7 +39,7 @@
 
                         <div id="user" class="dropdown-content">
                             <a href="${pageContext.request.contextPath}/user/user-info">Profile</a>
-                            <a href="${pageContext.request.contextPath}/user-statistics">Nutrition Statistics</a>
+                            <a href="${pageContext.request.contextPath}/user/user-statistics">Nutrition Statistics</a>
                             <a href="${pageContext.request.contextPath}/user-meals">Added Meals</a>
                             <a href="${pageContext.request.contextPath}/user-exercises">Added Exercises</a>
                             <a href="${pageContext.request.contextPath}/logout-control">Log out</a>
