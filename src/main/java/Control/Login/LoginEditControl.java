@@ -83,7 +83,7 @@ public class LoginEditControl extends HttpServlet {
         try {
             lDAO.editLoginInfo(userID, username, password);
             request.getSession().setAttribute("panel", "loginInfo");
-            response.sendRedirect("user-info");
+            response.sendRedirect("/Nutrition/user/user-info");
         } catch (Exception ex) {
             Logger.getLogger(LoginEditControl.class.getName()).log(Level.SEVERE, null, ex);
         }

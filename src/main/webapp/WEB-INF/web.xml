@@ -166,7 +166,7 @@
     </servlet>
     <servlet>
         <servlet-name>UserInfo</servlet-name>
-        <jsp-file>/UserInfo.jsp</jsp-file>
+        <jsp-file>/User/UserInfo.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>LoginEditControl</servlet-name>
@@ -388,7 +388,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserInfo</servlet-name>
-        <url-pattern>/user-info</url-pattern>
+        <url-pattern>/user/user-info</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginEditControl</servlet-name>

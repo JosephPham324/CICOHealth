@@ -38,7 +38,7 @@
                         <img class="personal-logo"src="${pageContext.request.contextPath}/image/personal-logo.png" >
 
                         <div id="user" class="dropdown-content">
-                            <a href="${pageContext.request.contextPath}/user-info">Profile</a>
+                            <a href="${pageContext.request.contextPath}/user/user-info">Profile</a>
                             <a href="${pageContext.request.contextPath}/user-statistics">Nutrition Statistics</a>
                             <a href="${pageContext.request.contextPath}/user-meals">Added Meals</a>
                             <a href="${pageContext.request.contextPath}/user-exercises">Added Exercises</a>

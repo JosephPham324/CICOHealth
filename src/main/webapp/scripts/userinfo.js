@@ -170,7 +170,7 @@ loginEditButtons.forEach((button) => {
       </div>    
     </div>`;
     form.innerHTML = formContent;//Change the form content
-    form.action = "home-control";//Change the form action
+    form.action = "/Nutrition/home-control";//Change the form action
     if (button == loginEditButtons[1]) {//If user is editing password
       form.onsubmit = function () {
         return (
@@ -276,7 +276,7 @@ userEditButtons.forEach((button) => {
           </div>
         </div>`;
     form.innerHTML = formContent;//Change form content
-    form.action = "home-control";//Change form action
+    form.action = "/Nutrition/home-control";//Change form action
   });
 });
 
@@ -411,7 +411,7 @@ healthEditButtons.forEach((button) => {
     form.innerHTML = formContent;//Change form content
     document.getElementById(`activeness_${activeness}`).checked = true;//Check the current activeness level
 
-    form.action = "home-control";//Change form action
+    form.action = "/Nutrition/home-control";//Change form action
   });
 });
 
@@ -484,7 +484,7 @@ goalEditButtons[0].addEventListener("click", () => {
   </div>
   `;
   form.innerHTML = formContent;//Change form content
-  form.action = "home-control";//Change form action
+  form.action = "/Nutrition/home-control";//Change form action
 
   //For changing macro percentages
   let proteinPercentage = document.getElementById("proteinPercentage");//Protein
@@ -582,7 +582,7 @@ goalEditButtons.slice(1).forEach((button) => {
     `;
     //Change form content and action
     form.innerHTML = formContent;
-    form.action="edit-goal-control"
+    form.action="/Nutrition/home-control"
 
     let proteinWeight = document.getElementById("proteinPercentage");
     let fatWeight = document.getElementById("fatPercentage");
