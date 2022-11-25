@@ -103,24 +103,26 @@ function calculateFromInput(
   let toU = toUnitElement.children[toUnitElement.selectedIndex].value;
   //   console.log(fromU);
   //   console.log(toU);
-
+  let output
   switch (converterType) {
     case "weight":
-      outputElement.value = WeightConverter.convert(
+      output = WeightConverter.convert(
         fromU,
         toU,
         inputElement.value
-      ).toFixed(6);
+      );
+      outputElement.value = Number(output).toFixed(6);
       break;
     case "length":
-      outputElement.value = LengthConverter.convert(
+      output = LengthConverter.convert(
         fromU,
         toU,
         inputElement.value
-      ).toFixed(6);
+      );
+      outputElement.value = Number(output).toFixed(6);
       break;
     case "energy":
-      let output = EnergyConverter.convert(
+      output = EnergyConverter.convert(
         fromU,
         toU,
         inputElement.value
