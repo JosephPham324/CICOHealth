@@ -134,7 +134,7 @@
     </servlet>
     <servlet>
         <servlet-name>UserExercises</servlet-name>
-        <jsp-file>/UserExercises.jsp</jsp-file>
+        <jsp-file>/User/UserExercises.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>LoginError</servlet-name>
@@ -364,7 +364,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserExercises</servlet-name>
-        <url-pattern>/user-exercises</url-pattern>
+        <url-pattern>/user/user-exercises</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EditExerciseControl</servlet-name>

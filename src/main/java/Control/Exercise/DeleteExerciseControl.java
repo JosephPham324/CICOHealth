@@ -83,7 +83,7 @@ public class DeleteExerciseControl extends HttpServlet {
             String userID = request.getSession().getAttribute("userID").toString();
             ExerciseDAO dao = new ExerciseDAO();
             dao.deleteExercise(userID, date, time);
-            response.sendRedirect("user-exercises");
+            response.sendRedirect("/Nutrition/user/user-exercises");
         } catch (Exception ex) {
             response.getWriter().write(ex.getMessage());
             Logger.getLogger(DeleteExerciseControl.class.getName()).log(Level.SEVERE, null, ex);
