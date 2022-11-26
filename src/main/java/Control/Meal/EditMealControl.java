@@ -82,7 +82,7 @@ public class EditMealControl extends HttpServlet {
             throws ServletException, IOException {
         Object userID = request.getSession().getAttribute("userID");
         if (userID == null) {//Guard clause
-            response.sendRedirect("home");
+            response.sendRedirect("/Nutrition/home");
         }
 
         Gson gson = new Gson();
@@ -126,7 +126,7 @@ public class EditMealControl extends HttpServlet {
                 );
 
             }
-            response.sendRedirect("user-meals");
+            response.sendRedirect("/Nutrition/user/user-meals");
         } catch (IOException | NumberFormatException | SQLException | NullPointerException ex) {
             response.getWriter().write(ex.getMessage());
         }

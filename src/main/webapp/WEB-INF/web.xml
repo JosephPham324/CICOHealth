@@ -154,7 +154,7 @@
     </servlet>
     <servlet>
         <servlet-name>UserMeals</servlet-name>
-        <jsp-file>/UserMeals.jsp</jsp-file>
+        <jsp-file>/User/UserMeals.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>EditMealControl</servlet-name>
@@ -376,7 +376,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserMeals</servlet-name>
-        <url-pattern>/user-meals</url-pattern>
+        <url-pattern>/user/user-meals</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EditMealControl</servlet-name>

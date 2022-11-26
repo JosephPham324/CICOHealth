@@ -78,7 +78,7 @@ public class DeleteMealControl extends HttpServlet {
             throws ServletException, IOException {
         Object userID = request.getSession().getAttribute("userID");
         if (userID == null) {//Guard clause
-            response.sendRedirect("home");
+            response.sendRedirect("/Nutrition/home-control");
         }
 
         String mealName = request.getParameter("name");
@@ -103,7 +103,7 @@ public class DeleteMealControl extends HttpServlet {
                     userID.toString()
             );
             
-            response.sendRedirect("user-meals");
+            response.sendRedirect("/Nutrition/user/user-meals");
         } catch (IOException | NumberFormatException | SQLException | NullPointerException ex) {
             response.getWriter().write(ex.getMessage());
         }
