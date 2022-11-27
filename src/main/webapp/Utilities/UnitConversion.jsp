@@ -33,7 +33,14 @@
         <%@ include file="../header.jsp" %>
         <div class="converter">
             <nav class="navbar navbar-expand-lg navbar-light bg-light header">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/home-control">HOME</a>
+                <a class="navbar-brand" href="#"
+                   ><img
+                        style="border-radius: 50%"
+                        src="/Nutrition/favicon.png"
+                        alt="Icon"
+                        width="60"
+                        height="60"
+                        /></a>
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -77,33 +84,47 @@
             </nav>
             <div class="converter-panel active" id="weight-converter">
                 <div class="from">
-                    <form class="row">
-                        <label for="weight-to-convert" class="col-4">From</label>
-                        <select name="to-convert" id="weight-to-convert" class="col-8">
-                            <option value="mg">Milligrams (mg)</option>
-                            <option value="g">Grams (g)</option>
-                            <option value="kg">Kilograms (kg)</option>
-                            <option value="oz">Ounce (oz)</option>
-                            <option value="lbs">Pounds (lbs)</option>
-                            <option value="st">Stone (st)</option>
-                            <option value="qtr">Quarter (qtr)</option>
-                            <option value="cwt">Hundredweight (cwt)</option>
-                        </select>
+                    <form>
+                        <div class ="form-group row">
+                            <label for="weight-to-convert" class="col-4">From</label>
+                            <div class ="col-8">
+                                <div class="input-group">
+                                    <select name="to-convert" id="weight-to-convert">
+                                        <option value="mg">Milligrams (mg)</option>
+                                        <option value="g">Grams (g)</option>
+                                        <option value="kg">Kilograms (kg)</option>
+                                        <option value="oz">Ounce (oz)</option>
+                                        <option value="lbs">Pounds (lbs)</option>
+                                        <option value="st">Stone (st)</option>
+                                        <option value="qtr">Quarter (qtr)</option>
+                                        <option value="cwt">Hundredweight (cwt)</option>
+                                    </select>   
+                                </div>
+                            </div>
+
+                        </div>
                     </form>
                 </div>
                 <div class="to">
-                    <form class="row">
-                        <label for="weight-converted" class="col-4">To</label>
-                        <select name="converted" id="weight-converted" class="col-8">
-                            <option value="mg">Milligrams (mg)</option>
-                            <option value="g">Grams (g)</option>
-                            <option value="kg">Kilograms (kg)</option>
-                            <option value="oz">Ounce (oz)</option>
-                            <option value="lbs">Pounds (lbs)</option>
-                            <option value="st">Stone (st)</option>
-                            <option value="qtr">Quarter (qtr)</option>
-                            <option value="cwt">Hundredweight (cwt)</option>
-                        </select>
+                    <form>
+                        <div class ="form-group row">
+                            <label for="weight-converted" class="col-4">To</label>
+                            <div class ="col-8">
+                                <div class="input-group">
+                                    <select name="converted" id="weight-converted">
+                                        <option value="mg">Milligrams (mg)</option>
+                                        <option value="g">Grams (g)</option>
+                                        <option value="kg">Kilograms (kg)</option>
+                                        <option value="oz">Ounce (oz)</option>
+                                        <option value="lbs">Pounds (lbs)</option>
+                                        <option value="st">Stone (st)</option>
+                                        <option value="qtr">Quarter (qtr)</option>
+                                        <option value="cwt">Hundredweight (cwt)</option>
+                                    </select>     
+                                </div>
+                            </div>
+
+                        </div>
                     </form>
                 </div>
                 <form class="input-output" onsubmit="return false;">
@@ -167,25 +188,39 @@
 
             <div class="converter-panel" id="energy-converter">
                 <div class="from">
-                    <form class="row">
-                        <label for="engergy-to-convert" class="col-4">From</label>
-                        <select name="to-convert" id="energy-to-convert" class="col-8">
-                            <option value="J">Joules(J)</option>
-                            <option value="kJ">Kilojoules(kJ)</option>
-                            <option value="cal">Calories(cal)</option>
-                            <option value="kcal">Kilocalories(kcal)</option>
-                        </select>
+                    <form>
+                        <div class ="form-group row">
+                            <label for="engergy-to-convert" class="col-4">From</label>
+                            <div class ="col-8">
+                                <div class="input-group">
+                                    <select name="to-convert" id="energy-to-convert">
+                                        <option value="J">Joules(J)</option>
+                                        <option value="kJ">Kilojoules(kJ)</option>
+                                        <option value="cal">Calories(cal)</option>
+                                        <option value="kcal">Kilocalories(kcal)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
                     </form>
                 </div>
                 <div class="to">
-                    <form class="row">
-                        <label for="energy-converted" class="col-4">To</label>
-                        <select name="converted" id="energy-converted" class="col-8">
-                            <option value="J">Joules(J)</option>
-                            <option value="kJ">Kilojoules(kJ)</option>
-                            <option value="cal">Calories(cal)</option>
-                            <option value="kcal">Kilocalories(kcal)</option>
-                        </select>
+                    <form>
+                        <div class ="form-group row">
+                            <label for="energy-converted" class="col-4 col-form-label">To</label>
+                            <div class ="col-8">
+                                <div class="input-group">
+                                    <select name="converted" id="energy-converted">
+                                        <option value="J">Joules(J)</option>
+                                        <option value="kJ">Kilojoules(kJ)</option>
+                                        <option value="cal">Calories(cal)</option>
+                                        <option value="kcal">Kilocalories(kcal)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
                     </form>
                 </div>
                 <form class="input-output" onsubmit="return false;">
@@ -249,35 +284,48 @@
 
             <div class="converter-panel" id="length-converter">
                 <div class="from">
-                    <form class="row">
-                        <label for="length-to-convert" class="col-4">From</label>
-                        <select name="to-convert" id="length-to-convert" class="col-8">
-                            <option value="mm">Millimeters (mm)</option>
-                            <option value="cm">Centimeters (cm)</option>
-                            <option value="dm">Decimeters (cm)</option>
-                            <option value="m">Meters (m)</option>
-                            <option value="km">Kilometers (km)</option>
-                            <option value="in">Inches (in)</option>
-                            <option value="ft">Feet (ft)</option>
-                            <option value="mi">Miles (mi)</option>
-                            <option value="nmi">Nautical miles (nmi)</option>
-                        </select>
+                    <form>
+                        <div class ="form-group row">
+                            <label for="length-to-convert" class="col-4">From</label>
+                            <div class ="col-8">
+                                <div class="input-group">
+                                    <select name="to-convert" id="length-to-convert">
+                                        <option value="mm">Millimeters (mm)</option>
+                                        <option value="cm">Centimeters (cm)</option>
+                                        <option value="dm">Decimeters (cm)</option>
+                                        <option value="m">Meters (m)</option>
+                                        <option value="km">Kilometers (km)</option>
+                                        <option value="in">Inches (in)</option>
+                                        <option value="ft">Feet (ft)</option>
+                                        <option value="mi">Miles (mi)</option>
+                                        <option value="nmi">Nautical miles (nmi)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
                     </form>
                 </div>
                 <div class="to">
-                    <form class="row">
-                        <label for="length-converted" class="col-4">To</label>
-                        <select name="converted" id="length-converted" class="col-8">
-                            <option value="mm">Millimeters (mm)</option>
-                            <option value="cm">Centimeters (cm)</option>
-                            <option value="dm">Decimeters (cm)</option>
-                            <option value="m">Meters (m)</option>
-                            <option value="km">Kilometers (km)</option>
-                            <option value="in">Inches (in)</option>
-                            <option value="ft">Feet (ft)</option>
-                            <option value="mi">Miles (mi)</option>
-                            <option value="nmi">Nautical miles (nmi)</option>
-                        </select>
+                    <form>
+                        <div class ="form-group row">
+                            <label for="length-converted" class="col-4">To</label>
+                            <div class ="col-8">
+                                <div class="input-group">
+                                    <select name="converted" id="length-converted">
+                                        <option value="mm">Millimeters (mm)</option>
+                                        <option value="cm">Centimeters (cm)</option>
+                                        <option value="dm">Decimeters (cm)</option>
+                                        <option value="m">Meters (m)</option>
+                                        <option value="km">Kilometers (km)</option>
+                                        <option value="in">Inches (in)</option>
+                                        <option value="ft">Feet (ft)</option>
+                                        <option value="mi">Miles (mi)</option>
+                                        <option value="nmi">Nautical miles (nmi)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <form class="input-output" onsubmit="return false;">
