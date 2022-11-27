@@ -69,7 +69,7 @@ body {
 
 .tooltip_ .tooltiptext {
   visibility: hidden;
-  width: 140px;
+  width: auto;
   background-color: #555;
   color: #fff;
   text-align: center;
@@ -77,18 +77,19 @@ body {
   padding: 5px;
   position: absolute;
   z-index: 1;
-  bottom: -150%;
-  left: 50%;
+  bottom: -120%;
+  left: 40%;
   margin-left: -75px;
   opacity: 0;
   transition: opacity 0.3s;
+/*   transform:translateX(20%); */
 }
 
 .tooltip_ .tooltiptext::after {
   content: "";
   color: black;
   position: absolute;
-  top: -35%;
+  top: -20%;
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
@@ -107,4 +108,9 @@ body {
     font-style:italic;
     font-weight:900;
     color:green !important;
+}
+
+button[name='submit']{
+  font-size:1.2em;
+  border-radius:20px;
 }

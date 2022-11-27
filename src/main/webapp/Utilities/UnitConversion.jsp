@@ -33,7 +33,7 @@
         <%@ include file="../header.jsp" %>
         <div class="converter">
             <nav class="navbar navbar-expand-lg navbar-light bg-light header">
-                <a class="navbar-brand" href="#"
+                <a class="navbar-brand" href="../home"
                    ><img
                         style="border-radius: 50%"
                         src="/Nutrition/favicon.png"
@@ -87,19 +87,17 @@
                     <form>
                         <div class ="form-group row">
                             <label for="weight-to-convert" class="col-4">From</label>
-                            <div class ="col-8">
-                                <div class="input-group">
-                                    <select name="to-convert" id="weight-to-convert">
-                                        <option value="mg">Milligrams (mg)</option>
-                                        <option value="g">Grams (g)</option>
-                                        <option value="kg">Kilograms (kg)</option>
-                                        <option value="oz">Ounce (oz)</option>
-                                        <option value="lbs">Pounds (lbs)</option>
-                                        <option value="st">Stone (st)</option>
-                                        <option value="qtr">Quarter (qtr)</option>
-                                        <option value="cwt">Hundredweight (cwt)</option>
-                                    </select>   
-                                </div>
+                            <div class="input-group col-8">
+                                <select name="to-convert" id="weight-to-convert">
+                                    <option value="mg">Milligrams (mg)</option>
+                                    <option value="g">Grams (g)</option>
+                                    <option value="kg">Kilograms (kg)</option>
+                                    <option value="oz">Ounce (oz)</option>
+                                    <option value="lbs">Pounds (lbs)</option>
+                                    <option value="st">Stone (st)</option>
+                                    <option value="qtr">Quarter (qtr)</option>
+                                    <option value="cwt">Hundredweight (cwt)</option>
+                                </select>   
                             </div>
 
                         </div>
