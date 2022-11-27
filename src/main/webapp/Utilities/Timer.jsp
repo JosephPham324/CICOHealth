@@ -29,6 +29,7 @@
 
         <div class="clock-container">
             <div class="clock-form">
+                <header><strong>Configure Timer</strong></header>
                 <form onsubmit="event.preventDefault();return activateSetTimer();">
                     <div class="form-group row">
                         <label for="setNum" class="col-4 col-form-label"

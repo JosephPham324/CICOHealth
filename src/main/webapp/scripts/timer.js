@@ -44,7 +44,7 @@ async function activateSetTimer() {
   clockForm.classList.add("hidden");
   clockContainer.classList.remove("hidden");
   console.log(clockContainer);
-  clockContainer.style.transformOrigin = 'center';
+  clockContainer.style.transformOrigin = 'center top';
   clockContainer.style.transform = `scale(${getScaleValue(
     clock,
     Math.min(screen.height / 3, screen.width / 3)
