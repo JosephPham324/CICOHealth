@@ -74,7 +74,7 @@ body{
     height:100%;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    /* gap: 20px; */
 }
 .hidden{
     display: none !important;
@@ -129,4 +129,12 @@ button[name='submit']{
 .clock-form label{
     font-style:oblique;
     font-size:1.1em;
+}
+
+nav.navbar{
+    width: 100%;
+}
+
+.nav-item.active{
+    font-weight: bold;
 }
