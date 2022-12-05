@@ -147,9 +147,9 @@ function hideClock() {
   clockContainer.classList.add("hidden");
 }
 
-function timerFunc() {
+function stopwatchFunc() {
   stopClock = false;
-  activateTimer();
+  activateStopwatch();
   changeButtonFunction(button, "stop-clock");
 }
 
@@ -158,17 +158,17 @@ function changeButtonFunction(button, func) {
     case "timer":
       button.innerText = "Start";
       button.removeEventListener("click", stopClockFunc);
-      button.addEventListener("click", timerFunc);
+      button.addEventListener("click", stopwatchFunc);
       break;
     case "set-countdown":
     default:
       button.innerText = "Stop";
-      button.removeEventListener("click", timerFunc);
+      button.removeEventListener("click", stopwatchFunc);
       button.addEventListener("click", stopClockFunc);
   }
 }
 
-async function activateTimer() {
+async function activateStopwatch() {
   stopClock = false;
   let timePassed = 0;
   clock.className = `c100 green p0 center`;
@@ -178,11 +178,11 @@ async function activateTimer() {
     timePassed += 10;
     clock.childNodes[1].innerText = `${clockTimeFromMillis(timePassed)}`;
   }
-  resetClock();
+//  resetClock();
   stopClock = false;
 }
 function resetClock() {
-  clockLabel.innerText = `Timer`;
+  clockLabel.innerText = `Stopwatch`;
   clock.className = `c100 green p0 center`;
   clock.childNodes[1].innerText = `${clockTimeFromMillis(0)}`;
 }
