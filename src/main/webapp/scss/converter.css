@@ -7,6 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   gap: 20px;
 }
 
@@ -49,6 +50,8 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: normal;
+  justify-content: normal;
   gap: 20px;
 }
 
@@ -72,18 +75,17 @@ body {
   padding: 5px;
   position: absolute;
   z-index: 1;
-  bottom: -120%;
+  top: calc(100% + 10px);
   left: 40%;
   margin-left: -75px;
   opacity: 0;
   transition: opacity 0.3s;
-  /*   transform:translateX(20%); */
 }
 .tooltip_ .tooltiptext:after {
   content: "";
   color: black;
   position: absolute;
-  top: -20%;
+  top: -10%;
   left: 50%;
   margin-left: -5px;
   border-width: 5px;

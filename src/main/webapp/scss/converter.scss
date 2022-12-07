@@ -1,3 +1,4 @@
+@use "common";
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 body {
@@ -5,9 +6,7 @@ body {
   height: 100vh;
   overflow-x: hidden;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include common.flex-display(column, center, flex-start);
   gap: 20px;
 }
 
@@ -17,7 +16,6 @@ body {
   height: auto;
   border-radius: 10px;
   background-color: rgb(136, 243, 163, 0.5);
-
   .header {
     height: 80px;
     font-size: 1.5em;
@@ -54,8 +52,7 @@ body {
 
     &.active {
       height: 100%;
-      display: flex;
-      flex-direction: column;
+      @include common.flex-display(column, normal, normal);
       gap: 20px;
     }
   }
@@ -81,18 +78,17 @@ body {
     padding: 5px;
     position: absolute;
     z-index: 1;
-    bottom: -120%;
+    top: calc(100% + 10px);
     left: 40%;
     margin-left: -75px;
     opacity: 0;
     transition: opacity 0.3s;
-    /*   transform:translateX(20%); */
 
     &:after {
       content: "";
       color: black;
       position: absolute;
-      top: -20%;
+      top: -10%;
       left: 50%;
       margin-left: -5px;
       border-width: 5px;
