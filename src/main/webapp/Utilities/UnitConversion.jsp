@@ -11,7 +11,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../css/converter.css" />
+        <link rel="stylesheet" href="../scss/main/Utilities/converter.css" />
         <!-- <link rel="stylesheet" href="./css/boostrap.css" /> -->
         <link
             rel="stylesheet"
@@ -36,7 +36,7 @@
                 <a class="navbar-brand" href="../home"
                    ><img
                         style="border-radius: 50%"
-                        src="/Nutrition/favicon.png"
+                        src="../favicon.png"
                         alt="Icon"
                         width="60"
                         height="60"
