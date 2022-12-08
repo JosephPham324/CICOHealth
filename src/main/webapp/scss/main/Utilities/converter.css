@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+/*Make an element display flex, specify the flex-direction , align items and justify content*/
+/*Round the corners of an element*/
 body {
   width: 100vw;
   height: 100vh;

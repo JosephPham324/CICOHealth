@@ -1,7 +1,21 @@
-@mixin flex-display($direction: row, $alignItem:normal, $justifyContent:normal)
-{
-    display: flex;
-    flex-direction: $direction;
-    align-items: $alignItem;
-    justify-content: $justifyContent;
+/*Make an element display flex, specify the flex-direction , align items and justify content*/
+@mixin flex-display(
+  $direction: row,
+  $alignItem: normal,
+  $justifyContent: normal
+) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $alignItem;
+  justify-content: $justifyContent;
+}
+
+/*Round the corners of an element*/
+@mixin round-corner(
+  $top-left: 50%,
+  $top-right: 50%,
+  $bottom-right: 50%,
+  $bottom-left: 50%
+) {
+  border-radius: $top-left $top-right $bottom-right $bottom-left;
 }
