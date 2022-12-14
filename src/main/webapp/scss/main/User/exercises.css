@@ -86,6 +86,7 @@ tr.dayStat td {
   border-bottom: 3px solid black;
 }
 
-.form-control, .btn {
+.form-control,
+.btn {
   font-size: 1em !important;
 }/*# sourceMappingURL=exercises.css.map */

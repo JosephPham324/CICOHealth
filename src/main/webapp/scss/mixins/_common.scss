@@ -11,6 +11,7 @@
 }
 
 /*Round the corners of an element*/
+//On second thought this sounds dumb, just use border-radius lol
 @mixin round-corner(
   $top-left: 50%,
   $top-right: 50%,
@@ -38,4 +39,9 @@
 @mixin max-dimension($max-width:100%, $max-height:100%){
     max-width: $max-width;
     max-height: $max-height;
+}
+
+@mixin color-and-background($color:black, $background-color:white){
+    color: $color;
+    background-color: $background-color;
 }

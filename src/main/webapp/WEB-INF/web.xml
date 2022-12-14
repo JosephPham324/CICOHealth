@@ -240,6 +240,10 @@
         <servlet-name>Timer</servlet-name>
         <jsp-file>/Utilities/Timer.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>GoogleRegister</servlet-name>
+        <jsp-file>/GoogleRegister.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -461,6 +465,10 @@
     <servlet-mapping>
         <servlet-name>Timer</servlet-name>
         <url-pattern>/utilities/timer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GoogleRegister</servlet-name>
+        <url-pattern>/google-register</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
