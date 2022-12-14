@@ -35,207 +35,251 @@
         </script>
     </head>
     <body>
-    <c:if test="${sessionScope.userID != null}">
-        <c:redirect url="home"></c:redirect>
-    </c:if>
-    <section style="background-image: url('image/login.jpg');">
-        <div class="form-container"> 
-            <div class="login-form">
-                <form method="post" action="register-control" onsubmit="return checkAllData()">
-                    <fieldset>
-                        <legend>Register</legend>
-                        <div class="form-group row">
-                            <label for="username" class="col-4 col-form-label"
-                                   >Username</label
-                            >
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-address-card"></i>
-                                        </div>
-                                    </div>
-                                    <input
-                                        id="username"
-                                        name="username"
-                                        placeholder="Enter your username"
-                                        type="text"
-                                        class="form-control"
-                                        onblur="checkUsername()"
-                                        />
-                                    <div class ="error" id="txtUsernameMessage"></div>
-                                    <div class ="error" id="ErrorDuplicate">Username exist!!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="password" class="col-4 col-form-label"
-                                   >Password</label
-                            >
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-lock"></i>
-                                        </div>
-                                    </div>
-                                    <input
-                                        id="password"
-                                        name="password"
-                                        placeholder="Enter your password"
-                                        type="password"
-                                        class="form-control"
-                                        onblur="checkPassword1()"
-                                        />
-                                    <div class ="error" id="txtPassword1Message"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-4 col-form-label"
-                                   >Confirm password</label>
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-lock"></i>
-                                        </div>
-                                    </div>
-                                    <input
-                                        id="confirmpassword"
-                                        name="confirmpassword"
-                                        placeholder="Enter your confirm password"
-                                        type="password"
-                                        class="form-control"
-                                        onblur="checkPassword2()" 
-                                        />
-                                </div>
-                                <div class ="error" id="txtPassword2Message"></div>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label for="firstName" class="col-4 col-form-label"
-                                   >First Name</label
-                            >
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-adn"></i>
-                                        </div>
-                                    </div>
-                                    <input
-                                        id="firstName"
-                                        name="firstName"
-                                        placeholder="Enter your first name"
-                                        type="text"
-                                        class="form-control"
-                                        onblur="checkFirstname()"
-                                        />
-                                </div>
-                                <div class ="error" id="txtFirstNameMessage"></div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="lastName" class="col-4 col-form-label"
-                                   >Last Name</label
-                            >
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-adn"></i>
-                                        </div>
-                                    </div>
-                                    <input
-                                        id="lastName"
-                                        name="lastName"
-                                        placeholder="Enter your last name"
-                                        type="text"
-                                        class="form-control"
-                                        onblur="checkLastname()"
-                                        />
-                                </div>
-                                <div class ="error" id="txtLastNameMessage"></div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="email" class="col-4 col-form-label">Email</label>
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-address-book"></i>
-                                        </div>
-                                    </div>
-                                    <input
-                                        id="email"
-                                        name="email"
-                                        placeholder="Enter your email"
-                                        type="text"
-                                        class="form-control"
-                                        onblur="checkEmail()"
-                                        />
-                                </div>
-                                <div class ="error" id="txtEmailMessage"></div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="phone" class="col-4 col-form-label">Phone</label>
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-phone"></i>
-                                        </div>
-                                    </div>
-                                    <input
-                                        id="phone"
-                                        name="phone"
-                                        placeholder="Enter your phone"
-                                        type="text"
-                                        class="form-control"
-                                        onblur="checkPhone()"
-                                        />
-                                </div>
-                                <div class ="error" id="txtPhoneMessage"></div>
-                            </div>
-                        </div>
-
-                        <div class="offset-4 col-8">
-                            <div class="form-check">
-                                <input type="checkbox" id="invalidCheck" name="remember" class="form-check-input" value = "remember" required>
-                                <label class="form-check-label" for="invalidCheck">
-                                    <a href="terms" class="text-success text-gradient font-weight-bold">&nbsp;Terms&nbsp;&&nbsp;Conditions&nbsp;</a>
-                                    and 
-                                    <a href="terms" class="text-success text-gradient font-weight-bold">&nbsp;Privacy&nbsp;Policy</a>
-                                </label>
-                                <div class="invalid-feedback">
-                                    You must agree before submitting.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="submit">
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <c:if test="${sessionScope.userID != null}">
+            <c:redirect url="home"></c:redirect>
+        </c:if>
+        <section style="background-image: url('image/login.jpg');">
+            <div class="form-container"> 
+                <div class="login-form">
+                    <form method="post" action="register-control" onsubmit="return checkAllData()">
+                        <fieldset>
+                            <legend>Register</legend>
                             <div class="form-group row">
-                                <div class="col-md-12 text-center">
-                                    <button name="submit" type="submit" class="btn btn-success">
-                                        Submit
-                                    </button>
+                                <label for="username" class="col-4 col-form-label"
+                                       >Username</label
+                                >
+                                <div class="col-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-address-card"></i>
+                                            </div>
+                                        </div>
+                                        <input
+                                            id="username"
+                                            name="username"
+                                            placeholder="Enter your username"
+                                            type="text"
+                                            class="form-control"
+                                            onblur="checkUsername()"
+                                            />
+                                        <div class ="error" id="txtUsernameMessage"></div>
+                                        <div class ="error" id="ErrorDuplicate">Username exist!!</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
+                            <div class="form-group row">
+                                <label for="password" class="col-4 col-form-label"
+                                       >Password</label
+                                >
+                                <div class="col-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-lock"></i>
+                                            </div>
+                                        </div>
+                                        <input
+                                            id="password"
+                                            name="password"
+                                            placeholder="Enter your password"
+                                            type="password"
+                                            class="form-control"
+                                            onblur="checkPassword1()"
+                                            />
+                                        <div class ="error" id="txtPassword1Message"></div>
+                                    </div>
+                                </div>
+                            </div>
 
-    </section>
-</body>
-<script>
-    document.getElementById("ErrorDuplicate").style.display = 'none';
-</script>
+                            <div class="form-group row">
+                                <label for="password" class="col-4 col-form-label"
+                                       >Confirm password</label>
+                                <div class="col-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-lock"></i>
+                                            </div>
+                                        </div>
+                                        <input
+                                            id="confirmpassword"
+                                            name="confirmpassword"
+                                            placeholder="Enter your confirm password"
+                                            type="password"
+                                            class="form-control"
+                                            onblur="checkPassword2()" 
+                                            />
+                                    </div>
+                                    <div class ="error" id="txtPassword2Message"></div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label for="firstName" class="col-4 col-form-label"
+                                       >First Name</label
+                                >
+                                <div class="col-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-adn"></i>
+                                            </div>
+                                        </div>
+                                        <input
+                                            id="firstName"
+                                            name="firstName"
+                                            placeholder="Enter your first name"
+                                            type="text"
+                                            class="form-control"
+                                            onblur="checkFirstname()"
+                                            />
+                                    </div>
+                                    <div class ="error" id="txtFirstNameMessage"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="lastName" class="col-4 col-form-label"
+                                       >Last Name</label
+                                >
+                                <div class="col-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-adn"></i>
+                                            </div>
+                                        </div>
+                                        <input
+                                            id="lastName"
+                                            name="lastName"
+                                            placeholder="Enter your last name"
+                                            type="text"
+                                            class="form-control"
+                                            onblur="checkLastname()"
+                                            />
+                                    </div>
+                                    <div class ="error" id="txtLastNameMessage"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-4 col-form-label">Email</label>
+                                <div class="col-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-address-book"></i>
+                                            </div>
+                                        </div>
+                                        <input
+                                            id="email"
+                                            name="email"
+                                            placeholder="Enter your email"
+                                            type="text"
+                                            class="form-control"
+                                            onblur="checkEmail()"
+                                            />
+                                    </div>
+                                    <div class ="error" id="txtEmailMessage"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="phone" class="col-4 col-form-label">Phone</label>
+                                <div class="col-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                        </div>
+                                        <input
+                                            id="phone"
+                                            name="phone"
+                                            placeholder="Enter your phone"
+                                            type="text"
+                                            class="form-control"
+                                            onblur="checkPhone()"
+                                            />
+                                    </div>
+                                    <div class ="error" id="txtPhoneMessage"></div>
+                                </div>
+                            </div>
+
+                            <div class="offset-4 col-8">
+                                <div class="form-check">
+                                    <input type="checkbox" id="invalidCheck" name="remember" class="form-check-input" value = "remember" required>
+                                    <label class="form-check-label" for="invalidCheck">
+                                        <a href="terms" class="text-success text-gradient font-weight-bold">&nbsp;Terms&nbsp;&&nbsp;Conditions&nbsp;</a>
+                                        and 
+                                        <a href="terms" class="text-success text-gradient font-weight-bold">&nbsp;Privacy&nbsp;Policy</a>
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        You must agree before submitting.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="google-sign-up" style ="display:flex; align-items:center; justify-content: center;">
+                                OR&nbsp;&nbsp;&nbsp;
+                                <div id="g_id_onload"
+                                     data-client_id="641593933823-qlfnb62fuif3fcsu01b0hf9vijetfepj.apps.googleusercontent.com"
+                                     data-context="signup"
+                                     data-ux_mode="popup"
+                                     data-login_uri="http://localhost:8080/Nutrition/google-register"
+                                     data-auto_prompt="false"
+                                     data-callback="handleCredentialResponse"
+                                     >
+                                </div>
+
+                                <div class="g_id_signin"
+                                     data-type="standard"
+                                     data-shape="pill"
+                                     data-theme="filled_blue"
+                                     data-text="signin_with"
+                                     data-size="medium"
+                                     data-logo_alignment="left">
+                                </div>
+                            </div>
+
+                            <div class="submit">
+                                <div class="form-group row">
+                                    <div class="col-md-12 text-center">
+                                        <button name="submit" type="submit" class="btn btn-success">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+        </section>
+    </body>
+    <script>
+        function parseJwt(token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            
+            return JSON.parse(jsonPayload);
+        }
+        function handleCredentialResponse(response) {
+            // decodeJwtResponse() is a custom function defined by you
+            // to decode the credential response.
+            const responsePayload = parseJwt(response.credential);
+
+            console.log("ID: " + responsePayload.sub);
+            console.log('Full Name: ' + responsePayload.name);
+            console.log('Given Name: ' + responsePayload.given_name);
+            console.log('Family Name: ' + responsePayload.family_name);
+            console.log("Image URL: " + responsePayload.picture);
+            console.log("Email: " + responsePayload.email);
+        }
+        document.getElementById("ErrorDuplicate").style.display = 'none';
+    </script>
 </html>
