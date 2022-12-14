@@ -110,7 +110,8 @@ public class RegisterControl extends HttpServlet {
                     response.sendRedirect("register-error-control");
                 }
                 if (username == null || password == null || firstName == null || lastName == null || email == null || phone == null) {
-                    response.sendRedirect("register-error-control");
+                    response.getWriter().write(username + password + firstName + lastName + email + phone);
+//                    response.sendRedirect("google-register");
                 } else {
 
                     logDAO.addLoginInfo(username, salt, hashedPassword);

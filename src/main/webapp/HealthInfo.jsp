@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href = "./css/healthinfo.css"/>
         <link rel="icon" type="image/png" href="favicon.png"/>
-        <title>${sessionScope.username}'s Health Info | ${initParam['webappName']}</title>
+        <title>${sessionScope.username != null ? sessionScope.username + "'s" : 'Your'} Health Info | ${initParam['webappName']}</title>
     </head>
     <body>
         <section style="background-image: url('image/healthinfo.jpg');">
