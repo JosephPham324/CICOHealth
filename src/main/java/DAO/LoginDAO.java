@@ -1,5 +1,6 @@
 package DAO;
 
+import Control.Login.RegisterControl;
 import context.DBContext;
 import Entity.Login;
 import Security.Encryption;
@@ -8,18 +9,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Semester: FALL 2022
- * Subject : FRJ301
- * Class   : SE1606
- * Project : Nutrition 
- * @author : Group 4
- * CE161130  Nguyen Le Quang Thinh (Leader)
- * CE170036  Pham Nhat Quang
- * CE160464  Nguyen The Lu
- * CE161096  Nguyen Ngoc My Quyen
- * CE161025  Tran Thi Ngoc Hieu
+ * Semester: FALL 2022 Subject : FRJ301 Class : SE1606 Project : Nutrition
+ *
+ * @author : Group 4 CE161130 Nguyen Le Quang Thinh (Leader) CE170036 Pham Nhat
+ * Quang CE160464 Nguyen The Lu CE161096 Nguyen Ngoc My Quyen CE161025 Tran Thi
+ * Ngoc Hieu
  */
 public class LoginDAO {
 
@@ -47,7 +45,7 @@ public class LoginDAO {
      * @throws SQLException When update query encounters error
      */
     public void addLoginInfo(String username, String salt, String hashedPassword) throws SQLException {
-        String query = "insert into login values(?,?,?,null)";
+        String query = "insert into login values(?,?,?,null,0)";
         con = new DBContext().getConnection(); // open connection to SQL
         ps = con.prepareStatement(query); // move query from Netbeen to SQl
 
@@ -135,23 +133,6 @@ public class LoginDAO {
         return null;
     }
 
-//    /**
-//     * 
-//     * @return @throws SQLException
-//     */
-//    public List<User> getListMember() throws SQLException {
-//        String query = "select * from [Nutrition].[dbo].[USER]";
-//        con = new DBContext().getConnection(); // open connection to SQL
-//        ps = con.prepareStatement(query); // move query from Netbeen to SQl
-//        rs = ps.executeQuery(); // the same with click to "excute" btn;
-//        List<User> list = new ArrayList<>();
-//        while (rs.next()) {
-//            User acc = new User(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
-//                    rs.getString(5), rs.getString(6), rs.getString(7));
-//            list.add(acc);
-//        }
-//        return list;
-//    }
     /**
      * Check if user login info is correct
      *
@@ -173,8 +154,6 @@ public class LoginDAO {
                 Login a = new Login(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
                 String salt = a.getPasswordSalt();
                 String hash = a.getPasswordHash();
-                System.out.println(salt);
-                System.out.println(hash);
 
                 if (Security.RegLoginLogic.verifyPassword(enteredPassword, salt, hash)) {
                     return a;
@@ -202,16 +181,13 @@ public class LoginDAO {
             ps = con.prepareStatement(query);
             ps.setString(1, username);
             rs = ps.executeQuery();
-            System.out.println(ps.toString());
             while (rs.next()) {
-                Login a = new Login(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
-                String salt = a.getPasswordSalt();
-                String hash = a.getPasswordHash();
-                System.out.println(salt);
-                System.out.println(hash);
+                Login userLogin = new Login(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+                String salt = userLogin.getPasswordSalt();
+                String hash = userLogin.getPasswordHash();
 
                 if (Security.RegLoginLogic.verifyPassword(enteredPassword, salt, hash)) {
-                    return a;
+                    return userLogin;
                 }
             }
         } catch (Exception e) {
@@ -249,7 +225,7 @@ public class LoginDAO {
     /**
      * Edit login info in database (change username, password salt and password
      * hash)
-     * 
+     *
      * @param userID User ID to change
      * @param username New username
      * @param password New password to generate salt and hash
@@ -279,4 +255,51 @@ public class LoginDAO {
         ps.executeUpdate();
     }
 
+    public int checkLoginByEmail(String email) throws SQLException {
+        String query = "SELECT USERID as userid FROM [USER] \n"
+                + "WHERE EMAILADDRESS = ?\n"
+                + "AND (SELECT GOOGLELOGIN FROM LOGIN WHERE USER_ID = userid) = 1";
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, email);
+        rs = ps.executeQuery();
+        
+        if (rs.next()){
+            int res = rs.getInt("userid");
+            return res;
+        }
+        return -1;
+    }
+
+    public Entity.Login getLoginRecordFromUserID(String userID) throws SQLException {
+        String query = "SELECT * FROM LOGIN WHERE USER_ID = ? AND GOOGLELOGIN = 1";
+        con = new DBContext().getConnection();
+        ps = con.prepareStatement(query);
+        ps.setString(1, userID);
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            return new Entity.Login(rs.getInt("LOGINID"), rs.getString("USERNAME"), rs.getString("PASSWORDSALT"), rs.getString("PASSWORDHASH"), rs.getInt("USER_ID"));
+        }
+        return null;
+    }
+
+    /**
+     * Add a record into database Login table
+     *
+     * @param username Username
+     * @param salt Password salt
+     * @param hashedPassword Password hash
+     * @throws SQLException When update query encounters error
+     */
+    public void addLoginByEmailInfo(String username, String salt, String hashedPassword) throws SQLException {
+        String query = "insert into LOGIN values(?,?,?,null,1)";
+        con = new DBContext().getConnection(); // open connection to SQL
+        ps = con.prepareStatement(query); // move query from Netbeen to SQl
+
+        ps.setString(1, username);
+        ps.setString(2, salt);
+        ps.setString(3, hashedPassword);
+
+        ps.executeUpdate(); // the same with click to "excute" btn;
+    }
 }

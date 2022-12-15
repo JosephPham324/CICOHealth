@@ -219,29 +219,7 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div id="google-sign-up" style ="display:flex; align-items:center; justify-content: center;">
-                                OR&nbsp;&nbsp;&nbsp;
-                                <div id="g_id_onload"
-                                     data-client_id="641593933823-qlfnb62fuif3fcsu01b0hf9vijetfepj.apps.googleusercontent.com"
-                                     data-context="signup"
-                                     data-ux_mode="popup"
-                                     data-login_uri="http://localhost:8080/Nutrition/register-account"
-                                     data-auto_prompt="false"
-                                     data-callback="handleCredentialResponse"
-                                     >
-                                </div>
-
-                                <div class="g_id_signin"
-                                     data-type="standard"
-                                     data-shape="pill"
-                                     data-theme="filled_blue"
-                                     data-text="signin_with"
-                                     data-size="medium"
-                                     data-logo_alignment="left">
-                                </div>
-                            </div>
-
+                            <input type ="hidden" name ="google-register" value ="false">
                             <div class="submit">
                                 <div class="form-group row">
                                     <div class="col-md-12 text-center">
@@ -253,76 +231,53 @@
                             </div>
                         </fieldset>
                     </form>
+                    <div style="text-align:center; font-weight:bold;">
+                        OR
+                    </div>
+                    <div id="google-sign-up" style ="display:flex; align-items:center; justify-content: center; margin:10px;">
+                        <div id="g_id_onload"
+                             data-client_id="641593933823-qlfnb62fuif3fcsu01b0hf9vijetfepj.apps.googleusercontent.com"
+                             data-context="signup"
+                             data-ux_mode="popup"
+                             data-login_uri="http://localhost:8080/Nutrition/register-account"
+                             data-auto_prompt="false"
+                             data-callback="handleCredentialResponse"
+                             >
+                        </div>
+
+                        <div class="g_id_signin"
+                             data-type="standard"
+                             data-shape="pill"
+                             data-theme="filled_blue"
+                             data-text="signup_with"
+                             data-size="large"
+                             data-logo_alignment="left">
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </section>
-    </body>
-    <script>
-        /**
-         * sends a request to the specified url from a form. this will change the window location.
-         * @param {string} path the path to send the post request to
-         * @param {object} params the parameters to add to the url
-         * @param {string} [method=post] the method to use on the form
-         */
-        function post(path, params, method = 'post') {
-
-            // The rest of this code assumes you are not using a library.
-            // It can be made less verbose if you use one.
-            const form = document.createElement('form');
-            form.method = method;
-            form.action = path;
-
-            for (const key in params) {
-                if (params.hasOwnProperty(key)) {
-                    const hiddenField = document.createElement('input');
-                    hiddenField.type = 'hidden';
-                    hiddenField.name = key;
-                    hiddenField.value = params[key];
-
-                    form.appendChild(hiddenField);
+        <script src="scripts/formhandling.js"></script>
+        <script>
+            function handleCredentialResponse(response) {
+                                                    // decodeJwtResponse() is a custom function defined by you
+                                                    // to decode the credential response.
+                const responsePayload = parseJwt(response.credential);
+                const formParams = {
+                    username: chainString(responsePayload.email + '_' + responsePayload.family_name, ' ', ''),
+                    password: chainString(responsePayload.email + '_' + responsePayload.name, ' ', ''),
+                    firstName: responsePayload.given_name,
+                    lastName: responsePayload.family_name,
+                    email: responsePayload.email,
+                    phone: '0123456789',
+                    'google-register': 'true'
+                    };
+                    console.log(formParams)
+                    post('register-control', formParams);
                 }
-            }
+                document.getElementById("ErrorDuplicate").style.display = 'none';
+        </script>
+    </body>
 
-            document.body.appendChild(form);
-            form.submit();
-        }
-
-        function parseJwt(token) {
-            var base64Url = token.split('.')[1];
-            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            }).join(''));
-
-            return JSON.parse(jsonPayload);
-        }
-        
-        function chainString(str){
-            return str.split(' ').join('');
-        }
-        function handleCredentialResponse(response) {
-            // decodeJwtResponse() is a custom function defined by you
-            // to decode the credential response.
-            const responsePayload = parseJwt(response.credential);
-            const formParams = {
-                username : chainString(responsePayload.email + '_' + responsePayload.family_name),
-                password : chainString(responsePayload.email + '_' + responsePayload.name),
-                firstName : responsePayload.given_name,
-                lastName : responsePayload.family_name,
-                email : responsePayload.email,
-                phone : '0123456789'
-            };
-//            console.log(formParams)
-            post('register-control', formParams);
-//            console.log(formParams);
-//            console.log("ID: " + responsePayload.sub);
-//            console.log('Full Name: ' + responsePayload.name);
-//            console.log('Given Name: ' + responsePayload.given_name);
-//            console.log('Family Name: ' + responsePayload.family_name);
-//            console.log("Image URL: " + responsePayload.picture);
-//            console.log("Email: " + responsePayload.email);
-        }
-        document.getElementById("ErrorDuplicate").style.display = 'none';
-    </script>
 </html>
