@@ -1,0 +1,119 @@
+/*Make an element display flex, specify the flex-direction , align items and justify content*/
+/*Round the corners of an element*/
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans";
+  color: #fff;
+}
+
+section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url("image/Login.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: linear-gradient(0, 0, 0, 0.3, 0, 0, 0, 0.3);
+  width: 380px;
+  padding: 10px;
+  box-shadow: 7px 7px 60px #000;
+}
+
+h1 {
+  color: black;
+  text-transform: uppercase;
+  font-size: 1.65cm;
+  text-align: center;
+  margin-bottom: 0.75cm;
+  margin-top: 0.75cm;
+}
+
+h4 {
+  color: royalblue;
+  font-size: large;
+}
+
+.huhu {
+  margin-top: 2px;
+  text-align: center;
+  margin: auto;
+  width: 30%;
+  padding: 8px;
+  background: green;
+  border-radius: 20px;
+  opacity: 85%;
+  color: black;
+  margin-top: 0.4cm;
+  margin-bottom: 0.5cm;
+}
+.huhu input[type=submit] {
+  background: green;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  color: black;
+  border: none;
+  font-size: 0.5cm;
+  font-weight: 800;
+  font-family: "Open Sans";
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+.huhu input[type=submit]:hover {
+  opacity: 1;
+}
+.huhu:hover {
+  transform: scale(1.02);
+}
+
+.sigup {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  margin: 15px 0 0;
+  color: #fff;
+  font-size: 0.8rem;
+}
+.sigup a {
+  color: green;
+  text-decoration: none;
+}
+
+.control {
+  color: black;
+  font-size: large;
+  margin-top: 0.2cm;
+}
+.control input {
+  width: 100%;
+  display: block;
+  padding: 10px;
+  color: #222;
+  border: none;
+  outline: none;
+  margin: 0.2cm 0;
+  font-size: 1.2rem;
+}
+
+.remember {
+  margin-top: 1px;
+  color: navy;
+  font-size: 1.1em;
+  display: inline-flex;
+}/*# sourceMappingURL=login.css.map */

@@ -29,7 +29,7 @@ public class SupportedPaths {
 
         correspondingReferrer.put("/login-control", "/login");
         correspondingReferrer.put("/login-error-control", "/login");
-        correspondingReferrer.put("/healthinfo-control", "/register-control");
+        correspondingReferrer.put("/healthinfo-control", "/healthinfo");
         correspondingReferrer.put("/register-control", "/register");
         correspondingReferrer.put("/register-error-control", "/register");
         

@@ -45,3 +45,7 @@
     color: $color;
     background-color: $background-color;
 }
+
+@mixin center-text{
+  text-align:center;
+}
