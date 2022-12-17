@@ -54,34 +54,10 @@
     <div class="info-container">
         <div class="info-table">
 
-
-
-            <!--            <div class="input-group">
-                            <div class="form-outline" role="search" method="post" action="admin-loadcontrol">
-                                <div style="text-align: right;">
-                                    <input type="search" name="txtSearch" placeholder="First name or last name" id="form1" class="form-control" />
-                                    <label class="form-label" for="form1">Search</label>
-                                </div>
-                            </div>
-                            <button type="submit" id="searchsubmit" class="btn btn-primary"value="Search">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>-->
-
-            <div  class="widget_search">
-                <form role="search" method="post" action="admin-load-control" class="search">
-                    <div style="text-align: right;">
-                        <input type="Search" name="txtSearch" placeholder="&nbsp First name or last name" style=" border-radius: 4px;">
-                        <input type="submit" id="searchsubmit" value="Search"/>
-                    </div>
-                </form>
-            </div>
-
-
             <table id="info-table" class="table table-striped table-hover display">
                 <thead>
                     <tr>
-                        <th scope="col">UserID</th>
+                        <th scope="col">Admin ID</th>
                         <th scope="col">First name</th>
                         <th scope="col">Last name</th>
                         <th scope="col">Email</th>
@@ -109,22 +85,7 @@
                     </c:forEach>
 
                 </tbody>
-                <!--                    <tfoot>
-                                        <tr>
-                                            <th scope="col">LoginID</th>
-                                            <th scope="col">Username</th>
-                                            <th scope="col">UserID</th>
-                                            <th scope="col">User Role</th>
-                                            <th scope="col">First name</th>
-                                            <th scope="col">Last name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Phone number</th>
-                                            <th scope="col">Health Info</th>
-                                            <th scope="col">Exercise Info</th>
-                                            <th scope="col">Goal Info</th>
-                                            <th scope="col">Actions</th>
-                                        </tr>
-                                    </tfoot>-->
+
             </table>
         </div>
     </div>
@@ -147,6 +108,9 @@
     <script src="scripts/adminuserinfo.js"></script>
 </body>
 <script>
+                                    $(document).ready(function () {
+                                        $("#info-table").DataTable();
+                                    });
                                     function askDelete(id) {
                                         let option = confirm('Are you sure you want to delete ' + id);
                                         if (option === true) {
