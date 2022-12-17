@@ -1,0 +1,19 @@
+@use "../../mixins/common";
+.back-button {
+  button {
+    border-radius: 20px;
+    @include common.dimension(auto, auto);
+    @include common.max-dimension(150px, 50px);
+    padding: 5px 8px;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    border: 0;
+    cursor: pointer;
+    margin: 10px;
+    @include common.color-and-background(white,green);
+    
+    &:active {
+      scale: 1.02;
+    }
+  }
+}
