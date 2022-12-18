@@ -17,11 +17,16 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href = "./css/healthinfo.css"/>
+        <link rel="stylesheet" href="./scss/main/CommonStyles/buttons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="icon" type="image/png" href="favicon.png"/>
         <title>${sessionScope.username != null ? sessionScope.username + "'s" : 'Your'} Health Info | ${initParam['webappName']}</title>
     </head>
     <body>
         <section style="background-image: url('image/healthinfo.jpg');">
+            <div class="back-button">
+                <button onclick="history.back()"><i class="fa-solid fa-chevron-left">&nbsp;BACK</i></button>
+            </div>
             <div class="form-container">
                 <%
                     Object sessionUserID = session.getAttribute("userID");//Get session's userID
@@ -232,27 +237,27 @@
 
                 <script src="./scripts/calculateTDEE.js"></script>
                 <script>
-                    //GET INPUT FIELDS
-                    let activeness = document.querySelectorAll('input[name="activity"]');
-                    let gender = document.querySelectorAll('input[name="gender"]');
-                    let age = document.querySelector('input[name="age"]');
-                    let height = document.querySelector('input[name="height"]');
-                    let weight = document.querySelector('input[name="weight"]');
-                    let userID = document.querySelector('input[name="userID"]');
+                        //GET INPUT FIELDS
+                        let activeness = document.querySelectorAll('input[name="activity"]');
+                        let gender = document.querySelectorAll('input[name="gender"]');
+                        let age = document.querySelector('input[name="age"]');
+                        let height = document.querySelector('input[name="height"]');
+                        let weight = document.querySelector('input[name="weight"]');
+                        let userID = document.querySelector('input[name="userID"]');
 
-                    let requestUserID = ${userID} + "";//Get userID from request
+                        let requestUserID = ${userID} + "";//Get userID from request
 
-                    if (<%=userID != null%> && <%= !userID.equals("")%>) {
-                        userID.value = <%=userID%> + "";//If there is userID from session, use this
-                    } else {
-                        userID.value = requestUserID;//If not, use from request
-                    }
-                    //Assign initial values for form inputs
-                    activeness[<%=activeness%>].checked = "true";
-                    gender[<%=gender%>].checked = "true";
-                    age.value = "<%=age%>";
-                    height.value = "<%=height%>";
-                    weight.value = "<%=weight%>";
+                        if (<%=userID != null%> && <%= !userID.equals("")%>) {
+                            userID.value = <%=userID%> + "";//If there is userID from session, use this
+                        } else {
+                            userID.value = requestUserID;//If not, use from request
+                        }
+                        //Assign initial values for form inputs
+                        activeness[<%=activeness%>].checked = "true";
+                        gender[<%=gender%>].checked = "true";
+                        age.value = "<%=age%>";
+                        height.value = "<%=height%>";
+                        weight.value = "<%=weight%>";
                 </script>
             </div>
         </section>

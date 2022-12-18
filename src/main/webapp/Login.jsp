@@ -15,9 +15,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="./css/login.css" />
+        <link rel="stylesheet" href="./scss/main/General/login.css" />
         <link rel="icon" type="image/png" href="favicon.png"/>
-
+        <link rel="stylesheet" href="./scss/main/CommonStyles/buttons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>Login | ${initParam['webappName']}</title>
     </head>
     <body>
@@ -25,42 +26,47 @@
         <c:if test="${sessionScope.userID != null}">
             <c:redirect url="home"></c:redirect>
         </c:if>
-        <section style="background-image: url('image/login.jpg');">
-            <div class="form-container">
-                <h1>Login form</h1>
-                <form action="login-control" method="post">
-                    <div class="page-header align-items-start min-vh-100"  loading="lazy">
-                        <span class="mask bg-gradient-dark opacity-6"></span>
-                        <div class="container my-auto">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-8 col-12 mx-auto">
-                                    <div class="card z-index-0 fadeIn3 fadeInBottom">
-                                        <div class="card-body">
-                                            <!--USERNAME INPUT-->
-                                            <div class="input-group">
-
-                                                <div class="control">
-                                                    <label class="form-label">Username</label>
-                                                    <input type="text" required name="username" class="form-control" required>
+        <main>
+            <section style="background-image: url('image/login.jpg');">
+                <div class="back-button">
+                    <button onclick="history.back()"><i class="fa-solid fa-chevron-left">&nbsp;BACK</i></button>
+                </div>
+                <div class="form-container">
+                    <h1>Login</h1>
+                    <form action="login-control" method="post">
+                        <div class="page-header align-items-start min-vh-100"  loading="lazy">
+                            <span class="mask bg-gradient-dark opacity-6"></span>
+                            <div class="container my-auto">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-8 col-12 mx-auto">
+                                        <div class="card z-index-0 fadeIn3 fadeInBottom">
+                                            <div class="card-body">
+                                                <!--USERNAME INPUT-->
+                                                <div class="input-group">
+    
+                                                    <div class="control">
+                                                        <label class="form-label">Username</label>
+                                                        <input type="text" required name="username" class="form-control" required>
+                                                    </div>
+                                                    <!--PASSWORD INPUT-->
+                                                    <div class="control">
+                                                        <label class="form-label">Password</label>
+                                                        <input type="password" required name="password" class="form-control"required>
+                                                    </div>
+                                                    <div class="remember">
+                                                        <input type="checkbox" name="remember" class="form-control" value = "remember">
+                                                        <label class="form-label">&nbsp;&nbsp;Remember me</label>
+                                                    </div>
+                                                    <!--SUBMIT BUTTON-->
+                                                    <div class="huhu">
+                                                        <input type="submit" name="action" value="Login">
+                                                    </div>
+                                                    <!--SIGN UP LINK!-->
+                                                    <p class="sigup">
+                                                        Not registered?
+                                                        <a href="register" class="text-primary text-gradient font-weight-bold">Create an account</a>
+                                                    </p>
                                                 </div>
-                                                <!--PASSWORD INPUT-->
-                                                <div class="control">
-                                                    <label class="form-label">Password</label>
-                                                    <input type="password" required name="password" class="form-control"required>
-                                                </div>
-                                                <div class="remember">
-                                                    <input type="checkbox" name="remember" class="form-control" value = "remember">
-                                                    <label class="form-label">&nbsp;&nbsp;Remember me</label>
-                                                </div>
-                                                <!--SUBMIT BUTTON-->
-                                                <div class="huhu">
-                                                    <input type="submit" name="action" value="Login">
-                                                </div>
-                                                <!--SIGN UP LINK!-->
-                                                <p class="sigup">
-                                                    Not registered?
-                                                    <a href="register" class="text-primary text-gradient font-weight-bold">Create an account</a>
-                                                </p>
                                             </div>
                                         </div>
                                         <div style="text-align:center; font-weight:bold; margin-top:10px;">

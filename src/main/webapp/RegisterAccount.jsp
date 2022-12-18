@@ -24,6 +24,8 @@
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
         <link rel="icon" type="image/png" href="favicon.png"/>
+        <link rel="stylesheet" href="./scss/main/CommonStyles/buttons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href = "./css/registeracount.css"/>
         <title>Register Account | ${initParam['webappName']}</title>
         <style>
@@ -40,6 +42,9 @@
             <c:redirect url="home"></c:redirect>
         </c:if>
         <section style="background-image: url('image/login.jpg');">
+            <div class="back-button">
+                <button onclick="history.back()"><i class="fa-solid fa-chevron-left">&nbsp;BACK</i></button>
+            </div>
             <div class="form-container"> 
                 <div class="login-form">
                     <form method="post" action="register-control" onsubmit="return checkAllData()">
@@ -279,5 +284,4 @@
                 document.getElementById("ErrorDuplicate").style.display = 'none';
         </script>
     </body>
-
 </html>
