@@ -140,7 +140,12 @@ public class RegisterControl extends HttpServlet {
                     //Insert default health and goal record for insurance
                     healthDAO.insertHealthInfo(loginID + "", 0 + "", 0 + "", 0 + "", 0 + "", 0 + "");
                     goalDAO.addGoal(loginID + "", 0 + "");
-                    
+                    if (googleRegister){
+                        request.setAttribute("username", username);
+                        request.setAttribute("password", password);
+                        request.getRequestDispatcher("google-register")
+                            .forward(request, response);
+                    }
                     request.getRequestDispatcher("healthinfo")
                             .forward(request, response);
                 }

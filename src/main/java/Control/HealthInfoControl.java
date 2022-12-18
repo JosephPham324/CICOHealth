@@ -103,6 +103,7 @@ public class HealthInfoControl extends HttpServlet {
             goal.addGoal(userID, finalCalories);
             response.sendRedirect(request.getContextPath() + "/home-control");
         } catch (SQLException ex) {
+            response.getWriter().write(userID+"" + gender + height +  weight + activity + age);
             response.getWriter().write(ex.getMessage());
             Logger.getLogger(HealthInfoControl.class.getName()).log(Level.SEVERE, null, ex);
         }

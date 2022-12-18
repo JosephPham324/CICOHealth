@@ -74,7 +74,7 @@
                                         out.print("Your");//Else print Your
                                     }%>
                                 health info</legend>
-                            <input type="hidden" id="userID" name="userID">
+                                    <input type="hidden" id="userID" name="userID" value = ${requestScope.userID}>
 
                             <!--FORM GROUP FOR ACTIVENESS-->
                             <label class="col-4 col-form-label">How active are you?</label> 
@@ -245,7 +245,11 @@
                         let weight = document.querySelector('input[name="weight"]');
                         let userID = document.querySelector('input[name="userID"]');
 
+<<<<<<< Updated upstream
                         let requestUserID = ${userID} + "";//Get userID from request
+=======
+                    let requestUserID = ${requestScope.userID} + "";//Get userID from request
+>>>>>>> Stashed changes
 
                         if (<%=userID != null%> && <%= !userID.equals("")%>) {
                             userID.value = <%=userID%> + "";//If there is userID from session, use this
