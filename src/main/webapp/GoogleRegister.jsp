@@ -19,8 +19,8 @@
             <h2>You can now login with Google or use the following credentials:</h2>
             <p>Username: ${requestScope.username}</p>
             <p>Password: ${requestScope.password}</p>
-            <form action="healthinfo" method="post">
-                <input type="hidden" name="userID" value="${requestScope.userID}">
+            <form action="healthinfo" method="get">
+                <input type="hidden" id = "userID" name="userID" value="${requestScope.userID}">
                 <input type="submit" value="PROCEED TO NEXT STEPS">
             </form>
         </main>

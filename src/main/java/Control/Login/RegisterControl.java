@@ -145,6 +145,7 @@ public class RegisterControl extends HttpServlet {
                         request.setAttribute("password", password);
                         request.getRequestDispatcher("google-register")
                             .forward(request, response);
+                        return;
                     }
                     request.getRequestDispatcher("healthinfo")
                             .forward(request, response);
