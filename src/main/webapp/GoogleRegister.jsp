@@ -12,5 +12,17 @@
         <title>Register</title>
     </head>
     <body>
+        <header>
+            <h1 style="text-align: center;">You have registered with Google</h1>
+        </header>
+        <main style="display: flex;flex-direction: column; align-items: center; justify-content: center;">
+            <h2>You can now login with Google or use the following credentials:</h2>
+            <p>Username: ${requestScope.username}</p>
+            <p>Password: ${requestScope.password}</p>
+            <form action="healthinfo" method="post">
+                <input type="hidden" name="userID" value="${requestScope.userID}">
+                <input type="submit" value="PROCEED TO NEXT STEPS">
+            </form>
+        </main>
     </body>
 </html>
