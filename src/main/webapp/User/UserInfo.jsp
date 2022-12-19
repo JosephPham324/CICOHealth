@@ -34,7 +34,7 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
             />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/userinfo.css" />
+        <link rel="stylesheet" href="../scss/main/User/userinfo.css" />
         <title>${sessionScope.username} | ${initParam['webappName']}</title>
         <style>
             .error {
