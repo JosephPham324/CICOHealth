@@ -180,7 +180,7 @@
                             <div class="col-8">
                                 <div class="custom-controls-stacked">
                                     <div class="custom-control custom-radio">
-                                        <input name="planChoice" id="planChoice_0" type="radio" class="custom-control-input" value="Maintenance"> 
+                                        <input name="planChoice" id="planChoice_0" type="radio" class="custom-control-input" value="Maintenance" checked="true"> 
                                         <label for="planChoice_0" class="custom-control-label">Maintenance</label>
                                     </div>
                                 </div>
@@ -237,7 +237,7 @@
 
                 <script src="./scripts/calculateTDEE.js"></script>
                 <script>
-                    document.onload = function () {
+                    window.onload = function () {
                         //GET INPUT FIELDS
                         let activeness = document.querySelectorAll('input[name="activity"]');
                         let gender = document.querySelectorAll('input[name="gender"]');
