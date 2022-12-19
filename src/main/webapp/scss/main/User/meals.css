@@ -1,112 +1,122 @@
 /**
 * @Author: Pham Nhat Quang
 */
-*{
-    box-sizing: border-box;
-}
-body{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-}
-.edit-form{
-    z-index: 50;
-    width: 100vw;
-    height: 100vh;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    position: fixed;
-}
-.edit-form .overlay{
-    position: fixed;
-    top:0;
-    left:0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0,0,0,0.5);
-}
-.edit-form form{
-    z-index: 51;
-    position: fixed;
-    background-color: white;
-    border: 1px solid black;
-    padding: 20px;
-}
-.edit-form form legend{
-    text-align: center;
-}
-.edit-form form p{
-    display: flex;
-    gap: 10px;
-}
-.info-container{
-    width: 100vw;
-    margin: 0;
+* {
+  box-sizing: border-box;
 }
 
-.edit-button{
-    color: blue;
-    cursor: pointer;
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
-.item-form{
-    display: inline;
+.edit-form {
+  z-index: 50;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  position: fixed;
 }
 
-.item-form button{
-    background-color: transparent;
-    border: 0;
+.edit-form .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.delete-item-form{
-    display: inline;
+.edit-form form {
+  z-index: 51;
+  position: fixed;
+  background-color: white;
+  border: 1px solid black;
+  padding: 20px;
 }
 
-.delete-item-form button{
-    background-color: transparent;
-    color:red;
-    border: 0;
-}
-tr.group{
-    font-size: 1.2em;
-    font-style: italic;
-}
-tr.dayStat td{
-    font-style:italic;
-    background-color:yellow;
-    border-bottom:3px solid black;
+.edit-form form legend {
+  text-align: center;
 }
 
-.create-meal{
-    position: fixed;
-    /*width: 100%;*/
-    /*height: 100%;*/
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.edit-form form p {
+  display: flex;
+  gap: 10px;
 }
-.create-meal #mealForm{
-    max-width: 800px;
-    height: auto;
-    min-height: 50vh;
-    background-color: rgba(255,255,255,1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 101;
-    border: 3px solid black;
-    border-radius: 5px;
-    min-width: 320px;
-    padding: 5px;
 
+.info-container {
+  width: 100vw;
+  margin: 0;
 }
+
+.edit-button {
+  color: blue;
+  cursor: pointer;
+}
+
+.item-form {
+  display: inline;
+}
+
+.item-form button {
+  background-color: transparent;
+  border: 0;
+}
+
+.delete-item-form {
+  display: inline;
+}
+
+.delete-item-form button {
+  background-color: transparent;
+  color: red;
+  border: 0;
+}
+
+tr.group {
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+tr.dayStat td {
+  font-style: italic;
+  background-color: yellow;
+  border-bottom: 3px solid black;
+}
+
+.create-meal {
+  position: fixed;
+  /*width: 100%;*/
+  /*height: 100%;*/
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-meal #mealForm {
+  max-width: 800px;
+  height: auto;
+  min-height: 50vh;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 101;
+  border: 3px solid black;
+  border-radius: 5px;
+  min-width: 320px;
+  padding: 5px;
+}
+
 /*.create-meal #nameForm h3{
     color: white;
     font-weight: bold;
@@ -117,89 +127,98 @@ tr.dayStat td{
     cursor: pointer;
     border: 0;
 }*/
-.create-meal form fieldset{
-    border: 0;
-    text-align: center;
-}
-.create-meal form legend{
-    font-weight: bold;
-    font-size: x-large;
-    border: 0;
-    text-align: center;
-
-}
-.create-meal .food{
-    padding: 8px 0;
-    font-size: 1.3em;
-    color: black;
-    max-width: 800px;
-    height: 50px;
-    background-color: white;
-    display: block;
-    border-bottom: 1px solid black;
-    line-height: 30px;
-    margin-bottom: 5px;
-    text-align: right;
-}
-.create-meal span{
-    display: inline-block;
-    margin-right: 10px;
-}
-.create-meal #submit{
-    border: 0;
-    border-radius: 20px;
-    width: 100%;
-    padding: 10px;
-    color: white;
-    font-size: 24px;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    background-image: linear-gradient(to right,green,yellow);
-    cursor: pointer;
+.create-meal form fieldset {
+  border: 0;
+  text-align: center;
 }
 
-.create-meal #submit.disabled{
-    background-color:red;
-    pointer-events:none;
-    cursor: not-allowed;
+.create-meal form legend {
+  font-weight: bold;
+  font-size: x-large;
+  border: 0;
+  text-align: center;
 }
 
-.create-meal mark{
-    padding:3px;
-    font-size: 1em;
-    margin-right: 10px;
-}
-.create-meal .calories{
-    color: yellow;
-    text-shadow: -1px -1px 0 rgb(154, 189, 13), 1px -1px 0 rgb(154, 189, 13), -1px 1px 0 rgb(154, 189, 13), 1px 1px 0 rgb(154, 189, 13);
-}
-.create-meal .protein{
-    color: rgb(202, 134, 121);
-}
-.create-meal .carbs{
-    color: white;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
-.create-meal .fat{
-    color:  #ffa600;
-
-}
-.create-meal .fa-x{
-    color: red;
-    cursor: pointer;
-}
-.create-meal .food input{
-    display: inline;
-    width: 60px;
-    border: 0;
-    background-color: black;
-    text-align: center;
-    color: white;
-}
-#mealForm p{
-    font-size:0.8em;
-    color:red;
+.create-meal .food {
+  padding: 8px 0;
+  font-size: 1.3em;
+  color: black;
+  max-width: 800px;
+  height: 50px;
+  background-color: white;
+  display: block;
+  border-bottom: 1px solid black;
+  line-height: 30px;
+  margin-bottom: 5px;
+  text-align: right;
 }
 
-.form-control,.btn{
-    font-size: 1em !important;
+.create-meal span {
+  display: inline-block;
+  margin-right: 10px;
 }
+
+.create-meal #submit {
+  border: 0;
+  border-radius: 20px;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  font-size: 24px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  background-image: linear-gradient(to right, green, yellow);
+  cursor: pointer;
+}
+
+.create-meal #submit.disabled {
+  background-color: red;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.create-meal mark {
+  padding: 3px;
+  font-size: 1em;
+  margin-right: 10px;
+}
+
+.create-meal .calories {
+  color: yellow;
+  text-shadow: -1px -1px 0 rgb(154, 189, 13), 1px -1px 0 rgb(154, 189, 13), -1px 1px 0 rgb(154, 189, 13), 1px 1px 0 rgb(154, 189, 13);
+}
+
+.create-meal .protein {
+  color: rgb(202, 134, 121);
+}
+
+.create-meal .carbs {
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.create-meal .fat {
+  color: #ffa600;
+}
+
+.create-meal .fa-x {
+  color: red;
+  cursor: pointer;
+}
+
+.create-meal .food input {
+  display: inline;
+  width: 60px;
+  border: 0;
+  background-color: black;
+  text-align: center;
+  color: white;
+}
+
+#mealForm p {
+  font-size: 0.8em;
+  color: red;
+}
+
+.form-control, .btn {
+  font-size: 1em !important;
+}/*# sourceMappingURL=meals.css.map */
