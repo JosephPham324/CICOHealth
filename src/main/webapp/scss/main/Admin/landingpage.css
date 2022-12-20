@@ -1,0 +1,66 @@
+.navbar{
+    width: 100%;
+    background-color: rgb(131, 184, 46) !important;
+}
+
+.nav-btn{
+    background-color: white !important;
+}
+
+.header-image img {
+    object-fit: cover;
+    width: 100%;
+    height: 700px;
+}
+
+.header-content {
+    flex-wrap: wrap;
+    background-color: #F9F9F9;
+    text-align: left;
+    max-width: 450px;
+    margin-left: 7%;
+    margin-top: 140px;
+}
+
+.header-main {
+    background-image: url('https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_1500,w_2000,f_auto,q_auto/92/Fpu4Kn6pkM7K14LvJqmX_aBxbZSl.jpg_xi9bds.jpg');
+    object-fit: cover;
+    width: 100%;
+    height: 700px;
+    justify-content: center;
+}
+
+.header-heading {
+    color: rgb(131, 184, 46);
+    font-weight: bolder;
+    font-size: 54px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.header-desc{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.btn{
+    color: black;
+    font-size: 15px ;
+    background-color: orange;
+}
+
+.form-check-input[type=checkbox]:checked {
+    background-color: orange !important;   
+}
+
+.txt-title{
+    color: rgb(131, 184, 46);
+    font-weight: bolder;
+    font-size: 44px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.txt-login{
+    font-weight: bolder;
+    font-size: 44px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
