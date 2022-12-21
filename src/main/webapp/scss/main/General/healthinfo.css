@@ -76,13 +76,12 @@ input[type=checkbox] {
   display: inline-flex;
 }
 
-button.submit {
-  margin-bottom: 20px;
-}
-
-.submit {
+div.submit {
   border-radius: 25px;
-  margin-top: 10px;
+  margin-tozp: 10px;
+}
+div.submit button.submit {
+  margin-bottom: 20px;
 }
 
 .error {

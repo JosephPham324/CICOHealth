@@ -1,111 +1,98 @@
-/*
+@use "../../mixins/common";
+  /*
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
-/* 
+  /* 
     Created on : Oct 15, 2022, 3:55:59 PM
     Author     : Tran Thi Ngoc Hieu CE161025
 */
-
 * {
-    padding: 0px;
-    margin: 0px;
+  padding: 0px;
+  margin: 0px;
 }
-
 
 /* Style the header */
 .menu-list .header {
-    /*background: #555;*/
-    color: white;
-    margin: 0px;
-    z-index:100;
+  /*background: #555;*/
+  color: white;
+  margin: 0px;
+  z-index: 100;
 }
 
 /* Page content */
 .content {
-    margin: 0px;
+  margin: 0px;
 }
 
 /* The sticky class is added to the header with JS when it reaches its scroll position */
 .sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    margin: 0px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin: 0px;
 }
 
 /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
 .sticky + .content {
-    padding-top: 102px;
-    margin: 0px;
+  padding-top: 102px;
+  margin: 0px;
 }
 
-.menu-list .nutrition-logo{
+.menu-list {
+  .nutrition-logo {
     width: 200px;
     padding-right: 20px;
     padding-left: 15px;
     padding-bottom: 10px;
-}
-
-.container {
-    margin: 0px;
-}
-
-.menu-list .navbar {
-    width:100vw;
+  }
+  .navbar {
+    @include common.dimension(100vw, 100px);
     list-style: none;
     display: flex;
-    background-color: rgba(80,120,40,255);
-    height: 100px;
+    background-color: rgba(80, 120, 40, 255);
     cursor: pointer;
-}
 
-.menu-list .nav-link {
-    height: 100px;
-    font-size: 25px;
-    padding-top: 28px;
+    .nav-link {
+      height: 100px;
+      font-size: 1.5em;
+      padding-top: 28px;
+    }
 
-}
-.menu-list .navbar:nth-child(1) a, .menu-list .navbar:nth-child(2) a{
+    li a:hover {
+      color: rgba(255, 221, 51, 1);
+      text-decoration: none;
+    }
+  }
+  .navbar:nth-child(1) a,
+  .navbar:nth-child(2) a {
     color: white;
     padding-top: 30px;
+  }
 }
-
-
-
-.menu-list .navbar li a:hover {
-    color: rgba(255,221,51,255);
-    text-decoration: none;
-}
-
 
 .banner img {
-    width: 100%;
-
+  width: 100%;
 }
 
-
-.personal-logo, .add-food-logo, .add-exercise-logo, .search-logo {
-    height: 35px;
-    width: 35px;
-
+.personal-logo,
+.add-food-logo,
+.add-exercise-logo,
+.search-logo {
+  @include common.dimension(35px, 35px);
 }
 
-.add-food-logo{
-    margin-left: 150px;
-    margin-left: 100px;
-
+.add-food-logo {
+  margin-left: 100px;
 }
 .add-exercise-logo {
-    margin-left: 70px;
+  margin-left: 70px;
 }
-
 
 .personal-logo {
-    margin-left: 40px;
-    cursor: pointer;
+  margin-left: 40px;
+  cursor: pointer;
 }
-
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
@@ -117,9 +104,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: rgba(80,120,40,255);
+  background-color: rgba(80, 120, 40, 255);
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   margin: 0px;
   padding: 0px;
@@ -138,113 +125,92 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {
-    display:block;
-    margin-top: 10px;
-
-}
-
-.title-logo{
-    font: fantasy;
-    margin: 0px 20px;
-    font-size: 50px;
-    padding-top: 10px;
-}
-
-.title-logo a:hover {
-    color: rgba(255,221,51,255);
-    text-decoration: none;
+  display: block;
+  margin-top: 10px;
 }
 
 h1 {
-    font: 1.7em;
-    line-height: 110%;
-    color: #000;
+  font: 1.7em;
+  line-height: 110%;
+  color: #000;
 }
 
 p {
-    margin: 15px, 20px;
-
+  margin: 15px, 20px;
 }
 
 input {
-    outline: none;
+  outline: none;
 }
 
-input[type=search] {
-    -webkit-appearance: textfield;
-    -webkit-box-sizing: content-box;
-    font-family: inherit;
-    font-size: 100%;
-}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  font-family: inherit;
+  font-size: 100%;
 
-input::-webkit-search-decoration,
-input::-webkit-search-cancel-button {
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button {
     display: none;
-}
+  }
+  background: #ededed
+    url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat
+    9px center;
+  border: solid 1px #ccc;
+  padding: 9px 10px 9px 0px;
+  width: 55px;
+  border-radius: 10em;
+  transition: all 0.5s;
 
-input[type=search] {
-    background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
-    border: solid 1px #ccc;
-    padding: 9px 10px 9px 0px;
-    width: 55px;
-    border-radius: 10em;
-    transition: all .5s;
-
-}
-
-input[type=search]:focus {
+  &:focus {
     width: 130px;
     background-color: #fff;
-    border-color: #66CC75;
-    box-shadow: 0 0 5px rgba(109,207,246,.5);
-}
-
-input::-webkit-input-placeholder {
+    border-color: #66cc75;
+    box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+  }
+  &::-webkit-input-placeholder{
     color: #999;
+  }
 }
 
 /* Demo 2 */
 #demo-2 {
-    padding-right: 30px;
-    
-}
-#demo-2 input[type=search] {
+  padding-right: 30px;
+  input[type="search"] {
     width: 15px;
     padding-left: 10px;
     color: transparent;
     cursor: pointer;
-
-}
-#demo-2 input[type=search]:hover {
-    background-color: #fff;
-
-}
-#demo-2 input[type=search]:focus {
-    width: 130px;
-    padding-left: 32px;
-    color: #000;
-    background-color: #fff;
-    cursor: auto;
-
-}
-#demo-2 input::-webkit-input-placeholder {
-    color: transparent;
+    &:hover {
+      background-color: #fff;
+    }
+    &:focus{
+        width: 130px;
+        padding-left: 32px;
+        color: #000;
+        background-color: #fff;
+        cursor: auto;
+    }
+    &::-webkit-input-placeholder{
+        color: transparent;
+    }
+  }
 }
 
 .txt {
-    font-size: 23px;
+  font-size: 1.2em;
 }
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-.dropdown-toggle:hover{
-   transform:scale(1.05);
+.dropdown-toggle:hover {
+  transform: scale(1.05);
 }
