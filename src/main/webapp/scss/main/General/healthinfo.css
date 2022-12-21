@@ -12,28 +12,29 @@ section {
   position: relative;
   height: 100vh;
   width: 100%;
+  /*background-image: url('/image/login.jpg');*/
   background-size: cover;
   background-position: center center;
 }
 
 body {
-  /*    width: 100vw;
-      height: 100vh;*/
   overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  /*    background-color: aliceblue;*/
 }
 
 legend {
   text-align: center;
   margin-bottom: 20px;
   font-size: 48px;
-  font-weight: 700;
-  color: black;
+  font-weight: 751;
+  color: white;
   padding-bottom: 10px;
   margin-top: 15px;
+}
+
+label {
+  color: #FFFFFF;
+  font-weight: 600;
 }
 
 .form-group.row:last-child {
@@ -41,6 +42,7 @@ legend {
 }
 
 .form-container {
+  color: white;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -65,7 +67,6 @@ input[type=checkbox] {
 .form-check {
   display: inline-flex;
   font-size: 13px;
-  font-weight: 550;
   margin-bottom: 10px;
   color: #5e5e5e;
 }
@@ -80,11 +81,21 @@ button.submit {
 }
 
 .submit {
-  margin-bottom: 15px;
   border-radius: 25px;
   margin-top: 10px;
 }
 
 .error {
   font-size: 12px;
-}/*# sourceMappingURL=registeracount.css.map */
+}
+
+.BMR {
+  padding: 10px;
+  width: 600px;
+  color: white;
+}
+
+.title {
+  color: white;
+  font-weight: 600;
+}/*# sourceMappingURL=healthinfo.css.map */
