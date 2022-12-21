@@ -64,13 +64,13 @@
             <script src="scripts/headfootscript.js"></script>
             <script src="./scripts/calculations.js"></script>
             <script>
-                        let exerciseTypes = [];
+                    let exerciseTypes = [];
             <c:forEach items="${etDAO.getAllExerciseTypes()}" var="item">
-                        if (`${item}` !== null) {
-                            exerciseTypes.push(new ExerciseType(`${item.getExerciseName()}`, `${item.getDescription()}`,${item.getCalPerHour()}));
-                        }
+                    if (`${item}` !== null) {
+                        exerciseTypes.push(new ExerciseType(`${item.getExerciseName()}`, `${item.getDescription()}`,${item.getCalPerHour()}));
+                    }
             </c:forEach>
-                        console.log(exerciseTypes)
+//                        console.log(exerciseTypes)
         </script>
         <script src="./scripts/exercisesearch.js"></script>
         <!--<script src = "./scripts/headfootscript.js"></script>-->

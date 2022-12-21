@@ -58,7 +58,7 @@ results.forEach((result) => {
     });
 });
 
-hideResults();
+//hideResults();
 
 /**
  * Hide all results
