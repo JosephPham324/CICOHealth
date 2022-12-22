@@ -11,7 +11,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/circle.css" />
+        <link rel="stylesheet" href="../scss/main/Utilities/circle.css" />
         <link rel="stylesheet" href="../scss/main/Utilities/timer.css" />
         <link
             rel="stylesheet"

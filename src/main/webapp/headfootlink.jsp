@@ -15,8 +15,8 @@
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     />
-<link rel="stylesheet" href="scss/main/General/mainMenu.css">
-<link rel="stylesheet" href="scss/main/General/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/scss/main/General/mainMenu.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/scss/main/General/footer.css">
 
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.png"/>
 <!--        <link rel="stylesheet" href="./font/fontawesome-free-6.1.1-web/css/all.min.css"/>-->
@@ -24,6 +24,6 @@
 <script src="${pageContext.request.contextPath}/scripts/headfootscript.js"></script>
 
 <c:if test="${sessionScope.userID!=null}">
-    <link rel="stylesheet" href="scss/main/General/todaynumbers.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/scss/main/General/todaynumbers.css">
     <script src="${pageContext.request.contextPath}/scripts/todaynumbers.js"></script>
 </c:if>
