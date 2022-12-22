@@ -99,10 +99,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .dropdown {
   position: relative;
   display: inline-block;
+  /* Dropdown Content (Hidden by Default) */
 }
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
+.dropdown .dropdown-content {
   display: none;
   position: absolute;
   background-color: rgb(80, 120, 40);
@@ -111,10 +110,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
   z-index: 1;
   margin: 0px;
   padding: 0px;
+  /* Links inside the dropdown */
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 }
-
-/* Links inside the dropdown */
-.dropdown-content a {
+.dropdown .dropdown-content a {
   font-size: 15px;
   color: white;
   padding-left: 20px;
@@ -123,9 +122,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
   text-decoration: none;
   display: block;
 }
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {
+.dropdown .dropdown-content.show {
   display: block;
   margin-top: 10px;
 }
@@ -144,6 +141,7 @@ input {
   outline: none;
 }
 
+/* Search bar */
 input[type=search] {
   -webkit-appearance: textfield;
   -webkit-box-sizing: content-box;

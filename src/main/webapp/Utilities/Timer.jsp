@@ -32,7 +32,7 @@
                 <a class="navbar-brand" href="../home"
                    ><img
                         style="border-radius: 50%"
-                        src="../favicon.png"
+                        src="${pageContext.request.contextPath}/favicon.png"
                         alt="Icon"
                         width="60"
                         height="60"

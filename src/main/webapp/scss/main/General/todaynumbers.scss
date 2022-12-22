@@ -1,19 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@use "../../mixins/common";
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
 /**
 * @Author: Pham Nhat Quang
 */
-.today-numbers{
-    position: fixed;
-    top: 100px;
-    right: 50px;
-    max-height: 500px;
-    max-width: 200px;
-    font-family: 'Roboto Condensed';
-}
-.today-numbers.active{
-    z-index:100;
-}
-.cal-eaten{
+.today-numbers {
+  position: fixed;
+  top: 100px;
+  right: 50px;
+  max-height: 500px;
+  max-width: 200px;
+  font-family: "Roboto Condensed";
+
+  &.active {
+    z-index: 100;
+  }
+
+  .cal-eaten {
     max-width: 100px;
     max-height: 80px;
     padding: 10px;
@@ -22,48 +24,51 @@
     background-color: yellow;
     color: red;
     border-radius: 15px 15px 10px 10px;
-}
-.all-numbers{
-    background-color:white;
+  }
+
+  .all-numbers {
+    background-color: white;
     margin-top: 10px;
-    position:fixed;
-    right:-200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: right .3s ease-in;
+    position: fixed;
+    right: -200px;
+    @include common.flex-display(column, center, center);
+    transition: right 0.3s ease-in;
     text-align: left;
     border: 1px black dashed;
     padding: 0;
-}
-.goals::before{
-    content: 'Goals';
-}
-.consumed::before{
-    content: 'Eaten';
-}
-.burned::before{
-    content: 'Exercise';
-}
-.remaining::before{
-    content: 'Remaining';
-}
-.all-numbers>div{
-    width: 100%;
-}
-.all-numbers>div>div{
-    padding: 1px 5px;
-    font-size:15px;
-}
-.all-numbers div::before{
-    font-style: italic;
-    background-color: gold;
-    display: block;
-    text-align: center;
-    font-size:18px;
-    margin: 0;
-}
-.all-numbers.active{
-    right:50px;
+    
+    &.active{
+        right: 50px;
+    }
+    & > div {
+      width: 100%;
+
+      & > div {
+        padding: 1px 5px;
+        font-size: 15px;
+      }
+    }
+
+    div::before {
+      font-style: italic;
+      background-color: gold;
+      display: block;
+      text-align: center;
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .goals::before {
+      content: "Goals";
+    }
+    .consumed::before {
+      content: "Eaten";
+    }
+    .burned::before {
+      content: "Exercise";
+    }
+    .remaining::before {
+      content: "Remaining";
+    }
+  }
 }
