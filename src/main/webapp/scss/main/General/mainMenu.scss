@@ -40,20 +40,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .menu-list {
+  background-color: rgba(80, 120, 40, 1);
+  @include common.dimension(100vw, 100px);
   .nutrition-logo {
     width: 20vw;
     padding-inline: 1vw;
     padding-bottom: 10px;
   }
   .navbar {
-    @include common.dimension(100vw, 100px);
+    @include common.dimension();
     list-style: none;
     display: flex;
-    background-color: rgba(80, 120, 40, 255);
     cursor: pointer;
 
     .nav-link {
       height: 100px;
+      @include common.responsive-font-size(15px, 28px, 320px, 1200px);
       font-size: 1.5em;
       padding-top: 28px;
       padding-inline: min(1vw, 28px);
@@ -99,7 +101,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .dropdown {
   position: relative;
   display: inline-block;
-
+  &:hover{
+    .dropdown-content {
+      display: block;
+    }
+  }
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
@@ -113,7 +119,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
     /* Links inside the dropdown */
     a {
-      font-size: 15px;
+      @include common.responsive-font-size(15px, 28px, 320px, 1920px);
       color: white;
       padding-left: 20px;
       padding-bottom: 10px;
@@ -122,11 +128,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
       display: block;
     }
 
-    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-    &.show {
-      display: block;
-      margin-top: 10px;
-    }
+    // /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+    // &.show {
+    //   display: block;
+    //   margin-top: 10px;
+    // }
   }
 }
 
@@ -149,7 +155,7 @@ input[type="search"] {
   -webkit-appearance: textfield;
   -webkit-box-sizing: content-box;
   font-family: inherit;
-  font-size: 100%;
+  @include common.responsive-font-size(15px, 28px, 320px, 1200px);
 
   &::-webkit-search-decoration,
   &::-webkit-search-cancel-button {
@@ -200,7 +206,7 @@ input[type="search"] {
 }
 
 .txt {
-  font-size: max(2vw, 18px);
+  @include common.responsive-font-size(15px, 28px, 320px, 1200px);
 }
 
 .noselect {
@@ -216,3 +222,15 @@ input[type="search"] {
 .dropdown-toggle:hover {
   transform: scale(1.05);
 }
+
+// @media screen and (max-width: 600px) {
+//   .menu-list{
+//     @include common.dimension(100vw, 60px);
+//     .navbar {
+//       display: none;
+//     }
+//     .menu-show {
+//       cursor:pointer;
+//     }
+//   }
+// }

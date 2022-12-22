@@ -49,3 +49,43 @@
 @mixin center-text{
   text-align:center;
 }
+
+@mixin responsive-font-size($min-size, $max-size, $min-viewport-width, $max-viewport-width) {
+  font-size: $min-size;
+  @media (min-width: $min-viewport-width) {
+    font-size: calc(#{$min-size} + (#{$max-size} - #{$min-size}) * ((100vw - #{$min-viewport-width}) / (#{$max-viewport-width} - #{$min-viewport-width})));
+  }
+  @media (min-width: $max-viewport-width) {
+    font-size: $max-size;
+  }
+}
+
+@mixin center-block {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  @content;
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == small {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+  @if $breakpoint == medium {
+    @media (min-width: 768px) and (max-width: 991px) {
+      @content;
+    }
+  }
+  @if $breakpoint == large {
+    @media (min-width: 992px) {
+      @content;
+    }
+  }
+}
