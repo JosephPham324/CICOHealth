@@ -44,6 +44,8 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
 
+  <link rel="stylesheet" href="./assets/css/main.css">
+
 </head>
 
 
@@ -273,9 +275,10 @@
           <div class="card card-plain mb-4">
             <div class="card-body p-3">
               <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                   <div class="d-flex flex-column h-100">
-                    <h2 class="font-weight-bolder mb-0">Admin main page</h2>
+                    <h2 class="font-weight-bolder mb-0 main-title">Admin main page</h2>
+                    <h4 class="main-title">Please click the icon below or on the sidebar to redirect to other pages.</h4>
                   </div>
                 </div>
               </div>
@@ -286,10 +289,10 @@
             <div class="offset-1 col-lg-5 col-sm-5">
               <div class="card  mb-2">
                 <div class="card-header p-3 pt-2">
-                  <a
-                    class="icon icon-lg icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-xl mt-n4 position-absolute" href="./pages/landingpage.html">
+                  <a class="icon icon-lg icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-xl mt-n4 position-absolute"
+                    href="./pages/landingpage.html">
                     <i class="material-icons opacity-10">home</i>
-                </a>
+                  </a>
                   <div class="text-end pt-1">
                     <h4 class="mb-0">Home</h4>
                   </div>
@@ -306,7 +309,7 @@
                   <a href="./pages/tables.html"
                     class="icon icon-lg icon-shape bg-gradient-primary shadow-primary shadow text-center border-radius-xl mt-n4 position-absolute">
                     <i class="material-icons opacity-10">list_alt</i>
-                </a>
+                  </a>
                   <div class="text-end pt-1">
                     <h4 class="mb-0">Admin Info</h4>
                   </div>
@@ -325,7 +328,7 @@
                   <a href="./pages/tables.html"
                     class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
                     <i class="material-icons opacity-10">list_alt</i>
-                </a>
+                  </a>
                   <div class="text-end pt-1">
                     <h4 class="mb-0 ">User Info</h4>
                   </div>
@@ -342,7 +345,7 @@
                   <a href="./pages/tables.html"
                     class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
                     <i class="material-icons opacity-10">fitness_center</i>
-                </a>
+                  </a>
                   <div class="text-end pt-1">
                     <h4 class="mb-0 ">Exercise Management</h4>
                   </div>
@@ -357,38 +360,30 @@
           </div>
         </div>
       </div>
-
-      <footer class="footer py-4  ">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                ©
-                <script>
-                  document.write(new Date().getFullYear())
-                </script>             
-            </div>
-            <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="#!" class="nav-link text-muted" target="_blank">About
-                    Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#!" class="nav-link text-muted" target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#!" class="nav-link pe-0 text-muted"
-                    target="_blank">License</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
-
     </div>
 
+    <footer class="bg-light text-lg-start footer">
+      <div class="text-center py-4 align-items-center">
+          <p>PROJECT</p>
+          <a href="#!" class="btn btn-footer btn-black m-1" role="button" rel="nofollow" target="_blank">
+              <i class="fab fa-youtube"></i>
+          </a>
+          <a href="#!" class="btn btn-footer btn-black m-1" role="button" rel="nofollow" target="_blank">
+              <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#!" class="btn btn-footer btn-black m-1" role="button" rel="nofollow" target="_blank">
+              <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#!" class="btn btn-footer btn-black m-1" role="button" rel="nofollow" target="_blank">
+              <i class="fab fa-github"></i>
+          </a>
+      </div>
+
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2022 Copyright:
+          <a class="text-dark" href="#!">PROJECT</a>
+      </div>
+  </footer>
 
   </main>
 
