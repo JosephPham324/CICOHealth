@@ -42,24 +42,29 @@
             </form>
         </div>
         <%@include file = "header.jsp" %>
-        <section>
-            <div class="exercise-search">
-                <div class="search-wrapper">
-                    <label for="search">Find an exercise</label>
-                    <form action="#" onsubmit="event.preventDefault();button.click()">
-                        <div class="input">
-                            <i class="fa-solid fa-magnifying-glass button"></i>
-                            <input
-                                type="text"
-                                id="search"
-                                placeholder="Type in an exercise name, for example: running"
-                                />
-                        </div>
-                    </form>
+        <main>
+            <section>
+                <div class="exercise-search">
+                    <div class="search-wrapper">
+                        <h1>
+                            <label for="search">Find an exercise</label>
+                        </h1>
+                        <form action="#" onsubmit="event.preventDefault();button.click()">
+                            <div class="input">
+                                <i class="fa-solid fa-magnifying-glass button"></i>
+                                <input
+                                    type="text"
+                                    id="search"
+                                    placeholder="Type in an exercise name, for example: running"
+                                    />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="search-results"></div>
                 </div>
-                <div class="search-results"></div>
-            </div>
-        </section>
+            </section>
+        </main>
+
         <jsp:include page="footer.jsp"></jsp:include>
             <script src="scripts/headfootscript.js"></script>
             <script src="./scripts/calculations.js"></script>
