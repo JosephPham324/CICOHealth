@@ -88,7 +88,7 @@
                         <div class ="form-group row">
                             <label for="weight-to-convert" class="col-4">From</label>
                             <div class="input-group col-8">
-                                <select name="to-convert" id="weight-to-convert">
+                                <select name="to-convert" id="weight-to-convert" class = " form-control">
                                     <option value="mg">Milligrams (mg)</option>
                                     <option value="g">Grams (g)</option>
                                     <option value="kg">Kilograms (kg)</option>
@@ -109,7 +109,7 @@
                             <label for="weight-converted" class="col-4">To</label>
                             <div class ="col-8">
                                 <div class="input-group">
-                                    <select name="converted" id="weight-converted">
+                                    <select name="converted" id="weight-converted" class =" form-control ">
                                         <option value="mg">Milligrams (mg)</option>
                                         <option value="g">Grams (g)</option>
                                         <option value="kg">Kilograms (kg)</option>
@@ -191,7 +191,7 @@
                             <label for="engergy-to-convert" class="col-4">From</label>
                             <div class ="col-8">
                                 <div class="input-group">
-                                    <select name="to-convert" id="energy-to-convert">
+                                    <select name="to-convert" id="energy-to-convert"  class =" form-control ">
                                         <option value="J">Joules(J)</option>
                                         <option value="kJ">Kilojoules(kJ)</option>
                                         <option value="cal">Calories(cal)</option>
@@ -209,8 +209,8 @@
                             <label for="energy-converted" class="col-4 col-form-label">To</label>
                             <div class ="col-8">
                                 <div class="input-group">
-                                    <select name="converted" id="energy-converted">
-                                        <option value="J">Joules(J)</option>
+                                    <select name="converted" id="energy-converted"  class ="form-control ">
+                                        <option value="J">Joules(J)</option> 
                                         <option value="kJ">Kilojoules(kJ)</option>
                                         <option value="cal">Calories(cal)</option>
                                         <option value="kcal">Kilocalories(kcal)</option>
@@ -287,7 +287,7 @@
                             <label for="length-to-convert" class="col-4">From</label>
                             <div class ="col-8">
                                 <div class="input-group">
-                                    <select name="to-convert" id="length-to-convert">
+                                    <select name="to-convert" id="length-to-convert"  class =" form-control ">
                                         <option value="mm">Millimeters (mm)</option>
                                         <option value="cm">Centimeters (cm)</option>
                                         <option value="dm">Decimeters (cm)</option>
@@ -310,7 +310,7 @@
                             <label for="length-converted" class="col-4">To</label>
                             <div class ="col-8">
                                 <div class="input-group">
-                                    <select name="converted" id="length-converted">
+                                    <select name="converted" id="length-converted"  class =" form-control ">
                                         <option value="mm">Millimeters (mm)</option>
                                         <option value="cm">Centimeters (cm)</option>
                                         <option value="dm">Decimeters (cm)</option>
