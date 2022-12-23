@@ -67,7 +67,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 @media (min-width: 320px) {
   .menu-list .navbar .nav-link {
-    font-size: calc(15px + (28px - 15px) * ((100vw - 320px) / (1200px - 320px)));
+    font-size: calc(
+      15px + (28px - 15px) * ((
+              100vw - 320px
+            ) / (1200px - 320px))
+    );
   }
 }
 @media (min-width: 1200px) {
@@ -141,7 +145,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 @media (min-width: 320px) {
   .dropdown .dropdown-content a {
-    font-size: calc(15px + (28px - 15px) * ((100vw - 320px) / (1920px - 320px)));
+    font-size: calc(
+      15px + (28px - 15px) * ((
+              100vw - 320px
+            ) / (1920px - 320px))
+    );
   }
 }
 @media (min-width: 1920px) {
@@ -179,7 +187,11 @@ input[type=search] {
 }
 @media (min-width: 320px) {
   input[type=search] {
-    font-size: calc(15px + (28px - 15px) * ((100vw - 320px) / (1200px - 320px)));
+    font-size: calc(
+      15px + (28px - 15px) * ((
+              100vw - 320px
+            ) / (1200px - 320px))
+    );
   }
 }
 @media (min-width: 1200px) {
@@ -229,7 +241,11 @@ input[type=search]::-webkit-input-placeholder {
 }
 @media (min-width: 320px) {
   .txt {
-    font-size: calc(15px + (28px - 15px) * ((100vw - 320px) / (1200px - 320px)));
+    font-size: calc(
+      15px + (28px - 15px) * ((
+              100vw - 320px
+            ) / (1200px - 320px))
+    );
   }
 }
 @media (min-width: 1200px) {
