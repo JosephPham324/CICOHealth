@@ -1,3 +1,8 @@
 .admin-info-txt{
-    text-align: center;
+    text-align: left;
+}
+
+
+.table_title_txt{
+    margin-top: 40px;
 }
