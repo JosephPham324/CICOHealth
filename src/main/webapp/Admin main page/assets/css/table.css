@@ -2,7 +2,23 @@
     text-align: left;
 }
 
-
 .table_title_txt{
     margin-top: 40px;
+    background-color: #83B82E !important;
+}
+
+.nav-link-admin-info{
+    background-color: #83B82E !important;
+}
+ 
+.nav-link-user-info{
+    background-color: #83B82E !important;
+}
+
+.nav-link-em{
+    background-color: #83B82E !important;
+}
+
+.navbar-brand{
+    background-color: #83B82E !important;
 }
