@@ -1,0 +1,259 @@
+@use "../../mixins/common";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+/**
+* @Author: Pham Nhat Quang
+*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #faebd7;
+  overflow-x: hidden;
+  margin: 0;
+  z-index: 0;
+}
+
+header {
+  height: 80px;
+  margin-bottom: 20px;
+  background-color: rgb(206, 235, 182);
+  position: relative;
+}
+
+.exercise-search {
+  @include common.flex-display(column, center, normal);
+}
+.search-wrapper {
+  @include common.flex-display(column, center, normal);
+  width: 100vw;
+  gap: 0.25rem;
+}
+.search-wrapper label {
+  font-size: 2rem;
+  font-weight: bold;
+  font-style: italic;
+}
+input {
+  font-size: 1rem;
+  padding: 5px;
+}
+
+.input {
+  position: relative;
+  background-color: black;
+}
+.input input {
+  @include common.dimension(400px, 30px);
+}
+.input i {
+  font-size: 1rem;
+  position: absolute;
+  right: 0;
+  padding: 10px;
+  min-width: 40px;
+  @include common.min-dimension(40px);
+  cursor: pointer;
+}
+
+.search-results {
+  margin: 1rem 1rem;
+  border: 1px dashed rgb(77, 35, 35);
+  @include common.flex-display(column, center, normal);
+  @include common.min-dimension(400px, 80vh);
+  @include common.max-dimension(600px, 80vh);
+  height: auto;
+  overflow-y: scroll;
+  padding: 20px 20px;
+  gap: 20px;
+  background-color: aliceblue;
+}
+.result {
+  position: relative;
+  width: 100%;
+  min-width: 320px;
+  background-color: #ffa600;
+  @include common.flex-display(column, center, normal);
+  border: 1px solid black;
+  padding: 0;
+  margin: 0;
+  gap: 10px;
+  cursor: pointer;
+
+  header {
+    background-color: rgb(213, 219, 251);
+    @include common.dimension(100%,auto);
+    @include common.flex-display(column, center, center);
+    margin: 0;
+  }
+
+  .icon {
+    @include common.dimension(30px,30px);
+    border-radius: 50%;
+    @include common.flex-display(row, center, center);
+    font-size: 24px;
+    background-color: #faebd7;
+    background-size: 100%;
+    margin: 2px;
+  }
+
+  .description {
+    text-align: center;
+    @include common.flex-display(column, normal, normal);
+    font-size: 15px;
+    gap: 10px;
+  }
+
+  .exercise-name {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    border-bottom: 1px black dotted;
+  }
+
+  .exercise-description {
+    font-style: oblique;
+  }
+
+  .energy-expenditure {
+    font-size: 18px;
+    color: yellow;
+    font-style: italic;
+  }
+}
+
+.exercise-search .food {
+  border: 1px black solid;
+  padding: 10px;
+  @include common.dimension(100%, 130px);
+  background-color: white;
+  cursor: pointer;
+  line-height: 1.2rem;
+}
+
+/*  */
+.add-exercise {
+  position: absolute;
+  @include common.dimension(60px, 60px);
+  top: calc(20px / 2);
+  right: 40px;
+  z-index: 50;
+
+  button {
+    @include common.dimension();
+    border-radius: 50%;
+    background: url("../image/running.png") no-repeat;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    background-size: 100%;
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+.create-exercise {
+  position: fixed;
+  @include common.dimension();
+  z-index: 100;
+  @include common.flex-display(column, center, center);
+  display: none;
+
+  .overlay {
+    @include common.dimension(100%,100vh);
+    opacity: 0.7;
+    z-index: 80;
+    background-color: #fff;
+    position: fixed;
+  }
+
+  #exerciseForm {
+    max-width: 800px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 1);
+
+    z-index: 101;
+    border: 3px solid black;
+    border-radius: 5px;
+    min-width: 320px;
+    padding: 5px;
+  }
+
+  #nameForm input[type="submit"] {
+    border-radius: 20px;
+    cursor: pointer;
+    border: 0;
+  }
+
+  form {
+    fieldset {
+      @include common.flex-display(column, center, normal);
+      border: 0;
+      text-align: center;
+    }
+
+    legend {
+      font-weight: bold;
+      font-size: x-large;
+      border: 0;
+      text-align: center;
+    }
+  }
+  .description {
+    @include common.flex-display(column, center, normal);
+    gap: 15px;
+    margin-bottom: 20px;
+
+    .exercise-name {
+      font-size: 24px;
+    }
+  }
+
+  .energy-expenditure {
+    color: yellow;
+    @include common.outline-text(#000);
+    letter-spacing: 2px;
+  }
+
+  .duration input {
+    @include common.max-dimension(90px, 60px);
+    @include common.center-text;
+  }
+
+  span {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
+
+#submit {
+  border: 0;
+  border-radius: 20px;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  font-size: 24px;
+  @include common.outline-text(#000);
+  background-image: linear-gradient(to right, green, yellow);
+  cursor: pointer;
+
+  &.disabled {
+    background-color: red;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}
+
+#exerciseForm p {
+  font-size: 0.8em;
+  color: red;
+  font-style: italic;
+}
+
+@media only screen and (max-width: 600px) {
+  .input input {
+    width: 85vw;
+  }
+}

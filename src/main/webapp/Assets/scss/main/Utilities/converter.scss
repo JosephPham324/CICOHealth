@@ -1,0 +1,119 @@
+@use "../../mixins/common";
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  margin: 0;
+  @include common.flex-display(column, center, flex-start);
+  gap: 20px;
+}
+
+.converter {
+  width: 50%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 10px;
+  background-color: rgb(136, 243, 163, 0.5);
+  .header {
+    height: 80px;
+    font-size: 1.5em;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .nav-item {
+    z-index: 50;
+    background-color: white;
+    padding: 5px;
+
+    &.active {
+      background-color: rgb(16, 155, 109);
+
+      a {
+        font-weight: bold;
+        color: white !important;
+      }
+    }
+  }
+
+  .converter-panel {
+    display: none;
+
+    form {
+      padding: 10px;
+      width: 100%;
+      font-size: 1.2em;
+
+      label {
+        text-transform: uppercase;
+      }
+    }
+
+    &.active {
+      height: 100%;
+      @include common.flex-display(column, normal, normal);
+      gap: 20px;
+    }
+  }
+}
+
+.input-group-append > div {
+  background-color: whitesmoke;
+  color: black;
+  font-weight: bolder !important;
+}
+
+.tooltip_ {
+  position: relative;
+  display: inline-block;
+
+  .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: calc(100% + 10px);
+    left: 40%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    &:after {
+      content: "";
+      color: black;
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+      transform: rotate(180deg);
+    }
+  }
+
+  &:hover {
+    .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+.navbar-brand {
+  font-family: "Pattrick Hand";
+  font-style: italic;
+  font-weight: 900;
+  color: green !important;
+}
+
+button[name="submit"] {
+  font-size: 1.2em;
+  border-radius: 20px;
+}
