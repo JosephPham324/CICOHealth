@@ -65,10 +65,10 @@
             </section>
         </main>
 
-        <jsp:include page="footer.jsp"></jsp:include>
-            <script src="${pageContext.request.contextPath}/Assets/scripts/headfootscript.js"></script>
-            <script src="${pageContext.request.contextPath}/Assets/scripts/calculations.js"></script>
-            <script>
+        <%@ include file="./footer.jsp"%>
+        <script src="${pageContext.request.contextPath}/Assets/scripts/headfootscript.js"></script>
+        <script src="${pageContext.request.contextPath}/Assets/scripts/calculations.js"></script>
+        <script>
                     let exerciseTypes = [];
             <c:forEach items="${etDAO.getAllExerciseTypes()}" var="item">
                     if (`${item}` !== null) {

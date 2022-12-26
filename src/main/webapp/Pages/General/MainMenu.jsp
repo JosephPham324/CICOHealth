@@ -30,6 +30,6 @@
         <div class="banner">
             <img src="${pageContext.request.contextPath}/Assets/image/Body-second.jpg" alt="Chanel" />
         </div>
-        <jsp:include page="footer.jsp"></jsp:include>
+        <%@ include file="footer.jsp" %>
     </body>
 </html>

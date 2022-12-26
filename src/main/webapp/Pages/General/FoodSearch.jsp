@@ -87,7 +87,7 @@
             </div>
             <div class="search-results"></div>
         </div>
-        <jsp:include page="footer.jsp"></jsp:include>
+        <%@ include file="./footer.jsp"%>
             <!--<script src="scripts/headfootscript.js"></script>-->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script src="${pageContext.request.contextPath}/Assets/scripts/calculations.js"></script>

@@ -59,5 +59,5 @@
     </ul>
 </div>
 <c:if test="${sessionScope.userID!=null}">
-    <jsp:include page="/TodayNumbers.jsp" />
+    <jsp:include page="/Pages/General/TodayNumbers.jsp" />
 </c:if>
