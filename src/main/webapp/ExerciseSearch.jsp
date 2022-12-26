@@ -12,7 +12,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Exercise Lookup | ${initParam['webappName']}</title>
-        <!--<link rel="stylesheet" href="./css/exercisesearch.css" />-->
         <link rel="stylesheet" href="scss/main/General/exercisesearch.css" />
 
         <link
@@ -43,35 +42,40 @@
             </form>
         </div>
         <%@include file = "header.jsp" %>
-        <section>
-            <div class="exercise-search">
-                <div class="search-wrapper">
-                    <label for="search">Find an exercise</label>
-                    <form action="#" onsubmit="event.preventDefault();button.click()">
-                        <div class="input">
-                            <i class="fa-solid fa-magnifying-glass button"></i>
-                            <input
-                                type="text"
-                                id="search"
-                                placeholder="Type in an exercise name, for example: running"
-                                />
-                        </div>
-                    </form>
+        <main>
+            <section>
+                <div class="exercise-search">
+                    <div class="search-wrapper">
+                        <h1>
+                            <label for="search">Find an exercise</label>
+                        </h1>
+                        <form action="#" onsubmit="event.preventDefault();button.click()">
+                            <div class="input">
+                                <i class="fa-solid fa-magnifying-glass button"></i>
+                                <input
+                                    type="text"
+                                    id="search"
+                                    placeholder="Type in an exercise name, for example: running"
+                                    />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="search-results"></div>
                 </div>
-                <div class="search-results"></div>
-            </div>
-        </section>
+            </section>
+        </main>
+
         <jsp:include page="footer.jsp"></jsp:include>
             <script src="scripts/headfootscript.js"></script>
             <script src="./scripts/calculations.js"></script>
             <script>
-                        let exerciseTypes = [];
+                    let exerciseTypes = [];
             <c:forEach items="${etDAO.getAllExerciseTypes()}" var="item">
-                        if (`${item}` !== null) {
-                            exerciseTypes.push(new ExerciseType(`${item.getExerciseName()}`, `${item.getDescription()}`,${item.getCalPerHour()}));
-                        }
+                    if (`${item}` !== null) {
+                        exerciseTypes.push(new ExerciseType(`${item.getExerciseName()}`, `${item.getDescription()}`,${item.getCalPerHour()}));
+                    }
             </c:forEach>
-                        console.log(exerciseTypes)
+//                        console.log(exerciseTypes)
         </script>
         <script src="./scripts/exercisesearch.js"></script>
         <!--<script src = "./scripts/headfootscript.js"></script>-->

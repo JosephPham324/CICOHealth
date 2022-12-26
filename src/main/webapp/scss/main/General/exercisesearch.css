@@ -40,6 +40,8 @@ header {
 
 .search-wrapper label {
   font-size: 2rem;
+  font-weight: bold;
+  font-style: italic;
 }
 
 input {
@@ -63,20 +65,24 @@ input {
   right: 0;
   padding: 10px;
   min-width: 40px;
+  min-width: 40px;
+  min-height: 100%;
   cursor: pointer;
 }
 
 .search-results {
   margin: 1rem 1rem;
   border: 1px dashed rgb(77, 35, 35);
-  min-width: 400px;
-  max-width: 600px;
-  min-height: 80vh;
-  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: normal;
+  min-width: 400px;
+  min-height: 80vh;
+  max-width: 600px;
+  max-height: 80vh;
+  height: auto;
+  overflow-y: scroll;
   padding: 20px 20px;
   gap: 20px;
   background-color: aliceblue;
@@ -101,11 +107,11 @@ input {
   background-color: rgb(213, 219, 251);
   width: 100%;
   height: auto;
-  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0;
 }
 .result .icon {
   width: 30px;
@@ -114,7 +120,7 @@ input {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: normal;
+  justify-content: center;
   font-size: 24px;
   background-color: #faebd7;
   background-size: 100%;
@@ -144,9 +150,9 @@ input {
 }
 
 .exercise-search .food {
-  width: 100%;
   border: 1px black solid;
   padding: 10px;
+  width: 100%;
   height: 130px;
   background-color: white;
   cursor: pointer;

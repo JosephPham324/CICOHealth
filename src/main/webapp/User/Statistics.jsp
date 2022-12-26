@@ -33,7 +33,7 @@
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/stats.css" />
+        <link rel="stylesheet" href="../scss/main/User/stats.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
         <%@ include file = "../headfootlink.jsp"%>
         <title>${sessionScope.username}'s Statistics | ${initParam['webappName']}</title>

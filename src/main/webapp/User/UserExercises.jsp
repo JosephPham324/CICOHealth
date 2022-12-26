@@ -29,7 +29,7 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
             />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/exercises.css" />
+        <link rel="stylesheet" href="../scss/main/User/exercises.css" />
         <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"

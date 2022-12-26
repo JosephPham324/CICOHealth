@@ -16,7 +16,7 @@
         <li class="nav-link"><a class="txt" href="${pageContext.request.contextPath}/search-food">Food</a></li>
         <li class="nav-link"><a class="txt" href="${pageContext.request.contextPath}/search-exercise">Exercise</a></li>
         <li class="nav-link">
-            <div class="dropdown dropdown-toggle" data-id="utilities">
+            <div class="dropdown dropdown-toggle txt" data-id="utilities">
                 <span>Utilities</span>
                 <div id="utilities" class="dropdown-content">
                     <a href="${pageContext.request.contextPath}/utilities/convert-unit">Convert Units</a>

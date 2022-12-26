@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
+/*Make an element display flex, specify the flex-direction , align items and justify content*/
+/*Round the corners of an element*/
+/**
+* @Author: Pham Nhat Quang
+*/
+.today-numbers {
+  position: fixed;
+  top: 100px;
+  right: 50px;
+  max-height: 500px;
+  max-width: 200px;
+  font-family: "Roboto Condensed";
+}
+.today-numbers.active {
+  z-index: 100;
+}
+.today-numbers .cal-eaten {
+  max-width: 100px;
+  max-height: 80px;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: yellow;
+  color: red;
+  border-radius: 15px 15px 10px 10px;
+}
+.today-numbers .all-numbers {
+  background-color: white;
+  margin-top: 10px;
+  position: fixed;
+  right: -200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.3s ease-in;
+  text-align: left;
+  border: 1px black dashed;
+  padding: 0;
+}
+.today-numbers .all-numbers.active {
+  right: 50px;
+}
+.today-numbers .all-numbers > div {
+  width: 100%;
+}
+.today-numbers .all-numbers > div > div {
+  padding: 1px 5px;
+  font-size: 15px;
+}
+.today-numbers .all-numbers div::before {
+  font-style: italic;
+  background-color: gold;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  margin: 0;
+}
+.today-numbers .all-numbers .goals::before {
+  content: "Goals";
+}
+.today-numbers .all-numbers .consumed::before {
+  content: "Eaten";
+}
+.today-numbers .all-numbers .burned::before {
+  content: "Exercise";
+}
+.today-numbers .all-numbers .remaining::before {
+  content: "Remaining";
+}/*# sourceMappingURL=todaynumbers.css.map */
