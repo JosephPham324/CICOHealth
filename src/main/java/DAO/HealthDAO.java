@@ -2,26 +2,18 @@ package DAO;
 
 import Entity.UserHealthInfo;
 import context.DBContext;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Semester: FALL 2022
- * Subject : FRJ301
- * Class   : SE1606
- * Project : Nutrition 
- * @author : Group 4
- * CE161130  Nguyen Le Quang Thinh (Leader)
- * CE170036  Pham Nhat Quang
- * CE160464  Nguyen The Lu
- * CE161096  Nguyen Ngoc My Quyen
- * CE161025  Tran Thi Ngoc Hieu
+ * Semester: FALL 2022 Subject : FRJ301 Class : SE1606 Project : Nutrition
+ *
+ * @author : Group 4 CE161130 Nguyen Le Quang Thinh (Leader) CE170036 Pham Nhat
+ * Quang CE160464 Nguyen The Lu CE161096 Nguyen Ngoc My Quyen CE161025 Tran Thi
+ * Ngoc Hieu
  */
-public class HealthDAO extends DAO{
+public class HealthDAO extends DAO {
 
     /**
      * Insert health info of a user into database
@@ -66,6 +58,7 @@ public class HealthDAO extends DAO{
             ps.setString(6, age);
             ps.executeUpdate();
         }
+        closeConnections();
     }
 
     /**
@@ -86,16 +79,17 @@ public class HealthDAO extends DAO{
             UserHealthInfo info = new UserHealthInfo(ID, rs.getString("GENDER"), rs.getFloat("HEIGHT"),
                     rs.getFloat("Weight"), rs.getInt("ACTIVENESS"), rs.getInt("AGE"));
             System.out.println(info.toString());
+            closeConnections();
             return info;
         }
-
+        closeConnections();
         return null;
     }
 
     /**
      * Get health info records of all users
      *
-     * @return List of UserHealthInfo 
+     * @return List of UserHealthInfo
      * @throws SQLException When query encounters error
      */
     public List<UserHealthInfo> getAllUserHealthInfo() throws SQLException {
@@ -109,6 +103,7 @@ public class HealthDAO extends DAO{
                     rs.getFloat(4), rs.getInt(5), rs.getInt(6));
             list.add(acc);
         }
+        closeConnections();
         return list;
     }
 }

@@ -2,26 +2,18 @@ package DAO;
 
 import Entity.DailyNutritionGoal;
 import context.DBContext;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Semester: FALL 2022
- * Subject : FRJ301
- * Class   : SE1606
- * Project : Nutrition 
- * @author : Group 4
- * CE161130  Nguyen Le Quang Thinh (Leader)
- * CE170036  Pham Nhat Quang
- * CE160464  Nguyen The Lu
- * CE161096  Nguyen Ngoc My Quyen
- * CE161025  Tran Thi Ngoc Hieu
+ * Semester: FALL 2022 Subject : FRJ301 Class : SE1606 Project : Nutrition
+ *
+ * @author : Group 4 CE161130 Nguyen Le Quang Thinh (Leader) CE170036 Pham Nhat
+ * Quang CE160464 Nguyen The Lu CE161096 Nguyen Ngoc My Quyen CE161025 Tran Thi
+ * Ngoc Hieu
  */
-public class GoalDAO extends DAO{
+public class GoalDAO extends DAO {
 
     /**
      * Add nutrition goal in the database or edit existing goal, macro goals are
@@ -78,6 +70,8 @@ public class GoalDAO extends DAO{
 
         } catch (Exception e) {
             e.getMessage();
+        } finally {
+            closeConnections();
         }
     }
 
@@ -107,6 +101,7 @@ public class GoalDAO extends DAO{
         } else {
             calories = ((9.247 * w) + (3.098 * h) - (4.330 * ag) + 447.593) * r;
         }
+        closeConnections();
         return calories;
     }
 
@@ -131,13 +126,15 @@ public class GoalDAO extends DAO{
                 return info;
             }
         } catch (Exception e) {
+        } finally {
+            closeConnections();
         }
         return null;
     }
 
     /**
-     * @author:Pham Nhat Quang 
-     * Edit macro goal, from new macro calculates new calorie goal
+     * @author:Pham Nhat Quang Edit macro goal, from new macro calculates new
+     * calorie goal
      *
      * @param userID User ID
      * @param protein Protein
@@ -162,11 +159,12 @@ public class GoalDAO extends DAO{
         ps.setString(5, userID);
 
         ps.executeUpdate();
+        closeConnections();
     }
 
     /**
-     * @author:Pham Nhat Quang 
-     * Edit calorie goal, adjust macro goals according to new calorie
+     * @author:Pham Nhat Quang Edit calorie goal, adjust macro goals according
+     * to new calorie
      *
      * @param userID User ID
      * @param calorie Calorie
@@ -197,12 +195,13 @@ public class GoalDAO extends DAO{
         ps.setString(5, userID);
 
         ps.executeUpdate();
+        closeConnections();
+
     }
 
     /**
-     * @author:Pham Nhat Quang
-     * Get the statistics of meal,exercise and goal associated with user in the 
-     * current day
+     * @author:Pham Nhat Quang Get the statistics of meal,exercise and goal
+     * associated with user in the current day
      *
      * @param userID ID of user
      * @return Number array in the order: goal calories (kcal), goal protein
@@ -222,6 +221,8 @@ public class GoalDAO extends DAO{
         ExerciseDAO eDAO = new ExerciseDAO();
         double[] consumed = mDAO.getExercisesCalorieByDate(userID, dtf.format(now));
         double burned = eDAO.getExercisesCalorieByDate(userID, dtf.format(now));
+        closeConnections();
+
         return new double[]{goal.getCalories(), goal.getProtein(), goal.getFat(), goal.getCarb(),
             consumed[0], consumed[1], consumed[2], consumed[3],
             burned};

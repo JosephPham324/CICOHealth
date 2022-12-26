@@ -2,9 +2,6 @@ package DAO;
 
 import Entity.Meal;
 import context.DBContext;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,14 +12,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Semester: FALL 2022
- * Subject : FRJ301
- * Class   : SE1606
- * Project : Nutrition 
- * @author : Group 4
- * CE170036  Pham Nhat Quang
+ * Semester: FALL 2022 Subject : FRJ301 Class : SE1606 Project : Nutrition
+ *
+ * @author : Group 4 CE170036 Pham Nhat Quang
  */
-public class MealDAO extends DAO{
+public class MealDAO extends DAO {
 
     /**
      * String query
@@ -160,11 +154,13 @@ public class MealDAO extends DAO{
         ps.setString(3, time);
         ps.setString(4, name);
         ps.executeUpdate();
+        closeConnections();
+
     }
 
     /**
      * Get meals group by date
-     * 
+     *
      * @param userID user ID
      * @return List [meal]
      */
@@ -177,15 +173,16 @@ public class MealDAO extends DAO{
                 return o1.getMealDateTime().compareTo(o1.getMealDateTime());
             }
         });
+        closeConnections();
         return res;
     }
 
     /**
      * Get exercise calorie by date
-     * 
-     * @param userID    user ID
-     * @param date      date of exercise
-     * @return          array double
+     *
+     * @param userID user ID
+     * @param date date of exercise
+     * @return array double
      * @throws SQLException Exception of SQL
      */
     public double[] getExercisesCalorieByDate(String userID, String date) throws SQLException {
@@ -213,14 +210,14 @@ public class MealDAO extends DAO{
                     rs.getDouble("FAT"),
                     rs.getDouble("CARB")
             );
-            cal +=rs.getDouble("CALORIE");
-            pro +=rs.getDouble("PROTEIN");
+            cal += rs.getDouble("CALORIE");
+            pro += rs.getDouble("PROTEIN");
             fat += rs.getDouble("FAT");
-            carb +=rs.getDouble("CARB");
+            carb += rs.getDouble("CARB");
             queryResult.add(meal);
         }
-
-        return new double[]{cal,pro,fat,carb};
+        closeConnections();
+        return new double[]{cal, pro, fat, carb};
     }
 
 }
