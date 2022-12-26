@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="./scss/main/CommonStyles/buttons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="icon" type="image/png" href="favicon.png"/>
-        <title>${sessionScope.username != null? sessionScope.username+ "'s": 'Your'} Health Info | ${initParam['webappName']}</title>
+        <title>${sessionScope.username != null ? sessionScope.username + "'s" : 'Your'} Health Info | ${initParam['webappName']}</title>
     </head>
     <body>
         <section style="background-image: url('image/healthinfo.jpg');">
@@ -74,7 +74,7 @@
                                         out.print("Your");//Else print Your
                                     }%>
                                 health info</legend>
-                            <input type="hidden" id="userID" name="userID">
+                            <input type="hidden" id="userID" name="userID" value = <%=request.getParameter("userID")%>>
 
                             <!--FORM GROUP FOR ACTIVENESS-->
                             <label class="col-4 col-form-label">How active are you?</label> 
@@ -180,7 +180,7 @@
                             <div class="col-8">
                                 <div class="custom-controls-stacked">
                                     <div class="custom-control custom-radio">
-                                        <input name="planChoice" id="planChoice_0" type="radio" class="custom-control-input" value="Maintenance"> 
+                                        <input name="planChoice" id="planChoice_0" type="radio" class="custom-control-input" value="Maintenance" checked="true"> 
                                         <label for="planChoice_0" class="custom-control-label">Maintenance</label>
                                     </div>
                                 </div>
@@ -237,6 +237,7 @@
 
                 <script src="./scripts/calculateTDEE.js"></script>
                 <script>
+                    window.onload = function () {
                         //GET INPUT FIELDS
                         let activeness = document.querySelectorAll('input[name="activity"]');
                         let gender = document.querySelectorAll('input[name="gender"]');
@@ -245,8 +246,7 @@
                         let weight = document.querySelector('input[name="weight"]');
                         let userID = document.querySelector('input[name="userID"]');
 
-                        let requestUserID = ${userID} + "";//Get userID from request
-
+                        let requestUserID = ${requestScope.userID} + "";//Get userID from request
                         if (<%=userID != null%> && <%= !userID.equals("")%>) {
                             userID.value = <%=userID%> + "";//If there is userID from session, use this
                         } else {
@@ -258,6 +258,7 @@
                         age.value = "<%=age%>";
                         height.value = "<%=height%>";
                         weight.value = "<%=weight%>";
+                    }
                 </script>
             </div>
         </section>

@@ -37,15 +37,14 @@
         </script>
     </head>
     <body>
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
         <c:if test="${sessionScope.userID != null}">
             <c:redirect url="home"></c:redirect>
         </c:if>
         <section style="background-image: url('image/login.jpg');">
-            
             <div class="back-button">
                 <button onclick="history.back()"><i class="fa-solid fa-chevron-left">&nbsp;BACK</i></button>
             </div>
-            
             <div class="form-container"> 
                 <div class="login-form">
                     <form method="post" action="register-control" onsubmit="return checkAllData()">
@@ -225,7 +224,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <input type ="hidden" name ="google-register" value ="false">
                             <div class="submit">
                                 <div class="form-group row">
                                     <div class="col-md-12 text-center">
@@ -237,11 +236,52 @@
                             </div>
                         </fieldset>
                     </form>
+                    <div style="text-align:center; font-weight:bold;">
+                        OR
+                    </div>
+                    <div id="google-sign-up" style ="display:flex; align-items:center; justify-content: center; margin:10px;">
+                        <div id="g_id_onload"
+                             data-client_id="641593933823-qlfnb62fuif3fcsu01b0hf9vijetfepj.apps.googleusercontent.com"
+                             data-context="signup"
+                             data-ux_mode="popup"
+                             data-login_uri="http://localhost:8080/Nutrition/register-account"
+                             data-auto_prompt="false"
+                             data-callback="handleCredentialResponse"
+                             >
+                        </div>
+
+                        <div class="g_id_signin"
+                             data-type="standard"
+                             data-shape="pill"
+                             data-theme="filled_blue"
+                             data-text="signup_with"
+                             data-size="large"
+                             data-logo_alignment="left">
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </section>
+        <script src="scripts/formhandling.js"></script>
+        <script>
+            function handleCredentialResponse(response) {
+                                                    // decodeJwtResponse() is a custom function defined by you
+                                                    // to decode the credential response.
+                const responsePayload = parseJwt(response.credential);
+                const formParams = {
+                    username: chainString(responsePayload.email + '_' + responsePayload.family_name, ' ', ''),
+                    password: chainString(responsePayload.email + '_' + responsePayload.name, ' ', ''),
+                    firstName: responsePayload.given_name,
+                    lastName: responsePayload.family_name,
+                    email: responsePayload.email,
+                    phone: '0123456789',
+                    'google-register': 'true'
+                    };
+                    console.log(formParams)
+                    post('register-control', formParams);
+                }
+                document.getElementById("ErrorDuplicate").style.display = 'none';
+        </script>
     </body>
-    <script>
-        document.getElementById("ErrorDuplicate").style.display = 'none';
-    </script>
 </html>
