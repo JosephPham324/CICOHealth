@@ -24,16 +24,16 @@
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
         <link rel="icon" type="image/png" href="favicon.png"/>
-        <link rel="stylesheet" href="Assets/scss/main/CommonStyles/buttons.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/CommonStyles/buttons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href = "Assets/scss/main/General/registeracount.css"/>
+        <link rel="stylesheet" href = "${pageContext.request.contextPath}/Assets/scss/main/General/registeracount.css"/>
         <title>Register Account | ${initParam['webappName']}</title>
         <style>
             .error {
                 color: red;
             }
         </style>
-        <script src="Assets/scripts/validateRegister.js">
+        <script src="${pageContext.request.contextPath}/Assets/scripts/validateRegister.js">
         </script>
     </head>
     <body>
@@ -41,7 +41,7 @@
         <c:if test="${sessionScope.userID != null}">
             <c:redirect url="home"></c:redirect>
         </c:if>
-        <section style="background-image: url('image/login.jpg');">
+        <section style="background-image: url('${pageContext.request.contextPath}/Assets/image/login.jpg');">
             <div class="back-button">
                 <button onclick="history.back()"><i class="fa-solid fa-chevron-left">&nbsp;BACK</i></button>
             </div>
@@ -263,7 +263,7 @@
             </div>
 
         </section>
-        <script src="Assets/scripts/formhandling.js"></script>
+        <script src="${pageContext.request.contextPath}/Assets/scripts/formhandling.js"></script>
         <script>
             function handleCredentialResponse(response) {
                                                     // decodeJwtResponse() is a custom function defined by you

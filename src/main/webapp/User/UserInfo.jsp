@@ -34,7 +34,7 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
             />
-        <link rel="stylesheet" href="../scss/main/User/userinfo.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/User/userinfo.css" />
         <title>${sessionScope.username} | ${initParam['webappName']}</title>
         <style>
             .error {
@@ -141,7 +141,7 @@
                  background-position: center center;"
                  >
                 <div class="login-info <%=panelSwitch == 0 ? "active" : ""%>" id="login-info">
-                    <img src="${pageContext.request.contextPath}/image/person.png" alt="AVATAR" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;display: block;"/>
+                    <img src="${pageContext.request.contextPath}/Assets/image/person.png" alt="AVATAR" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;display: block;"/>
                     <h1>Your Login Information</h1>
                     <div class="field">
                         <div class="label">Username:</div>
@@ -296,7 +296,7 @@
             integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
             crossorigin="anonymous"
         ></script>
-        <script src="${pageContext.request.contextPath}/scripts/userinfo.js"></script>
+        <script src="${pageContext.request.contextPath}/Assets/scripts/userinfo.js"></script>
     </body>
 </html>
 

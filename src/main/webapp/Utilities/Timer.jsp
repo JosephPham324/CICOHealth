@@ -11,8 +11,8 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../scss/main/Utilities/circle.css" />
-        <link rel="stylesheet" href="../scss/main/Utilities/timer.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/Utilities/circle.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/Utilities/timer.css" />
         <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -21,15 +21,15 @@
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
-        <%@include file = "../headfootlink.jsp" %>
+        <%@include file = "${pageContext.request.contextPath}/headfootlink.jsp" %>
         <title>Exercise Timer | ${initParam['webappName']}</title>
     </head>
     <body>
-        <%@ include file="../header.jsp" %>
+        <%@ include file="${pageContext.request.contextPath}/header.jsp" %>
 
         <div class="clock-container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light header">
-                <a class="navbar-brand" href="../home"
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/home"
                    ><img
                         style="border-radius: 50%"
                         src="${pageContext.request.contextPath}/favicon.png"
@@ -164,7 +164,7 @@
                 </div>
             </div>
         </div>
-        <script src="${pageContext.request.contextPath}/scripts/timer.js"></script>
+        <script src="${pageContext.request.contextPath}/Assets/scripts/timer.js"></script>
     </body>
 </html>
 

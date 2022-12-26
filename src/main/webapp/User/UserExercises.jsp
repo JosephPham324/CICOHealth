@@ -29,7 +29,7 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
             />
-        <link rel="stylesheet" href="../scss/main/User/exercises.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/User/exercises.css" />
         <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -288,6 +288,6 @@
             crossorigin="anonymous"
         ></script>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script src="${pageContext.request.contextPath}/scripts/exercises.js"></script>
+        <script src="${pageContext.request.contextPath}/Assets/scripts/exercises.js"></script>
     </body>
 </html>

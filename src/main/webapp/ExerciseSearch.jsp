@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Exercise Lookup | ${initParam['webappName']}</title>
-        <link rel="stylesheet" href="scss/main/General/exercisesearch.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/General/exercisesearch.css" />
 
         <link
             rel="stylesheet"
@@ -66,8 +66,8 @@
         </main>
 
         <jsp:include page="footer.jsp"></jsp:include>
-            <script src="scripts/headfootscript.js"></script>
-            <script src="./scripts/calculations.js"></script>
+            <script src="${pageContext.request.contextPath}/Assets/scripts/headfootscript.js"></script>
+            <script src="${pageContext.request.contextPath}/Assets/scripts/calculations.js"></script>
             <script>
                     let exerciseTypes = [];
             <c:forEach items="${etDAO.getAllExerciseTypes()}" var="item">
@@ -75,9 +75,7 @@
                         exerciseTypes.push(new ExerciseType(`${item.getExerciseName()}`, `${item.getDescription()}`,${item.getCalPerHour()}));
                     }
             </c:forEach>
-//                        console.log(exerciseTypes)
         </script>
-        <script src="./scripts/exercisesearch.js"></script>
-        <!--<script src = "./scripts/headfootscript.js"></script>-->
+        <script src="${pageContext.request.contextPath}/Assets/scripts/exercisesearch.js"></script>
     </body>
 </html>

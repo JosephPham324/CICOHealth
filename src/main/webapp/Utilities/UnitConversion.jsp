@@ -11,7 +11,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../scss/main/Utilities/converter.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/Utilities/converter.css" />
         <!-- <link rel="stylesheet" href="./css/boostrap.css" /> -->
         <link
             rel="stylesheet"
@@ -26,17 +26,17 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
             />
-        <%@include file = "../headfootlink.jsp" %>
+        <%@include file = "${pageContext.request.contextPath}/headfootlink.jsp" %>
         <title>Measurements Converter | ${initParam['webappName']}</title>
     </head>
     <body>
-        <%@ include file="../header.jsp" %>
+        <%@ include file="${pageContext.request.contextPath}/header.jsp" %>
         <div class="converter">
             <nav class="navbar navbar-expand-lg navbar-light bg-light header">
-                <a class="navbar-brand" href="../home"
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/home"
                    ><img
                         style="border-radius: 50%"
-                        src="../favicon.png"
+                        src="${pageContext.request.contextPath}/favicon.png"
                         alt="Icon"
                         width="60"
                         height="60"

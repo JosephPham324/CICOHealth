@@ -37,7 +37,7 @@
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
-        <link rel="stylesheet" href="css/adminuserinfo.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/css/adminuserinfo.css">
 
         <title>Users Info</title>
     </head>
@@ -53,20 +53,6 @@
 
     <div class="info-container">
         <div class="info-table">
-
-
-
-            <!--            <div class="input-group">
-                            <div class="form-outline" role="search" method="post" action="admin-loadcontrol">
-                                <div style="text-align: right;">
-                                    <input type="search" name="txtSearch" placeholder="First name or last name" id="form1" class="form-control" />
-                                    <label class="form-label" for="form1">Search</label>
-                                </div>
-                            </div>
-                            <button type="submit" id="searchsubmit" class="btn btn-primary"value="Search">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>-->
 
             <div  class="widget_search">
                 <form role="search" method="post" action="admin-load-control" class="search">
@@ -109,22 +95,6 @@
                     </c:forEach>
 
                 </tbody>
-                <!--                    <tfoot>
-                                        <tr>
-                                            <th scope="col">LoginID</th>
-                                            <th scope="col">Username</th>
-                                            <th scope="col">UserID</th>
-                                            <th scope="col">User Role</th>
-                                            <th scope="col">First name</th>
-                                            <th scope="col">Last name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Phone number</th>
-                                            <th scope="col">Health Info</th>
-                                            <th scope="col">Exercise Info</th>
-                                            <th scope="col">Goal Info</th>
-                                            <th scope="col">Actions</th>
-                                        </tr>
-                                    </tfoot>-->
             </table>
         </div>
     </div>
@@ -144,7 +114,7 @@
         crossorigin="anonymous"
     ></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="scripts/adminuserinfo.js"></script>
+    <script src="${pageContext.request.contextPath}/Assets/scripts/adminuserinfo.js"></script>
 </body>
 <script>
                                     function askDelete(id) {

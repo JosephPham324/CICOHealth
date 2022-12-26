@@ -33,7 +33,7 @@
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
-        <link rel="stylesheet" href="../scss/main/User/stats.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/User/stats.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
         <%@ include file = "../headfootlink.jsp"%>
         <title>${sessionScope.username}'s Statistics | ${initParam['webappName']}</title>
@@ -230,7 +230,7 @@
             </div>
             <div class="info-chart">
                 <canvas id="myChart" style="width: 60vw; min-width: 800px"></canvas>
-                <script src="${pageContext.request.contextPath}/scripts/statcharts.js"></script>
+                <script src="${pageContext.request.contextPath}/Assets/scripts/statcharts.js"></script>
             </div>
         </div>
                             <jsp:include page="../footer.jsp"></jsp:include>
@@ -252,6 +252,6 @@
         ></script>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
-        <script src="${pageContext.request.contextPath}/scripts/statistics.js"></script>
+        <script src="${pageContext.request.contextPath}/Assets/scripts/statistics.js"></script>
     </body>
 </html>

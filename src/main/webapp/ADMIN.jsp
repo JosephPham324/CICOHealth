@@ -16,7 +16,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@ include file = "headfootlink.jsp"%>
-        <link rel="stylesheet" href="css/admin.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/css/admin.css" />
         <title>ADMIN PAGE</title>
         <style>
 

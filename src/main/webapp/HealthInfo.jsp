@@ -16,8 +16,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href = "./scss/main/General/healthinfo.css"/>
-        <link rel="stylesheet" href="./scss/main/CommonStyles/buttons.css">
+        <link rel="stylesheet" href = "${pageContext.request.contextPath}/Assets/scss/main/General/healthinfo.css"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/CommonStyles/buttons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="icon" type="image/png" href="favicon.png"/>
         <title>${sessionScope.username != null ? sessionScope.username + "'s" : 'Your'} Health Info | ${initParam['webappName']}</title>
@@ -235,7 +235,7 @@
 
                 </form>
 
-                <script src="./scripts/calculateTDEE.js"></script>
+                <script src="${pageContext.request.contextPath}/Assets/scripts/calculateTDEE.js"></script>
                 <script>
                     window.onload = function () {
                         //GET INPUT FIELDS

@@ -13,7 +13,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/scss/main/General/foodsearch.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/General/foodsearch.css" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -65,10 +65,6 @@
             </div>
         </section>
 
-        <!--<header>-->
-
-        <!--</header>-->
-
         <div class="food-search">
             <div class="search-wrapper">
                 <form action="#" onsubmit="event.preventDefault();button.click()">
@@ -85,7 +81,7 @@
                 <div class="belly">
                     <div class="wrapper">
                         <span>0</span>
-                        <img src="image/stomach_!.png" alt="Stomach image" />
+                        <img src="${pageContext.request.contextPath}/Assets/image/stomach_!.png" alt="Stomach image" />
                     </div>
                 </div>
             </div>
@@ -94,8 +90,8 @@
         <jsp:include page="footer.jsp"></jsp:include>
             <!--<script src="scripts/headfootscript.js"></script>-->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <script src="${pageContext.request.contextPath}/scripts/calculations.js"></script>
-        <script src="${pageContext.request.contextPath}/scripts/foodsearch.js"></script>
+            <script src="${pageContext.request.contextPath}/Assets/scripts/calculations.js"></script>
+        <script src="${pageContext.request.contextPath}/Assets/scripts/foodsearch.js"></script>
         <script>
                     if (<%=request.getSession().getAttribute("createMeal")%> === true) {
             <%request.getSession().setAttribute("createMeal", false);%>

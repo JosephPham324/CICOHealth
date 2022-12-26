@@ -10,20 +10,18 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/boostrap.css">-->
 <link
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/scss/main/General/mainMenu.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/scss/main/General/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/General/mainMenu.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/General/footer.css">
 
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.png"/>
-<!--        <link rel="stylesheet" href="./font/fontawesome-free-6.1.1-web/css/all.min.css"/>-->
 <script src="https://kit.fontawesome.com/1287d4f6f9.js" crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath}/scripts/headfootscript.js"></script>
+<script src="${pageContext.request.contextPath}/Assets/scripts/headfootscript.js"></script>
 
 <c:if test="${sessionScope.userID!=null}">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/scss/main/General/todaynumbers.css">
-    <script src="${pageContext.request.contextPath}/scripts/todaynumbers.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/General/todaynumbers.css">
+    <script src="${pageContext.request.contextPath}/Assets/scripts/todaynumbers.js"></script>
 </c:if>

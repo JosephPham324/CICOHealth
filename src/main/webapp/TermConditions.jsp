@@ -18,7 +18,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href = "Assets/scss/main/General/termconditions.css"/>
+        <link rel="stylesheet" href = "${pageContext.request.contextPath}/Assets/scss/main/General/termconditions.css"/>
         <%@ include file = "headfootlink.jsp"%>
         <title>Terms and Conditions | ${initParam['webappName']}</title>
     </head>
@@ -132,6 +132,6 @@
             </div>
         </div>
         <jsp:include page="footer.jsp"></jsp:include>
-        <script src="Assets/scripts/headfootscript.js"></script>
+        <script src="${pageContext.request.contextPath}/Assets/scripts/headfootscript.js"></script>
     </body>
 </html>

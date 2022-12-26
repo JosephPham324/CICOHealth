@@ -37,25 +37,8 @@
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
-        <link rel="stylesheet" href="css/adminuserinfo.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/css/adminuserinfo.css">
         <style>
-/*            a {
-                text-decoration: none;
-                display: inline-block;
-                padding: 8px 16px;
-            }
-
-            a:hover {
-                background-color: #ddd;
-                color: black;
-            }
-            .previous {
-                background-color: #04AA6D;
-                color: white;
-            }
-            .round {
-                border-radius: 50%;
-            }*/
         </style>
         <title>Users Info</title>
     </head>
@@ -64,11 +47,11 @@
             <a href="admin" class="button" style="vertical-align:middle"><span>Back </span></a>
             <h1 class="navbar-brand mx-auto">EXERCISE MANAGEMENT</h1>
         </div>
-        
-        
-<!--        <a href="ADMIN.jsp" class="previous round">Back</a>-->
+
+
+        <!--        <a href="ADMIN.jsp" class="previous round">Back</a>-->
         <div class="info-container">
-             
+
             <div class="info-table">
                 <div  class="widget_search" style="margin-left:10px;margin-right:10px;">
                     <form role="search" method="post" action="admin-exercisetype-control">
@@ -100,32 +83,16 @@
                                     <a class="fa-solid fa-pen-to-square edit-button" href="update-exercisetype-control?exerciseid=${i.exerciseID}" style="color: blue;"></a>
                                     |
                                     <a class="delete-usercontrol" href = "#" onclick = "askDelete(${i.exerciseID})" style="color: red"
-                                   ><i class="fa-solid fa-xmark"></i
-                                    ></a>
+                                       ><i class="fa-solid fa-xmark"></i
+                                        ></a>
                                 </td>
                             </tr>
 
                         </c:forEach>
 
                     </tbody>
-                    <!--                    <tfoot>
-                                            <tr>
-                                                <th scope="col">LoginID</th>
-                                                <th scope="col">Username</th>
-                                                <th scope="col">UserID</th>
-                                                <th scope="col">User Role</th>
-                                                <th scope="col">First name</th>
-                                                <th scope="col">Last name</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Phone number</th>
-                                                <th scope="col">Health Info</th>
-                                                <th scope="col">Exercise Info</th>
-                                                <th scope="col">Goal Info</th>
-                                                <th scope="col">Actions</th>
-                                            </tr>
-                                        </tfoot>-->
                 </table>
-                
+
             </div>
         </div>
         <script
@@ -144,7 +111,7 @@
             crossorigin="anonymous"
         ></script>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script src="scripts/adminuserinfo.js"></script>
+        <script src="${pageContext.request.contextPath}/Assets/scripts/adminuserinfo.js"></script>
     </body>
     <script>
                                         function askDelete(id) {

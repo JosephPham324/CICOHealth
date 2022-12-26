@@ -16,8 +16,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" type="image/png" href="favicon.png"/>
-        <link rel="stylesheet" href="Assets/scss/main/General/login.css" />
-        <link rel="stylesheet" href="Assets/scss/main/CommonStyles/buttons.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/General/login.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/scss/main/CommonStyles/buttons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>Login | ${initParam['webappName']}</title>
     </head>
@@ -27,7 +27,7 @@
             <c:redirect url="home"></c:redirect>
         </c:if>
         <main>
-            <section style="background-image: url('Assets/image/login.jpg');">
+            <section style="background-image: url('${pageContext.request.contextPath}/Assets/image/login.jpg');">
                 <div class="back-button">
                     <button onclick="history.back()"><i class="fa-solid fa-chevron-left">&nbsp;BACK</i></button>
                 </div>
@@ -102,7 +102,7 @@
                     Your username or password is not correct!!
                 </div>
             </section>
-            <script src="Assets/scripts/formhandling.js"></script>
+            <script src="${pageContext.request.contextPath}/Assets/scripts/formhandling.js"></script>
             <script>
                         function handleCredentialResponse(response) {
                             const responsePayload = parseJwt(response.credential);

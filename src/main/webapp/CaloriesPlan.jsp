@@ -204,6 +204,6 @@
                 </div>
             </div>
 
-            <script src="./scripts/calculateTDEE.js"></script>
+            <script src="${pageContext.request.contextPath}/Assets/scripts/calculateTDEE.js"></script>
     </body>
 </html>
