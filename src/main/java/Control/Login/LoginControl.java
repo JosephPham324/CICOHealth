@@ -6,26 +6,18 @@ import Entity.Login;
 import Entity.User;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRegistration;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.HashSet;
-import java.util.Map;
 
 /**
- * Semester: FALL 2022
- * Subject : FRJ301
- * Class   : SE1606
- * Project : Nutrition 
- * @author : Group 4
- * CE161130  Nguyen Le Quang Thinh (Leader)
- * CE170036  Pham Nhat Quang
- * CE160464  Nguyen The Lu
- * CE161096  Nguyen Ngoc My Quyen
- * CE161025  Tran Thi Ngoc Hieu
+ * Semester: FALL 2022 Subject : FRJ301 Class : SE1606 Project : Nutrition
+ *
+ * @author : Group 4 CE161130 Nguyen Le Quang Thinh (Leader) CE170036 Pham Nhat
+ * Quang CE160464 Nguyen The Lu CE161096 Nguyen Ngoc My Quyen CE161025 Tran Thi
+ * Ngoc Hieu
  */
 public class LoginControl extends HttpServlet {
 
@@ -45,48 +37,52 @@ public class LoginControl extends HttpServlet {
             //Get info from form request
             String username = request.getParameter("username");
             String password = request.getParameter("password");
+            Boolean googleLogin = Boolean.parseBoolean(request.getParameter("google-login"));
             String remember = request.getParameter("remember");
+            String email = request.getParameter("email");
 
             LoginDAO loginDAO = new LoginDAO();
             UserDAO userDAO = new UserDAO();
-            User u = null;
-            Login a = null;
-            Login b = loginDAO.findUserName(username);
-            if (b != null) {
-                int userid = b.getUserID();
-                u = userDAO.getRoleByUserID(userid);
-            }
-            if (u != null) {
-                //Get an instance of Login entry if username and password is correct
-                if (u.getUserRoleId() == 2) {
-                    a = loginDAO.checkLogin(username, password);
-                } else {
-                    a = loginDAO.checkAdminLogin(username, password);
+            User user = null;
+            Login login = null;
+            Login findUser = loginDAO.findUserName(username);
+            if (googleLogin && email != null) {
+//                response.getWriter().write((email instanceof String) + "");
+                int existAccount = 
+                        loginDAO.checkLoginByEmail(email);
+                response.getWriter().write(existAccount + "");
+                if (existAccount != -1) {
+                    login = loginDAO.getLoginRecordFromUserID(existAccount+"");
                 }
-                //Get an instance of Login entry if username and password is correct
+            } else {
+                if (findUser != null) {
+                    int userid = findUser.getUserID();
+                    user = userDAO.getRoleByUserID(userid);
+                }
+                if (user != null) {
+                    //Get an instance of Login entry if username and password is correct
+                    if (user.getUserRoleId() == 2) {
+                        login = loginDAO.checkLogin(username, password);
+                    } else {
+                        login = loginDAO.checkAdminLogin(username, password);
+                    }
+                }
             }
 
-            if (a == null) {//If there's no instance, redirect to error page
+            if (login == null) {//If there's no instance, redirect to error page
                 request.getRequestDispatcher("login-error-control").forward(request, response);
-//                response.sendRedirect("login-error-control");
             } else {//If login info is correct
                 HttpSession session = request.getSession();//Get current session
-                session.setAttribute("userID", a.getUserID());//Set userID to logged in userID
-                session.setAttribute("username", a.getUsername());//Set username to logged in username
+                session.setAttribute("userID", login.getUserID());//Set userID to logged in userID
+                session.setAttribute("username", login.getUsername());//Set username to logged in username
                 if (remember != null) {
-                    Cookie userID = new Cookie("userID", a.getUserID() + "");
-                    Cookie userName = new Cookie("username", a.getUsername());
+                    Cookie userID = new Cookie("userID", login.getUserID() + "");
+                    Cookie userName = new Cookie("username", login.getUsername());
                     userID.setMaxAge(86400 * 3);
                     userName.setMaxAge(86400 * 3);
                     response.addCookie(userID);
                     response.addCookie(userName);
                 }
-//                if (u.getUserRoleId() == 2) {
-//                    response.sendRedirect("home-control");//Redirect to home controller
-//                } else {
-//                    response.sendRedirect("admin");//Redirect to home controller
-//                }
-
                 response.sendRedirect("home-control");//Redirect to home controller
             }
         } catch (Exception e) {
