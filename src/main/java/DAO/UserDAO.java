@@ -21,22 +21,7 @@ import java.util.List;
  * CE161096  Nguyen Ngoc My Quyen
  * CE161025  Tran Thi Ngoc Hieu
  */
-public class UserDAO {
-
-    /**
-     * Connection to database
-     */
-    Connection con = null;
-
-    /**
-     * Move query from Netbeans to SQl
-     */
-    PreparedStatement ps = null;
-
-    /**
-     * Save query result
-     */
-    ResultSet rs = null;
+public class UserDAO extends DAO{
 
     /**
      * Get the full lists of users in USER table

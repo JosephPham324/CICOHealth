@@ -19,22 +19,7 @@ import java.util.logging.Logger;
  * Quang CE160464 Nguyen The Lu CE161096 Nguyen Ngoc My Quyen CE161025 Tran Thi
  * Ngoc Hieu
  */
-public class LoginDAO {
-
-    /**
-     * Connection to database
-     */
-    Connection con = null;
-
-    /**
-     * Move query from Netbeans to SQl
-     */
-    PreparedStatement ps = null;
-
-    /**
-     * Save query result
-     */
-    ResultSet rs = null;
+public class LoginDAO extends DAO{
 
     /**
      * Add a record into database Login table

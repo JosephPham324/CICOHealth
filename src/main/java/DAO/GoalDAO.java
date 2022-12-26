@@ -21,22 +21,7 @@ import java.time.format.DateTimeFormatter;
  * CE161096  Nguyen Ngoc My Quyen
  * CE161025  Tran Thi Ngoc Hieu
  */
-public class GoalDAO {
-
-    /**
-     * Connection to database
-     */
-    Connection con = null;
-
-    /**
-     * Move query from Netbeans to SQl
-     */
-    PreparedStatement ps = null;
-
-    /**
-     * Save query result
-     */
-    ResultSet rs = null;
+public class GoalDAO extends DAO{
 
     /**
      * Add nutrition goal in the database or edit existing goal, macro goals are

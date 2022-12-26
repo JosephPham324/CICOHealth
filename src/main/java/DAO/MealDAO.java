@@ -22,22 +22,7 @@ import java.util.logging.Logger;
  * @author : Group 4
  * CE170036  Pham Nhat Quang
  */
-public class MealDAO {
-
-    /**
-     * Connection to database
-     */
-    Connection con = null;
-
-    /**
-     * Move query from Netbeans to SQl
-     */
-    PreparedStatement ps = null;
-
-    /**
-     * Save query result
-     */
-    ResultSet rs = null;
+public class MealDAO extends DAO{
 
     /**
      * String query

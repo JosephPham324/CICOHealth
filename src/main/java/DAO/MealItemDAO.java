@@ -19,22 +19,7 @@ import java.util.List;
  * @author : Group 4
  * CE170036  Pham Nhat Quang
  */
-public class MealItemDAO {
-
-    /**
-     * Connection to database
-     */
-    Connection con = null;
-
-    /**
-     * Move query from Netbeans to SQl
-     */
-    PreparedStatement ps = null;
-
-    /**
-     * Save query result
-     */
-    ResultSet rs = null;
+public class MealItemDAO extends DAO{
 
     /**
      * Query to execute
