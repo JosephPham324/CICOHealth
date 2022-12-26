@@ -24,16 +24,16 @@
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
         <link rel="icon" type="image/png" href="favicon.png"/>
-        <link rel="stylesheet" href="./scss/main/CommonStyles/buttons.css">
+        <link rel="stylesheet" href="Assets/scss/main/CommonStyles/buttons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href = "./scss/main/General/registeracount.css"/>
+        <link rel="stylesheet" href = "Assets/scss/main/General/registeracount.css"/>
         <title>Register Account | ${initParam['webappName']}</title>
         <style>
             .error {
                 color: red;
             }
         </style>
-        <script src="./scripts/validateRegister.js">
+        <script src="Assets/scripts/validateRegister.js">
         </script>
     </head>
     <body>
@@ -263,7 +263,7 @@
             </div>
 
         </section>
-        <script src="scripts/formhandling.js"></script>
+        <script src="Assets/scripts/formhandling.js"></script>
         <script>
             function handleCredentialResponse(response) {
                                                     // decodeJwtResponse() is a custom function defined by you

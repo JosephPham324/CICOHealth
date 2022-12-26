@@ -15,9 +15,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="./scss/main/General/login.css" />
         <link rel="icon" type="image/png" href="favicon.png"/>
-        <link rel="stylesheet" href="./scss/main/CommonStyles/buttons.css">
+        <link rel="stylesheet" href="Assets/scss/main/General/login.css" />
+        <link rel="stylesheet" href="Assets/scss/main/CommonStyles/buttons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>Login | ${initParam['webappName']}</title>
     </head>
@@ -27,7 +27,7 @@
             <c:redirect url="home"></c:redirect>
         </c:if>
         <main>
-            <section style="background-image: url('image/login.jpg');">
+            <section style="background-image: url('Assets/image/login.jpg');">
                 <div class="back-button">
                     <button onclick="history.back()"><i class="fa-solid fa-chevron-left">&nbsp;BACK</i></button>
                 </div>
@@ -43,7 +43,7 @@
                                             <div class="card-body">
                                                 <!--USERNAME INPUT-->
                                                 <div class="input-group">
-    
+
                                                     <div class="control">
                                                         <label class="form-label">Username</label>
                                                         <input type="text" required name="username" class="form-control" required>
@@ -96,27 +96,28 @@
                                 </div>
                             </div>
                         </div>
-                </form>
-            </div>
-            <div id="txtError" style="color:red">
-                Your username or password is not correct!!
-            </div>
-        </section>
-        <script src="scripts/formhandling.js"></script>
-        <script>
-            function handleCredentialResponse(response) {
-                const responsePayload = parseJwt(response.credential);
-                const formParams = {
-                    username: chainString(responsePayload.email + '_' + responsePayload.family_name, ' ', ''),
-                    password: chainString(responsePayload.email + '_' + responsePayload.name, ' ', ''),
-                    email: responsePayload.email,
-                    'google-login': true,
-                    remember: document.querySelector('input[name="remember"]').checked
-                    };
-                console.log(formParams)
-                post('login-control', formParams);
-            };
-            document.getElementById('txtError').style.display = 'none';
-        </script>
+                    </form>
+                </div>
+                <div id="txtError" style="color:red">
+                    Your username or password is not correct!!
+                </div>
+            </section>
+            <script src="Assets/scripts/formhandling.js"></script>
+            <script>
+                        function handleCredentialResponse(response) {
+                            const responsePayload = parseJwt(response.credential);
+                            const formParams = {
+                                username: chainString(responsePayload.email + '_' + responsePayload.family_name, ' ', ''),
+                                password: chainString(responsePayload.email + '_' + responsePayload.name, ' ', ''),
+                                email: responsePayload.email,
+                                'google-login': true,
+                                remember: document.querySelector('input[name="remember"]').checked
+                            };
+                            console.log(formParams)
+                            post('login-control', formParams);
+                        }
+                        ;
+                        document.getElementById('txtError').style.display = 'none';
+            </script>
     </body>
 </html>

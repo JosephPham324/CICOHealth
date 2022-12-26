@@ -25,10 +25,10 @@
     <body>
         <%@ include file="header.jsp" %>
         <div class="banner">
-            <img src="image/Body-first.jpg" alt="Chanel" />
+            <img src="Assets/image/Body-first.jpg" alt="Chanel" />
         </div>
         <div class="banner">
-            <img src="image/Body-second.jpg" alt="Chanel" />
+            <img src="Assets/image/Body-second.jpg" alt="Chanel" />
         </div>
         <jsp:include page="footer.jsp"></jsp:include>
     </body>

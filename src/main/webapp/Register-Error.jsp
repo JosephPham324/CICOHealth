@@ -1,14 +1,13 @@
 <%-- 
-    Document   : login-error
-    Created on : Oct 6, 2022, 11:35:56 PM
-    Author     : Group 4
+    Document : RegisterAccount 
+    Created on : Oct 4, 2022, 4:34:32 PM
+    Author : Group 4
     CE161130  Nguyen Le Quang Thinh (Leader)
     CE170036  Pham Nhat Quang
     CE160464  Nguyen The Lu
     CE161096  Nguyen Ngoc My Quyen
     CE161025  Tran Thi Ngoc Hieu
---%>
-
+--%> 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -24,20 +23,21 @@
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
-        <link rel="stylesheet" href="./scss/main/CommonStyles/buttons.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="icon" type="image/png" href="favicon.png"/>
-        <link rel="stylesheet" href = "./scss/main/General/registeracount.css"/>
-        <title>Register Account| ${initParam['webappName']}</title>
+        <link rel="stylesheet" href="Assets/scss/main/CommonStyles/buttons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href = "Assets/scss/main/General/registeracount.css"/>
+        <title>Register Account | ${initParam['webappName']}</title>
         <style>
             .error {
                 color: red;
             }
         </style>
-        <script src="./scripts/validateRegister.js">
+        <script src="Assets/scripts/validateRegister.js">
         </script>
     </head>
     <body>
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
         <c:if test="${sessionScope.userID != null}">
             <c:redirect url="home"></c:redirect>
         </c:if>
@@ -224,7 +224,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <input type ="hidden" name ="google-register" value ="false">
                             <div class="submit">
                                 <div class="form-group row">
                                     <div class="col-md-12 text-center">
@@ -236,12 +236,52 @@
                             </div>
                         </fieldset>
                     </form>
+                    <div style="text-align:center; font-weight:bold;">
+                        OR
+                    </div>
+                    <div id="google-sign-up" style ="display:flex; align-items:center; justify-content: center; margin:10px;">
+                        <div id="g_id_onload"
+                             data-client_id="641593933823-qlfnb62fuif3fcsu01b0hf9vijetfepj.apps.googleusercontent.com"
+                             data-context="signup"
+                             data-ux_mode="popup"
+                             data-login_uri="http://localhost:8080/Nutrition/register-account"
+                             data-auto_prompt="false"
+                             data-callback="handleCredentialResponse"
+                             >
+                        </div>
+
+                        <div class="g_id_signin"
+                             data-type="standard"
+                             data-shape="pill"
+                             data-theme="filled_blue"
+                             data-text="signup_with"
+                             data-size="large"
+                             data-logo_alignment="left">
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </section>
+        <script src="Assets/scripts/formhandling.js"></script>
+        <script>
+            function handleCredentialResponse(response) {
+                                                    // decodeJwtResponse() is a custom function defined by you
+                                                    // to decode the credential response.
+                const responsePayload = parseJwt(response.credential);
+                const formParams = {
+                    username: chainString(responsePayload.email + '_' + responsePayload.family_name, ' ', ''),
+                    password: chainString(responsePayload.email + '_' + responsePayload.name, ' ', ''),
+                    firstName: responsePayload.given_name,
+                    lastName: responsePayload.family_name,
+                    email: responsePayload.email,
+                    phone: '0123456789',
+                    'google-register': 'true'
+                    };
+                    console.log(formParams)
+                    post('register-control', formParams);
+                }
+                document.getElementById("ErrorDuplicate").style.display = 'block';
+        </script>
     </body>
-    <script>
-        document.getElementById("ErrorDuplicate").style.display = 'block';
-    </script>
 </html>
