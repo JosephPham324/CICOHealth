@@ -11,7 +11,7 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
     <!-- File css -->
-    <link rel="stylesheet" href="landingpage.css">
+    <link rel="stylesheet" href="/src/main/webapp/scss/main/Admin/landingpage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing page</title>
 </head>
@@ -26,20 +26,34 @@
                     aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">
+                    <img class="nutrition-logo" src="/src/main/webapp/image/nutrition-logo.png">
+                </a>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Blog</a>
+                            <a class="nav-link" href="#">Food</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="#">Exercise</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-mdb-toggle="dropdown" aria-expanded="false">
+                                Utilities
+                            </a>
+                            <!-- Dropdown menu -->
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="#">Convert Units</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Timer</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                     <div class="d-flex align-items-center">
@@ -47,7 +61,7 @@
                             Login
                         </button>
                         <button type="button" class="btn nav-btn me-3">
-                            Sign up
+                            Register
                         </button>
                     </div>
                 </div>
@@ -95,13 +109,25 @@
                 <div class="col-md-6 gx-5 mb-4">
                     <h4><strong>Title...</strong></h4>
                     <p class="text-muted">
-                        .................................................................................................... <br> .................................................................................................... <br> 
-                        .................................................................................................... <br> .................................................................................................... <br> 
+                        ....................................................................................................
+                        <br>
+                        ....................................................................................................
+                        <br>
+                        ....................................................................................................
+                        <br>
+                        ....................................................................................................
+                        <br>
                     </p>
                     <p><strong>Title small...</strong></p>
                     <p class="text-muted">
-                        .................................................................................................... <br> .................................................................................................... <br> 
-                        .................................................................................................... <br> .................................................................................................... <br>
+                        ....................................................................................................
+                        <br>
+                        ....................................................................................................
+                        <br>
+                        ....................................................................................................
+                        <br>
+                        ....................................................................................................
+                        <br>
                     </p>
                 </div>
             </div>
