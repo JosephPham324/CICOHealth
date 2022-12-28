@@ -7,11 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Semester: FALL 2022 Subject : FRJ301 Class : SE1606 Project : Nutrition
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
  *
- * @author : Group 4 CE161130 Nguyen Le Quang Thinh (Leader) CE170036 Pham Nhat
- * Quang CE160464 Nguyen The Lu CE161096 Nguyen Ngoc My Quyen CE161025 Tran Thi
- * Ngoc Hieu
+ * @author : Group 4
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
 public class ExerciseTypeDAO extends DAO {
 
@@ -39,9 +46,9 @@ public class ExerciseTypeDAO extends DAO {
                 res.add(new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"), rs.getDouble("CALPERHOUR"), rs.getString("DESCRIPTION")));
             }
         } catch (Exception e) {
+        } finally {
+            closeConnections();
         }
-        closeConnections();
-
         return res;
     }
 
@@ -87,7 +94,6 @@ public class ExerciseTypeDAO extends DAO {
             res = new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"), rs.getDouble("CALPERHOUR"), rs.getString("DESCRIPTION"));
         }
         closeConnections();
-
         return res;
     }
 
@@ -103,11 +109,10 @@ public class ExerciseTypeDAO extends DAO {
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setString(1, id);
             ps.executeUpdate();
-
         } catch (Exception e) {
+            System.err.println(e);
         } finally {
             closeConnections();
-
         }
 
     }
@@ -129,11 +134,10 @@ public class ExerciseTypeDAO extends DAO {
             while (rs.next()) {
                 return new ExerciseType(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4));
             }
-
         } catch (Exception e) {
+            System.err.println(e);
         } finally {
             closeConnections();
-
         }
 
         return null;
@@ -158,8 +162,8 @@ public class ExerciseTypeDAO extends DAO {
             ps.setString(3, description);
             ps.setString(4, id);
             ps.executeUpdate();
-
         } catch (Exception e) {
+            System.err.println(e);
         } finally {
             closeConnections();
         }
@@ -185,7 +189,7 @@ public class ExerciseTypeDAO extends DAO {
             ps.setString(4, description);
             ps.executeUpdate();
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.println(e);
         } finally {
             closeConnections();
         }

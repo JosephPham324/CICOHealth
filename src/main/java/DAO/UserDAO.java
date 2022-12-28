@@ -7,11 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Semester: FALL 2022 Subject : FRJ301 Class : SE1606 Project : Nutrition
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
  *
- * @author : Group 4 CE161130 Nguyen Le Quang Thinh (Leader) CE170036 Pham Nhat
- * Quang CE160464 Nguyen The Lu CE161096 Nguyen Ngoc My Quyen CE161025 Tran Thi
- * Ngoc Hieu
+ * @author : Group 4
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
 public class UserDAO extends DAO {
 
@@ -256,9 +263,11 @@ public class UserDAO extends DAO {
         ps.setInt(1, id);
         rs = ps.executeQuery();
         while (rs.next()) {
-            return new User(
+            User res = new User(
                     rs.getInt("USERROLEID")
             );
+            closeConnections();
+            return res;
         }
         closeConnections();
         return null;
@@ -280,7 +289,9 @@ public class UserDAO extends DAO {
         ps.setString(1, id + "");
         rs = ps.executeQuery();
         while (rs.next()) {
-            return rs.getInt("USERROLEID");
+            int res = rs.getInt("USERROLEID");
+            closeConnections();
+            return res;
         }
         closeConnections();
         return 0;

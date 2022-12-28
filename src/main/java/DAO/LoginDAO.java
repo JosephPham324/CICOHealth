@@ -7,11 +7,18 @@ import Security.RegLoginLogic;
 import java.sql.SQLException;
 
 /**
- * Semester: FALL 2022 Subject : FRJ301 Class : SE1606 Project : Nutrition
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
  *
- * @author : Group 4 CE161130 Nguyen Le Quang Thinh (Leader) CE170036 Pham Nhat
- * Quang CE160464 Nguyen The Lu CE161096 Nguyen Ngoc My Quyen CE161025 Tran Thi
- * Ngoc Hieu
+ * @author : Group 4
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
 public class LoginDAO extends DAO {
 
@@ -66,6 +73,7 @@ public class LoginDAO extends DAO {
         rs = ps.executeQuery();
         while (rs.next()) {
             int res = rs.getInt(1);
+            closeConnections();
             return res;
         }
         closeConnections();
@@ -111,7 +119,7 @@ public class LoginDAO extends DAO {
             if (rs.next()) {
                 Login info = new Login(rs.getInt("LOGINID"), rs.getString("USERNAME"), rs.getString("PASSWORDSALT"),
                         rs.getString("PASSWORDHASH"), rs.getInt("USER_ID"));
-                System.out.println(info.toString());
+//                System.out.println(info.toString());
                 closeConnections();
                 return info;
             }

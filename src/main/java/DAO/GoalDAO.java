@@ -7,11 +7,18 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Semester: FALL 2022 Subject : FRJ301 Class : SE1606 Project : Nutrition
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
  *
- * @author : Group 4 CE161130 Nguyen Le Quang Thinh (Leader) CE170036 Pham Nhat
- * Quang CE160464 Nguyen The Lu CE161096 Nguyen Ngoc My Quyen CE161025 Tran Thi
- * Ngoc Hieu
+ * @author : Group 4
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
 public class GoalDAO extends DAO {
 
@@ -57,7 +64,6 @@ public class GoalDAO extends DAO {
                 ps.setString(5, userId);
                 ps.executeUpdate(); // the same with click to "excute" btn;
             } else {
-
                 con = new DBContext().getConnection(); // open connection to SQL
                 ps = con.prepareStatement(queryInsert); // move query from Netbeen to SQl
                 ps.setString(1, userId);
@@ -67,9 +73,8 @@ public class GoalDAO extends DAO {
                 ps.setString(5, carb + "");
                 ps.executeUpdate(); // the same with click to "excute" btn;
             }
-
         } catch (Exception e) {
-            e.getMessage();
+            System.err.println(e);
         } finally {
             closeConnections();
         }
@@ -126,6 +131,7 @@ public class GoalDAO extends DAO {
                 return info;
             }
         } catch (Exception e) {
+            System.err.println(e);
         } finally {
             closeConnections();
         }
@@ -157,7 +163,6 @@ public class GoalDAO extends DAO {
         ps.setString(3, carb);
         ps.setString(4, calorie + "");
         ps.setString(5, userID);
-
         ps.executeUpdate();
         closeConnections();
     }
@@ -223,9 +228,11 @@ public class GoalDAO extends DAO {
         double burned = eDAO.getExercisesCalorieByDate(userID, dtf.format(now));
         closeConnections();
 
-        return new double[]{goal.getCalories(), goal.getProtein(), goal.getFat(), goal.getCarb(),
+        return new double[]{
+            goal.getCalories(), goal.getProtein(), goal.getFat(), goal.getCarb(),
             consumed[0], consumed[1], consumed[2], consumed[3],
-            burned};
+            burned
+        };
     }
 
     /**
@@ -241,6 +248,7 @@ public class GoalDAO extends DAO {
             }
 //            System.out.println(g.getTodayNumbers("2"));
         } catch (SQLException ex) {
+            System.err.println(ex);
 //            Logger.getLogger(GoalDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -11,7 +11,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="menu-list">
     <ul class="navbar-fixed-top header navbar" id="myHeader" >
-        <li class="nav-link"><a class="txt" href="${pageContext.request.contextPath}/home"><img class="nutrition-logo" src="${pageContext.request.contextPath}/image/nutrition-logo.png"></a></li>
+        <li class="nav-link"><a class="txt" href="${pageContext.request.contextPath}/home"><img class="nutrition-logo" src="${pageContext.request.contextPath}/Assets/image/nutrition-logo.png"></a></li>
         <li class="nav-link"><a class="txt" href="#footer">About</a></li>
         <li class="nav-link"><a class="txt" href="${pageContext.request.contextPath}/search-food">Food</a></li>
         <li class="nav-link"><a class="txt" href="${pageContext.request.contextPath}/search-exercise">Exercise</a></li>
@@ -35,7 +35,7 @@
                 %>
                 <li class="nav-link dropdown-toggle" data-id="user" >
                     <div class="dropdown">
-                        <img class="personal-logo"src="${pageContext.request.contextPath}/image/personal-logo.png" >
+                        <img class="personal-logo"src="${pageContext.request.contextPath}/Assets/image/personal-logo.png" >
 
                         <div id="user" class="dropdown-content">
                             <a href="${pageContext.request.contextPath}/user/user-info">Profile</a>
@@ -50,7 +50,7 @@
             <c:otherwise>
                 <li class="nav-link"><a class="txt" href="${pageContext.request.contextPath}/login">Login</a></li>
                 <li class="nav-link"><a class="txt" href="${pageContext.request.contextPath}/register">Register</a></li>
-                </c:otherwise>
+            </c:otherwise>
             </c:choose>
 
         <form id="demo-2">

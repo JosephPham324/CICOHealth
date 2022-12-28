@@ -9,9 +9,18 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Semester: FALL 2022 Subject : FRJ301 Class : SE1606 Project : Nutrition
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
  *
- * @author : Group 4 CE170036 Pham Nhat Quang
+ * @author : Group 4
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
 public class MealItemDAO extends DAO {
 
@@ -129,7 +138,6 @@ public class MealItemDAO extends DAO {
             res.add(item);
         }
         closeConnections();
-
         return res;
     }
 
@@ -157,6 +165,5 @@ public class MealItemDAO extends DAO {
         ps.setString(4, name);
         ps.executeUpdate();
         closeConnections();
-
     }
 }

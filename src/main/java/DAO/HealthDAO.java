@@ -7,11 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Semester: FALL 2022 Subject : FRJ301 Class : SE1606 Project : Nutrition
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
  *
- * @author : Group 4 CE161130 Nguyen Le Quang Thinh (Leader) CE170036 Pham Nhat
- * Quang CE160464 Nguyen The Lu CE161096 Nguyen Ngoc My Quyen CE161025 Tran Thi
- * Ngoc Hieu
+ * @author : Group 4
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
 public class HealthDAO extends DAO {
 
@@ -35,9 +42,8 @@ public class HealthDAO extends DAO {
                 + "ACTIVENESS = ?,\n"
                 + "AGE = ?\n"
                 + "WHERE USERID = ?";
-
+        con = new DBContext().getConnection();
         if (new HealthDAO().findUserHealthInfo(Integer.parseInt(userID)) != null) {
-            con = new DBContext().getConnection();
             ps = con.prepareStatement(queryEdit);
             ps.setString(1, gender);
             ps.setString(2, height);
@@ -48,7 +54,6 @@ public class HealthDAO extends DAO {
 
             ps.executeUpdate();
         } else {
-            con = new DBContext().getConnection();
             ps = con.prepareStatement(queryInsert);
             ps.setString(1, userID);
             ps.setString(2, gender);
@@ -70,7 +75,6 @@ public class HealthDAO extends DAO {
      */
     public UserHealthInfo findUserHealthInfo(int ID) throws SQLException {
         String query = "select * from USERHEALTHINFO where USERID = ?";
-
         con = new DBContext().getConnection();
         ps = con.prepareStatement(query);
         ps.setString(1, ID + "");
@@ -78,7 +82,7 @@ public class HealthDAO extends DAO {
         if (rs.next()) {
             UserHealthInfo info = new UserHealthInfo(ID, rs.getString("GENDER"), rs.getFloat("HEIGHT"),
                     rs.getFloat("Weight"), rs.getInt("ACTIVENESS"), rs.getInt("AGE"));
-            System.out.println(info.toString());
+//            System.out.println(info.toString());
             closeConnections();
             return info;
         }
