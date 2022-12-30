@@ -1,10 +1,25 @@
 .navbar{
     width: 100%;
-    background-color: rgb(131, 184, 46) !important;
+    background-color: #537A2B !important;
+}
+
+.nav-link{
+    color: white !important;
+    font-size: 20px;
+    margin: 0 20px;
+}
+
+.nav-item :hover{
+    color: #FFDF34 !important;
 }
 
 .nav-btn{
     background-color: white !important;
+}
+
+.header-btn :hover{
+    background-color: #FFDF34 !important;
+    color: black !important;
 }
 
 .header-image img {
@@ -22,8 +37,12 @@
     margin-top: 140px;
 }
 
+.banner img{
+    width: 100%;
+}
+
 .header-main {
-    background-image: url('https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_1500,w_2000,f_auto,q_auto/92/Fpu4Kn6pkM7K14LvJqmX_aBxbZSl.jpg_xi9bds.jpg');
+    background-image: url('/src/main/webapp/image/Body-first.jpg');
     object-fit: cover;
     width: 100%;
     height: 700px;
@@ -44,11 +63,7 @@
 .btn{
     color: black;
     font-size: 15px ;
-    background-color: orange;
-}
-
-.form-check-input[type=checkbox]:checked {
-    background-color: orange !important;   
+    background-color: #FFDF34;
 }
 
 .txt-title{
@@ -69,4 +84,27 @@
     padding-right: 20px;
     padding-left: 15px;
     padding-bottom: 10px;
+}
+
+.footer{
+    background-color: #537A2B !important;
+    color: white;
+}
+
+.body{
+    background-color: #FFDF34;
+}
+
+.body-content{
+    background-color: white;
+    border-radius: 1%;
+}
+
+.about-content{
+    margin: 34px 28px;
+    text-align: center;
+}
+
+.img-fluid{
+    width: 100%;
 }
