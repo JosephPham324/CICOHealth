@@ -15,15 +15,13 @@ import java.util.logging.Logger;
  * Ngoc Hieu
  */
 public class DBContext {
-
-    private static final String dbPrefix = "jdbc:sqlserver://quangpnce.database.windows.net:1433;database=script_nutrition;user=quangpnce170036@quangpnce;password=azure73768665!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+    private static final String dbPrefix = "jdbc:sqlserver://localhost:1433;databaseName=Nutrition [sa on SA]";
     private static final String dbPort = "1433";
-    private static final String databaseName = "script_nutrition";
+    private static final String databaseName = "Nutrition";
     private final String instance = "";
-    private static final String user = "quangpnce170036@fpt.edu.vn";
-    private static final String pass = "azure73768665!";
-    private static final String connectionString = "jdbc:sqlserver://quangpnce.database.windows.net:1433;database=script_nutrition;user=quangpnce170036@quangpnce;password=azure73768665!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
-
+    private static final String user = "sa";
+    private static final String pass = "123456";
+    
     /**
      * Connect to database
      *
@@ -31,29 +29,31 @@ public class DBContext {
      */
     public Connection getConnection() {
         Connection conn = null;
-//        String dbURL = dbPrefix + ":" + dbPort + "\\" + instance + ";" + "databaseName=" + databaseName;
-//        if (instance == null || instance.trim().isEmpty()) {
-////            dbURL = dbPrefix + ":" + dbPort + ";" + "databaseName=" + databaseName;
-//              dbURL = connectionString;
-//        }
-//        try {
-//            DriverManager.registerDriver(new SQLServerDriver());
-//            conn = DriverManager.getConnection(dbURL, user, pass);
-//            System.out.println(dbPrefix);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-        String hostName = "quangpnce.database.windows.net";
-        String dbName = "script_nutrition";
-        String user = "quangpnce170036";
-        String password = "azure73768665!";
-        String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
+        //For local SQL Server database conenction
+        String dbURL = dbPrefix + ":" + dbPort + "\\" + instance + ";" + "databaseName=" + databaseName;
+        if (instance == null || instance.trim().isEmpty()) {
+            dbURL = dbPrefix + ":" + dbPort + ";" + "databaseName=" + databaseName;
+        }
         try {
             DriverManager.registerDriver(new SQLServerDriver());
-            conn = DriverManager.getConnection(url);
-        } catch (SQLException ex) {
-            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            conn = DriverManager.getConnection(dbURL, user, pass);
+            System.out.println(dbPrefix);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
+        //For Azure database connection
+//        String hostName = "quangpnce.database.windows.net";
+//        String dbName = "script_nutrition";
+//        String user = "quangpnce170036";
+//        String password = "azure73768665!";
+//        String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
+//        try {
+//            DriverManager.registerDriver(new SQLServerDriver());
+//            conn = DriverManager.getConnection(url);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         return conn;
     }
 }
