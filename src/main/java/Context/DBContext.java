@@ -30,30 +30,30 @@ public class DBContext {
     public Connection getConnection() {
         Connection conn = null;
         //For local SQL Server database conenction
-        String dbURL = dbPrefix + ":" + dbPort + "\\" + instance + ";" + "databaseName=" + databaseName;
-        if (instance == null || instance.trim().isEmpty()) {
-            dbURL = dbPrefix + ":" + dbPort + ";" + "databaseName=" + databaseName;
-        }
-        try {
-            DriverManager.registerDriver(new SQLServerDriver());
-            conn = DriverManager.getConnection(dbURL, user, pass);
-            System.out.println(dbPrefix);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        //For Azure database connection
-//        String hostName = "quangpnce.database.windows.net";
-//        String dbName = "script_nutrition";
-//        String user = "quangpnce170036";
-//        String password = "azure73768665!";
-//        String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
+//        String dbURL = dbPrefix + ":" + dbPort + "\\" + instance + ";" + "databaseName=" + databaseName;
+//        if (instance == null || instance.trim().isEmpty()) {
+//            dbURL = dbPrefix + ":" + dbPort + ";" + "databaseName=" + databaseName;
+//        }
 //        try {
 //            DriverManager.registerDriver(new SQLServerDriver());
-//            conn = DriverManager.getConnection(url);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+//            conn = DriverManager.getConnection(dbURL, user, pass);
+//            System.out.println(dbPrefix);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
 //        }
+
+        //For Azure database connection
+        String hostName = "quangpnce.database.windows.net";
+        String dbName = "script_nutrition";
+        String user = "quangpnce170036";
+        String password = "azure73768665!";
+        String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
+        try {
+            DriverManager.registerDriver(new SQLServerDriver());
+            conn = DriverManager.getConnection(url);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return conn;
     }
 }
