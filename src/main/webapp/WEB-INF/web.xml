@@ -17,11 +17,11 @@
     </filter-mapping>
     <error-page>
         <error-code>404</error-code>
-        <location>/Error404.jsp</location>
+        <location>/Pages/Error404.jsp</location>
     </error-page>
     <servlet>
         <servlet-name>Index</servlet-name>
-        <jsp-file>/index.jsp</jsp-file>
+        <jsp-file>/Pages/General/index.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>LoginControl</servlet-name>
@@ -53,96 +53,96 @@
     </servlet>
     <servlet>
         <servlet-name>Login</servlet-name>
-        <jsp-file>/Login.jsp</jsp-file>
+        <jsp-file>/Pages/General/Login.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>HealthInfo</servlet-name>
-        <jsp-file>/HealthInfo.jsp</jsp-file>
+        <jsp-file>/Pages/General/HealthInfo.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>Register</servlet-name>
-        <jsp-file>/RegisterAccount.jsp</jsp-file>
+        <jsp-file>/Pages/General/RegisterAccount.jsp</jsp-file>
     </servlet>
     
     <servlet>
         <servlet-name>Home</servlet-name>
-        <jsp-file>/MainMenu.jsp</jsp-file>
+        <jsp-file>/Pages/General/MainMenu.jsp</jsp-file>
     </servlet>
     
     <servlet>
         <servlet-name>Admin</servlet-name>
-        <jsp-file>/ADMIN.jsp</jsp-file>
+        <jsp-file>/Pages/General/ADMIN.jsp</jsp-file>
     </servlet>
     
     <servlet>
         <servlet-name>AdminInfo</servlet-name>
-        <jsp-file>/AdminInfo.jsp</jsp-file>
+        <jsp-file>/Pages/General/AdminInfo.jsp</jsp-file>
     </servlet>
     
     <servlet>
         <servlet-name>AdminUserInfo</servlet-name>
-        <jsp-file>/AdminUserInfo.jsp</jsp-file>
+        <jsp-file>/Pages/General/AdminUserInfo.jsp</jsp-file>
     </servlet>
     
     <servlet>
         <servlet-name>AdminExercise</servlet-name>
-        <jsp-file>/AdminExercise.jsp</jsp-file>
+        <jsp-file>/Pages/General/AdminExercise.jsp</jsp-file>
     </servlet>
     
     <servlet>
         <servlet-name>AdminAddExercise</servlet-name>
-        <jsp-file>/Update/AdminAddExercise.jsp</jsp-file>
+        <jsp-file>/Pages/Update/AdminAddExercise.jsp</jsp-file>
     </servlet>
     
     <servlet>
         <servlet-name>AdminUpdateExercise</servlet-name>
-        <jsp-file>/Update/AdminUpdateExercise.jsp</jsp-file>
+        <jsp-file>/Pages/Update/AdminUpdateExercise.jsp</jsp-file>
     </servlet>
     
     <servlet>
         <servlet-name>AdminUpdateAdmin</servlet-name>
-        <jsp-file>/Update/AdminUpdateAdmin.jsp</jsp-file>
+        <jsp-file>/Pages/Update/AdminUpdateAdmin.jsp</jsp-file>
     </servlet>
     
     <servlet>
         <servlet-name>AdminUpdateUser</servlet-name>
-        <jsp-file>/Update/AdminUpdateUser.jsp</jsp-file>
+        <jsp-file>/Pages/Update/AdminUpdateUser.jsp</jsp-file>
     </servlet>
     
     <servlet>
         <servlet-name>UserExercise</servlet-name>
-        <jsp-file>/UserProfile/UserExercise.jsp</jsp-file>
+        <jsp-file>/Pages/UserProfile/UserExercise.jsp</jsp-file>
     </servlet>
     
     <servlet>
         <servlet-name>UserGoal</servlet-name>
-        <jsp-file>/UserProfile/UserGoal.jsp</jsp-file>
+        <jsp-file>/Pages/UserProfile/UserGoal.jsp</jsp-file>
     </servlet>
     
     <servlet>
         <servlet-name>UserHealthInfo</servlet-name>
-        <jsp-file>/UserProfile/UserHealthInfo.jsp</jsp-file>
+        <jsp-file>/Pages/UserProfile/UserHealthInfo.jsp</jsp-file>
     </servlet>
     
     <servlet>
         <servlet-name>FoodSearch</servlet-name>
-        <jsp-file>/FoodSearch.jsp</jsp-file>
+        <jsp-file>/Pages/General/FoodSearch.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>ExerciseSearch</servlet-name>
-        <jsp-file>/ExerciseSearch.jsp</jsp-file>
+        <jsp-file>/Pages/General/ExerciseSearch.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>UserExercises</servlet-name>
-        <jsp-file>/User/UserExercises.jsp</jsp-file>
+        <jsp-file>/Pages/User/UserExercises.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>LoginError</servlet-name>
-        <jsp-file>/login-error.jsp</jsp-file>
+        <jsp-file>/Pages/General/login-error.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>RegisterError</servlet-name>
-        <jsp-file>/Register-Error.jsp</jsp-file>
+        <jsp-file>/Pages/General/Register-Error.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>EditExerciseControl</servlet-name>
@@ -154,7 +154,7 @@
     </servlet>
     <servlet>
         <servlet-name>UserMeals</servlet-name>
-        <jsp-file>/User/UserMeals.jsp</jsp-file>
+        <jsp-file>/Pages/User/UserMeals.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>EditMealControl</servlet-name>
@@ -166,7 +166,7 @@
     </servlet>
     <servlet>
         <servlet-name>UserInfo</servlet-name>
-        <jsp-file>/User/UserInfo.jsp</jsp-file>
+        <jsp-file>/Pages/User/UserInfo.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>LoginEditControl</servlet-name>
@@ -182,7 +182,7 @@
     </servlet>
     <servlet>
         <servlet-name>Statistics</servlet-name>
-        <jsp-file>/User/Statistics.jsp</jsp-file>
+        <jsp-file>/Pages/User/Statistics.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>EditGoalControl</servlet-name>
@@ -230,19 +230,27 @@
     </servlet>
     <servlet>
         <servlet-name>TermConditions</servlet-name>
-        <jsp-file>/TermConditions.jsp</jsp-file>
+        <jsp-file>/Pages/General/TermConditions.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>UnitConversion</servlet-name>
-        <jsp-file>/Utilities/UnitConversion.jsp</jsp-file>
+        <jsp-file>/Pages/Utilities/UnitConversion.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>Timer</servlet-name>
-        <jsp-file>/Utilities/Timer.jsp</jsp-file>
+        <jsp-file>/Pages/Utilities/Timer.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>GoogleRegister</servlet-name>
-        <jsp-file>/GoogleRegister.jsp</jsp-file>
+        <jsp-file>/Pages/GoogleRegister.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Header</servlet-name>
+        <jsp-file>/Pages/GoogleRegister.jsp</jsp-file>
+    </servlet>
+        <servlet>
+        <servlet-name>Footer</servlet-name>
+        <jsp-file>/Pages/GoogleRegister.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
@@ -469,6 +477,14 @@
     <servlet-mapping>
         <servlet-name>GoogleRegister</servlet-name>
         <url-pattern>/google-register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Header</servlet-name>
+        <url-pattern>/header</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Footer</servlet-name>
+        <url-pattern>/footer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

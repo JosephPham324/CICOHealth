@@ -2,41 +2,25 @@ package DAO;
 
 import Entity.UserHealthInfo;
 import context.DBContext;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Semester: FALL 2022
- * Subject : FRJ301
- * Class   : SE1606
- * Project : Nutrition 
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
+ *
  * @author : Group 4
- * CE161130  Nguyen Le Quang Thinh (Leader)
- * CE170036  Pham Nhat Quang
- * CE160464  Nguyen The Lu
- * CE161096  Nguyen Ngoc My Quyen
- * CE161025  Tran Thi Ngoc Hieu
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
-public class HealthDAO {
-
-    /**
-     * Connection to database
-     */
-    Connection con = null;
-
-    /**
-     * Move query from Netbeans to SQl
-     */
-    PreparedStatement ps = null;
-
-    /**
-     * Save query result
-     */
-    ResultSet rs = null;
+public class HealthDAO extends DAO {
 
     /**
      * Insert health info of a user into database
@@ -58,9 +42,8 @@ public class HealthDAO {
                 + "ACTIVENESS = ?,\n"
                 + "AGE = ?\n"
                 + "WHERE USERID = ?";
-
+        con = new DBContext().getConnection();
         if (new HealthDAO().findUserHealthInfo(Integer.parseInt(userID)) != null) {
-            con = new DBContext().getConnection();
             ps = con.prepareStatement(queryEdit);
             ps.setString(1, gender);
             ps.setString(2, height);
@@ -71,7 +54,6 @@ public class HealthDAO {
 
             ps.executeUpdate();
         } else {
-            con = new DBContext().getConnection();
             ps = con.prepareStatement(queryInsert);
             ps.setString(1, userID);
             ps.setString(2, gender);
@@ -81,6 +63,7 @@ public class HealthDAO {
             ps.setString(6, age);
             ps.executeUpdate();
         }
+        closeConnections();
     }
 
     /**
@@ -92,7 +75,6 @@ public class HealthDAO {
      */
     public UserHealthInfo findUserHealthInfo(int ID) throws SQLException {
         String query = "select * from USERHEALTHINFO where USERID = ?";
-
         con = new DBContext().getConnection();
         ps = con.prepareStatement(query);
         ps.setString(1, ID + "");
@@ -100,17 +82,18 @@ public class HealthDAO {
         if (rs.next()) {
             UserHealthInfo info = new UserHealthInfo(ID, rs.getString("GENDER"), rs.getFloat("HEIGHT"),
                     rs.getFloat("Weight"), rs.getInt("ACTIVENESS"), rs.getInt("AGE"));
-            System.out.println(info.toString());
+//            System.out.println(info.toString());
+            closeConnections();
             return info;
         }
-
+        closeConnections();
         return null;
     }
 
     /**
      * Get health info records of all users
      *
-     * @return List of UserHealthInfo 
+     * @return List of UserHealthInfo
      * @throws SQLException When query encounters error
      */
     public List<UserHealthInfo> getAllUserHealthInfo() throws SQLException {
@@ -124,6 +107,7 @@ public class HealthDAO {
                     rs.getFloat(4), rs.getInt(5), rs.getInt(6));
             list.add(acc);
         }
+        closeConnections();
         return list;
     }
 }

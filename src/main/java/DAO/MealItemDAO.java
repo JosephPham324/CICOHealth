@@ -2,9 +2,6 @@ package DAO;
 
 import Entity.MealItem;
 import context.DBContext;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,29 +9,20 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Semester: FALL 2022
- * Subject : FRJ301
- * Class   : SE1606
- * Project : Nutrition 
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
+ *
  * @author : Group 4
- * CE170036  Pham Nhat Quang
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
-public class MealItemDAO {
-
-    /**
-     * Connection to database
-     */
-    Connection con = null;
-
-    /**
-     * Move query from Netbeans to SQl
-     */
-    PreparedStatement ps = null;
-
-    /**
-     * Save query result
-     */
-    ResultSet rs = null;
+public class MealItemDAO extends DAO {
 
     /**
      * Query to execute
@@ -50,7 +38,6 @@ public class MealItemDAO {
      * To format date object into String
      */
     SimpleDateFormat dateFormatter;
-
 
     /**
      * Insert meal item into database
@@ -84,6 +71,7 @@ public class MealItemDAO {
         ps.setString(8, carbs + "");
         ps.setString(9, weight);
         ps.executeUpdate();
+        closeConnections();
 
     }
 
@@ -118,9 +106,9 @@ public class MealItemDAO {
         ps.setString(8, carbs + "");
         ps.setString(9, weight);
         ps.executeUpdate();
+        closeConnections();
 
     }
-
 
     /**
      * Get meal items related to a meal using meal name, meal date time and user
@@ -149,9 +137,9 @@ public class MealItemDAO {
                     rs.getString("ITEMNAME"), rs.getDouble("totalWEIGHT"), rs.getDouble("CALORIE"), rs.getDouble("PROTEIN"), rs.getDouble("FAT"), rs.getDouble("CARB"));
             res.add(item);
         }
+        closeConnections();
         return res;
     }
-
 
     /**
      * Delete meal items related to a meal in the database
@@ -176,5 +164,6 @@ public class MealItemDAO {
         ps.setString(3, time);
         ps.setString(4, name);
         ps.executeUpdate();
+        closeConnections();
     }
 }

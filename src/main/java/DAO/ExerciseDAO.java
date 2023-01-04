@@ -3,44 +3,27 @@ package DAO;
 import Entity.Exercise;
 import Entity.ExerciseType;
 import context.DBContext;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 /**
- * Semester: FALL 2022
- * Subject : FRJ301
- * Class   : SE1606
- * Project : Nutrition 
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
+ *
  * @author : Group 4
- * CE161130  Nguyen Le Quang Thinh (Leader)
- * CE170036  Pham Nhat Quang
- * CE160464  Nguyen The Lu
- * CE161096  Nguyen Ngoc My Quyen
- * CE161025  Tran Thi Ngoc Hieu
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
-public class ExerciseDAO {
-
-    /**
-     * Connection to database
-     */
-    Connection con = null;
-
-    /**
-     * Move query from Netbeans to SQl
-     */
-    PreparedStatement ps = null;
-
-    /**
-     * Save query result
-     */
-    ResultSet rs = null;
+public class ExerciseDAO extends DAO {
 
     /**
      * String query
@@ -60,12 +43,12 @@ public class ExerciseDAO {
     /**
      * This function to insert exercise
      *
-     * @param time              time of exercise
-     * @param userID            user id of exercise
-     * @param exerciseType      exercise type of exercise
-     * @param duration          duration of exercise
-     * @param calories          calories of exercise
-     * @throws SQLException     Exception of SQL
+     * @param time time of exercise
+     * @param userID user id of exercise
+     * @param exerciseType exercise type of exercise
+     * @param duration duration of exercise
+     * @param calories calories of exercise
+     * @throws SQLException Exception of SQL
      */
     public void insertExercise(Date time, int userID, ExerciseType exerciseType, double duration, double calories) throws SQLException {
         query = "insert into EXERCISE values(?,?,?,?,?,?)";
@@ -82,11 +65,13 @@ public class ExerciseDAO {
         ps.setString(6, calories + "");
 
         ps.executeUpdate();
+
+        closeConnections();
     }
 
     /**
      * This function to get list exercise by user id
-     * 
+     *
      * @param userID user id
      * @return List [Exercise]
      * @throws SQLException Exception of SQL
@@ -106,12 +91,13 @@ public class ExerciseDAO {
                     rs.getDouble("CALORIE"), rs.getInt("EXERCISEID"), rs.getString("NAME"));
             res.add(ex);
         }
+        closeConnections();
         return res;
     }
 
     /**
      * This function to get exercise calorie by date and user id
-     * 
+     *
      * @param userID user id
      * @param date date of exercise
      * @return double calories
@@ -121,16 +107,16 @@ public class ExerciseDAO {
         query = "select * from EXERCISE\n"
                 + "WHERE USERID = ?\n"
                 + "AND CAST(DATETIME as DATE) = ?";
-        
+
         con = new DBContext().getConnection();
         ps = con.prepareStatement(query);
         ps.setString(1, userID);
         ps.setString(2, date);
-        
-        rs  = ps.executeQuery();
+
+        rs = ps.executeQuery();
         ArrayList<Exercise> queryResult = new ArrayList<>();
         double res = 0;
-        while (rs.next()){
+        while (rs.next()) {
             Exercise exercise = new Exercise(
                     rs.getDate("DATETIME"),
                     rs.getInt("USERID"),
@@ -140,20 +126,22 @@ public class ExerciseDAO {
             );
             queryResult.add(exercise);
         }
-        for (Exercise exercise:queryResult){
-            res+=exercise.getCalorie();
+        for (Exercise exercise : queryResult) {
+            res += exercise.getCalorie();
         }
+        closeConnections();
+
         return res;
     }
 
     /**
      * This function to update exercise
-     * 
-     * @param duration      duration of exercise
-     * @param exerciseID    exercise id of exercise
-     * @param userID        user id
-     * @param date          date of exercise
-     * @param time          time of exercise
+     *
+     * @param duration duration of exercise
+     * @param exerciseID exercise id of exercise
+     * @param userID user id
+     * @param date date of exercise
+     * @param time time of exercise
      * @throws SQLException Exception of SQL
      */
     public void updateExercise(String duration, String exerciseID, String userID, String date, String time) throws SQLException {
@@ -175,14 +163,16 @@ public class ExerciseDAO {
         ps.setString(6, time);
 
         ps.executeUpdate();
+
+        closeConnections();
     }
 
     /**
      * This function to delete exercise
-     * 
-     * @param userID        user id
-     * @param date          date of exercise
-     * @param time          time of exercise
+     *
+     * @param userID user id
+     * @param date date of exercise
+     * @param time time of exercise
      * @throws SQLException Exception of SQL
      */
     public void deleteExercise(String userID, String date, String time) throws SQLException {
@@ -198,6 +188,8 @@ public class ExerciseDAO {
         ps.setString(3, time);
 
         ps.executeUpdate();
+
+        closeConnections();
     }
 
 }

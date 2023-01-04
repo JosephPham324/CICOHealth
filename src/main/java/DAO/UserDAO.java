@@ -2,41 +2,25 @@ package DAO;
 
 import Entity.User;
 import context.DBContext;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Semester: FALL 2022
- * Subject : FRJ301
- * Class   : SE1606
- * Project : Nutrition 
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
+ *
  * @author : Group 4
- * CE161130  Nguyen Le Quang Thinh (Leader)
- * CE170036  Pham Nhat Quang
- * CE160464  Nguyen The Lu
- * CE161096  Nguyen Ngoc My Quyen
- * CE161025  Tran Thi Ngoc Hieu
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
-public class UserDAO {
-
-    /**
-     * Connection to database
-     */
-    Connection con = null;
-
-    /**
-     * Move query from Netbeans to SQl
-     */
-    PreparedStatement ps = null;
-
-    /**
-     * Save query result
-     */
-    ResultSet rs = null;
+public class UserDAO extends DAO {
 
     /**
      * Get the full lists of users in USER table
@@ -58,13 +42,15 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.getMessage();
+        } finally {
+            closeConnections();
         }
         return list;
     }
 
     /**
      * Get list admin
-     * 
+     *
      * @return List [user]
      */
     public List<User> getListAdmin() {
@@ -82,6 +68,8 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.getMessage();
+        } finally {
+            closeConnections();
         }
         return list;
     }
@@ -89,12 +77,12 @@ public class UserDAO {
     /**
      * Add a user in the database
      *
-     * @param USERID        User ID
-     * @param USERROLEID    User role ID
-     * @param FIRSTNAME     First name of user
-     * @param LASTNAME      Last name of user
-     * @param PHONE         Phone of user
-     * @param EMAIL         Email of user
+     * @param USERID User ID
+     * @param USERROLEID User role ID
+     * @param FIRSTNAME First name of user
+     * @param LASTNAME Last name of user
+     * @param PHONE Phone of user
+     * @param EMAIL Email of user
      * @throws SQLException When update query to database encounters error
      */
     public void addUser(String USERID, String USERROLEID, String FIRSTNAME, String LASTNAME, String PHONE, String EMAIL) throws SQLException {
@@ -109,11 +97,13 @@ public class UserDAO {
         ps.setString(5, EMAIL);
         ps.setString(6, PHONE);
         ps.executeUpdate();
+        closeConnections();
+
     }
 
     /**
      * Delete of user
-     * 
+     *
      * @param id user id
      */
     public void deleteUSER(String id) {
@@ -137,13 +127,15 @@ public class UserDAO {
             ps.executeUpdate();
 
         } catch (Exception e) {
+        } finally {
+            closeConnections();
         }
     }
 
     /**
      * Get the last ID present in USER table
      *
-     * @return ID number 
+     * @return ID number
      */
     public int getLastID() {
         String query = "SELECT TOP 1 * FROM dbo.[USER] ORDER BY USERID DESC";
@@ -152,10 +144,14 @@ public class UserDAO {
             ps = con.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return rs.getInt(1);
+                int res = rs.getInt(1);
+                closeConnections();
+                return res;
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+        } finally {
+            closeConnections();
         }
         return -1;
     }
@@ -176,23 +172,26 @@ public class UserDAO {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return new User(
+                User res = new User(
                         rs.getInt("USERID"),
                         rs.getString("FIRSTNAME"),
                         rs.getString("LASTNAME"),
                         rs.getString("EMAILADDRESS"),
                         rs.getString("PHONENUMBER")
                 );
+                closeConnections();
+                return res;
             }
         } catch (Exception e) {
+        } finally {
+            closeConnections();
         }
-
         return null;
     }
-    
+
     /**
      * Get user by name
-     * 
+     *
      * @param username user name
      * @return List [user]
      */
@@ -203,25 +202,27 @@ public class UserDAO {
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
 
-            ps.setString(1,"%"+username+"%");
-            ps.setString(2,"%"+username+"%");
+            ps.setString(1, "%" + username + "%");
+            ps.setString(2, "%" + username + "%");
             rs = ps.executeQuery();
-             while (rs.next()) {
+            while (rs.next()) {
                 User user = new User(rs.getInt(1), rs.getInt(2), rs.getString(3),
                         rs.getString(4), rs.getString(5), rs.getString(6));
                 list.add(user);
             }
         } catch (Exception e) {
+        } finally {
+            closeConnections();
         }
 
         return list;
     }
-    
+
     /**
      * Get admin by name
-     * 
+     *
      * @param username user name
-     * @return  List [user]
+     * @return List [user]
      */
     public List<User> getAdminByName(String username) {
         List<User> list = new ArrayList<>();
@@ -230,15 +231,17 @@ public class UserDAO {
             con = new DBContext().getConnection(); // open connection to SQL
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
 
-            ps.setString(1,"%"+username+"%");
-            ps.setString(2,"%"+username+"%");
+            ps.setString(1, "%" + username + "%");
+            ps.setString(2, "%" + username + "%");
             rs = ps.executeQuery();
-             while (rs.next()) {
+            while (rs.next()) {
                 User user = new User(rs.getInt(1), rs.getInt(2), rs.getString(3),
                         rs.getString(4), rs.getString(5), rs.getString(6));
                 list.add(user);
             }
         } catch (Exception e) {
+        } finally {
+            closeConnections();
         }
 
         return list;
@@ -246,7 +249,7 @@ public class UserDAO {
 
     /**
      * Get role by user ID
-     * 
+     *
      * @param id User ID
      * @return object User
      * @throws SQLException Exception of SQL
@@ -260,16 +263,19 @@ public class UserDAO {
         ps.setInt(1, id);
         rs = ps.executeQuery();
         while (rs.next()) {
-            return new User(
+            User res = new User(
                     rs.getInt("USERROLEID")
             );
+            closeConnections();
+            return res;
         }
+        closeConnections();
         return null;
     }
 
     /**
      * Get role id by user id
-     * 
+     *
      * @param id user id
      * @return int user role id
      * @throws SQLException Exception of SQL
@@ -280,22 +286,25 @@ public class UserDAO {
         con = new DBContext().getConnection(); // open connection to SQL
         ps = con.prepareStatement(query); // move query from Netbeen to SQl
 
-        ps.setString(1, id+"");
+        ps.setString(1, id + "");
         rs = ps.executeQuery();
         while (rs.next()) {
-            return rs.getInt("USERROLEID");
+            int res = rs.getInt("USERROLEID");
+            closeConnections();
+            return res;
         }
+        closeConnections();
         return 0;
     }
 
     /**
      * Edit user info in USER table
      *
-     * @param USERID        User ID
-     * @param FIRSTNAME     First name of user
-     * @param LASTNAME      Last name of user
-     * @param PHONE         Phone of user
-     * @param EMAIL         Email of user
+     * @param USERID User ID
+     * @param FIRSTNAME First name of user
+     * @param LASTNAME Last name of user
+     * @param PHONE Phone of user
+     * @param EMAIL Email of user
      */
     public void editUser(String USERID, String FIRSTNAME, String LASTNAME, String EMAIL, String PHONE) {
         String query = "update [USER]\n"
@@ -314,8 +323,9 @@ public class UserDAO {
             ps.setString(5, USERID);
             ps.executeUpdate();
         } catch (Exception e) {
+        } finally {
+            closeConnections();
         }
-
     }
 
 }
