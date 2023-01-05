@@ -2,9 +2,6 @@ package DAO;
 
 import Entity.Meal;
 import context.DBContext;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,29 +12,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Semester: FALL 2022
- * Subject : FRJ301
- * Class   : SE1606
- * Project : Nutrition 
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
+ *
  * @author : Group 4
- * CE170036  Pham Nhat Quang
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
-public class MealDAO {
-
-    /**
-     * Connection to database
-     */
-    Connection con = null;
-
-    /**
-     * Move query from Netbeans to SQl
-     */
-    PreparedStatement ps = null;
-
-    /**
-     * Save query result
-     */
-    ResultSet rs = null;
+public class MealDAO extends DAO {
 
     /**
      * String query
@@ -118,6 +106,7 @@ public class MealDAO {
         ps.setString(7, carbs);
 
         ps.executeUpdate();
+        closeConnections();
     }
 
     /**
@@ -144,10 +133,12 @@ public class MealDAO {
 
                 res.add(meal);
             }
-
+            closeConnections();
             return res;
         } catch (SQLException ex) {
             Logger.getLogger(MealDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections();
         }
         return null;
     }
@@ -175,11 +166,13 @@ public class MealDAO {
         ps.setString(3, time);
         ps.setString(4, name);
         ps.executeUpdate();
+        closeConnections();
+
     }
 
     /**
      * Get meals group by date
-     * 
+     *
      * @param userID user ID
      * @return List [meal]
      */
@@ -192,15 +185,16 @@ public class MealDAO {
                 return o1.getMealDateTime().compareTo(o1.getMealDateTime());
             }
         });
+        closeConnections();
         return res;
     }
 
     /**
      * Get exercise calorie by date
-     * 
-     * @param userID    user ID
-     * @param date      date of exercise
-     * @return          array double
+     *
+     * @param userID user ID
+     * @param date date of exercise
+     * @return array double
      * @throws SQLException Exception of SQL
      */
     public double[] getExercisesCalorieByDate(String userID, String date) throws SQLException {
@@ -228,14 +222,14 @@ public class MealDAO {
                     rs.getDouble("FAT"),
                     rs.getDouble("CARB")
             );
-            cal +=rs.getDouble("CALORIE");
-            pro +=rs.getDouble("PROTEIN");
+            cal += rs.getDouble("CALORIE");
+            pro += rs.getDouble("PROTEIN");
             fat += rs.getDouble("FAT");
-            carb +=rs.getDouble("CARB");
+            carb += rs.getDouble("CARB");
             queryResult.add(meal);
         }
-
-        return new double[]{cal,pro,fat,carb};
+        closeConnections();
+        return new double[]{cal, pro, fat, carb};
     }
 
 }

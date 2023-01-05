@@ -1,40 +1,26 @@
 package DAO;
 
-import Control.Login.RegisterControl;
 import context.DBContext;
 import Entity.Login;
 import Security.Encryption;
 import Security.RegLoginLogic;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- * Semester: FALL 2022 Subject : FRJ301 Class : SE1606 Project : Nutrition
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
  *
- * @author : Group 4 CE161130 Nguyen Le Quang Thinh (Leader) CE170036 Pham Nhat
- * Quang CE160464 Nguyen The Lu CE161096 Nguyen Ngoc My Quyen CE161025 Tran Thi
- * Ngoc Hieu
+ * @author : Group 4
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
-public class LoginDAO {
-
-    /**
-     * Connection to database
-     */
-    Connection con = null;
-
-    /**
-     * Move query from Netbeans to SQl
-     */
-    PreparedStatement ps = null;
-
-    /**
-     * Save query result
-     */
-    ResultSet rs = null;
+public class LoginDAO extends DAO {
 
     /**
      * Add a record into database Login table
@@ -54,6 +40,7 @@ public class LoginDAO {
         ps.setString(3, hashedPassword);
 
         ps.executeUpdate(); // the same with click to "excute" btn;
+        closeConnections();
     }
 
     /**
@@ -70,6 +57,8 @@ public class LoginDAO {
         ps.setString(1, userID + "");
         ps.setString(2, loginID + "");
         ps.executeUpdate();
+        closeConnections();
+
     }
 
     /**
@@ -83,8 +72,11 @@ public class LoginDAO {
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
         while (rs.next()) {
-            return rs.getInt(1);
+            int res = rs.getInt(1);
+            closeConnections();
+            return res;
         }
+        closeConnections();
         return -1;
     }
 
@@ -103,8 +95,11 @@ public class LoginDAO {
         ps.setString(1, username);
         rs = ps.executeQuery();
         while (rs.next()) {
-            return rs.getInt(1);
+            int res = rs.getInt(1);
+            closeConnections();
+            return res;
         }
+        closeConnections();
         return 0;
     }
 
@@ -124,11 +119,14 @@ public class LoginDAO {
             if (rs.next()) {
                 Login info = new Login(rs.getInt("LOGINID"), rs.getString("USERNAME"), rs.getString("PASSWORDSALT"),
                         rs.getString("PASSWORDHASH"), rs.getInt("USER_ID"));
-                System.out.println(info.toString());
+//                System.out.println(info.toString());
+                closeConnections();
                 return info;
             }
         } catch (Exception e) {
             System.err.println(e.getCause());
+        } finally {
+            closeConnections();
         }
         return null;
     }
@@ -156,11 +154,14 @@ public class LoginDAO {
                 String hash = a.getPasswordHash();
 
                 if (Security.RegLoginLogic.verifyPassword(enteredPassword, salt, hash)) {
+                    closeConnections();
                     return a;
                 }
             }
         } catch (Exception e) {
             System.out.println(e);
+        } finally {
+            closeConnections();
         }
         return null;
     }
@@ -187,11 +188,14 @@ public class LoginDAO {
                 String hash = userLogin.getPasswordHash();
 
                 if (Security.RegLoginLogic.verifyPassword(enteredPassword, salt, hash)) {
+                    closeConnections();
                     return userLogin;
                 }
             }
         } catch (Exception e) {
             System.out.println(e);
+        } finally {
+            closeConnections();
         }
         return null;
     }
@@ -219,6 +223,7 @@ public class LoginDAO {
                     rs.getInt("USER_ID")
             );
         }
+        closeConnections();
         return res;
     }
 
@@ -253,6 +258,8 @@ public class LoginDAO {
         ps.setString(3, hashedPassword);
         ps.setString(4, userID);
         ps.executeUpdate();
+        closeConnections();
+
     }
 
     public int checkLoginByEmail(String email) throws SQLException {
@@ -263,11 +270,13 @@ public class LoginDAO {
         ps = con.prepareStatement(query);
         ps.setString(1, email);
         rs = ps.executeQuery();
-        
-        if (rs.next()){
+
+        if (rs.next()) {
             int res = rs.getInt("userid");
+            closeConnections();
             return res;
         }
+        closeConnections();
         return -1;
     }
 
@@ -278,8 +287,11 @@ public class LoginDAO {
         ps.setString(1, userID);
         rs = ps.executeQuery();
         if (rs.next()) {
-            return new Entity.Login(rs.getInt("LOGINID"), rs.getString("USERNAME"), rs.getString("PASSWORDSALT"), rs.getString("PASSWORDHASH"), rs.getInt("USER_ID"));
+            Entity.Login record = new Entity.Login(rs.getInt("LOGINID"), rs.getString("USERNAME"), rs.getString("PASSWORDSALT"), rs.getString("PASSWORDHASH"), rs.getInt("USER_ID"));
+            closeConnections();
+            return record;
         }
+        closeConnections();
         return null;
     }
 
@@ -299,7 +311,7 @@ public class LoginDAO {
         ps.setString(1, username);
         ps.setString(2, salt);
         ps.setString(3, hashedPassword);
-
         ps.executeUpdate(); // the same with click to "excute" btn;
+        closeConnections();
     }
 }

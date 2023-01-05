@@ -2,41 +2,25 @@ package DAO;
 
 import Entity.ExerciseType;
 import context.DBContext;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Semester: FALL 2022
- * Subject : FRJ301
- * Class   : SE1606
- * Project : Nutrition 
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
+ *
  * @author : Group 4
- * CE161130  Nguyen Le Quang Thinh (Leader)
- * CE170036  Pham Nhat Quang
- * CE160464  Nguyen The Lu
- * CE161096  Nguyen Ngoc My Quyen
- * CE161025  Tran Thi Ngoc Hieu
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
-public class ExerciseTypeDAO {
-
-    /**
-     * Connection to database
-     */
-    Connection con = null;
-
-    /**
-     * Move query from Netbeans to SQl
-     */
-    PreparedStatement ps = null;
-
-    /**
-     * Save query result
-     */
-    ResultSet rs = null;
+public class ExerciseTypeDAO extends DAO {
 
     /**
      * String query
@@ -62,8 +46,9 @@ public class ExerciseTypeDAO {
                 res.add(new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"), rs.getDouble("CALPERHOUR"), rs.getString("DESCRIPTION")));
             }
         } catch (Exception e) {
+        } finally {
+            closeConnections();
         }
-
         return res;
     }
 
@@ -85,14 +70,15 @@ public class ExerciseTypeDAO {
                 res.add(ex);
             }
         } catch (Exception e) {
+        } finally {
+            closeConnections();
         }
-
         return res;
     }
 
     /**
      * Get Exercise By Name
-     * 
+     *
      * @param name name of exercise
      * @return ExerciseType
      * @throws SQLException Exception of SQL
@@ -107,11 +93,13 @@ public class ExerciseTypeDAO {
         while (rs.next()) {
             res = new ExerciseType(rs.getInt("EXERCISEID"), rs.getString("EXERCISENAME"), rs.getDouble("CALPERHOUR"), rs.getString("DESCRIPTION"));
         }
+        closeConnections();
         return res;
     }
 
     /**
      * Delete Exercise type
+     *
      * @param id Exercise ID
      */
     public void deleteExerciseType(String id) {
@@ -121,16 +109,19 @@ public class ExerciseTypeDAO {
             ps = con.prepareStatement(query); // move query from Netbeen to SQl
             ps.setString(1, id);
             ps.executeUpdate();
-
         } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            closeConnections();
         }
+
     }
 
     /**
      * Get Exercise type by ID
-     * 
-     * @param id    Exercise ID
-     * @return      Exercise type
+     *
+     * @param id Exercise ID
+     * @return Exercise type
      */
     public ExerciseType getExerciseTypeByID(String id) {
         String query = "select * from EXERCISETYPES\n"
@@ -144,17 +135,21 @@ public class ExerciseTypeDAO {
                 return new ExerciseType(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4));
             }
         } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            closeConnections();
         }
+
         return null;
     }
 
     /**
      * Update exercise
-     * 
-     * @param id            Exercise ID
-     * @param exercisename  Exercise name
-     * @param calperhour    Calorie per hour
-     * @param description   Description of exercise
+     *
+     * @param id Exercise ID
+     * @param exercisename Exercise name
+     * @param calperhour Calorie per hour
+     * @param description Description of exercise
      */
     public void updateExercise(String id, String exercisename, String calperhour, String description) {
         String query = "update EXERCISETYPES set EXERCISENAME = ?, CALPERHOUR = ?, DESCRIPTION = ?\n"
@@ -167,18 +162,20 @@ public class ExerciseTypeDAO {
             ps.setString(3, description);
             ps.setString(4, id);
             ps.executeUpdate();
-
         } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            closeConnections();
         }
     }
 
     /**
      * Add exercise type
-     * 
-     * @param exid          Exercise ID
-     * @param exname        Exercise name
-     * @param calperhour    Calorie per hour
-     * @param description   Description of exercise
+     *
+     * @param exid Exercise ID
+     * @param exname Exercise name
+     * @param calperhour Calorie per hour
+     * @param description Description of exercise
      */
     public void addExerciseType(String exid, String exname, String calperhour, String description) {
         String query = "insert into EXERCISETYPES values (?,?,?,?)";
@@ -192,7 +189,9 @@ public class ExerciseTypeDAO {
             ps.setString(4, description);
             ps.executeUpdate();
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.println(e);
+        } finally {
+            closeConnections();
         }
     }
 }

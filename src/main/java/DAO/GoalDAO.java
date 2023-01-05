@@ -2,41 +2,25 @@ package DAO;
 
 import Entity.DailyNutritionGoal;
 import context.DBContext;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Semester: FALL 2022
- * Subject : FRJ301
- * Class   : SE1606
- * Project : Nutrition 
+ * FPT University Can Tho Semester: FALL 2022
+ * <br>Subject : FRJ301
+ * <br>Class : SE1606
+ * <br>Project : Nutrition
+ * <br>
+ * <br>
+ *
  * @author : Group 4
- * CE161130  Nguyen Le Quang Thinh (Leader)
- * CE170036  Pham Nhat Quang
- * CE160464  Nguyen The Lu
- * CE161096  Nguyen Ngoc My Quyen
- * CE161025  Tran Thi Ngoc Hieu
+ * @author: CE161130 Nguyen Le Quang Thinh (Leader)
+ * @author: CE170036 Pham Nhat Quang
+ * @author: CE160464 Nguyen The Lu <br>CE161096 Nguyen Ngoc My Quyen
+ * @author: CE161025 Tran Thi Ngoc Hieu
  */
-public class GoalDAO {
-
-    /**
-     * Connection to database
-     */
-    Connection con = null;
-
-    /**
-     * Move query from Netbeans to SQl
-     */
-    PreparedStatement ps = null;
-
-    /**
-     * Save query result
-     */
-    ResultSet rs = null;
+public class GoalDAO extends DAO {
 
     /**
      * Add nutrition goal in the database or edit existing goal, macro goals are
@@ -80,7 +64,6 @@ public class GoalDAO {
                 ps.setString(5, userId);
                 ps.executeUpdate(); // the same with click to "excute" btn;
             } else {
-
                 con = new DBContext().getConnection(); // open connection to SQL
                 ps = con.prepareStatement(queryInsert); // move query from Netbeen to SQl
                 ps.setString(1, userId);
@@ -90,9 +73,10 @@ public class GoalDAO {
                 ps.setString(5, carb + "");
                 ps.executeUpdate(); // the same with click to "excute" btn;
             }
-
         } catch (Exception e) {
-            e.getMessage();
+            System.err.println(e);
+        } finally {
+            closeConnections();
         }
     }
 
@@ -122,6 +106,7 @@ public class GoalDAO {
         } else {
             calories = ((9.247 * w) + (3.098 * h) - (4.330 * ag) + 447.593) * r;
         }
+        closeConnections();
         return calories;
     }
 
@@ -146,13 +131,16 @@ public class GoalDAO {
                 return info;
             }
         } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            closeConnections();
         }
         return null;
     }
 
     /**
-     * @author:Pham Nhat Quang 
-     * Edit macro goal, from new macro calculates new calorie goal
+     * @author:Pham Nhat Quang Edit macro goal, from new macro calculates new
+     * calorie goal
      *
      * @param userID User ID
      * @param protein Protein
@@ -175,13 +163,13 @@ public class GoalDAO {
         ps.setString(3, carb);
         ps.setString(4, calorie + "");
         ps.setString(5, userID);
-
         ps.executeUpdate();
+        closeConnections();
     }
 
     /**
-     * @author:Pham Nhat Quang 
-     * Edit calorie goal, adjust macro goals according to new calorie
+     * @author:Pham Nhat Quang Edit calorie goal, adjust macro goals according
+     * to new calorie
      *
      * @param userID User ID
      * @param calorie Calorie
@@ -212,12 +200,13 @@ public class GoalDAO {
         ps.setString(5, userID);
 
         ps.executeUpdate();
+        closeConnections();
+
     }
 
     /**
-     * @author:Pham Nhat Quang
-     * Get the statistics of meal,exercise and goal associated with user in the 
-     * current day
+     * @author:Pham Nhat Quang Get the statistics of meal,exercise and goal
+     * associated with user in the current day
      *
      * @param userID ID of user
      * @return Number array in the order: goal calories (kcal), goal protein
@@ -237,9 +226,13 @@ public class GoalDAO {
         ExerciseDAO eDAO = new ExerciseDAO();
         double[] consumed = mDAO.getExercisesCalorieByDate(userID, dtf.format(now));
         double burned = eDAO.getExercisesCalorieByDate(userID, dtf.format(now));
-        return new double[]{goal.getCalories(), goal.getProtein(), goal.getFat(), goal.getCarb(),
+        closeConnections();
+
+        return new double[]{
+            goal.getCalories(), goal.getProtein(), goal.getFat(), goal.getCarb(),
             consumed[0], consumed[1], consumed[2], consumed[3],
-            burned};
+            burned
+        };
     }
 
     /**
@@ -255,6 +248,7 @@ public class GoalDAO {
             }
 //            System.out.println(g.getTodayNumbers("2"));
         } catch (SQLException ex) {
+            System.err.println(ex);
 //            Logger.getLogger(GoalDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
