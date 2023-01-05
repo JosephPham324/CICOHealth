@@ -136,7 +136,7 @@
                 </ul>
             </div>
             <div class="col-sm-10 row g-0 info tab-content" id="pills-tabContent"
-                 style="background-image: url('${pageContext.request.contextPath}/image/backgroundyourlogininfo.png');
+                 style="background-image: url('${pageContext.request.contextPath}/Assets/image/backgroundyourlogininfo.png');
                  background-size: cover;
                  background-position: center center;"
                  >
