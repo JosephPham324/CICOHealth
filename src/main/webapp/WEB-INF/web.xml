@@ -242,16 +242,16 @@
     </servlet>
     <servlet>
         <servlet-name>GoogleRegister</servlet-name>
-        <jsp-file>/Pages/GoogleRegister.jsp</jsp-file>
+        <jsp-file>/Pages/General/GoogleRegister.jsp</jsp-file>
     </servlet>
-    <servlet>
+<!--    <servlet>
         <servlet-name>Header</servlet-name>
         <jsp-file>/Pages/GoogleRegister.jsp</jsp-file>
     </servlet>
         <servlet>
         <servlet-name>Footer</servlet-name>
         <jsp-file>/Pages/GoogleRegister.jsp</jsp-file>
-    </servlet>
+    </servlet>-->
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -478,14 +478,14 @@
         <servlet-name>GoogleRegister</servlet-name>
         <url-pattern>/google-register</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
+<!--    <servlet-mapping>
         <servlet-name>Header</servlet-name>
         <url-pattern>/header</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Footer</servlet-name>
         <url-pattern>/footer</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
     <session-config>
         <session-timeout>
             30

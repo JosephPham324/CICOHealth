@@ -89,12 +89,12 @@ public class RegisterControl extends HttpServlet {
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         Boolean googleRegister = Boolean.parseBoolean(request.getParameter("google-register"));
-
+        int loginID = 0;
         //DAOs for interacting with database 
         LoginDAO loginDAO = new LoginDAO();
         HealthDAO healthDAO = new HealthDAO();
         GoalDAO goalDAO = new GoalDAO();
-        
+
         int checkDuplicate;
         try {
             checkDuplicate = loginDAO.checkUserNameDuplicate(username);
@@ -102,10 +102,10 @@ public class RegisterControl extends HttpServlet {
                 request.getRequestDispatcher("register-error-control").forward(request, response);
             } else {
                 String empString = "";
-                
+
                 String salt = Encryption.generateSalt(username, password);
                 String hashedPassword = RegLoginLogic.encryptPassword(salt, password);
-                
+
                 if (hashedPassword.equals(empString) || salt.equals("Unable to generate salt")) {
                     //Guard clause for if unable to hash password
                     response.sendRedirect("register-error-control");
@@ -117,9 +117,9 @@ public class RegisterControl extends HttpServlet {
                     //Add login info for new account
                     if (googleRegister != true) {//If not register using google
                         loginDAO.addLoginInfo(username, salt, hashedPassword);
-                    } else if (loginDAO.checkLoginByEmail(email)==-1){//If register using google and email is not registered 
+                    } else if (loginDAO.checkLoginByEmail(email) == -1) {//If register using google and email is not registered 
                         loginDAO.addLoginByEmailInfo(username, salt, hashedPassword);
-                    } else{//If already registered, login
+                    } else {//If already registered, login
                         request.setAttribute("username", username);
                         request.setAttribute("password", password);
                         request.setAttribute("email", email);
@@ -127,24 +127,25 @@ public class RegisterControl extends HttpServlet {
                         request.setAttribute("remember", false);
                         request.getRequestDispatcher("login-control").forward(request, response);
                     }
-                    int loginID = 0;
+
                     loginID = loginDAO.getLastID();
-                    
+
                     UserDAO userDAO = new UserDAO();
                     //Add user info for new account, accounts registered this way will be default normal user
+
                     userDAO.addUser(loginID + "", "2", firstName, lastName, phone, email);
                     loginDAO.updateUserID(loginID, loginID);//Update user ID
-                    
+
                     request.setAttribute("userID", loginID);//Set request parameter for forwarding
 
                     //Insert default health and goal record for insurance
                     healthDAO.insertHealthInfo(loginID + "", 0 + "", 0 + "", 0 + "", 0 + "", 0 + "");
                     goalDAO.addGoal(loginID + "", 0 + "");
-                    if (googleRegister){
+                    if (googleRegister) {
                         request.setAttribute("username", username);
                         request.setAttribute("password", password);
                         request.getRequestDispatcher("google-register")
-                            .forward(request, response);
+                                .forward(request, response);
                         return;
                     }
                     request.getRequestDispatcher("healthinfo")
@@ -152,7 +153,9 @@ public class RegisterControl extends HttpServlet {
                 }
             }
         } catch (SQLException ex) {
+            System.err.println(loginID + ""+ "2"+ firstName+ lastName+ phone+ email);
             Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect("register");
         }
     }
 
